@@ -1,4 +1,4 @@
-# Project Name: The Nursery Project
+# The Nursery Project
 
 Developer Names: Aaron Billones, Juan Moncada, Gillian Ford, Steven Ramundi
 
