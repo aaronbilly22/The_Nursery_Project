@@ -1,8 +1,8 @@
-# Project Name
+# Project Name: The Nursery Project
 
-Developer Names:
+Developer Names: Aaron Billones, Juan Moncada, Gillian Ford, Steven Ramundi
 
-Date of project start:
+Date of project start: September 21, 2022
 
 This project is ...
 
