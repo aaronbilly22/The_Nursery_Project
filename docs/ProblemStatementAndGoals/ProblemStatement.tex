@@ -22,14 +22,21 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Date1 & Name(s) & Description of changes\\
-Date2 & Name(s) & Description of changes\\
-... & ... & ...\\
+2022-09-25 & Juan Moncada,\\&Aaron Billones,\\&Steven Ramundi,\\&Gillian Ford & Initial release\\
+ 
 \bottomrule
 \end{tabularx}
 \end{table}
 
 \section{Problem Statement}
+
+Sheridan Nurseries is one of Canadas largest nursery opperations and is growing year by year.
+In the past few years, the company has taken step to automate their production line and streamline their operation.
+A significant amount of manual labour was seen in between the delivery of skidded pots/ trays and the begining of the propagation 
+assembly line. In the current state, one employee is used to recieve stacks of pots and trays from their respective skids,
+populate the trays with pots, and feed the now filled trays into the assembly line where the propagation of plants into the pots begins.
+This process currently requires full-time labour from at minimum one employee, if not more, to yield the required output.
+
 
 \wss{You should check your problem statement with the
 \href{https://github.com/smiths/capTemplate/blob/main/docs/Checklists/ProbState-Checklist.pdf}
@@ -37,18 +44,26 @@ Date2 & Name(s) & Description of changes\\
 \wss{You can change the section headings, as long as you include the required information.}
 
 \subsection{Problem}
+Sheridan Nurseries currently has no automation in their process of populating their trays and pots thus needing significant manual labour.
 
 \subsection{Inputs and Outputs}
+\subsubsection{physical input}
+physcal inputs will be stacks of stacks of trays and stack of ProbState
+\subsubsection{software input}
+verifaction of trays and pots loaded. On commannd
+\subsubsection{physical output}
+filled trays with pots.
+\subsubsection{software output}
+series of warnings. load trays, load pots, verification failed.
 
-\wss{Characterize the problem in terms of ``high level'' inputs and outputs.  
-Use abstraction so that you can avoid details.}
 
 \subsection{Stakeholders}
+The main stake holders for this position will be the nursery manager, owner, aswell as the individual working the assmbly line.
 
 \subsection{Environment}
-
-\wss{Hardware and software}
-
+This project will be an even split between harware and software as there is a need to build and incorporate into an existing assembly line.
+hardware will have to be used in order manipulate pots and trays, while software will be used to control said hardware 
+and take care of any verification that trays have been populated properly.
 \section{Goals}
 \body{The main goal of this project is to develop a system for Sheridan Nurseries
 that will replace the need for human workers in the current process of populating plant trays with pots. This will reduce the cost
