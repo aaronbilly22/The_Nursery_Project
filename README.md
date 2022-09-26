@@ -8,8 +8,8 @@ The current method of preparing pots and trays to be filled with soil and popula
 
 The folders and files for this project are as follows:
 
-docs - Documentation for the project
-refs - Reference material used for the project, including papers
-src - Source code
-test - Test cases
+docs - Documentation for the project\
+refs - Reference material used for the project, including papers\
+src - Source code\
+test - Test cases\
 parts - all CAD/assembly and ordered parts
