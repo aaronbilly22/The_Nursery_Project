@@ -52,13 +52,13 @@
 	The repository presented above consists of three branches: main, develop, and prev-milestone. 
 	The workflow within these branches will ensure organized and secure development.
 	\begin{itemize}
-		\item \emph{main}: This branch is the default branch in the repository. It will contain all working code and complete documentation. 
+		\item \emph{main}: This branch is the default branch in the repository. It will contain all working code, all parts/assemblies, and complete documentation. 
 		It should always be behind or up-to-date with the \emph{develop} branch.
 		\item \emph{branch}: This branch is where all the development will take place.
 		 The team will review changes and perform testing in this branch. A pull request 
 		 will be submitted and approved by a minimum of two team members prior to being 
 		 merged into the \emph{main} branch where the working code should be.
-		\item \emph{prev-milestone}: This branch will contain all the code and documentation 
+		\item \emph{prev-milestone}: This branch will contain all the code, parts, and documentation 
 		of the project’s most recently completed milestone. It will pose as a 
 		backup branch that can be referred to at any time for ease of communication and 
 		development throughout the team.
@@ -110,7 +110,15 @@
 	\end{itemize}
 	
 	\section{Coding Standard}
-	
+	The project will follow the object-oriented programming paradigm. This will ensure flexibility 
+	and control over the complexity of the program while maintaining a level of abstraction.\\
+
+	\noindent Another standard that will be followed is the four-eyes principle. The four-eyes principle 
+	will improve team awareness and reduce bugs. This will be achieved in the GitHub repository by 
+	working mostly in the \emph{develop} branch and having a team member approve a pull request to be merged into \emph{main}.\\
+
+	\noindent For naming conventions, Pascal Case will be used for naming classes/structures, while camelCase will be used for naming methods/functions.
+
 	\section{Project Scheduling}
 	
 	\wss{How will the project be scheduled?}
