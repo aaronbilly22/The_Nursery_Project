@@ -1,5 +1,5 @@
 \documentclass{article}
-
+\usepackage{hyperref}
 \usepackage{booktabs}
 \usepackage{tabularx}
 
@@ -16,67 +16,103 @@
 \begin{document}
 
 \begin{table}[hp]
-\caption{Revision History} \label{TblRevisionHistory}
-\begin{tabularx}{\textwidth}{llX}
-\toprule
-\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
-\midrule
-2022-09-21 & Juan Moncada & Initial release\\
-Date2 & Name(s) & Description of changes\\
-... & ... & ...\\
-\bottomrule
-\end{tabularx}
-\end{table}
+	\caption{Revision History} \label{TblRevisionHistory}
+	\begin{tabularx}{\textwidth}{llX}
+	\toprule
+	\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
+	\midrule
+	2022-09-21 & Juan Moncada & Initial release\\
+	\bottomrule
+	\end{tabularx}
+	\end{table}
+	
+	\newpage
+	
+	\maketitle
+	\section{Stakeholders}
+	Sheridan Nurseries Norval Manager
+	
+	\section{Project Description} 
+	The current method of preparing pots and trays to be filled with soil and populated with seeds at Sheridan Nurseries is a process with little to no automation, requiring many manual labour hours. Recently, the owners of these farms have been finding it increasingly more difficult to fill these roles with enough workers to run the operation smoothly, and meet production demands. We aim to aid in this process by designing and implementing a machine that is able to fill trays with pots and prepare them for populating with soil and seeds. This will alleviate the reliance on manual labour and improve the overall efficiency of the farm.
+	
+	
+	\section{Team Meeting Plan}
+	
+	\section{Team Communication Plan}
+	
+	\section{Team Member Roles}
+	
+	\section{Workflow Plan}
+	All team members will use the designated public repository on GitHub 
+	for inquiries relating to the project. The entirety of the projects’ 
+	documentation, task distribution, software/hardware design can be found 
+	in \href{https://github.com/aaronbilly22/The_Nursery_Project}{The Nursery Project}.
+	
+	\subsection{Git Branches}
+	The repository presented above consists of three branches: main, develop, and prev-milestone. 
+	The workflow within these branches will ensure organized and secure development.
+	\begin{itemize}
+		\item \emph{main}: This branch is the default branch in the repository. It will contain all working code and complete documentation. 
+		It should always be behind or up-to-date with the \emph{develop} branch.
+		\item \emph{branch}: This branch is where all the development will take place.
+		 The team will review changes and perform testing in this branch. A pull request 
+		 will be submitted and approved by a minimum of two team members prior to being 
+		 merged into the \emph{main} branch where the working code should be.
+		\item \emph{prev-milestone}: This branch will contain all the code and documentation 
+		of the project’s most recently completed milestone. It will pose as a 
+		backup branch that can be referred to at any time for ease of communication and 
+		development throughout the team.
+	\end{itemize}
+	Additional branches may be added when a new feature is being implemented if a 
+	team member believes that it will help the workflow of the project.
 
-\newpage
+	\subsection{Git Issues}
+	A \href{https://github.com/users/aaronbilly22/projects/1}{Git Project Board} will be used to organize 
+	issues and tasks for each team member. The issues may be moved within the project board to the 
+	appropriate sections (ToDo, In Progress, Done). Issues will be created upon task assignment and closed 
+	when the commit has been merged into the main branch. With the creation of each issue, the appropriate assignee(s), label, project, and milestone is chosen
+	to provide the team with useful information about the issue.\\
 
-\maketitle
-\section{Stakeholders}
-Sheridan Nurseries Norval Manager
+	\noindent The assignees are the team members that are responsible for completing the respective task.\\
 
-\section{Project Description} 
-The current method of preparing pots and trays to be filled with soil and populated with seeds at Sheridan Nurseries is a process with little to no automation, requiring many manual labour hours. Recently, the owners of these farms have been finding it increasingly more difficult to fill these roles with enough workers to run the operation smoothly, and meet production demands. We aim to aid in this process by designing and implementing a machine that is able to fill trays with pots and prepare them for populating with soil and seeds. This will alleviate the reliance on manual labour and improve the overall efficiency of the farm.
+	\noindent The following labels will be the most prominent in the project workflow to accurately describe and classify each issue: 
 
+	\begin{itemize}
+		\item Bug – Something isn’t working
+		\item Documentation – Additions or improvements to project documentation 
+		\item Enhancement – Additions or improvements of hardware/software design features 
+		\item Help wanted – Extra attention is needed from another team member 
+		\item Question – Further information is requested 
+	\end{itemize}
+	\noindent The Git project will be selected for the issue to appear on the project board.\\
 
-\section{Team Meeting Plan}
-
-\section{Team Communication Plan}
-
-\section{Team Member Roles}
-
-\section{Workflow Plan}
-
-\begin{itemize}
-	\item How will you be using git, including branches, pull request, etc.?
-	\item How will you be managing issues, including template issues, issue
-	classificaiton, etc.?
-\end{itemize}
-
-\section{Proof of Concept Demonstration Plan}
-
-What is the main risk, or risks, for the success of your project?  What will you
-demonstrate during your proof of concept demonstration to convince yourself that
-you will be able to overcome this risk?
-
-\section{Technology}
-
-\begin{itemize}
-\item Specific programming language
-\item Specific linter tool (if appropriate)
-\item Specific unit testing framework
-\item Investigation of code coverage measuring tools
-\item Specific plans for Continuous Integration (CI), or an explanation that CI
-  is not being done
-\item Specific performance measuring tools (like Valgrind), if
-  appropriate
-\item Libraries you will likely be using?
-\item Tools you will likely be using?
-\end{itemize}
-
-\section{Coding Standard}
-
-\section{Project Scheduling}
-
-\wss{How will the project be scheduled?}
+	\noindent The milestone will be selected to improve organization and timeline awareness.\\
+	
+	\section{Proof of Concept Demonstration Plan}
+	
+	What is the main risk, or risks, for the success of your project?  What will you
+	demonstrate during your proof of concept demonstration to convince yourself that
+	you will be able to overcome this risk?
+	
+	\section{Technology}
+	
+	\begin{itemize}
+	\item Specific programming language
+	\item Specific linter tool (if appropriate)
+	\item Specific unit testing framework
+	\item Investigation of code coverage measuring tools
+	\item Specific plans for Continuous Integration (CI), or an explanation that CI
+	  is not being done
+	\item Specific performance measuring tools (like Valgrind), if
+	  appropriate
+	\item Libraries you will likely be using?
+	\item Tools you will likely be using?
+	\end{itemize}
+	
+	\section{Coding Standard}
+	
+	\section{Project Scheduling}
+	
+	\wss{How will the project be scheduled?}
 
 \end{document}
