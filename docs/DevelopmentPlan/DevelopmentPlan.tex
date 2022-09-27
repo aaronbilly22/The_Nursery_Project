@@ -1,11 +1,12 @@
 \documentclass{article}
-
+\usepackage{hyperref}
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{float}
 
 \title{The Nursery Project\\ Development Plan}
 
-\author{Aaron Billones\\Gillian Ford\\Juan Moncada\\Steven Ramundi}
+\author{Aaron Billones, billonea\\Gillian Ford, fordg\\Juan Moncada, moncadaj\\Steven Ramundi, ramundis}
 
 
 \date{September 26, 2022}
@@ -15,68 +16,161 @@
 
 \begin{document}
 
-\begin{table}[hp]
-\caption{Revision History} \label{TblRevisionHistory}
-\begin{tabularx}{\textwidth}{llX}
-\toprule
-\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
-\midrule
-2022-09-21 & Juan Moncada & Initial release\\
-Date2 & Name(s) & Description of changes\\
-... & ... & ...\\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-\newpage
-
 \maketitle
-\section{Stakeholders}
-Sheridan Nurseries Norval Manager
 
-\section{Project Description} 
-The current method of preparing pots and trays to be filled with soil and populated with seeds at Sheridan Nurseries is a process with little to no automation, requiring many manual labour hours. Recently, the owners of these farms have been finding it increasingly more difficult to fill these roles with enough workers to run the operation smoothly, and meet production demands. We aim to aid in this process by designing and implementing a machine that is able to fill trays with pots and prepare them for populating with soil and seeds. This will alleviate the reliance on manual labour and improve the overall efficiency of the farm.
+\begin{table}[hp]
+	\caption{Revision History} \label{TblRevisionHistory}
+	\begin{tabularx}{\textwidth}{llX}
+	\toprule
+	\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
+	\midrule
+	2022-09-25 & Juan Moncada,& Initial release\\&Aaron Billones,\\&Steven Ramundi,\\&Gillian Ford \\
+	\bottomrule
+	\end{tabularx}
+	\end{table}
 
+	\newpage
+	
+	\section{Stakeholders}
+	The main stakeholders for this project will be the nursery manager, 
+	owner, and the individual(s) working the assembly line.
+	
+	\section{Project Description} 
+	The current method of preparing pots and trays to be filled with soil and populated with seeds at Sheridan Nurseries is a process with little to no automation, requiring many manual labour hours. Recently, the owners of these farms have been finding it increasingly more difficult to fill these roles with enough workers to run the operation smoothly, and meet production demands. We aim to aid in this process by designing and implementing a machine that is able to fill trays with pots and prepare them for populating with soil and seeds. This will alleviate the reliance on manual labour and improve the overall efficiency of the farm.
 
-\section{Team Meeting Plan}
+	\section{Team Meeting \& Communication Plan}
+	
+	\begin{table}[hp]
+		\label{crouch}
+		\begin{tabular}{ p{2.4cm}  p{5 cm} p{2 cm} p{1.5 cm}}
+			\toprule     
+	 \textbf{Topic}   
+	& \textbf{Description} 
+	& \textbf{Method} 
+	& \textbf{Frequency} \\\midrule
+	
+	 Project \vspace{ Status Updates}   
+	& Each member provides updates on what they’ve been working on that week, keeping the team up to date.   
+	& Microsoft Teams Call
+	& Weekly\\\hline
+		 
+	Work Session                   
+	& Meeting to discuss the approach for each milestone and efficiently dividing up the work by the end of each meeting.  
+	& In Person
+	& As Needed\\\hline
+		  
+	General \vspace {Discussion and Updates } 
+	& Team members will communicate with each other as needed to ask questions, share progress, files and discuss current work.
+	& Microsoft Teams Chat
+	& As Needed\\\hline
+	
+	Github Project Board Updates       
+	& Members add, assign and update tasks on Github Project Board to keep the rest of the team updated on what they are working on.
+	& Github Project Board
+	& As Needed\\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	\clearpage
+	\section{Team Member Roles}
+	All team members are required to attend all meetings, especially when close to the 
+	due date of each deliverable. At this point in the project, all team members are 
+	assigned to work on creating and commenting on issues, coding, testing, reviewing 
+	and documentation. The four main pillars of the project (conveyor, tray allocation, 
+	pot dropper, and verification) will be worked on by every team member with equal 
+	contribution. More specific roles will be created as the project advances. 
+	Each week, team members will rotate being the ‘project lead’ during project 
+	status updates, in order to have the most efficient meeting possible. 
 
-\section{Team Communication Plan}
+	\section{Workflow Plan}
+	All team members will use the designated public repository on GitHub 
+	for inquiries relating to the project. The entirety of the project's 
+	documentation, task distribution, software/hardware design can be found 
+	in \href{https://github.com/aaronbilly22/The_Nursery_Project}{The Nursery Project}.
+	
+	\subsection{Git Branches}
+	The repository presented above consists of three branches: \emph{main}, \emph{develop}, and \emph{prev-milestone}. 
+	The workflow within these branches will ensure organized and secure development.
+	\begin{itemize}
+		\item \emph{main}: This branch is the default branch in the repository. It will contain all working code, all parts/assemblies, and complete documentation. 
+		It should always be behind or up-to-date with the \emph{develop} branch.
+		\item \emph{branch}: This branch is where all the development will take place.
+		 The team will review changes and perform testing in this branch. A pull request 
+		 will be submitted and approved by a minimum of two team members prior to being 
+		 merged into the \emph{main} branch where the working code should be.
+		\item \emph{prev-milestone}: This branch will contain all the code, parts, and documentation 
+		of the project’s most recently completed milestone. It will pose as a 
+		backup branch that can be referred to at any time for ease of communication and 
+		development throughout the team.
+	\end{itemize}
+	Additional branches may be added when a new feature is being implemented if a 
+	team member believes that it will help the workflow of the project.
 
-\section{Team Member Roles}
+	\subsection{Git Issues}
+	A \href{https://github.com/users/aaronbilly22/projects/1}{Git Project Board} will be used to organize 
+	issues and tasks for each team member. The issues may be moved within the project board to the 
+	appropriate sections (ToDo, In Progress, Done). Issues will be created upon task assignment and closed 
+	when the commit has been merged into the \emph{main} branch. With the creation of each issue, the appropriate assignee(s), label, project, and milestone is chosen
+	to provide the team with useful information about the issue.\\
 
-\section{Workflow Plan}
+	\noindent The assignees are the team members that are responsible for completing the respective task.\\
 
-\begin{itemize}
-	\item How will you be using git, including branches, pull request, etc.?
-	\item How will you be managing issues, including template issues, issue
-	classificaiton, etc.?
-\end{itemize}
+	\noindent The following labels will be the most prominent in the project workflow to accurately describe and classify each issue: 
 
-\section{Proof of Concept Demonstration Plan}
+	\begin{itemize}
+		\item Bug – Something isn’t working
+		\item Documentation – Additions or improvements to project documentation 
+		\item Enhancement – Additions or improvements of hardware/software design features 
+		\item Help wanted – Extra attention is needed from another team member 
+		\item Question – Further information is requested 
+	\end{itemize}
+	\noindent The Git project will be selected for the issue to appear on the project board.\\
 
-What is the main risk, or risks, for the success of your project?  What will you
-demonstrate during your proof of concept demonstration to convince yourself that
-you will be able to overcome this risk?
+	\noindent The milestone will be selected to improve organization and timeline awareness.\\
+	
+	\section{Proof of Concept Demonstration Plan}
+	
+	The main risk of this project is the size and robustness that the project will require. The project deals with the manupulation of tangible objects and thus must be scaled to match this.
+	The risk of this project can be minimized by splitting it into four main sections (conveyor, tray allocator, pot dropper, and verification). These sections will be able to work independantly with standardized inputs and outputs. The final stage of the project will be 
+	the implementations of four systems working together. Proof of concept demonstation will consist of a CAD model of the system as a whole, as well as a prototype of the tray allocator and pot dropper.
+	
+	
+	\section{Technology}
+	
+	\begin{itemize}
+	\item C++/Python programming language
+	\item PEP8 python linter
+	\item CI/CD will not be done as the project consists of four separate systems that will be developed independently by each group member. Tracking errors and bugs will be relatively 
+	easy as each group member will be responsible for their own system, and testing will be done before each pull request. Programming responsibilities will only overlap once each 
+	system is ready to be integrated into the project. We will still be implementing the measure of pushing code and creating pull requests often.
+	\item Solidworks (for parts design)
+	\item Motors (stepper, servo, DC, etc.)
+	\item Sensors (time of flight, ultrasonic, LiDAR, force, etc.)
+	\item Gantry robot
+	\item End-effector responsible for dropping
+	\item End-effector responsible for grabbing
+	\end{itemize}
+	
+	\section{Coding Standard}
+	The project will follow the object-oriented programming paradigm. This will ensure flexibility 
+	and control over the complexity of the program while maintaining a level of abstraction.\\
 
-\section{Technology}
+	\noindent Another standard that will be followed is the four-eyes principle. The four-eyes principle 
+	will improve team awareness and reduce bugs. This will be achieved in the GitHub repository by 
+	working mostly in the \emph{develop} branch and having a team member approve a pull request to be merged into \emph{main}.\\
 
-\begin{itemize}
-\item Specific programming language
-\item Specific linter tool (if appropriate)
-\item Specific unit testing framework
-\item Investigation of code coverage measuring tools
-\item Specific plans for Continuous Integration (CI), or an explanation that CI
-  is not being done
-\item Specific performance measuring tools (like Valgrind), if
-  appropriate
-\item Libraries you will likely be using?
-\item Tools you will likely be using?
-\end{itemize}
+	\noindent For naming conventions, Pascal Case will be used for naming classes/structures, while camelCase will be used for naming methods/functions.
 
-\section{Coding Standard}
+	\section{Project Scheduling}
+	The project will primarily follow the course deliverables found in the 
+	\href{https://calendar.google.com/calendar/embed?src=rnboqiaki1k2la7rpu3bn0um58%40group.calendar.google.com&ctz=America%2FToronto}{Google Calendar}. 
+	The progress of the project will be tracked on through the relevant milestones using the GitHub Project Board. 
+	Ordering parts will also be kept track of to ensure that the project timelines are met.\\
 
-\section{Project Scheduling}
-
-\wss{How will the project be scheduled?}
+\noindent Task responsibilities will be discussed and organized during weekly meetings to keep up with the deliverables. 
+An expected timeframe will be strongly encouraged to adhere to for the tasks assigned to each team member. The project 
+will ideally be split equally among all members of the team for accomplishing each deliverable. Throughout the lifecycle 
+of the project, members may be subject to a slightly heavier workload than others at specific periods in time, based on 
+the strengths of each member depending on the hardware and software deliverable needs. 
 
 \end{document}
