@@ -87,6 +87,18 @@
 \newcounter{reqnum} %Requirement Number
 \newcommand{\rthereqnum}{P\thereqnum}
 \newcommand{\rref}[1]{R\ref{#1}}
+\newcounter{lctdreqnum} %Likely change number
+\newcommand{\lthelctdreqnum}{LC\thelctdreqnum}
+\newcommand{\lctdref}[1]{TDR\ref{#1}}
+\newcounter{lcpdreqnum} %Likely change number
+\newcommand{\lthelcpdreqnum}{LC\thelcpdreqnum}
+\newcommand{\lcpdref}[1]{PDR\ref{#1}}
+\newcounter{lccreqnum} %Likely change number
+\newcommand{\lthelccreqnum}{LC\thelccreqnum}
+\newcommand{\lccref}[1]{CR\ref{#1}}
+\newcounter{lcvreqnum} %Likely change number
+\newcommand{\lthelcvreqnum}{LC\thelcvreqnum}
+\newcommand{\lcvref}[1]{VR\ref{#1}}
 
 \usepackage{fullpage}
 
@@ -958,34 +970,21 @@ A correct solution must exhibit \plt{fill in the details}.  \plt{These
 
   \section{Functional Requirements}
 
-  This section provides the functional requirements of the machine, seperated into tray dispensing,
+  This section provides the functional requirements of the Pot-Pulator, seperated into tray dispensing,
   pot dispensing, conveyor, and verification requierements.
  
   \subsection{Tray Dispensing Functional Requirements}
   
   \noindent \begin{itemize}
   
+  \item[TDR\refstepcounter{tdreqnum}\thetdreqnum \label{R_Tray0}:] {The tray dispenser must
+      start when the Pot-Pulator start is pressed.}
+  
   \item[TDR\refstepcounter{tdreqnum}\thetdreqnum \label{R_Tray1}:] {The tray dispenser must
       be able to place a standard tray from the loaded stack onto the conveyor belt.}
   
   \item[TDR\refstepcounter{tdreqnum}\thetdreqnum \label{R_Tray2}:] {The tray dispenser must
         be able to store multiple trays at a time.}
-  
-  \item[TDR\refstepcounter{tdreqnum}\thetdreqnum \label{R_Tray3}:] {The tray dispenser must 
-      be able to take a maximum of 30 trays from the user, such that 
-      $n_{trays}(t)\le30$} 
-      
-      THIS IS NFR
-  
-  This will allow the machine to meet the goal of reloading trays every 15 minutes.
-  
-  \item[TDR\refstepcounter{tdreqnum}\thetdreqnum \label{R_Tray4}:] {The tray dispenser must
-      dispense trays at a rate of 1 tray every 30 seconds, such that $t_{cycle}=30\ seconds
-      \ \&\ n_{trays}\left(t\right)=300-t/3;\ t\ \varepsilon\ \{30, 60, 90, ..., 900\}$}
-  
-      THIS IS NFR
-  
-  This will allow the machine to meet the output goal required.
   
   \item[TDR\refstepcounter{tdreqnum}\thetdreqnum \label{R_Tray5}:] {The tray dispenser must
       stop operating once it has run out of trays.}
@@ -1007,6 +1006,9 @@ A correct solution must exhibit \plt{fill in the details}.  \plt{These
   
   \noindent \begin{itemize}
   
+  \item[PDR\refstepcounter{pdreqnum}\thepdreqnum \label{R_Pot0}:] {The pot dispenser must
+      start when the Pot-Pulator start is pressed.}
+  
   \item[PDR\refstepcounter{pdreqnum}\thepdreqnum \label{R_Pot1}:] {The pot dispenser must
       be able to place a pot into an empty place in a tray.}
   
@@ -1015,22 +1017,6 @@ A correct solution must exhibit \plt{fill in the details}.  \plt{These
   
   \item[PDR\refstepcounter{pdreqnum}\thepdreqnum \label{R_Pot3}:] {The pot dispenser must
       be able to store multiple pots at a time.}
-  
-  \item[PDR\refstepcounter{pdreqnum}\thepdreqnum \label{R_Pot4}:] {The pot dispenser must 
-      be able to take a maximum of 30 pots from the user, such that 
-      $n_{pots}(t)\le300$} 
-      
-  THIS IS NFR
-  
-  This will allow the machine to meet the output goal required.
-  
-  \item[PDR\refstepcounter{pdreqnum}\thepdreqnum \label{R_Pot5}:] {The pot dispenser must 
-      dispense pots at a rate of 10 pots every 30 seconds, such that $t_{cycle}=30\ seconds
-      \ \&\ n_{pots}\left(t\right)=300-t/3;\ t\ \varepsilon\ \{30, 60, 90, ..., 900\}$}
-  
-  THIS IS NFR
-  
-  This will allow the machine to meet the output goal required.
   
   \item[PDR\refstepcounter{pdreqnum}\thepdreqnum \label{R_Pot6}:] {The pot dispenser must
       stop operating once it has run out of pots.}
@@ -1051,17 +1037,15 @@ A correct solution must exhibit \plt{fill in the details}.  \plt{These
   
   \noindent \begin{itemize}
   
+  \item[CR\refstepcounter{creqnum}\thecreqnum \label{R_Conveyor0}:] {The conveyor must
+      start when the Pot-Pulator start is pressed.}
+
   \item[CR\refstepcounter{creqnum}\thecreqnum \label{R_Conveyor1}:] {The conveyor must
       be able to move a tray from the tray dispensing station to the verification station.}
   
   \item[CR\refstepcounter{creqnum}\thecreqnum \label{R_Conveyor2}:] {The conveyor must
       be able to stop when a tray is being placed on the conveyor, or when a pot is being
       placed in a tray.}
-  
-  \item[CR\refstepcounter{creqnum}\thecreqnum \label{R_Conveyor3}:] {The conveyor must
-      be able to move pots at a speed sufficient to meet the goal of one cycle per 30
-      seconds}
-  NFR
       
   \item[CR\refstepcounter{creqnum}\thecreqnum \label{R_Conveyor4}:] {The conveyor material 
       must have a high enough friction such that the trays do not slide while in contact with
@@ -1070,6 +1054,9 @@ A correct solution must exhibit \plt{fill in the details}.  \plt{These
   \item[CR\refstepcounter{creqnum}\thecreqnum \label{R_Conveyor5}:] {The conveyor must
       stop when an error arises (verification failed, pot dispenser malfunction/empty, tray dispenser
       malfunction/empty).}
+  \item[CR\refstepcounter{creqnum}\thecreqnum \label{R_Conveyor6}:] {The conveyor must
+      be able to reset after it has been stopped due to an error or pots/trays need to
+      be reloaded.}
   
   \end{itemize}
   
@@ -1178,183 +1165,107 @@ A correct solution must exhibit \plt{fill in the details}.  \plt{These
   \end{itemize}
   
 
-\section{Likely Changes}    
+\section{Functional Requirements Likelihood of Change}
+
+\subsection{Tray Dispensing Functional Requirements}
 
 \noindent \begin{itemize}
 
-\item[LC\refstepcounter{lcnum}\thelcnum\label{LC_meaningfulLabel1}:] \plt{Give
-    the likely changes, with a reference to the related assumption (aref), as appropriate.}
+\item[TDR\refstepcounter{lctdreqnum}\thelctdreqnum\label{LC_meaningfulLabel0}:] {Very unlikely to change,
+    key implementation of system.}
+
+\item[TDR\refstepcounter{lctdreqnum}\thelctdreqnum\label{LC_meaningfulLabel1}:] {Very unlikely to change,
+    key implementation of system.}
+
+\item[TDR\refstepcounter{lctdreqnum}\thelctdreqnum\label{LC_meaningfulLabel2}:] {Very unlikely to change,
+    key implementation of system.}
+
+\item[TDR\refstepcounter{lctdreqnum}\thelctdreqnum\label{LC_meaningfulLabel3}:] {Very unlikely to change,
+    ensures safety of operator reloading trays.}
+
+\item[TDR\refstepcounter{lctdreqnum}\thelctdreqnum\label{LC_meaningfulLabel4}:] {Very unlikely to change,
+    key implementation of system.}
+
+\item[TDR\refstepcounter{lctdreqnum}\thelctdreqnum\label{LC_meaningfulLabel5}:] {Very unlikely to change,
+    ensures safety of operator and prevents machine from dispensing trays while conveyor and/or pot dispenser
+    are not operational.}
+
+\item[TDR\refstepcounter{lctdreqnum}\thelctdreqnum\label{LC_meaningfulLabel6}:] {Unlikely to change,
+    ensures safety of operator and robustness of Pot-Pulator. May change to be integrated with start
+    command or resume command.}
 
 \end{itemize}
 
-\section{Unlikely Changes}    
+\subsection{Pot Dispensing Functional Requirements}
 
 \noindent \begin{itemize}
 
-\item[LC\refstepcounter{lcnum}\thelcnum\label{LC_meaningfulLabel2}:] \plt{Give
-    the unlikely changes.  The design can assume that the changes listed will
-    not occur.}
+\item[PDR\refstepcounter{lcpdreqnum}\thelcpdreqnum\label{LC_meaningfulLabel7}:] {Very unlikely to change,
+    key implementation of system.}
+
+\item[PDR\refstepcounter{lcpdreqnum}\thelcpdreqnum\label{LC_meaningfulLabel8}:] {Very unlikely to change,
+    key implementation of system.}
+
+\item[PDR\refstepcounter{lcpdreqnum}\thelcpdreqnum\label{LC_meaningfulLabel9}:] {Unlikely to change,
+    pot size is standard across the nursery. New pots may be introduced at a future time.}
+
+\item[PDR\refstepcounter{lcpdreqnum}\thelcpdreqnum\label{LC_meaningfulLabel10}:] {Very unlikely to change,
+    key implementation of system.}
+
+\item[PDR\refstepcounter{lcpdreqnum}\thelcpdreqnum\label{LC_meaningfulLabel11}:] {Very unlikely to change,
+    ensures safety of operator reloading pots.}
+
+\item[PDR\refstepcounter{lcpdreqnum}\thelcpdreqnum\label{LC_meaningfulLabel12}:] {Very unlikely to change,
+    key implementation of system.}
+
+\item[PDR\refstepcounter{lcpdreqnum}\thelcpdreqnum\label{LC_meaningfulLabel3}:] {Very unlikely to change,
+    ensures safety of operator and prevents machine from dispensing pots while conveyor and/or tray dispenser
+    are not operational.}
+
+\item[PDR\refstepcounter{lcpdreqnum}\thelcpdreqnum\label{LC_meaningfulLabel4}:] {Unlikely to change,
+    ensures safety of operator and robustness of Pot-Pulator. May change to be integrated with start
+    command or resume command.}
 
 \end{itemize}
 
-\section{Traceability Matrices and Graphs}
+\subsection{Conveyor Functional Requirements}
 
-The purpose of the traceability matrices is to provide easy references on what
-has to be additionally modified if a certain component is changed.  Every time a
-component is changed, the items in the column of that component that are marked
-with an ``X'' may have to be modified as well.  Table~\ref{Table:trace} shows the
-dependencies of theoretical models, general definitions, data definitions, and
-instance models with each other. Table~\ref{Table:R_trace} shows the
-dependencies of instance models, requirements, and data constraints on each
-other. Table~\ref{Table:A_trace} shows the dependencies of theoretical models,
-general definitions, data definitions, instance models, and likely changes on
-the assumptions.
+\noindent \begin{itemize}
 
-\plt{You will have to modify these tables for your problem.}
+\item[CR\refstepcounter{lccreqnum}\thelccreqnum\label{LC_meaningfulLabel15}:] {Very unlikely to change,
+  key implementation of system.}
 
-\plt{The traceability matrix is not generally symmetric.  If GD1 uses A1, that
-  means that GD1's derivation or presentation requires invocation of A1.  A1
-  does not use GD1.  A1 is ``used by'' GD1.}
+\item[CR\refstepcounter{lccreqnum}\thelccreqnum\label{LC_meaningfulLabel16}:] {Very unlikely to change,
+  key implementation of system.}
 
-\plt{The traceability matrix is challenging to maintain manually.  Please do
-  your best.  In the future tools (like Drasil) will make this much easier.}
+\item[CR\refstepcounter{lccreqnum}\thelccreqnum\label{LC_meaningfulLabel17}:] {Unlikely to change,
+  ensures accuracy of placement of trays and pots. May change to place trays on conveyor as conveyor
+  is moving.}
 
-\afterpage{
-\begin{landscape}
-\begin{table}[h!]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-\hline
-	& \aref{A_OnlyThermalEnergy}& \aref{A_hcoeff}& \aref{A_mixed}& \aref{A_tpcm}& \aref{A_const_density}& \aref{A_const_C}& \aref{A_Newt_coil}& \aref{A_tcoil}& \aref{A_tlcoil}& \aref{A_Newt_pcm}& \aref{A_charge}& \aref{A_InitTemp}& \aref{A_OpRangePCM}& \aref{A_OpRange}& \aref{A_htank}& \aref{A_int_heat}& \aref{A_vpcm}& \aref{A_PCM_state}& \aref{A_Pressure} \\
-\hline
-\tref{T_COE}        & X& & & & & & & & & & & & & & & & & & \\ \hline
-\tref{T_SHE}        & & & & & & & & & & & & & & & & & & & \\ \hline
-\tref{T_LHE}        & & & & & & & & & & & & & & & & & & & \\ \hline
-\dref{NL}           & & X& & & & & & & & & & & & & & & & & \\ \hline
-\dref{ROCT}         & & & X& X& X& X& & & & & & & & & & & & & \\ \hline
-\ddref{FluxCoil}    & & & & & & & X& X& X& & & & & & & & & & \\ \hline
-\ddref{FluxPCM}     & & & X& X& & & & & & X& & & & & & & & & \\ \hline
-\ddref{D_HOF}       & & & & & & & & & & & & & & & & & & & \\ \hline
-\ddref{D_MF}        & & & & & & & & & & & & & & & & & & & \\ \hline
-\iref{ewat}         & & & & & & & & & & & X& X& & X& X& X& & & X \\ \hline
-\iref{epcm}         & & & & & & & & & & & & X& X& & & X& X& X& \\ \hline
-\iref{I_HWAT}       & & & & & & & & & & & & & & X& & & & & X \\ \hline
-\iref{I_HPCM}       & & & & & & & & & & & & & X& & & & & X & \\ \hline
-\lcref{LC_tpcm}     & & & & X& & & & & & & & & & & & & & & \\ \hline
-\lcref{LC_tcoil}    & & & & & & & & X& & & & & & & & & & & \\ \hline
-\lcref{LC_tlcoil}   & & & & & & & & & X& & & & & & & & & & \\ \hline
-\lcref{LC_charge}   & & & & & & & & & & & X& & & & & & & & \\ \hline
-\lcref{LC_InitTemp} & & & & & & & & & & & & X& & & & & & & \\ \hline
-\lcref{LC_htank}    & & & & & & & & & & & & & & & X& & & & \\
-\hline
-\end{tabular}
-\caption{Traceability Matrix Showing the Connections Between Assumptions and Other Items}
-\label{Table:A_trace}
-\end{table}
-\end{landscape}
-}
+\item[CR\refstepcounter{lccreqnum}\thelccreqnum\label{LC_meaningfulLabel18}:] {Very unlikely to change,
+  key implementation of system.}
 
-\begin{table}[h!]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-\hline        
-	& \tref{T_COE}& \tref{T_SHE}& \tref{T_LHE}& \dref{NL}& \dref{ROCT} & \ddref{FluxCoil}& \ddref{FluxPCM} & \ddref{D_HOF}& \ddref{D_MF}& \iref{ewat}& \iref{epcm}& \iref{I_HWAT}& \iref{I_HPCM} \\
-\hline
-\tref{T_COE}     & & & & & & & & & & & & & \\ \hline
-\tref{T_SHE}     & & & X& & & & & & & & & & \\ \hline
-\tref{T_LHE}     & & & & & & & & & & & & & \\ \hline
-\dref{NL}        & & & & & & & & & & & & & \\ \hline
-\dref{ROCT}      & X& & & & & & & & & & & & \\ \hline
-\ddref{FluxCoil} & & & & X& & & & & & & & & \\ \hline
-\ddref{FluxPCM}  & & & & X& & & & & & & & & \\ \hline
-\ddref{D_HOF}    & & & & & & & & & & & & & \\ \hline
-\ddref{D_MF}     & & & & & & & & X& & & & & \\ \hline
-\iref{ewat}      & & & & & X& X& X& & & & X& & \\ \hline
-\iref{epcm}      & & & & & X& & X& & X& X& & & X \\ \hline
-\iref{I_HWAT}    & & X& & & & & & & & & & & \\ \hline
-\iref{I_HPCM}    & & X& X& & & & X& X& X& & X& & \\
-\hline
-\end{tabular}
-\caption{Traceability Matrix Showing the Connections Between Items of Different Sections}
-\label{Table:trace}
-\end{table}
+\item[CR\refstepcounter{lccreqnum}\thelccreqnum\label{LC_meaningfulLabel19}:] {Very unlikely to change,
+    ensures safety of operator and prevents machine from dispensing pots while conveyor and/or tray dispenser
+    are not operational.}
 
-\begin{table}[h!]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|c|c|}
-\hline
-	& \iref{ewat}& \iref{epcm}& \iref{I_HWAT}& \iref{I_HPCM}& \ref{sec_DataConstraints}& \rref{R_RawInputs}& \rref{R_MassInputs} \\
-\hline
-\iref{ewat}            & & X& & & & X& X \\ \hline
-\iref{epcm}            & X& & & X& & X& X \\ \hline
-\iref{I_HWAT}          & & & & & & X& X \\ \hline
-\iref{I_HPCM}          & & X& & & & X& X \\ \hline
-\rref{R_RawInputs}     & & & & & & & \\ \hline
-\rref{R_MassInputs}    & & & & & & X& \\ \hline
-\rref{R_CheckInputs}   & & & & & X& & \\ \hline
-\rref{R_OutputInputs}  & X& X& & & & X& X \\ \hline
-\rref{R_TempWater}     & X& & & & & & \\ \hline 
-\rref{R_TempPCM}       & & X& & & & & \\ \hline
-\rref{R_EnergyWater}   & & & X& & & & \\ \hline
-\rref{R_EnergyPCM}     & & & & X& & & \\ \hline
-\rref{R_VerifyOutput}  & & & X& X& & & \\ \hline
-\rref{R_timeMeltBegin} & & X& & & & & \\ \hline
-\rref{R_timeMeltEnd}   & & X& & & & & \\ 
-\hline
-\end{tabular}
-\caption{Traceability Matrix Showing the Connections Between Requirements and Instance Models}
-\label{Table:R_trace}
-\end{table}
+\item[CR\refstepcounter{lccreqnum}\thelccreqnum\label{LC_meaningfulLabel20}:] {Unlikely to change,
+    ensures safety of operator and robustness of Pot-Pulator. May change to be integrated with start
+    command or resume command.}
 
-The purpose of the traceability graphs is also to provide easy references on
-what has to be additionally modified if a certain component is changed.  The
-arrows in the graphs represent dependencies. The component at the tail of an
-arrow is depended on by the component at the head of that arrow. Therefore, if a
-component is changed, the components that it points to should also be
-changed. Figure~\ref{Fig_ATrace} shows the dependencies of theoretical models,
-general definitions, data definitions, instance models, likely changes, and
-assumptions on each other. Figure~\ref{Fig_RTrace} shows the dependencies of
-instance models, requirements, and data constraints on each other.
+\end{itemize}
 
-% \begin{figure}[h!]
-% 	\begin{center}
-% 		%\rotatebox{-90}
-% 		{
-% 			\includegraphics[width=\textwidth]{ATrace.png}
-% 		}
-% 		\caption{\label{Fig_ATrace} Traceability Matrix Showing the Connections Between Items of Different Sections}
-% 	\end{center}
-% \end{figure}
+\subsection{Verification Requirements}
 
+\noindent \begin{itemize}
 
-% \begin{figure}[h!]
-% 	\begin{center}
-% 		%\rotatebox{-90}
-% 		{
-% 			\includegraphics[width=0.7\textwidth]{RTrace.png}
-% 		}
-% 		\caption{\label{Fig_RTrace} Traceability Matrix Showing the Connections Between Requirements, Instance Models, and Data Constraints}
-% 	\end{center}
-% \end{figure}
+\item[VR\refstepcounter{lcvreqnum}\thelcvreqnum\label{LC_meaningfulLabel21}:] {Very unlikely to change,
+    key implementation of system.}
 
-\section{Development Plan}
+\item[VR\refstepcounter{lcvreqnum}\thelcvreqnum\label{LC_meaningfulLabel22}:] {Very unlikely to change,
+    key implementation of system.}
 
-\plt{This section is optional.  It is used to explain the plan for developing
-  the software.  In particular, this section gives a list of the order in which
-  the requirements will be implemented.  In the context of a course  this is
-  where you can indicate which requirements will be implemented as part of the
-  course, and which will be ``faked'' as future work.  This section can be
-  organized as a prioritized list of requirements, or it could should the
-  requirements that will be implemented for ``phase 1'', ``phase 2'', etc.}
-
-\section{Values of Auxiliary Constants}
-
-\plt{Show the values of the symbolic parameters introduced in the report.}
-
-\plt{The definition of the requirements will likely call for SYMBOLIC\_CONSTANTS.
-Their values are defined in this section for easy maintenance.}
-
-\plt{The value of FRACTION, for the Maintainability NFR would be given here.}
+\end{itemize}
 
 \newpage
 
