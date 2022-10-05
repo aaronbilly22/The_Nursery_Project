@@ -66,9 +66,18 @@
 \newcounter{instnum} %Instance Number
 \newcommand{\itheinstnum}{IM\theinstnum}
 \newcommand{\iref}[1]{IM\ref{#1}}
-\newcounter{reqnum} %Requirement Number
-\newcommand{\rthereqnum}{P\thereqnum}
-\newcommand{\rref}[1]{R\ref{#1}}
+\newcounter{tdreqnum} %Tray Dispensing Requirement Number
+\newcommand{\rthetdreqnum}{P\thetdreqnum}
+\newcommand{\tdrref}[1]{TDR\ref{#1}}
+\newcounter{pdreqnum} %Pot Dispensing Requirement Number
+\newcommand{\rthepdreqnum}{P\thepdreqnum}
+\newcommand{\pdrref}[1]{PDR\ref{#1}}
+\newcounter{creqnum} %Conveyor Requirement Number
+\newcommand{\rthecreqnum}{P\thecreqnum}
+\newcommand{\crref}[1]{CR\ref{#1}}
+\newcounter{vreqnum} %Verification Requirement Number
+\newcommand{\rthevreqnum}{P\thevreqnum}
+\newcommand{\vrref}[1]{VR\ref{#1}}
 \newcounter{nfrnum} %NFR Number
 \newcommand{\rthenfrnum}{NFR\thenfrnum}
 \newcommand{\nfrref}[1]{NFR\ref{#1}}
@@ -140,7 +149,7 @@
 
 ~\newpage
 
-\section*{Revision History}
+\section{Revision History}
 
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
@@ -998,42 +1007,138 @@ A correct solution must exhibit \plt{fill in the details}.  \plt{These
   validation.  Those topics will be addressed in the Verification and Validation
   plan.}
 
-\section{Requirements}
+\section{Functional Requirements}
 
-\plt{The requirements refine the goal statement.  They will make heavy use of
-  references to the instance models.}
+This section provides the functional requirements of the machine, seperated into tray dispensing,
+pot dispensing, conveyor, and verification requierements.
+\varGamma 
 
-This section provides the functional requirements, the business tasks that the
-software is expected to complete, and the nonfunctional requirements, the
-qualities that the software is expected to exhibit.
-
-\subsection{Functional Requirements}
+\subsection{Tray Dispensing Functional Requirements}
 
 \noindent \begin{itemize}
 
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Inputs}:] \plt{Requirements
-    for the inputs that are supplied by the user.  This information has to be
-    explicit.}
+\item[TDR\refstepcounter{tdreqnum}\thetdreqnum \label{R_Tray}:] {The tray dispenser must
+    be able to place a standard tray from the loaded stack onto the conveyor belt.}
 
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_OutputInputs}:] \plt{It isn't
-    always required, but often echoing the inputs as part of the output is a
-    good idea.}
+\item[TDR\refstepcounter{tdreqnum}\thetdreqnum \label{R_Tray}:] {The tray dispenser must
+      be able to store multiple trays at a time.}
 
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Calculate}:] \plt{Calculation
-    related requirements.}
+\item[TDR\refstepcounter{tdreqnum}\thetdreqnum \label{R_Tray}:] {The tray dispenser must 
+    be able to take a maximum of 30 trays from the user, such that 
+    $n_{trays}(t)\le30$} 
+    
+    THIS IS NFR
 
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_VerifyOutput}:]
-  \plt{Verification related requirements.}
+This will allow the machine to meet the goal of reloading trays every 15 minutes.
 
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Output}:] \plt{Output related
-    requirements.}
+\item[TDR\refstepcounter{tdreqnum}\thetdreqnum \label{R_Tray}:] {The tray dispenser must
+    dispense trays at a rate of 1 tray every 30 seconds, such that $t_{cycle}=30\ seconds
+    \ \&\ n_{trays}\left(t\right)=300-t/3;\ t\ \varepsilon\ \{30, 60, 90, ..., 900\}$}
+
+    THIS IS NFR
+
+This will allow the machine to meet the output goal required.
+
+\item[TDR\refstepcounter{tdreqnum}\thetdreqnum \label{R_Tray}:] {The tray dispenser must
+    stop operating once it has run out of trays.}
+
+\item[TDR\refstepcounter{tdreqnum}\thetdreqnum \label{R_Tray}:] {The tray dispenser must
+    be able to recognize when trays need to be reloaded and notify an operator.}
+
+\item[TDR\refstepcounter{tdreqnum}\thetdreqnum \label{R_Tray}:] {The tray dispenser must
+     stop when an error arises (verification failed, pot dispenser malfunction/empty, conveyor
+     malfunction).}
+
+\item[TDR\refstepcounter{tdreqnum}\thetdreqnum \label{R_Tray}:] {The tray dispenser must
+    be able to reset after it has been stopped due to error or needs to reload}
+
 
 \end{itemize}
 
-\plt{Every IM should map to at least one requirement, but not every requirement
-  has to map to a corresponding IM.}
+\subsection{Pot Dispensing Functional Requirements}
 
-\subsection{Nonfunctional Requirements}
+\noindent \begin{itemize}
+
+\item[PDR\refstepcounter{pdreqnum}\thepdreqnum \label{R_Pot}:] {The pot dispenser must
+    be able to place a pot into an empty place in a tray.}
+
+\item[PDR\refstepcounter{pdreqnum}\thepdreqnum \label{R_Pot}:] {The pot dispenser must
+    be able to dispense a 4" diameter pot.}
+
+\item[PDR\refstepcounter{pdreqnum}\thepdreqnum \label{R_Pot}:] {The pot dispenser must
+    be able to store multiple pots at a time.}
+
+\item[PDR\refstepcounter{pdreqnum}\thepdreqnum \label{R_Pot}:] {The pot dispenser must 
+    be able to take a maximum of 30 pots from the user, such that 
+    $n_{pots}(t)\le300$} 
+    
+THIS IS NFR
+
+This will allow the machine to meet the output goal required.
+
+\item[PDR\refstepcounter{pdreqnum}\thepdreqnum \label{R_Pot}:] {The pot dispenser must 
+    dispense pots at a rate of 10 pots every 30 seconds, such that $t_{cycle}=30\ seconds
+    \ \&\ n_{pots}\left(t\right)=300-t/3;\ t\ \varepsilon\ \{30, 60, 90, ..., 900\}$}
+
+THIS IS NFR
+
+This will allow the machine to meet the output goal required.
+
+\item[PDR\refstepcounter{pdreqnum}\thepdreqnum \label{R_Pot}:] {The pot dispenser must
+    stop operating once it has run out of pots.}
+
+\item[PDR\refstepcounter{pdreqnum}\thepdreqnum \label{R_Pot}:] {The pot dispenser must
+    be able to recognize when pots need to be reloaded and notify an operator.}
+
+\item[PDR\refstepcounter{pdreqnum}\thepdreqnum \label{R_Pot}:] {The pot dispenser must
+    stop when an error arises (verification failed, tray dispenser malfunction/empty, conveyor
+    malfunction).}
+
+\item[PDR\refstepcounter{pdreqnum}\thepdreqnum \label{R_Pot}:] {The pot dispenser must
+    be able to reset after it has been stopped due to an error or needs to reload.}
+
+\end{itemize}
+
+\subsection{Conveyor Requirements}
+
+\noindent \begin{itemize}
+
+\item[CR\refstepcounter{creqnum}\thecreqnum \label{R_Conveyor}:] {The conveyor must
+    be able to move a tray from the tray dispensing station to the verification station.}
+
+\item[CR\refstepcounter{creqnum}\thecreqnum \label{R_Conveyor}:] {The conveyor must
+    be able to stop when a tray is being placed on the conveyor, or when a pot is being
+    placed in a tray.}
+
+\item[CR\refstepcounter{creqnum}\thecreqnum \label{R_Conveyor}:] {The conveyor must
+    be able to move pots at a speed sufficient to meet the goal of one cycle per 30
+    seconds}
+NFR
+    
+\item[CR\refstepcounter{creqnum}\thecreqnum \label{R_Conveyor}:] {The conveyor material 
+    must have a high enough friction such that the trays do not slide while in contact with
+    the belt.}
+
+\item[CR\refstepcounter{creqnum}\thecreqnum \label{R_Conveyor}:] {The conveyor must
+    stop when an error arises (verification failed, pot dispenser malfunction/empty, tray dispenser
+    malfunction/empty).}
+
+\end{itemize}
+
+\subsection{Verification Requirements}
+
+\noindent \begin{itemize}
+
+\item[VR\refstepcounter{vreqnum}\thevreqnum \label{R_Verification}:] {The verification must
+    check that only one tray is being output by the conveyer belt, and the tray is
+    filled with exactly 10 pots, such that $n_{traysout}=1\ \&\ n_{potsout}=10$}
+
+\item[VR\refstepcounter{vreqnum}\thevreqnum \label{R_Verification}:] {The verification must
+    notify all other systems if verification failes, such that $n_{traysout}\neq1\ or\ n_{potsout}\neq10$}
+
+\end{itemize}
+
+\section{Nonfunctional Requirements}
 
 \plt{List your nonfunctional requirements.  You may consider using a fit
   criterion to make them verifiable.}
@@ -1193,23 +1298,7 @@ the assumptions.
 \centering
 \begin{tabular}{|c|c|c|c|c|c|c|c|}
 \hline
-	& \iref{ewat}& \iref{epcm}& \iref{I_HWAT}& \iref{I_HPCM}& \ref{sec_DataConstraints}& \rref{R_RawInputs}& \rref{R_MassInputs} \\
-\hline
-\iref{ewat}            & & X& & & & X& X \\ \hline
-\iref{epcm}            & X& & & X& & X& X \\ \hline
-\iref{I_HWAT}          & & & & & & X& X \\ \hline
-\iref{I_HPCM}          & & X& & & & X& X \\ \hline
-\rref{R_RawInputs}     & & & & & & & \\ \hline
-\rref{R_MassInputs}    & & & & & & X& \\ \hline
-\rref{R_CheckInputs}   & & & & & X& & \\ \hline
-\rref{R_OutputInputs}  & X& X& & & & X& X \\ \hline
-\rref{R_TempWater}     & X& & & & & & \\ \hline 
-\rref{R_TempPCM}       & & X& & & & & \\ \hline
-\rref{R_EnergyWater}   & & & X& & & & \\ \hline
-\rref{R_EnergyPCM}     & & & & X& & & \\ \hline
-\rref{R_VerifyOutput}  & & & X& X& & & \\ \hline
-\rref{R_timeMeltBegin} & & X& & & & & \\ \hline
-\rref{R_timeMeltEnd}   & & X& & & & & \\ 
+
 \hline
 \end{tabular}
 \caption{Traceability Matrix Showing the Connections Between Requirements and Instance Models}
@@ -1314,7 +1403,7 @@ Their values are defined in this section for easy maintenance.}
 }
 
 \newpage{}
-\section*{Appendix --- Reflection}
+\section{Appendix --- Reflection}
 
 The information in this section will be used to evaluate the team members on the
 graduate attribute of Lifelong Learning.  Please answer the following questions:
