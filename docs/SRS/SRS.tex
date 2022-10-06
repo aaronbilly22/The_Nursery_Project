@@ -16,6 +16,8 @@
 \usepackage{caption}
 \usepackage{pdflscape}
 \usepackage{afterpage}
+\usepackage{graphicx}
+\usepackage{float}
 
 \usepackage[round]{natbib}
 
@@ -477,7 +479,15 @@ technical limits provided to the team.
   \hline
  \end{tabular}\\\\
 
+\subsection{Context Diagrams}
+Below is a high level overview of the system. This shows all the inputs and outputs
+of the overall system.
 
+\begin{figure}[H]
+  \includegraphics[width=\linewidth]{contextDiagram.png}
+  \caption{Context Diagram}
+  \label{fig:context1}
+\end{figure}
 
   \section{Functional Requirements}
 
