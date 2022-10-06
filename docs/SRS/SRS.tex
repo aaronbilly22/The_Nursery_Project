@@ -16,6 +16,8 @@
 \usepackage{caption}
 \usepackage{pdflscape}
 \usepackage{afterpage}
+\usepackage{graphicx}
+\usepackage{float}
 
 \usepackage[round]{natbib}
 
@@ -23,7 +25,7 @@
 
 \hypersetup{
     bookmarks=true,         % show bookmarks bar?
-      colorlinks=true,       % false: boxed links; true: colored links
+    colorlinks=true,        % false: boxed links; true: colored links
     linkcolor=red,          % color of internal links (change box color with linkbordercolor)
     citecolor=green,        % color of links to bibliography
     filecolor=magenta,      % color of file links
@@ -66,15 +68,39 @@
 \newcounter{instnum} %Instance Number
 \newcommand{\itheinstnum}{IM\theinstnum}
 \newcommand{\iref}[1]{IM\ref{#1}}
-\newcounter{reqnum} %Requirement Number
-\newcommand{\rthereqnum}{P\thereqnum}
-\newcommand{\rref}[1]{R\ref{#1}}
+\newcounter{tdreqnum} %Tray Dispensing Requirement Number
+\newcommand{\rthetdreqnum}{P\thetdreqnum}
+\newcommand{\tdrref}[1]{TDR\ref{#1}}
+\newcounter{pdreqnum} %Pot Dispensing Requirement Number
+\newcommand{\rthepdreqnum}{P\thepdreqnum}
+\newcommand{\pdrref}[1]{PDR\ref{#1}}
+\newcounter{creqnum} %Conveyor Requirement Number
+\newcommand{\rthecreqnum}{P\thecreqnum}
+\newcommand{\crref}[1]{CR\ref{#1}}
+\newcounter{vreqnum} %Verification Requirement Number
+\newcommand{\rthevreqnum}{P\thevreqnum}
+\newcommand{\vrref}[1]{VR\ref{#1}}
 \newcounter{nfrnum} %NFR Number
 \newcommand{\rthenfrnum}{NFR\thenfrnum}
 \newcommand{\nfrref}[1]{NFR\ref{#1}}
 \newcounter{lcnum} %Likely change number
 \newcommand{\lthelcnum}{LC\thelcnum}
 \newcommand{\lcref}[1]{LC\ref{#1}}
+\newcounter{reqnum} %Requirement Number
+\newcommand{\rthereqnum}{P\thereqnum}
+\newcommand{\rref}[1]{R\ref{#1}}
+\newcounter{lctdreqnum} %Likely change number
+\newcommand{\lthelctdreqnum}{LC\thelctdreqnum}
+\newcommand{\lctdref}[1]{TDR\ref{#1}}
+\newcounter{lcpdreqnum} %Likely change number
+\newcommand{\lthelcpdreqnum}{LC\thelcpdreqnum}
+\newcommand{\lcpdref}[1]{PDR\ref{#1}}
+\newcounter{lccreqnum} %Likely change number
+\newcommand{\lthelccreqnum}{LC\thelccreqnum}
+\newcommand{\lccref}[1]{CR\ref{#1}}
+\newcounter{lcvreqnum} %Likely change number
+\newcommand{\lthelcvreqnum}{LC\thelcvreqnum}
+\newcommand{\lcvref}[1]{VR\ref{#1}}
 
 \usepackage{fullpage}
 
@@ -126,11 +152,21 @@
 
 \begin{document}
 
-\title{Software Requirements Specification for \progname: subtitle describing software} 
-\author{\authname}
-\date{\today}
+\title{Software Requirements Specification for The Nursery Project: The Pot-Pulator} 
+\author{Aaron Billones, billonea\\Gillian Ford, fordg\\Juan Moncada, moncadaj\\Steven Ramundi, ramundis}
+\date{October 5, 2022}
 	
 \maketitle
+
+\section*{Revision History}
+
+\begin{tabularx}{\textwidth}{p{3cm}p{4cm}X}
+\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\midrule
+2022-10-05 & Juan Moncada,& Initial release\\&Aaron Billones,\\&Steven Ramundi,\\&Gillian Ford \\
+
+\bottomrule
+\end{tabularx}
 
 ~\newpage
 
@@ -140,86 +176,58 @@
 
 ~\newpage
 
-\section*{Revision History}
-
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
-\midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
-\bottomrule
-\end{tabularx}
-
-~\newpage
-
 \section{Reference Material}
 
 This section records information for easy reference.
 
 \subsection{Table of Units}
 
-Throughout this document SI (Syst\`{e}me International d'Unit\'{e}s) is employed
-as the unit system.  In addition to the basic units, several derived units are
-used as described below.  For each unit, the symbol is given followed by a
-description of the unit and the SI name.
+Throughout this document SI (Syst\`{e}me International d'Unit\'{e}s) and the Imperial System of Units are employed
+as the unit systems. For each unit, the symbol is given followed by a
+description of the unit and the SI or Imperial System name.
 ~\newline
 
 \renewcommand{\arraystretch}{1.2}
 %\begin{table}[ht]
   \noindent \begin{tabular}{l l l} 
     \toprule		
-    \textbf{symbol} & \textbf{unit} & \textbf{SI}\\
+    \textbf{symbol} & \textbf{unit} & \textbf{SI/Imperial}\\
     \midrule 
     \si{\metre} & length & metre\\
     \si{\kilogram} & mass	& kilogram\\
     \si{\second} & time & second\\
-    \si{\celsius} & temperature & centigrade\\
-    \si{\joule} & energy & joule\\
-    \si{\watt} & power & watt (W = \si{\joule\per\second})\\
+    \si{\radian} & angle & radian\\
+    {"} & length & inch\\
+    {'} & length & foot (1' = 12")\\
     \bottomrule
   \end{tabular}
   %	\caption{Provide a caption}
 %\end{table}
 
-\plt{Only include the units that your SRS actually uses.}
-
-\plt{Derived units, like newtons, pascal, etc, should show their derivation
-    (the units they are derived from) if their constituent units are in the
-    table of units (that is, if the units they are derived from are used in the
-    document).  For instance, the derivation of pascals as
-    $\si{\pascal}=\si{\newton\per\square\meter}$ is shown if newtons and m are
-    both in the table.  The derivations of newtons would not be shown if kg and
-    s are not both in the table.}
-
-\plt{The symbol for units named after people use capital letters, but the name
-  of the unit itself uses lower case.  For instance, pascals use the symbol Pa,
-  watts use the symbol W, teslas use the symbol T, newtons use the symbol N,
-  etc.  The one exception to this is degree Celsius.  Details on writing metric
-  units can be found on the 
-  \href{https://www.nist.gov/pml/weights-and-measures/writing-metric-units}
-  {NIST} web-page.}
-
 \subsection{Table of Symbols}
 
 The table that follows summarizes the symbols used in this document along with
-their units.  The choice of symbols was made to be consistent with the heat
-transfer literature and with existing documentation for solar water heating
-systems.  The symbols are listed in alphabetical order.
+their units. The symbols are listed in alphabetical order.
 
 \renewcommand{\arraystretch}{1.2}
 %\noindent \begin{tabularx}{1.0\textwidth}{l l X}
 \noindent \begin{longtable*}{l l p{12cm}} \toprule
 \textbf{symbol} & \textbf{unit} & \textbf{description}\\
 \midrule 
-$A_C$ & \si[per-mode=symbol] {\square\metre} & coil surface area
+$n_{pots}$ & N/A & number of pots in machine
 \\
-$A_\text{in}$ & \si[per-mode=symbol] {\square\metre} & surface area over 
-which heat is transferred in
+$n_{potsout}$ & N/A & number of pots coming out of machine
+as detected by verification system
+\\
+$n_{trays}$ & N/A & number of trays in machine
+\\
+$n_{traysout}$ & N/A & number of trays coming out of machine
+as detected by verification system
+\\
+$t_{cycle}$ & \si{\second} & time per machine cycle
 \\ 
 \bottomrule
 \end{longtable*}
-\plt{Use your problems actual symbols.  The si package is a good idea to use for
-  units.}
 
 \subsection{Abbreviations and Acronyms}
 
@@ -228,1043 +236,632 @@ which heat is transferred in
   \toprule		
   \textbf{symbol} & \textbf{description}\\
   \midrule 
-  A & Assumption\\
-  DD & Data Definition\\
-  GD & General Definition\\
-  GS & Goal Statement\\
-  IM & Instance Model\\
-  LC & Likely Change\\
-  PS & Physical System Description\\
-  R & Requirement\\
+  CR & Conveyor Functional Requirement\\
+  NFR & Non-Functional Requirement\\
+  PDR & Pot Dispensing Functional Requirement\\
+  PHC & Physical Constraint\\
   SRS & Software Requirements Specification\\
-  \progname{} & \plt{put an expanded version of your program name here (as appropriate)}\\
-  T & Theoretical Model\\
+  SWC & Software Constraint\\
+  TDR & Tray Dispensing Functional Requirement\\
+  VR & Verification Functional Requirement\\
   \bottomrule
 \end{tabular}\\
 
-\plt{Add any other abbreviations or acronyms that you add}
-
 \subsection{Mathematical Notation}
-
-\plt{This section is optional, but should be included for projects that make use
-  of notation to convey mathematical information.  For instance, if typographic
-  conventions (like bold face font) are used to distinguish matrices, this
-  should be stated here.  If symbols are used to show mathematical operations,
-  these should be summarized here.  In some cases the easiest way to summarize
-  the notation is to point to a text or other source that explains the
-  notation.}
-
-\plt{This section was added to the template because some students use very
-  domain specific notation.  This notation will not be readily understandable to
-  people outside of your domain.  It should be explained.}
-
+$x\ \varepsilon\ A$ - variable x is an element of the number set A
 \newpage
 
 \pagenumbering{arabic}
 
-\plt{This SRS template is based on \citet{SmithAndLai2005, SmithEtAl2007}.  It
-  will get you started.  You should not modify the section headings, without
-  first discussing the change with the course instructor.  Modification means
-  you are not following the template, which loses some of the advantage of a
-  template, especially standardization.  Although the bits shown below do not
-  include type information, you may need to add this information for your
-  problem.  If you are unsure, please can ask the instructor.}
-
-\plt{Feel free to change the appearance of the report by modifying the LaTeX
-  commands.}
-
-\plt{This template document assumes that a single program is being documented.
-  If you are documenting a family of models, you should start with a commonality
-  analysis.  A separate template is provided for this.  For program
-  families you should look at \cite{Smith2006, SmithMcCutchanAndCarette2017}.
-  Single family member programs are often programs based on a single physical
-  model.  General purpose tools are usually documented as a family.  Families of
-  physical models also come up.}
-
-\plt{The SRS is not generally written, or read, sequentially.  The SRS is a
-  reference document.  It is generally read in an ad hoc order, as the need
-  arises.  For writing an SRS, and for reading one for the first time, the
-  suggested order of sections is:
-\begin{itemize}
-\item Goal Statement
-\item Instance Models
-\item Requirements
-\item Introduction
-\item Specific System Description
-\end{itemize}
-}
-
-\plt{Guiding principles for the SRS document:
-\begin{itemize}
-\item Do not repeat the same information at the same abstraction level.  If
-  information is repeated, the repetition should be at a different abstraction
-  level.  For instance, there will be overlap between the scope section and the
-  assumptions, but the scope section will not go into as much detail as the
-  assumptions section.
-\end{itemize}
-}
-
-\plt{The template description comments should be disabled before submitting this
-  document for grading.}
-
-\plt{You can borrow any wording from the text given in the template.  It is part
-  of the template, and not considered an instance of academic integrity.  Of
-  course, you need to cite the source of the template.}
-
-\plt{When the documentation is done, it should be possible to trace back to the
-  source of every piece of information.  Some information will come from
-  external sources, like terminology.  Other information will be derived, like
-  General Definitions.}
-
-\plt{An SRS document should have the following qualities: unambiguous,
-  consistent, complete, validatable, abstract and traceable.}
-
-\plt{The overall goal of the SRS is that someone that meets the Characteristics
-  of the Intended Reader (Section~\ref{sec_IntendedReader}) can learn,
-  understand and verify the captured domain knowledge.  They should not have to
-  trust the authors of the SRS on any statements.  They should be able to
-  independently verify/derive every statement made.}
 
 \section{Introduction}
 
-\plt{The introduction section is written to introduce the problem.  It starts
-  general and focuses on the problem domain. The general advice is to start with
-a paragraph or two that describes the problem, followed by a ``roadmap''
-paragraph.  A roadmap orients the reader by telling them what sub-sections to
-expect in the Introduction section.}
+The current method of preparing pots and trays to be filled with soil and populated with seeds at Sheridan Nurseries is a process with little to no automation, requiring many manual labour hours. Each year, 250,000 pots need to be placed in trays, each one being placed by hand. Recently, the owners of these farms have been finding it increasingly more difficult to fill these roles with enough workers to run the operation smoothly and meet production demands.\\
+
+\noindent We aim to aid in this process by designing and implementing a machine that is able to fill trays with pots and prepare them for populating with soil and seeds. This will alleviate the reliance on manual labour and improve the overall efficiency of the farm. \\
+
+\noindent This introduction will outline the document’s purpose, the scope of requirements, characteristics of the intended reader, and the organization of document. 
+
 
 \subsection{Purpose of Document}
 
-\plt{This section summarizes the purpose of the SRS document.  It does not focus
-  on the problem itself.  The problem is described in the ``Problem
-  Description'' section (Section~\ref{Sec_pd}).  The purpose is for the document
-  in the context of the project itself, not in the context of this course.
-  Although the ``purpose'' of the document is to get a grade, you should not
-  mention this.  Instead, ``fake it'' as if this is a real project.  The purpose
-  section will be similar between projects.  The purpose of the document is the
-  purpose of the SRS, including communication, planning for the design stage,
-  etc.}
+This Software Requirements Specification (SRS) document is to define the purpose of the Pot-Pulator. It will describe how the software will interact with the hardware, and how it is expected to perform, defining the executable requirements leading to the creation of a final product. This document should lay the important groundwork needed for every team member to understand the in-depth technical details of the product to be developed, in preparation for the design stage. 
 
 \subsection{Scope of Requirements} 
 
-\plt{Modelling the real world requires simplification.  The full complexity of
-  the actual physics, chemistry, biology is too much for existing models, and
-  for existing computational solution techniques.  Rather than say what is in
-  the scope, it is usually easier to say what is not.  You can think of it as
-  the scope is initially everything, and then it is constrained to create the
-  actual scope.  For instance, the problem can be restricted to 2 dimensions, or
-  it can ignore the effect of temperature (or pressure) on the material
-  properties, etc.}  
+The branches of the Pot-Pulator include a conveyer belt, tray allocation, pot dropping and verification. These four systems will be implemented to work together to create an efficient product. It will be reliable, easily configurable, affordable, and will greatly reduce the need for hands-on labour in relation to seed population.  \\
 
-\plt{The scope section is related to the assumptions section
-  (Section~\ref{sec_assumpt}).  However, the scope and the assumptions are not
-  at the same level of abstraction.  The scope is at a high level.  The focus is
-  on the ``big picture'' assumptions.  The assumptions section lists, and
-  describes, all of the assumptions.}
+\noindent The system implemented will be designed exclusively for Sheridan Nurseries, and for the pots and trays at their locations in a three-dimensional workspace. It is limited to usage on their round, 4-inch diameter pots and their respective trays. Considering the conditions of the greenhouses this machine will be used in, material degradation, water resistance, and pressure will all be negligible. \\
+
+\noindent In order to maintain speed of the pots being placed in trays in a timely manor, one of the goals of the machine is to fill each tray with 10 pots every 30 seconds. This is the time it will take for the trays to be populated and move down the conveyer belt. With this goal in place, the machine will only need to be refilled with pots and trays every 15 minutes, greatly reducing the amount of hands-on labour from the workers at Sheridan Nurseries. \\
+
+\noindent After the initial completion of the goal associated with the 4-inch pots, larger pots and trays may be considered as a future goal. There will always be the limitation of the requirement of a rim on the top of the pot, for the machine to easily grasp onto when lifting and dropping. \\
+
+
+\subsection{Behavioural Overview}
+The Pot-Pulator will have 4 branches working together to accomplish the task. First, the trays and pots will be manually filled into a section of the machine, ideally 30 trays and 300 pots. The first section of the machine will drop a tray, and the conveyer belt will move it to the pot dropping section. \\
+
+\noindent The conveyer belt will stop once it senses the tray is in the correct position. The machine will drop pots until all 10 spots are filled. The conveyer belt will move the tray according to the needed positions for pot dropping, dispensing 2 pots into the allocated positions, moving forward 4 inches at a time until the process is completed. \\
+
+\noindent The tray filled with pots will then move into a verification system, to verify the pots have been placed in the correct positions. The conveyer belt will then move it to an existing conveyer system, which will lead to the collection of completed trays. The only maintenance this machine needs is the refill of pots and trays every 15 minutes, and the collection of completed trays at the end of the final conveyer belt. \\
+
+\subsection{Clients and Stakeholders}
+\noindent This system provides a solution for all nursery applications that are not 
+working on the cutting edge. For those nurseries that have an existing assembly line 
+to fulfil their distribution needs, this is a great solution as other solutions replace the 
+assembly line in its entirety and cost significantly more.\\
+
+\noindent Clients include:
+\begin{itemize}
+    \item Sheridan Nurseries manager
+    \item Sheridan Nurseries owner
+\end{itemize}
+\noindent Stakeholders include:
+\begin{itemize}
+    \item Dr. Smith (Project Supervisor).
+    \item Juan Moncada, Gillian Ford, Aaron Billones, and Steven Ramundi, (Project Proposers).
+    \item Nicholas Annable (Supervising TA)
+    
+\end{itemize}
+
 
 \subsection{Characteristics of Intended Reader} \label{sec_IntendedReader}
 
-\plt{This section summarizes the skills and knowledge of the readers of the
-  SRS.  It does NOT have the same purpose as the ``User Characteristics''
-  section (Section~\ref{SecUserCharacteristics}).  The intended readers are the
-  people that will read, review and maintain the SRS.  They are the people that
-  will conceivably design the software that is intended to meet the
-  requirements.  The user, on the other hand, is the person that uses the
-  software that is built.  They may never read this SRS document.  Of course,
-  the same person could be a ``user'' and an ``intended reader.''}
+This SRS document is written for the individuals directly involved with the development of the Pot-Pulator. This includes every member of the team; all being involved with the development of the project. It is useful as reference to the functionality of in-depth details regarding the project, and will be read, reviewed, and maintained as the project progresses by all team members. \\
 
-\plt{The intended reader characteristics should be written as unambiguously and
-  as specifically as possible.  Rather than say, the user should have an
-  understanding of physics, say what kind of physics and at what level.  For
-  instance, is high school physics adequate, or should the reader have had a
-  graduate course on advanced quantum mechanics?}
+\noindent In general, any users of this document should have an undergraduate level understanding of software and hardware system functionality, physics, and mathematics. \\
 
 \subsection{Organization of Document}
 
-\plt{This section provides a roadmap of the SRS document.  It will help the
-  reader orient themselves.  It will provide direction that will help them
-  select which sections they want to read, and in what order.  This section will
-  be similar between project.}
+This SRS template is based on \citet{SmithAndLai2005, SmithEtAl2007}. These templates have been modified to reflect rubric requirements, and sections have been reorganized to follow 
+the LazyBots student sample SRS. Sections 3, 4, and 5 describe the project constraints, and show the context and functional decomposition diagrams. 
+Section 6 is dedicated to functional requirements. This section will define functional requirements seperated in terms of the systems which make up the Pot-Pulator. 
+Section 7 describes the non-functional requirements in terms of look and feel, usability, performance, operational, maintainability and portability, security requirements. Section 8
+ evaluates each functional requirement on its likelihood to change, and specifies how the requirement may change if it is not very unlikely to.
 
-\section{General System Description}
 
-This section provides general information about the system.  It identifies the
+\section{Project Constraints}
+
+This section identifies the
 interfaces between the system and its environment, describes the user
-characteristics and lists the system constraints.  \plt{This text can likely be
-  borrowed verbatim.}
-
-\plt{The purpose of this section is to provide general information about the
-  system so the specific requirements in the next section will be easier to
-  understand. The general system description section is designed to be
-  changeable independent of changes to the functional requirements documented in
-  the specific system description. The general system description provides a
-  context for a family of related models.  The general description can stay the
-  same, while specific details are changed between family members.}
+characteristics, lists the system constraints, and provides assumptions relating to the system/environment.
 
 \subsection{System Context}
+The system will consist of a stack of pots, stack of trays, and the mechanism that will 
+autonomously populate the trays with the pots. The trays will move along a conveyor system that operates at approximately 3 feet 
+and will act as the operating workspace for the device. Once the trays are populated with pots,
+they are fed into a soil potting machine in preparation for planting.
 
-\plt{Your system context will include a figure that shows the abstract view of
-  the software.  Often in a scientific context, the program can be viewed
-  abstractly following the design pattern of Inputs $\rightarrow$ Calculations
-  $\rightarrow$ Outputs.  The system context will therefore often follow this
-  pattern.  The user provides inputs, the system does the calculations, and then
-  provides the outputs to the user.  The figure should not show all of the
-  inputs, just an abstract view of the main categories of inputs (like material
-  properties, geometry, etc.).  Likewise, the outputs should be presented from
-  an abstract point of view.  In some cases the diagram will show other external
-  entities, besides the user.  For instance, when the software product is a
-  library, the user will be another software program, not an actual end user.
-  If there are system constraints that the software must work with external
-  libraries, these libraries can also be shown on the System Context diagram.
-  They should only be named with a specific library name if this is required by
-  the system constraint.}
+\subsection{User Responsibilities \& Characteristics}
 
-\begin{figure}[h!]
-\begin{center}
- \includegraphics[width=0.6\textwidth]{SystemContextFigure}
-\caption{System Context}
-\label{Fig_SystemContext} 
-\end{center}
-\end{figure}
+The user will be responsible for refilling the stacks of trays and pots when the supply is depleted. 
+The user will also be responsible for knowing how the entire system will operate within each state. 
+For example, if a tray fails the validation step, the user must be capable of removing the defect and resume the operation of the machine.\\\\
+\noindent The characteristics of the user will ensure smooth operation and workplace safety. The user should be 
+able to lift a sufficient weight and have a good understanding of basic functionality of the system.
 
-\plt{For each of the entities in the system context diagram its responsibilities
-  should be listed.  Whenever possible the system should check for data quality,
-  but for some cases the user will need to assume that responsibility.  The list
-  of responsibilites should be about the inputs and outputs only, and they
-  should be abstract.  Details should not be presented here.  However, the
-  information should not be so abstract as to just say ``inputs'' and
-  ``outputs''.  A summarizing phrase can be used to characterize the inputs.
-  For instance, saying ``material properties'' provides some information, but it
-  stays away from the detail of listing every required properties.}
-
-\begin{itemize}
-\item User Responsibilities:
-\begin{itemize}
-\item 
-\end{itemize}
-\item \progname{} Responsibilities:
-\begin{itemize}
-\item Detect data type mismatch, such as a string of characters instead of a
-  floating point number
-\item 
-\end{itemize}
-\end{itemize}
-
-\subsection{User Characteristics} \label{SecUserCharacteristics}
-
-\plt{This section summarizes the knowledge/skills expected of the user.
-  Measuring usability, which is often a required non-function requirement,
-  requires knowledge of a typical user.  As mentioned above, the user is a
-  different role from the ``intended reader,'' as given in
-  Section~\ref{sec_IntendedReader}.  As in Section~\ref{sec_IntendedReader}, the
-  user characteristics should be specific an unambiguous.  For instance, ``The
-  end user of \progname{} should have an understanding of undergraduate Level 1
-  Calculus and Physics.''}
 
 \subsection{System Constraints}
 
-\plt{System constraints differ from other type of requirements because they
-  limit the developers' options in the system design and they identify how the
-  eventual system must fit into the world. This is the only place in the SRS
-  where design decisions can be specified.  That is, the quality requirement for
-  abstraction is relaxed here.  However, system constraints should only be
-  included if they are truly required.}
+The system constraints are in place to comply with the physical and 
+technical limits provided to the team.
 
-\section{Specific System Description}
+\subsubsection{Physical Constraints}
+\begin{tabular}{ |p{2cm}|p{14cm}| }
+  \hline
+  PHC0 & Workspace dimensions (including stacks of 
+  trays and pots) of height = 12' width = 6' length = 8'\\
+  \hline
+  Rationale & the allowable workspace area provided by Sheridan Nurseries  \\ 
 
-This section first presents the problem description, which gives a high-level
-view of the problem to be solved.  This is followed by the solution characteristics
-specification, which presents the assumptions, theories, definitions and finally
-the instance models.  \plt{Add any project specific details that are relevant
-  for the section overview.}
+  \hline  
+ \end{tabular}\\\\
 
-\subsection{Problem Description} \label{Sec_pd}
+ \noindent
+ \begin{tabular}{ |p{2cm}|p{14cm}| }
+  \hline
+  PHC1 & Conveyor system must be height = 3'  
+  width = 1.5' length = 8' (maximum) \\
+  \hline
+  Rationale & the new system will feed trays into an existing soil potting 
+  machine via conveyor system so they must operate in a similar manner  \\ 
 
-\progname{} is intended to solve ... \plt{What problem does your program solve?
-The description here should be in the problem space, not the solution space.}
+  \hline  
+ \end{tabular}\\\\
 
-\subsubsection{Terminology and  Definitions}
+ \noindent
+ \begin{tabular}{ |p{2cm}|p{14cm}| }
+  \hline
+  PHC2 & Operational in winter temperatures (outdoor conditions)  \\
+  \hline
+  Rationale & operation takes place in a 
+  tent outside between January and February  \\ 
 
-\plt{This section is expressed in words, not with equations.  It provide the
-  meaning of the different words and phrases used in the domain of the problem.
-The terminology is used to introduce concepts from the world outside of the
-mathematical model  The terminology provides a real world connection to give the
-mathematical model meaning.}
+  \hline  
+ \end{tabular}\\\\
 
-This subsection provides a list of terms that are used in the subsequent
-sections and their meaning, with the purpose of reducing ambiguity and making it
-easier to correctly understand the requirements:
+ \noindent
+ \begin{tabular}{ |p{2cm}|p{14cm}| }
+  \hline
+  PHC3 & Fully operational through a standard 3-prong 120V wall outlet   \\
+  \hline
+  Rationale & the system’s environment requires this 
+  as the only source of power  \\ 
 
-\begin{itemize}
+  \hline  
+ \end{tabular}\\\\
+ 
+  
+\subsubsection{Software Constraints}
+\begin{tabular}{ |p{2cm}|p{14cm}| }
+  \hline
+  SWC0 & Perform operations and calculations in a timely manner \\
+  \hline
+  Rationale &  to ensure the system can actually replace a human  \\ 
 
-\item 
+  \hline  
+ \end{tabular}\\\\
 
-\end{itemize}
+ \subsection{Assumptions}
+ The following assumptions are being made when designing and developing 
+  the device:
+ \begin{itemize}
+  
+  \item The user will fill the machine with stacks of trays and 
+  pots as required
 
-\subsubsection{Physical System Description} \label{sec_phySystDescrip}
+  \item The system will populate 10 pots of 4-inch diameter into its 
+  respective tray
+  \item The system can hold stacks sufficient enough for 15-30 minutes of continuous operation
+  
+ \end{itemize}
 
-\plt{The purpose of this section is to clearly and unambiguously state the
-  physical system that is to be modelled. Effective problem solving requires a
-  logical and organized approach. The statements on the physical system to be
-  studied should cover enough information to solve the problem. The physical
-  description involves element identification, where elements are defined as
-  independent and separable items of the physical system. Some example elements
-  include acceleration due to gravity, the mass of an object, and the size and
-  shape of an object. Each element should be identified and labelled, with their
-  interesting properties specified clearly. The physical description can also
-  include interactions of the elements, such as the following: i) the
-  interactions between the elements and their physical environment; ii) the
-  interactions between elements; and, iii) the initial or boundary conditions.}
+ \subsection{Constants}
+ \begin{tabular}{ |p{4cm}|p{12cm}| }
+  \hline
+  Constant Name & Description\\
+  \hline
+  Number of Pots & The number of pots that 
+  needs to be populated in a single tray\\
+  \hline
+  Number of Trays & The number of trays that will be populated at once \\ 
+  \hline  
+  Max Pots in Stack & The maximum number of 
+  pots that may be stacked in the machine\\
+  \hline
+  Max Trays in Stack & The maximum number of 
+  trays that may be stacked in the machine\\
+  \hline
+  Pot Size/Shape & The size/shape of the pots\\
+  \hline
+  Max Rate of Operation & The maximum rate at which the machine operates 
+  is determined by the soil potting machine \\
+  \hline
+ \end{tabular}\\\\
 
-The physical system of \progname{}, as shown in Figure~?,
-includes the following elements:
+ \subsection{Monitored Variables}
+ \begin{tabular}{ |p{3cm}|p{9cm}|p{2cm}|p{1cm}| }
+  \hline
+  Variable & Description & Type & Units\\
+  \hline
+  Conveyor Speed & The speed at which the conveyor belt will move
+   & Speed & m/s\\
+  \hline
+  Sensor Distances & Measured distances that the sensor identifies
+   & Distance & mm\\
+  \hline
+  System State & Determines the state of the system (ie. Ready, Running, Error, Success)
+   & State &  N/A\\
+  \hline
+  Tray/Pot Weight & Weight of the trays/pots to verify number in the stack
+   & Weight & kg\\
+  \hline
+  Tray/Pot Height & Height of the trays/pots to verify number in the stack
+   & Height & m\\
+  
+  \hline
+ \end{tabular}\\\\
 
-\begin{itemize}
+ \subsection{Controlled Variables}
+ \begin{tabular}{ |p{3cm}|p{9cm}|p{2cm}|p{1cm}| }
+  \hline
+  Variable & Description & Type & Units\\
+  \hline
+  Motor Speeds & The speeds at which the motors in the system will turn
+   & Speed & rad/s\\
+  \hline
+  Voltage in & Voltage going into the system
+   & Voltage & V\\
+  \hline
+  Current in & Current going into the system
+   & Current &  A\\
+  \hline
+  LEDs & LED status lights
+   & Boolean & N/A\\
+  
+  \hline
+ \end{tabular}\\\\
 
-\item[PS1:] 
-
-\item[PS2:] ...
-
-\end{itemize}
-
-\plt{A figure here makes sense for most SRS documents}
-
-% \begin{figure}[h!]
-% \begin{center}
-% %\rotatebox{-90}
-% {
-%  \includegraphics[width=0.5\textwidth]{<FigureName>}
-% }
-% \caption{\label{<Label>} <Caption>}
-% \end{center}
-% \end{figure}
-
-\subsubsection{Goal Statements}
-
-\plt{The goal statements refine the ``Problem Description''
-  (Section~\ref{Sec_pd}).  A goal is a functional objective the system under
-  consideration should achieve. Goals provide criteria for sufficient
-  completeness of a requirements specification and for requirements
-  pertinence. Goals will be refined in Section “Instanced Models”
-  (Section~\ref{sec_instance}). Large and complex goals should be decomposed
-  into smaller sub-goals.  The goals are written abstractly, with a minimal
-  amount of technical language.  They should be understandable by non-domain
-  experts.}
-
-\noindent Given the \plt{inputs}, the goal statements are:
-
-\begin{itemize}
-
-\item[GS\refstepcounter{goalnum}\thegoalnum \label{G_meaningfulLabel}:] \plt{One
-    sentence description of the goal.  There may be more than one.  Each Goal
-    should have a meaningful label.}
-
-\end{itemize}
-
-\subsection{Solution Characteristics Specification}
-
-\plt{This section specifies the information in the solution domain of the system
-  to be developed. This section is intended to express what is required in
-  such a way that analysts and stakeholders get a clear picture, and the
-  latter will accept it. The purpose of this section is to reduce the problem
-  into one expressed in mathematical terms. Mathematical expertise is used to
-  extract the essentials from the underlying physical description of the
-  problem, and to collect and substantiate all physical data pertinent to the
-  problem.}
-
-\plt{This section presents the solution characteristics by successively refining
-  models.  It starts with the abstract/general Theoretical Models (TMs) and
-  refines them to the concrete/specific Instance Models (IMs).  If necessary
-  there are intermediate refinements to General Definitions (GDs).  All of these
-  refinements can potentially use Assumptions (A) and Data Definitions (DD).
-  TMs are refined to create new models, that are called GMs or IMs. DDs are not
-  refined; they are just used. GDs and IMs are derived, or refined, from other
-  models. DDs are not derived; they are just given. TMs are also just given, but
-  they are refined, not used.  If a potential DD includes a derivation, then
-  that means it is refining other models, which would make it a GD or an IM.}
-
-\plt{The above makes a distinction between ``refined'' and ``used.'' A model is
-  refined to another model if it is changed by the refinement. When we change a
-  general 3D equation to a 2D equation, we are making a refinement, by applying
-  the assumption that the third dimension does not matter. If we use a
-  definition, like the definition of density, we aren't refining, or changing
-  that definition, we are just using it.}
-
-\plt{The same information can be a TM in one problem and a DD in another.  It is
-  about how the information is used.  In one problem the definition of
-  acceleration can be a TM, in another it would be a DD.}
-
-\plt{There is repetition between the information given in the different chunks
-  (TM, GDs etc) with other information in the document.  For instance, the
-  meaning of the symbols, the units etc are repeated.  This is so that the
-  chunks can stand on their own when being read by a reviewer/user.  It also
-  facilitates reuse of the models in a different context.}
-
-\noindent \plt{The relationships between the parts of the document are show in
-  the following figure.  In this diagram ``may ref'' has the same role as
-  ``uses'' above.  The figure adds ``Likely Changes,'' which are able to
-  reference (use) Assumptions.}
+\section{Context Diagram}
+Below is a high level overview of the system. It shows all the inputs and outputs
+of the overall system.
 
 \begin{figure}[H]
-  \includegraphics[scale=0.9]{RelationsBetweenTM_GD_IM_DD_A.pdf}
+  \includegraphics[width=\linewidth]{contextDiagram.png}
+  \caption{Context Diagram}
+  \label{fig:context1}
 \end{figure}
 
-The instance models that govern \progname{} are presented in
-Subsection~\ref{sec_instance}.  The information to understand the meaning of the
-instance models and their derivation is also presented, so that the instance
-models can be verified.
 
-\subsubsection{Assumptions} \label{sec_assumpt}
+\section{Functional Decomposition Diagram}
+Below is a decomposition of the system. It shows the states and processes that
+occur within the system.
 
-\plt{The assumptions are a refinement of the scope.  The scope is general, where
-  the assumptions are specific.  All assumptions should be listed, even those
-  that domain experts know so well that they are rarely (if ever) written down.}
-\plt{The document should not take for granted that the reader knows which
-  assumptions have been made. In the case of unusual assumptions, it is
-  recommended that the documentation either include, or point to, an explanation
-  and justification for the assumption.}
+\begin{figure}[H]
+  \includegraphics[width=\linewidth]{functionalDiagram.PNG}
+  \caption{Functional Decomposition}
+  \label{fig:functional1}
+\end{figure}
 
-This section simplifies the original problem and helps in developing the
-theoretical model by filling in the missing information for the physical
-system. The numbers given in the square brackets refer to the theoretical model
-[T], general definition [GD], data definition [DD], instance model [IM], or
-likely change [LC], in which the respective assumption is used.
+  \section{Functional Requirements}
 
-\begin{itemize}
+  This section provides the functional requirements of the Pot-Pulator, seperated into tray dispensing,
+  pot dispensing, conveyor, and verification requierements.
+ 
+  \subsection{Tray Dispensing Functional Requirements}
+  
+  \noindent \begin{itemize}
+  
+  \item[TDR\refstepcounter{tdreqnum}\thetdreqnum \label{R_Tray0}:] {The tray dispenser must
+      start when the Pot-Pulator start is pressed.}
+  
+  \item[TDR\refstepcounter{tdreqnum}\thetdreqnum \label{R_Tray1}:] {The tray dispenser must
+      be able to place a standard tray from the loaded stack onto the conveyor belt.}
+  
+  \item[TDR\refstepcounter{tdreqnum}\thetdreqnum \label{R_Tray2}:] {The tray dispenser must
+        be able to store multiple trays at a time.}
+  
+  \item[TDR\refstepcounter{tdreqnum}\thetdreqnum \label{R_Tray5}:] {The tray dispenser must
+      stop operating once it has run out of trays.}
+  
+  \item[TDR\refstepcounter{tdreqnum}\thetdreqnum \label{R_Tray6}:] {The tray dispenser must
+      be able to recognize when trays need to be reloaded and notify an operator.}
+  
+  \item[TDR\refstepcounter{tdreqnum}\thetdreqnum \label{R_Tray7}:] {The tray dispenser must
+       stop when an error arises (verification failed, pot dispenser malfunction/empty, conveyor
+       malfunction).}
+  
+  \item[TDR\refstepcounter{tdreqnum}\thetdreqnum \label{R_Tray8}:] {The tray dispenser must
+      be able to reset after it has been stopped due to error or needs to reload.}
+  
+  
+  \end{itemize}
+  
+  \subsection{Pot Dispensing Functional Requirements}
+  
+  \noindent \begin{itemize}
+  
+  \item[PDR\refstepcounter{pdreqnum}\thepdreqnum \label{R_Pot0}:] {The pot dispenser must
+      start when the Pot-Pulator start is pressed.}
+  
+  \item[PDR\refstepcounter{pdreqnum}\thepdreqnum \label{R_Pot1}:] {The pot dispenser must
+      be able to place a pot into an empty place in a tray.}
+  
+  \item[PDR\refstepcounter{pdreqnum}\thepdreqnum \label{R_Pot2}:] {The pot dispenser must
+      be able to dispense a 4" diameter pot.}
+  
+  \item[PDR\refstepcounter{pdreqnum}\thepdreqnum \label{R_Pot3}:] {The pot dispenser must
+      be able to store multiple pots at a time.}
+  
+  \item[PDR\refstepcounter{pdreqnum}\thepdreqnum \label{R_Pot6}:] {The pot dispenser must
+      stop operating once it has run out of pots.}
+  
+  \item[PDR\refstepcounter{pdreqnum}\thepdreqnum \label{R_Pot7}:] {The pot dispenser must
+      be able to recognize when pots need to be reloaded and notify an operator.}
+  
+  \item[PDR\refstepcounter{pdreqnum}\thepdreqnum \label{R_Pot8}:] {The pot dispenser must
+      stop when an error arises (verification failed, tray dispenser malfunction/empty, conveyor
+      malfunction).}
+  
+  \item[PDR\refstepcounter{pdreqnum}\thepdreqnum \label{R_Pot9}:] {The pot dispenser must
+      be able to reset after it has been stopped due to an error or needs to reload.}
+  
+  \end{itemize}
+  
+  \subsection{Conveyor Requirements}
+  
+  \noindent \begin{itemize}
+  
+  \item[CR\refstepcounter{creqnum}\thecreqnum \label{R_Conveyor0}:] {The conveyor must
+      start when the Pot-Pulator start is pressed.}
 
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_meaningfulLabel}:]
-  \plt{Short description of each assumption.  Each assumption
-    should have a meaningful label.  Use cross-references to identify the
-    appropriate traceability to T, GD, DD etc., using commands like dref, ddref
-    etc.  Each assumption should be atomic - that is, there should not be an
-    explicit (or implicit) ``and'' in the text of an assumption.}
+  \item[CR\refstepcounter{creqnum}\thecreqnum \label{R_Conveyor1}:] {The conveyor must
+      be able to move a tray from the tray dispensing station to the verification station.}
+  
+  \item[CR\refstepcounter{creqnum}\thecreqnum \label{R_Conveyor2}:] {The conveyor must
+      be able to stop when a tray is being placed on the conveyor, or when a pot is being
+      placed in a tray.}
+      
+  \item[CR\refstepcounter{creqnum}\thecreqnum \label{R_Conveyor4}:] {The conveyor material 
+      must have a high enough friction such that the trays do not slide while in contact with
+      the belt.}
+  
+  \item[CR\refstepcounter{creqnum}\thecreqnum \label{R_Conveyor5}:] {The conveyor must
+      stop when an error arises (verification failed, pot dispenser malfunction/empty, tray dispenser
+      malfunction/empty).}
+  \item[CR\refstepcounter{creqnum}\thecreqnum \label{R_Conveyor6}:] {The conveyor must
+      be able to reset after it has been stopped due to an error or pots/trays need to
+      be reloaded.}
+  
+  \end{itemize}
+  
+  \subsection{Verification Requirements}
+  
+  \noindent \begin{itemize}
+  
+  \item[VR\refstepcounter{vreqnum}\thevreqnum \label{R_Verification1}:] {The verification must
+      check that only one tray is being output by the conveyer belt, and the tray is
+      filled with exactly 10 pots, such that $n_{traysout}=1\ \&\ n_{potsout}=10$}
+  
+  \item[VR\refstepcounter{vreqnum}\thevreqnum \label{R_Verification2}:] {The verification must
+      notify all other systems if verification fails, such that $n_{traysout}\neq1\ or\ n_{potsout}\neq10$}
+  
+  \end{itemize}
+  
+  
+  
+  
+  \section{Nonfunctional Requirements}
+  This section provides the non-functional requirements of the Pot-Pulator.
+  \subsection{Appearance Requirements}
 
-\end{itemize}
+  \noindent 
+  \begin{itemize}
+  
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Appearance1}:]
+    All electrical equipment and electronics must be well covered and protected. The user must not have access to equipment.
+  
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Appearance2}:]
+    All wiring must be tucked away and not accessible to avoid potential electrical failure.
+  
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Appearance3}:]
+    All moving parts must be covered and protected. Moving parts should be covered to protect both the mechanism and the safety of the operator.
 
-\subsubsection{Theoretical Models}\label{sec_theoretical}
+  \end{itemize}
+  
+  \subsection{Usability Requirements}
 
-\plt{Theoretical models are sets of abstract mathematical equations or axioms
-  for solving the problem described in Section ``Physical System Description''
-  (Section~\ref{sec_phySystDescrip}). Examples of theoretical models are
-  physical laws, constitutive equations, relevant conversion factors, etc.}
+  \noindent \begin{itemize}
+  
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Usability1}:]
+  System must have tray and pot refill locations visible and accessible in order to provide visual verification of capacity status.
+  
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Usability2}:]
+  System output (end of conveyor) must be clear and visible in order to provide visual verification and access to failed outputs.
+  \end{itemize}
+  \subsection{Learning Requirments}
 
-This section focuses on the general equations and laws that \progname{} is based
-on.  \plt{Modify the examples below for your problem, and add additional models
-  as appropriate.}
+  \noindent \begin{itemize}
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Learning}:]
+  System must be simple to operate, requiring minimal training to operate effectively ($<1\ hour$).
 
-~\newline
+  \end{itemize}
 
-\noindent
-\deftheory
-% #2 refname of theory
-{T:COE}
-% #3 label
-{Conservation of thermal energy}
-% #4 equation
-{
-  $-{\bf \nabla \cdot q} + g$ = $\rho C \frac{\partial T}{\partial t}$
-}
-% #5 description
-{
-  The above equation gives the conservation of energy for transient heat transfer in a material
-  of specific heat capacity $C$ (\si{\joule\per\kilogram\per\celsius}) and density $\rho$ 
-  (\si{\kilogram\per\cubic\metre}), where $\bf q$ is the thermal flux vector (\si{\watt\per\square\metre}),
-  $g$ is the volumetric heat generation
-  (\si{\watt\per\cubic\metre}), $T$ is the temperature
-  (\si{\celsius}),  $t$ is time (\si{\second}), and $\nabla$ is
-  the gradient operator.  For this equation to apply, other forms
-  of energy, such as mechanical energy, are assumed to be negligible in the
-  system (\aref{A_OnlyThermalEnergy}).  In general, the material properties ($\rho$ and $C$) depend on temperature.
-}
-% #6 Notes
-{
-None.
-}
-% #7 Source
-{
-  \url{http://www.efunda.com/formulae/heat_transfer/conduction/overview_cond.cfm}
-}
-% #8 Referenced by
-{
-  \dref{ROCT}
-}
-% #9 Preconditions
-{
-None
-}
-% #1 derivation - not applicable by default
-{}
 
-\plt{``Ref.\ By'' is used repeatedly with the different types of information.
-  This stands for Referenced By.  It means that the models, definitions and
-  assumptions listed reference the current model, definition or assumption.
-  This information is given for traceability.  Ref. By provides a pointer in the
-  opposite direction to what we commonly do.  You still need to have a reference
-  in the other direction pointing to the current model, definition or
-  assumption.  As an example, if T1 is referenced by G2, that means that G2 will
-  explicitly include a reference to T1.}
+  \subsection{Accessibility Requirements}
+ \noindent \begin{itemize}
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Accessibility1}:]
+  System must have both audible and visible signal outputs for each system status.
+ \end{itemize}
 
-~\newline
+  \subsection{Speed Requirements}
+  \noindent \begin{itemize}
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Speed1}:]
+  Conveyor system must not accelerate in a manner that would shift the position of the tray on the conveyor belt. 
+  A shift in the position of the tray could result in a misalignement and potential error.
+  
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Speed2}:] 
+  {The pot dispenser must dispense pots at a rate of 10 pots every 30 seconds, such that $t_{cycle}=30\ seconds
+      \ \&\ n_{pots}\left(t\right)=300-t/3;\ t\ \varepsilon\ \{30, 60, 90, ..., 900\}$}.
+  This will allow the machine to meet the output goal required.
 
-\subsubsection{General Definitions}\label{sec_gendef}
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Speed3}:] 
+  {The tray dispenser must dispense trays at a rate of 1 tray every 30 seconds, such that $t_{cycle}=30\ seconds
+      \ \&\ n_{trays}\left(t\right)=30-t/30;\ t\ \varepsilon\ \{30, 60, 90, ..., 900\}$}.
+  This will allow the machine to meet the output goal required.
+  \end{itemize}  
 
-\plt{General Definitions (GDs) are a refinement of one or more TMs, and/or of
-  other GDs.  The GDs are less abstract than the TMs.  Generally the reduction
-  in abstraction is possible through invoking (using/referencing) Assumptions.
-  For instance, the TM could be Newton's Law of Cooling stated abstracting.  The
-  GD could take the general law and apply it to get a 1D equation.}
 
-This section collects the laws and equations that will be used in building the
-instance models.
+  \subsection{Safety Critical Requirements}
+  \noindent \begin{itemize}
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Safety1}:]
+  System must have emergency cut off. In case of any emergency, this will trip off all power to the Pot-Pulator.
+  
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Safety2}:]
+  System must be able to locate and identify failures within each independent subsystem.
+  
+  \end{itemize}
+  \subsection{Precision Requirements}
+  \noindent \begin{itemize}
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Precision1}:]
+  Tray dispenser must centre trays on conveyor within 1 cm
+  
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Precision2}:]
+  Pot dispenser should dispense pots within a 0.5 cm radius of centered position.
 
-\plt{Some projects may not have any content for this section, but the section
-  heading should be kept.}  \plt{Modify the examples below for your problem, and
-  add additional definitions as appropriate.}
+  \end{itemize}
 
-~\newline
 
-\noindent
-\begin{minipage}{\textwidth}
-\renewcommand*{\arraystretch}{1.5}
-\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
-\hline
-\rowcolor[gray]{0.9}
-Number& GD\refstepcounter{defnum}\thedefnum \label{NL}\\
-\hline
-Label &\bf Newton's law of cooling \\
-\hline
-% Units&$MLt^{-3}T^0$\\
-% \hline
-SI Units&\si{\watt\per\square\metre}\\
-\hline
-Equation&$ q(t) = h \Delta T(t)$  \\
-\hline
-Description &
-Newton's law of cooling describes convective cooling from a surface.  The law is
-stated as: the rate of heat loss from a body is proportional to the difference
-in temperatures between the body and its surroundings.
-\\
-& $q(t)$ is the thermal flux (\si{\watt\per\square\metre}).\\
-& $h$ is the heat transfer coefficient, assumed independent of $T$ (\aref{A_hcoeff})
-	(\si{\watt\per\square\metre\per\celsius}).\\
-&$\Delta T(t)$= $T(t) - T_{\text{env}}(t)$ is the time-dependent thermal gradient
-between the environment and the object (\si{\celsius}).
-\\
-\hline
-  Source & Citation here \\
-  \hline
-  Ref.\ By & \ddref{FluxCoil}, \ddref{FluxPCM}\\
-  \hline
-\end{tabular}
-\end{minipage}\\
+  \subsection{Capacity Requirements}
+  \noindent \begin{itemize}
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Capacity1}:] {The pot dispenser must
+  be able to hold a maximum of 300 pots at all times, such that 
+  $n_{pots}(t)\le300$} 
+  This will allow the machine to meet the output goal required.
 
-\subsubsection*{Detailed derivation of simplified rate of change of temperature}
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Capacity2}:] {The tray dispenser must
+  be able to hold a maximum of 30 trays at all times, such that 
+  $n_{trays}(t)\le30$} 
+  This will allow the machine to meet the output goal required.
 
-\plt{This may be necessary when the necessary information does not fit in the
-  description field.}
-\plt{Derivations are important for justifying a given GD.  You want it to be
-  clear where the equation came from.}
+  \end{itemize}
 
-\subsubsection{Data Definitions}\label{sec_datadef}
 
-\plt{The Data Definitions are definitions of symbols and equations that are
-  given for the problem.  They are not derived; they are simply used by other
-  models.  For instance, if a problem depends on density, there may be a data
-  definition for the equation defining density.  The DDs are given information
-  that you can use in your other modules.}
+  \subsection{Reliability Requirements}
+  \noindent \begin{itemize}
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Realiability1}:]
+  System must be able to operate under constant low and high frequency vibration (small amplitude).
+  
+  \end{itemize}
 
-\plt{All Data Definitions should be used (referenced) by at least one other
-  model.}
 
-This section collects and defines all the data needed to build the instance
-models. The dimension of each quantity is also given.  \plt{Modify the examples
-  below for your problem, and add additional definitions as appropriate.}
+  \subsection{Robustness and Fault Tolerance Requirements}
+  \noindent \begin{itemize}
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Robustness1}:]
+  Components must withstand 250,000 cycles. System should call for replacement parts after a full season of operation.
+  
+  \end{itemize}
 
-~\newline
+  \subsection{Scalability or Extensibility Requirements}
+  \noindent \begin{itemize}
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Scalability1}:]
+  System must fit into the existing assembly line and should take minimal effort to implement ($<1\ day$).
+  \end{itemize}
 
-\noindent
-\begin{minipage}{\textwidth}
-\renewcommand*{\arraystretch}{1.5}
-\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
-\hline
-\rowcolor[gray]{0.9}
-Number& DD\refstepcounter{datadefnum}\thedatadefnum \label{FluxCoil}\\
-\hline
-Label& \bf Heat flux out of coil\\
-\hline
-Symbol &$q_C$\\
-\hline
-% Units& $Mt^{-3}$\\
-% \hline
-  SI Units & \si{\watt\per\square\metre}\\
-  \hline
-  Equation&$q_C(t) = h_C (T_C - T_W(t))$, over area $A_C$\\
-  \hline
-  Description & 
-                $T_C$ is the temperature of the coil (\si{\celsius}).  $T_W$ is the temperature of the water (\si{\celsius}).  
-                The heat flux out of the coil, $q_C$ (\si{\watt\per\square\metre}), is found by
-                assuming that Newton's Law 
-                of Cooling applies (\aref{A_Newt_coil}).  This law (\dref{NL}) is used on the surface of
-                the coil, which has area $A_C$ (\si{\square\metre}) and heat 
-                transfer coefficient $h_C$
-                (\si{\watt\per\square\metre\per\celsius}).  This equation
-                assumes that the temperature of the coil is constant over time (\aref{A_tcoil}) and that it does not vary along the length
-                of the coil (\aref{A_tlcoil}).
-  \\
-  \hline
-  Sources& Citation here \\
-  \hline
-  Ref.\ By & \iref{ewat}\\
-  \hline
-\end{tabular}
-\end{minipage}\\
 
-\subsubsection{Data Types}\label{sec_datatypes}
+  \subsection{Expected Physical Environement Requirements}
+  \noindent \begin{itemize}
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Environment1}:]
+  System must withstand operating in a room with high arial polution including dust, dirt, and small amounts of water.
+  \end{itemize}
+  \subsection{Maintenance Requirements}
+  \noindent \begin{itemize}
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Maintenance1}:]
+  System must be built for ease of maintenance. High wear parts should be easily accessible.
+  \end{itemize}
 
-\plt{This section is optional.  In many scientific computing programs it isn't
-  necessary, since the inputs and outpus are straightforward types, like reals,
-  integers, and sequences of reals and integers.  However, for some problems it
-  is very helpful to capture the type information.}
 
-\plt{The data types are not derived; they are simply stated and used by other
-  models.}
+  \subsection{Requirements for Interacting with Adjacent Systems }\
+  \noindent \begin{itemize}
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Adjacent1}:]
+  System must operate at same speed as adjacent systems.
+  
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Adjacent2}:]
+  System must operate at the same conveyor height as the current system to maintain continuity between systems.
+  
+  \end{itemize}
 
-\plt{All data types must be used by at least one of the models.}
+  \subsection{Supportability Requirements }\
+  \noindent \begin{itemize}
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Supportability1}:]
+  System documentation must be available to troubleshoot, diagnose and fix common issues and replace high-wear parts.
+  \end{itemize}
 
-\plt{For the mathematical notation for expressing types, the recommendation is
-  to use the notation of~\citet{HoffmanAndStrooper1995}.}
+  \subsection{Compliance Requirements }\
+  \noindent \begin{itemize}
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Compliance1}:]
+  System must follow electronics system safety requirements.
+  \end{itemize}
+  
 
-This section collects and defines all the data types needed to document the
-models. \plt{Modify the examples below for your problem, and add additional
-  definitions as appropriate.}
+\section{Functional Requirements Likelihood of Change}
 
-~\newline
-
-\noindent
-\begin{minipage}{\textwidth}
-\renewcommand*{\arraystretch}{1.5}
-\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
-  \hline
-  \rowcolor[gray]{0.9}
-  Type Name & Name for Type\\
-  \hline
-  Type Def & mathematical definition of the type\\
-  \hline
-  Description & description here
-  \\
-  \hline
-  Sources & Citation here, if the type is borrowed from another source\\
-  \hline
-\end{tabular}
-\end{minipage}\\
-
-\subsubsection{Instance Models} \label{sec_instance}    
-
-\plt{The motivation for this section is to reduce the problem defined in
-  ``Physical System Description'' (Section~\ref{sec_phySystDescrip}) to one
-  expressed in mathematical terms. The IMs are built by refining the TMs and/or
-  GDs.  This section should remain abstract.  The SRS should specify the
-  requirements without considering the implementation.}
-
-This section transforms the problem defined in Section~\ref{Sec_pd} into 
-one which is expressed in mathematical terms. It uses concrete symbols defined 
-in Section~\ref{sec_datadef} to replace the abstract symbols in the models 
-identified in Sections~\ref{sec_theoretical} and~\ref{sec_gendef}.
-
-The goals \plt{reference your goals} are solved by \plt{reference your instance
-  models}.  \plt{other details, with cross-references where appropriate.}
-\plt{Modify the examples below for your problem, and add additional models as
-  appropriate.}
-
-~\newline
-
-%Instance Model 1
-
-\noindent
-\begin{minipage}{\textwidth}
-\renewcommand*{\arraystretch}{1.5}
-\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
-  \hline
-  \rowcolor[gray]{0.9}
-  Number& IM\refstepcounter{instnum}\theinstnum \label{ewat}\\
-  \hline
-  Label& \bf Energy balance on water to find $T_W$\\
-  \hline
-  Input&$m_W$, $C_W$, $h_C$, $A_C$, $h_P$, $A_P$, $t_\text{final}$, $T_C$, 
-  $T_\text{init}$, $T_P(t)$ from \iref{epcm}\\
-  & The input is constrained so that $T_\text{init} \leq T_C$ (\aref{A_charge})\\
-  \hline
-  Output&$T_W(t)$, $0\leq t \leq t_\text{final}$, such that\\
-  &$\frac{dT_W}{dt} = \frac{1}{\tau_W}[(T_C - T_W(t)) + {\eta}(T_P(t) - T_W(t))]$,\\
-  &$T_W(0) = T_P(0) = T_\text{init}$ (\aref{A_InitTemp}) and $T_P(t)$ from \iref{epcm} \\
-  \hline
-  Description&$T_W$ is the water temperature (\si{\celsius}).\\
-  &$T_P$ is the PCM temperature (\si{\celsius}).\\
-  &$T_C$ is the coil temperature (\si{\celsius}).\\
-  &$\tau_W = \frac{m_W C_W}{h_C A_C}$ is a constant (\si{\second}).\\
-  &$\eta = \frac{h_P A_P}{h_C A_C}$ is a constant (dimensionless).\\
-  & The above equation applies as long as the water is in liquid form,
-  $0<T_W<100^o\text{C}$, where $0^o\text{C}$ and $100^o\text{C}$ are the melting
-  and boiling points of water, respectively (\aref{A_OpRange}, \aref{A_Pressure}).
-  \\
-  \hline
-  Sources& Citation here \\
-  \hline
-  Ref.\ By & \iref{epcm}\\
-  \hline
-\end{tabular}
-\end{minipage}\\
-
-%~\newline
-
-\subsubsection*{Derivation of ...}
-
-\plt{The derivation shows how the IM is derived from the TMs/GDs.  In cases
-  where the derivation cannot be described under the Description field, it will
-  be necessary to include this subsection.}
-
-\subsubsection{Input Data Constraints} \label{sec_DataConstraints}    
-
-Table~\ref{TblInputVar} shows the data constraints on the input output
-variables.  The column for physical constraints gives the physical limitations
-on the range of values that can be taken by the variable.  The column for
-software constraints restricts the range of inputs to reasonable values.  The
-software constraints will be helpful in the design stage for picking suitable
-algorithms.  The constraints are conservative, to give the user of the model the
-flexibility to experiment with unusual situations.  The column of typical values
-is intended to provide a feel for a common scenario.  The uncertainty column
-provides an estimate of the confidence with which the physical quantities can be
-measured.  This information would be part of the input if one were performing an
-uncertainty quantification exercise.
-
-The specification parameters in Table~\ref{TblInputVar} are listed in
-Table~\ref{TblSpecParams}.
-
-\begin{table}[!h]
-  \caption{Input Variables} \label{TblInputVar}
-  \renewcommand{\arraystretch}{1.2}
-\noindent \begin{longtable*}{l l l l c} 
-  \toprule
-  \textbf{Var} & \textbf{Physical Constraints} & \textbf{Software Constraints} &
-                             \textbf{Typical Value} & \textbf{Uncertainty}\\
-  \midrule 
-  $L$ & $L > 0$ & $L_{\text{min}} \leq L \leq L_{\text{max}}$ & 1.5 \si[per-mode=symbol] {\metre} & 10\%
-  \\
-  \bottomrule
-\end{longtable*}
-\end{table}
-
-\noindent 
-\begin{description}
-\item[(*)] \plt{you might need to add some notes or clarifications}
-\end{description}
-
-\begin{table}[!h]
-\caption{Specification Parameter Values} \label{TblSpecParams}
-\renewcommand{\arraystretch}{1.2}
-\noindent \begin{longtable*}{l l} 
-  \toprule
-  \textbf{Var} & \textbf{Value} \\
-  \midrule 
-  $L_\text{min}$ & 0.1 \si{\metre}\\
-  \bottomrule
-\end{longtable*}
-\end{table}
-
-\subsubsection{Properties of a Correct Solution} \label{sec_CorrectSolution}
-
-\noindent
-A correct solution must exhibit \plt{fill in the details}.  \plt{These
-  properties are in addition to the stated requirements.  There is no need to
-  repeat the requirements here.  These additional properties may not exist for
-  every problem.  Examples include conservation laws (like conservation of
-  energy or mass) and known constraints on outputs, which are usually summarized
-  in tabular form.  A sample table is shown in Table~\ref{TblOutputVar}}
-
-\begin{table}[!h]
-\caption{Output Variables} \label{TblOutputVar}
-\renewcommand{\arraystretch}{1.2}
-\noindent \begin{longtable*}{l l} 
-  \toprule
-  \textbf{Var} & \textbf{Physical Constraints} \\
-  \midrule 
-  $T_W$ & $T_\text{init} \leq T_W \leq T_C$ (by~\aref{A_charge})
-  \\
-  \bottomrule
-\end{longtable*}
-\end{table}
-
-\plt{This section is not for test cases or techniques for verification and
-  validation.  Those topics will be addressed in the Verification and Validation
-  plan.}
-
-\section{Requirements}
-
-\plt{The requirements refine the goal statement.  They will make heavy use of
-  references to the instance models.}
-
-This section provides the functional requirements, the business tasks that the
-software is expected to complete, and the nonfunctional requirements, the
-qualities that the software is expected to exhibit.
-
-\subsection{Functional Requirements}
+\subsection{Tray Dispensing Functional Requirements}
 
 \noindent \begin{itemize}
 
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Inputs}:] \plt{Requirements
-    for the inputs that are supplied by the user.  This information has to be
-    explicit.}
+\item[TDR\refstepcounter{lctdreqnum}\thelctdreqnum\label{LC_meaningfulLabel0}:] {Very unlikely to change,
+    key implementation of system.}
 
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_OutputInputs}:] \plt{It isn't
-    always required, but often echoing the inputs as part of the output is a
-    good idea.}
+\item[TDR\refstepcounter{lctdreqnum}\thelctdreqnum\label{LC_meaningfulLabel1}:] {Very unlikely to change,
+    key implementation of system.}
 
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Calculate}:] \plt{Calculation
-    related requirements.}
+\item[TDR\refstepcounter{lctdreqnum}\thelctdreqnum\label{LC_meaningfulLabel2}:] {Very unlikely to change,
+    key implementation of system.}
 
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_VerifyOutput}:]
-  \plt{Verification related requirements.}
+\item[TDR\refstepcounter{lctdreqnum}\thelctdreqnum\label{LC_meaningfulLabel3}:] {Very unlikely to change,
+    ensures safety of operator reloading trays.}
 
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Output}:] \plt{Output related
-    requirements.}
+\item[TDR\refstepcounter{lctdreqnum}\thelctdreqnum\label{LC_meaningfulLabel4}:] {Very unlikely to change,
+    key implementation of system.}
+
+\item[TDR\refstepcounter{lctdreqnum}\thelctdreqnum\label{LC_meaningfulLabel5}:] {Very unlikely to change,
+    ensures safety of operator and prevents machine from dispensing trays while conveyor and/or pot dispenser
+    are not operational.}
+
+\item[TDR\refstepcounter{lctdreqnum}\thelctdreqnum\label{LC_meaningfulLabel6}:] {Unlikely to change,
+    ensures safety of operator and robustness of Pot-Pulator. May change to be integrated with start
+    command or resume command.}
 
 \end{itemize}
 
-\plt{Every IM should map to at least one requirement, but not every requirement
-  has to map to a corresponding IM.}
-
-\subsection{Nonfunctional Requirements}
-
-\plt{List your nonfunctional requirements.  You may consider using a fit
-  criterion to make them verifiable.}
-\plt{The goal is for the nonfunctional requirements to be unambiguous, abstract
-  and verifiable.  This isn't easy to show succinctly, so a good strategy may be
-to give a ``high level'' view of the requirement, but allow for the details to
-be covered in the Verification and Validation document.}
-\plt{An absolute requirement on a quality of the system is rarely needed.  For
-  instance, an accuracy of 0.0101 \% is likely fine, even if the requirement is
-  for 0.01 \% accuracy.  Therefore, the emphasis will often be more on
-  describing now well the quality is achieved, through experimentation, and
-  possibly theory, rather than meeting some bar that was defined a priori.}
-\plt{You do not need an entry for correctness in your NFRs.  The purpose of the
-  SRS is to record the requirements that need to be satisfied for correctness.
-  Any statement of correctness would just be redundant. Rather than discuss
-  correctness, you can characterize how far away from the correct (true)
-  solution you are allowed to be.  This is discussed under accuracy.}
+\subsection{Pot Dispensing Functional Requirements}
 
 \noindent \begin{itemize}
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Accuracy}:]
-  \textbf{Accuracy} \plt{Characterize the accuracy by giving the context/use for
-    the software.  Maybe something like, ``The accuracy of the computed
-    solutions should meet the level needed for $<$engineering or scientific
-    application$>$.  The level of accuracy achieved by \progname{} shall be
-    described following the procedure given in Section~X of the Verification and
-    Validation Plan.''  A link to the VnV plan would be a nice extra.}
+\item[PDR\refstepcounter{lcpdreqnum}\thelcpdreqnum\label{LC_meaningfulLabel7}:] {Very unlikely to change,
+    key implementation of system.}
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Usability}:] \textbf{Usability}
-  \plt{Characterize the usability by giving the context/use for the software.
-    You should likely reference the user characteristics section.  The level of
-    usability achieved by the software shall be described following the
-    procedure given in Section~X of the Verification and Validation Plan.  A
-    link to the VnV plan would be a nice extra.}
+\item[PDR\refstepcounter{lcpdreqnum}\thelcpdreqnum\label{LC_meaningfulLabel8}:] {Very unlikely to change,
+    key implementation of system.}
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Maintainability}:]
-  \textbf{Maintainability} \plt{The effort required to make any of the likely
-    changes listed for \progname{} should be less than FRACTION of the original
-    development time.  FRACTION is then a symbolic constant that can be defined
-    at the end of the report.}
+\item[PDR\refstepcounter{lcpdreqnum}\thelcpdreqnum\label{LC_meaningfulLabel9}:] {Unlikely to change,
+    pot size is standard across the nursery. New pots may be introduced at a future time.}
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability}:]
-  \textbf{Portability} \plt{This NFR is easier to write than the others.  The
-    systems that \progname{} should run on should be listed here.  When possible
-    the specific versions of the potential operating environments should be
-    given.  To make the NFR verifiable a statement could be made that the tests
-    from a given section of the VnV plan can be successfully run on all of the
-    possible operating environments.}
+\item[PDR\refstepcounter{lcpdreqnum}\thelcpdreqnum\label{LC_meaningfulLabel10}:] {Very unlikely to change,
+    key implementation of system.}
 
-\item Other NFRs that might be discussed include verifiability,
-  understandability and reusability.
+\item[PDR\refstepcounter{lcpdreqnum}\thelcpdreqnum\label{LC_meaningfulLabel11}:] {Very unlikely to change,
+    ensures safety of operator reloading pots.}
+
+\item[PDR\refstepcounter{lcpdreqnum}\thelcpdreqnum\label{LC_meaningfulLabel12}:] {Very unlikely to change,
+    key implementation of system.}
+
+\item[PDR\refstepcounter{lcpdreqnum}\thelcpdreqnum\label{LC_meaningfulLabel3}:] {Very unlikely to change,
+    ensures safety of operator and prevents machine from dispensing pots while conveyor and/or tray dispenser
+    are not operational.}
+
+\item[PDR\refstepcounter{lcpdreqnum}\thelcpdreqnum\label{LC_meaningfulLabel4}:] {Unlikely to change,
+    ensures safety of operator and robustness of Pot-Pulator. May change to be integrated with start
+    command or resume command.}
 
 \end{itemize}
 
-\section{Likely Changes}    
+\subsection{Conveyor Functional Requirements}
 
 \noindent \begin{itemize}
 
-\item[LC\refstepcounter{lcnum}\thelcnum\label{LC_meaningfulLabel}:] \plt{Give
-    the likely changes, with a reference to the related assumption (aref), as appropriate.}
+\item[CR\refstepcounter{lccreqnum}\thelccreqnum\label{LC_meaningfulLabel16}:] {Very unlikely to change,
+  key implementation of system.}
+
+\item[CR\refstepcounter{lccreqnum}\thelccreqnum\label{LC_meaningfulLabel17}:] {Unlikely to change,
+  ensures accuracy of placement of trays and pots. May change to place trays on conveyor as conveyor
+  is moving.}
+
+\item[CR\refstepcounter{lccreqnum}\thelccreqnum\label{LC_meaningfulLabel18}:] {Very unlikely to change,
+  key implementation of system.}
+
+\item[CR\refstepcounter{lccreqnum}\thelccreqnum\label{LC_meaningfulLabel19}:] {Very unlikely to change,
+    ensures safety of operator and prevents machine from dispensing pots while conveyor and/or tray dispenser
+    are not operational.}
+
+\item[CR\refstepcounter{lccreqnum}\thelccreqnum\label{LC_meaningfulLabel20}:] {Unlikely to change,
+    ensures safety of operator and robustness of Pot-Pulator. May change to be integrated with start
+    command or resume command.}
 
 \end{itemize}
 
-\section{Unlikely Changes}    
+\subsection{Verification Requirements}
 
 \noindent \begin{itemize}
 
-\item[LC\refstepcounter{lcnum}\thelcnum\label{LC_meaningfulLabel}:] \plt{Give
-    the unlikely changes.  The design can assume that the changes listed will
-    not occur.}
+\item[VR\refstepcounter{lcvreqnum}\thelcvreqnum\label{LC_meaningfulLabel21}:] {Very unlikely to change,
+    key implementation of system.}
+
+\item[VR\refstepcounter{lcvreqnum}\thelcvreqnum\label{LC_meaningfulLabel22}:] {Very unlikely to change,
+    key implementation of system.}
 
 \end{itemize}
-
-\section{Traceability Matrices and Graphs}
-
-The purpose of the traceability matrices is to provide easy references on what
-has to be additionally modified if a certain component is changed.  Every time a
-component is changed, the items in the column of that component that are marked
-with an ``X'' may have to be modified as well.  Table~\ref{Table:trace} shows the
-dependencies of theoretical models, general definitions, data definitions, and
-instance models with each other. Table~\ref{Table:R_trace} shows the
-dependencies of instance models, requirements, and data constraints on each
-other. Table~\ref{Table:A_trace} shows the dependencies of theoretical models,
-general definitions, data definitions, instance models, and likely changes on
-the assumptions.
-
-\plt{You will have to modify these tables for your problem.}
-
-\plt{The traceability matrix is not generally symmetric.  If GD1 uses A1, that
-  means that GD1's derivation or presentation requires invocation of A1.  A1
-  does not use GD1.  A1 is ``used by'' GD1.}
-
-\plt{The traceability matrix is challenging to maintain manually.  Please do
-  your best.  In the future tools (like Drasil) will make this much easier.}
-
-\afterpage{
-\begin{landscape}
-\begin{table}[h!]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-\hline
-	& \aref{A_OnlyThermalEnergy}& \aref{A_hcoeff}& \aref{A_mixed}& \aref{A_tpcm}& \aref{A_const_density}& \aref{A_const_C}& \aref{A_Newt_coil}& \aref{A_tcoil}& \aref{A_tlcoil}& \aref{A_Newt_pcm}& \aref{A_charge}& \aref{A_InitTemp}& \aref{A_OpRangePCM}& \aref{A_OpRange}& \aref{A_htank}& \aref{A_int_heat}& \aref{A_vpcm}& \aref{A_PCM_state}& \aref{A_Pressure} \\
-\hline
-\tref{T_COE}        & X& & & & & & & & & & & & & & & & & & \\ \hline
-\tref{T_SHE}        & & & & & & & & & & & & & & & & & & & \\ \hline
-\tref{T_LHE}        & & & & & & & & & & & & & & & & & & & \\ \hline
-\dref{NL}           & & X& & & & & & & & & & & & & & & & & \\ \hline
-\dref{ROCT}         & & & X& X& X& X& & & & & & & & & & & & & \\ \hline
-\ddref{FluxCoil}    & & & & & & & X& X& X& & & & & & & & & & \\ \hline
-\ddref{FluxPCM}     & & & X& X& & & & & & X& & & & & & & & & \\ \hline
-\ddref{D_HOF}       & & & & & & & & & & & & & & & & & & & \\ \hline
-\ddref{D_MF}        & & & & & & & & & & & & & & & & & & & \\ \hline
-\iref{ewat}         & & & & & & & & & & & X& X& & X& X& X& & & X \\ \hline
-\iref{epcm}         & & & & & & & & & & & & X& X& & & X& X& X& \\ \hline
-\iref{I_HWAT}       & & & & & & & & & & & & & & X& & & & & X \\ \hline
-\iref{I_HPCM}       & & & & & & & & & & & & & X& & & & & X & \\ \hline
-\lcref{LC_tpcm}     & & & & X& & & & & & & & & & & & & & & \\ \hline
-\lcref{LC_tcoil}    & & & & & & & & X& & & & & & & & & & & \\ \hline
-\lcref{LC_tlcoil}   & & & & & & & & & X& & & & & & & & & & \\ \hline
-\lcref{LC_charge}   & & & & & & & & & & & X& & & & & & & & \\ \hline
-\lcref{LC_InitTemp} & & & & & & & & & & & & X& & & & & & & \\ \hline
-\lcref{LC_htank}    & & & & & & & & & & & & & & & X& & & & \\
-\hline
-\end{tabular}
-\caption{Traceability Matrix Showing the Connections Between Assumptions and Other Items}
-\label{Table:A_trace}
-\end{table}
-\end{landscape}
-}
-
-\begin{table}[h!]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-\hline        
-	& \tref{T_COE}& \tref{T_SHE}& \tref{T_LHE}& \dref{NL}& \dref{ROCT} & \ddref{FluxCoil}& \ddref{FluxPCM} & \ddref{D_HOF}& \ddref{D_MF}& \iref{ewat}& \iref{epcm}& \iref{I_HWAT}& \iref{I_HPCM} \\
-\hline
-\tref{T_COE}     & & & & & & & & & & & & & \\ \hline
-\tref{T_SHE}     & & & X& & & & & & & & & & \\ \hline
-\tref{T_LHE}     & & & & & & & & & & & & & \\ \hline
-\dref{NL}        & & & & & & & & & & & & & \\ \hline
-\dref{ROCT}      & X& & & & & & & & & & & & \\ \hline
-\ddref{FluxCoil} & & & & X& & & & & & & & & \\ \hline
-\ddref{FluxPCM}  & & & & X& & & & & & & & & \\ \hline
-\ddref{D_HOF}    & & & & & & & & & & & & & \\ \hline
-\ddref{D_MF}     & & & & & & & & X& & & & & \\ \hline
-\iref{ewat}      & & & & & X& X& X& & & & X& & \\ \hline
-\iref{epcm}      & & & & & X& & X& & X& X& & & X \\ \hline
-\iref{I_HWAT}    & & X& & & & & & & & & & & \\ \hline
-\iref{I_HPCM}    & & X& X& & & & X& X& X& & X& & \\
-\hline
-\end{tabular}
-\caption{Traceability Matrix Showing the Connections Between Items of Different Sections}
-\label{Table:trace}
-\end{table}
-
-\begin{table}[h!]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|c|c|}
-\hline
-	& \iref{ewat}& \iref{epcm}& \iref{I_HWAT}& \iref{I_HPCM}& \ref{sec_DataConstraints}& \rref{R_RawInputs}& \rref{R_MassInputs} \\
-\hline
-\iref{ewat}            & & X& & & & X& X \\ \hline
-\iref{epcm}            & X& & & X& & X& X \\ \hline
-\iref{I_HWAT}          & & & & & & X& X \\ \hline
-\iref{I_HPCM}          & & X& & & & X& X \\ \hline
-\rref{R_RawInputs}     & & & & & & & \\ \hline
-\rref{R_MassInputs}    & & & & & & X& \\ \hline
-\rref{R_CheckInputs}   & & & & & X& & \\ \hline
-\rref{R_OutputInputs}  & X& X& & & & X& X \\ \hline
-\rref{R_TempWater}     & X& & & & & & \\ \hline 
-\rref{R_TempPCM}       & & X& & & & & \\ \hline
-\rref{R_EnergyWater}   & & & X& & & & \\ \hline
-\rref{R_EnergyPCM}     & & & & X& & & \\ \hline
-\rref{R_VerifyOutput}  & & & X& X& & & \\ \hline
-\rref{R_timeMeltBegin} & & X& & & & & \\ \hline
-\rref{R_timeMeltEnd}   & & X& & & & & \\ 
-\hline
-\end{tabular}
-\caption{Traceability Matrix Showing the Connections Between Requirements and Instance Models}
-\label{Table:R_trace}
-\end{table}
-
-The purpose of the traceability graphs is also to provide easy references on
-what has to be additionally modified if a certain component is changed.  The
-arrows in the graphs represent dependencies. The component at the tail of an
-arrow is depended on by the component at the head of that arrow. Therefore, if a
-component is changed, the components that it points to should also be
-changed. Figure~\ref{Fig_ATrace} shows the dependencies of theoretical models,
-general definitions, data definitions, instance models, likely changes, and
-assumptions on each other. Figure~\ref{Fig_RTrace} shows the dependencies of
-instance models, requirements, and data constraints on each other.
-
-% \begin{figure}[h!]
-% 	\begin{center}
-% 		%\rotatebox{-90}
-% 		{
-% 			\includegraphics[width=\textwidth]{ATrace.png}
-% 		}
-% 		\caption{\label{Fig_ATrace} Traceability Matrix Showing the Connections Between Items of Different Sections}
-% 	\end{center}
-% \end{figure}
-
-
-% \begin{figure}[h!]
-% 	\begin{center}
-% 		%\rotatebox{-90}
-% 		{
-% 			\includegraphics[width=0.7\textwidth]{RTrace.png}
-% 		}
-% 		\caption{\label{Fig_RTrace} Traceability Matrix Showing the Connections Between Requirements, Instance Models, and Data Constraints}
-% 	\end{center}
-% \end{figure}
-
-\section{Development Plan}
-
-\plt{This section is optional.  It is used to explain the plan for developing
-  the software.  In particular, this section gives a list of the order in which
-  the requirements will be implemented.  In the context of a course  this is
-  where you can indicate which requirements will be implemented as part of the
-  course, and which will be ``faked'' as future work.  This section can be
-  organized as a prioritized list of requirements, or it could should the
-  requirements that will be implemented for ``phase 1'', ``phase 2'', etc.}
-
-\section{Values of Auxiliary Constants}
-
-\plt{Show the values of the symbolic parameters introduced in the report.}
-
-\plt{The definition of the requirements will likely call for SYMBOLIC\_CONSTANTS.
-Their values are defined in this section for easy maintenance.}
-
-\plt{The value of FRACTION, for the Maintainability NFR would be given here.}
 
 \newpage
 
@@ -1272,46 +869,6 @@ Their values are defined in this section for easy maintenance.}
 \bibliography {../../refs/References}
 
 \newpage
-
-\noindent \plt{The following is not part of the template, just some things to consider
-  when filing in the template.}
-
-\noindent \plt{Grammar, flow and \LaTeX advice:
-\begin{itemize}
-\item For Mac users \texttt{*.DS\_Store} should be in \texttt{.gitignore}
-\item \LaTeX{} and formatting rules
-\begin{itemize}
-\item Variables are italic, everything else not, includes subscripts (link to
-  document)
-\begin{itemize}
-\item \href{https://physics.nist.gov/cuu/pdf/typefaces.pdf}{Conventions}
-\item Watch out for implied multiplication
-\end{itemize}
-\item Use BibTeX
-\item Use cross-referencing
-\end{itemize}
-\item Grammar and writing rules
-\begin{itemize}
-\item Acronyms expanded on first usage (not just in table of acronyms)
-\item ``In order to'' should be ``to''
-\end{itemize}
-\end{itemize}}
-
-\noindent \plt{Advice on using the template:
-\begin{itemize}
-\item Difference between physical and software constraints
-\item Properties of a correct solution means \emph{additional} properties, not
-  a restating of the requirements (may be ``not applicable'' for your problem).
-  If you have a table of output constraints, then these are properties of a
-  correct solution.
-\item Assumptions have to be invoked somewhere
-\item ``Referenced by'' implies that there is an explicit reference
-\item Think of traceability matrix, list of assumption invocations and list of
-  reference by fields as automatically generatable
-\item If you say the format of the output (plot, table etc), then your
-  requirement could be more abstract
-\end{itemize}
-}
 
 \newpage{}
 \section*{Appendix --- Reflection}
@@ -1327,10 +884,74 @@ graduate attribute of Lifelong Learning.  Please answer the following questions:
   computer science knowledge.  Skills may be related to technology, or writing,
   or presentation, or team management, etc.  You should look to identify at
   least one item for each team member.
+
+  \begin{enumerate}
+    \item{Steven:}\\
+    I will acquire skills related to programming microcontrollers and interfacing
+    hardware and software. \\
+    \item{Juan:}\\
+    This project presents a unique challenge when it comes to group management and teamwork, this being one of few interdisciplinary capstones it is the only 
+    capstone project(from my knowledge) that includes groups from vastly different engineering streams. While ECE and CAS Share many common teachings, engineering physics lacks that familiarity.
+    this, however, in my opinion, is a great representation of the future. When working in the industry there are very few instances that you will be surrounded by those with similar knowledge sets 
+    and backgrounds, most of the time the team you will work with will be of diverce experience and backgrounds. Understanding how to work as a team is detrimental to good productivity. I believe throughout this 
+    project I will further develop my project management skills, they will be put to the test as each member of the team will have their expertise and we will be fusing knowledge to create a solution.
+    Team management and general coding.\\
+    \\
+    Throughout this project I also wish to enhance my general coding skill. Which I have always had an interest in coding and have made attempts to use it whenever possible throughout my university career. I am excited to 
+    take on a project with a defined goal and no clear solution to improve my coding ability.
+    \item{Aaron:}\\
+    Communication, team management, and time management are 
+    crucial to the success of the project. Working towards improving these skills will
+    greatly benefit me and my team members in the future. I also expect to further my knowledge in
+    both hardware and software while working on this capstone project so it 
+    can propel me into the future of becoming an engineer.\\
+    \item {Gillian:}\\
+    Throughout this project, I am looking forward to learning skills from the other members of the team. As an Engineering physics student, the areas I would like to improve the most about are software and writing. I would like to be prepared for the industry and potentially working in a job that requires coding because it’s something I enjoy, but I don’t think it’s something I am experienced enough in yet. 
+    \noindent In terms of writing and communication, it isn’t often where I am required to write long reports anymore, and I like the challenge provided by creating this extent of documentation. I look forward to my writing skills to improve over the course of this capstone project. 
+
+  \end{enumerate}
   \item For each of the knowledge areas and skills identified in the previous
   question, what are at least two approaches to acquiring the knowledge or
   mastering the skill?  Of the identified approaches, which will each team
   member pursue, and why did they make this choice?
+  \begin{enumerate}
+    \item{Steven:}\\
+    An approach to acquiring programming skills is researching and practicing specific
+    programming exercises that are specific to the environment I will be working in.
+    An alternative approach is familiarizing myself with microcontroller documentation and
+    creating solutions from the knowledge I obtain. I will pursue the former approach, as 
+    I find myself able to learn more effectively and efficiently with a hands on approach, 
+    rather than reading through documentation. Approaches to learning how to interface 
+    hardware and software include reviewing previous coursework, and immitating examples
+    I find as practice. I will chose the latter option for the same reason stated above.\\
+    
+    \item{Juan:}\\
+        Project management skills can be developed throughout this project in many different ways.
+        The first will be in taking a heavy role in the logistical and administrative side of the 
+        team, another is to run the project management through an issue tracking system
+        like the one provided by git hub. This might be tedious as it adds an extra step to all tasks as they will have to be
+        updated and status regularly, but the pros outways the cons as this will help with the overall
+        management of the team. Of the two solutions, both will be attempted however more emphasis will 
+        be put on the task tracking software as it adds the added benefit of simulating how large
+        corporations are running their business.\\
+        To improve general coding two approaches can be taken on. the first being 
+        that I can take on a software dominant portion and be responsible for its fruition, or I can volunteer
+        to take one of these software challenges on with another member in my group who is better versed in
+        coding so that we may work hand in hand. This way if there will be support and guidance throughout 
+        and could offer a solution faster. The second option, in this case, seems more reasonable as there are
+        hard deadlines for this project and the system itself is already ambitious.\\
+    \item{Aaron:}\\
+    Working towards improving my team communication is something that I strive to do while participating
+    in this capstone. This can be achived in several ways. One approach that I will take is 
+    to strengthen my bond with the team members. In doing so, I will feel more comfortable in sharing ideas and 
+    being constructive when necessary. Another approach is to document what each team member is working on and some of the problems they have run into.
+    This will increase my team awareness and ultimately lead to the success of the project. I chose to pursue this skill
+    because I know sometimes I want to do a lot of work on my own without developing trust towards my team members. This skill
+    will help me when I become an engineer and work with large teams where communication and collaboration is crucial.\\
+    \item {Gillian:}\\
+    I know I can improve my coding skills effectively by working on something closely to another member of the team who is more skilled in that area. I think this will be very helpful because I can work on a portion of software on my own, and if I have questions or get stuck, I will have someone working on something similar who will understand the problem and can help me troubleshoot. 
+    \noindent I can improve writing and communication skills by reviewing and editing not only my own work, but the writing of my peers as well. After each deliverable is finished, I think it is very useful when we go over all the writing as a team and come up with ideas on how each section of the documentation can possibly be improved. 
+  \end{enumerate}
 \end{enumerate}
 
 \end{document}
