@@ -16,6 +16,8 @@
 \usepackage{caption}
 \usepackage{pdflscape}
 \usepackage{afterpage}
+\usepackage{graphicx}
+\usepackage{float}
 
 \usepackage[round]{natbib}
 
@@ -338,14 +340,154 @@ able to lift a sufficient weight and have a good understanding of basic function
 
 \subsection{System Constraints}
 
-\plt{System constraints differ from other type of requirements because they
-  limit the developers' options in the system design and they identify how the
-  eventual system must fit into the world. This is the only place in the SRS
-  where design decisions can be specified.  That is, the quality requirement for
-  abstraction is relaxed here.  However, system constraints should only be
-  included if they are truly required.}
+The system constraints are in place to comply with the physical and 
+technical limits provided to the team.
 
+\subsubsection{Physical Constraints}
+\begin{tabular}{ |p{2cm}|p{14cm}| }
+  \hline
+  PHC0 & Workspace dimensions (including stacks of 
+  trays and pots) of height = 12' width = 6' length = 8'\\
+  \hline
+  Rationale & the allowable workspace area provided by Sheridan Nurseries  \\ 
 
+  \hline  
+ \end{tabular}\\\\
+
+ \noindent
+ \begin{tabular}{ |p{2cm}|p{14cm}| }
+  \hline
+  PHC1 & Conveyor system must be height = 3'  
+  width = 1.5' length = 8' (maximum) \\
+  \hline
+  Rationale & the new system will feed trays into an existing soil potting 
+  machine via conveyor system so they must operate in a similar manner  \\ 
+
+  \hline  
+ \end{tabular}\\\\
+
+ \noindent
+ \begin{tabular}{ |p{2cm}|p{14cm}| }
+  \hline
+  PHC2 & Operational in winter temperatures (outdoor conditions)  \\
+  \hline
+  Rationale & operation takes place in a 
+  tent outside between January and February  \\ 
+
+  \hline  
+ \end{tabular}\\\\
+
+ \noindent
+ \begin{tabular}{ |p{2cm}|p{14cm}| }
+  \hline
+  PHC3 & Fully operational through a standard 3-prong 120V wall outlet   \\
+  \hline
+  Rationale & the system’s environment requires this 
+  as the only source of power  \\ 
+
+  \hline  
+ \end{tabular}\\\\
+ 
+  
+\subsubsection{Software Constraints}
+\begin{tabular}{ |p{2cm}|p{14cm}| }
+  \hline
+  SWC0 & Perform operations and calculations in a timely manner \\
+  \hline
+  Rationale &  to ensure the system can actually replace a human  \\ 
+
+  \hline  
+ \end{tabular}\\\\
+
+ \subsection{Assumptions}
+ The following assumptions are being made when designing and developing 
+  the device:
+ \begin{itemize}
+  
+  \item The user will fill the machine with stacks of trays and 
+  pots as required
+
+  \item The system will populate 10 pots of 4-inch diameter into its 
+  respective tray
+  \item The system can hold stacks sufficient enough for 15-30 minutes of continuous operation
+  
+ \end{itemize}
+
+ \subsection{Constants}
+ \begin{tabular}{ |p{4cm}|p{12cm}| }
+  \hline
+  Constant Name & Description\\
+  \hline
+  Number of Pots & The number of pots that 
+  needs to be populated in a single tray\\
+  \hline
+  Number of Trays & The number of trays that will be populated at once \\ 
+  \hline  
+  Max Pots in Stack & The maximum number of 
+  pots that may be stacked in the machine\\
+  \hline
+  Max Trays in Stack & The maximum number of 
+  trays that may be stacked in the machine\\
+  \hline
+  Pot Size/Shape & The size/shape of the pots\\
+  \hline
+  Max Rate of Operation & The maximum rate at which the machine operates 
+  is determined by the soil potting machine \\
+  \hline
+ \end{tabular}\\\\
+
+ \subsection{Monitored Variables}
+ \begin{tabular}{ |p{3cm}|p{9cm}|p{2cm}|p{1cm}| }
+  \hline
+  Variable & Description & Type & Units\\
+  \hline
+  Conveyor Speed & The speed at which the conveyor belt will move
+   & Speed & m/s\\
+  \hline
+  Sensor Distances & Measured distances that the sensor identifies
+   & Distance & mm\\
+  \hline
+  System State & Determines the state of the system (ie. Ready, Running, Error, Success)
+   & State &  N/A\\
+  \hline
+  Tray/Pot Weight & Weight of the trays/pots to verify number in the stack
+   & Weight & kg\\
+  \hline
+  Tray/Pot Height & Height of the trays/pots to verify number in the stack
+   & Height & m\\
+  
+  \hline
+ \end{tabular}\\\\
+
+ \subsection{Controlled Variables}
+ \begin{tabular}{ |p{3cm}|p{9cm}|p{2cm}|p{1cm}| }
+  \hline
+  Variable & Description & Type & Units\\
+  \hline
+  Motor Speeds & The speeds at which the motors in the system will turn
+   & Speed & rad/s\\
+  \hline
+  Voltage in & Voltage going into the system
+   & Voltage & V\\
+  \hline
+  Current in & Current going into the system
+   & Current &  A\\
+  \hline
+  LEDs & LED status lights
+   & Boolean & N/A\\
+  
+  \hline
+ \end{tabular}\\\\
+
+\subsection{Context Diagrams}
+Below is a high level overview of the system. This shows all the inputs and outputs
+of the overall system.
+
+\begin{figure}[H]
+  \includegraphics[width=\linewidth]{contextDiagram.png}
+  \caption{Context Diagram}
+  \label{fig:context1}
+\end{figure}
 
   \section{Functional Requirements}
 
