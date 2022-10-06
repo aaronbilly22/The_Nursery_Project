@@ -255,9 +255,9 @@ which heat is transferred in
 
 \section{Introduction}
 
-The current method of preparing pots and trays to be filled with soil and populated with seeds at Sheridan Nurseries is a process with little to no automation, requiring many manual labour hours. Each year, 250,000 pots need to be placed in trays, each one being placed by hand. Recently, the owners of these farms have been finding it increasingly more difficult to fill these roles with enough workers to run the operation smoothly and meet production demands. 
+The current method of preparing pots and trays to be filled with soil and populated with seeds at Sheridan Nurseries is a process with little to no automation, requiring many manual labour hours. Each year, 250,000 pots need to be placed in trays, each one being placed by hand. Recently, the owners of these farms have been finding it increasingly more difficult to fill these roles with enough workers to run the operation smoothly and meet production demands.\\
 
-\noindent We aim to aid in this process by designing and implementing a machine that is able to fill trays with pots and prepare them for populating with soil and seeds. This will alleviate the reliance on manual labour and improve the overall efficiency of the farm. 
+\noindent We aim to aid in this process by designing and implementing a machine that is able to fill trays with pots and prepare them for populating with soil and seeds. This will alleviate the reliance on manual labour and improve the overall efficiency of the farm. \\
 
 \noindent This introduction will outline the document’s purpose, the scope of requirements, characteristics of the intended reader, and the organization of document. 
 
@@ -268,21 +268,21 @@ This Software Requirements Specification (SRS) document is to define the purpose
 
 \subsection{Scope of Requirements} 
 
-The branches of the Pot-Pulator include a conveyer belt, tray allocation, pot dropping and verification. These four systems will be implemented to work together to create an efficient product. It will be reliable, easily configurable, affordable, and will greatly reduce the need for hands-on labour in relation to seed population.  
+The branches of the Pot-Pulator include a conveyer belt, tray allocation, pot dropping and verification. These four systems will be implemented to work together to create an efficient product. It will be reliable, easily configurable, affordable, and will greatly reduce the need for hands-on labour in relation to seed population.  \\
 
-\noindent The system implemented will be designed exclusively for Sheridan Nurseries, and for the pots and trays at their locations in a three-dimensional workspace. It is limited to usage on their round, 4-inch diameter pots and their respective trays. Considering the conditions of the greenhouses this machine will be used in, material degradation, water resistance, and pressure will all be negligible. 
+\noindent The system implemented will be designed exclusively for Sheridan Nurseries, and for the pots and trays at their locations in a three-dimensional workspace. It is limited to usage on their round, 4-inch diameter pots and their respective trays. Considering the conditions of the greenhouses this machine will be used in, material degradation, water resistance, and pressure will all be negligible. \\
 
-\noindent In order to maintain speed of the pots being placed in trays in a timely manor, one of the goals of the machine is to fill each tray with 10 pots every 30 seconds. This is the time it will take for the trays to be populated and move down the conveyer belt. With this goal in place, the machine will only need to be refilled with pots and trays every 15 minutes, greatly reducing the amount of hands-on labour from the workers at Sheridan Nurseries. 
+\noindent In order to maintain speed of the pots being placed in trays in a timely manor, one of the goals of the machine is to fill each tray with 10 pots every 30 seconds. This is the time it will take for the trays to be populated and move down the conveyer belt. With this goal in place, the machine will only need to be refilled with pots and trays every 15 minutes, greatly reducing the amount of hands-on labour from the workers at Sheridan Nurseries. \\
 
-\noindent After the initial completion of the goal associated with the 4-inch pots, larger pots and trays may be considered as a future goal. There will always be the limitation of the requirement of a rim on the top of the pot, for the machine to easily grasp onto when lifting and dropping. 
+\noindent After the initial completion of the goal associated with the 4-inch pots, larger pots and trays may be considered as a future goal. There will always be the limitation of the requirement of a rim on the top of the pot, for the machine to easily grasp onto when lifting and dropping. \\
 
 
 \subsection{Behavioural Overview}
-The Pot-Pulator will have 4 branches working together to accomplish the task. First, the trays and pots will be manually filled into a section of the machine, ideally 30 trays and 300 pots. The first section of the machine will drop a tray, and the conveyer belt will move it to the pot dropping section. 
+The Pot-Pulator will have 4 branches working together to accomplish the task. First, the trays and pots will be manually filled into a section of the machine, ideally 30 trays and 300 pots. The first section of the machine will drop a tray, and the conveyer belt will move it to the pot dropping section. \\
 
-\noindent The conveyer belt will stop once it senses the tray is in the correct position. The machine will drop pots until all 10 spots are filled. The conveyer belt will move the tray according to the needed positions for pot dropping, dispensing 2 pots into the allocated positions, moving forward 4 inches at a time until the process is completed. 
+\noindent The conveyer belt will stop once it senses the tray is in the correct position. The machine will drop pots until all 10 spots are filled. The conveyer belt will move the tray according to the needed positions for pot dropping, dispensing 2 pots into the allocated positions, moving forward 4 inches at a time until the process is completed. \\
 
-\noindent The tray filled with pots will then move into a verification system, to verify the pots have been placed in the correct positions. The conveyer belt will then move it to another conveyer system, which will lead to the collection of completed trays. The only maintenance this machine needs is the refill of pots and trays every 15 minutes, and the collection of completed trays at the end of the final conveyer belt. 
+\noindent The tray filled with pots will then move into a verification system, to verify the pots have been placed in the correct positions. The conveyer belt will then move it to an existing conveyer system, which will lead to the collection of completed trays. The only maintenance this machine needs is the refill of pots and trays every 15 minutes, and the collection of completed trays at the end of the final conveyer belt. \\
 
 \subsection{Clients and Stakeholders}
 \noindent This system provides a solutuion for all nursery applications that are not working on the cutting edge. For those nurseries that have an existing assembly line to fulfil their propagation this is a great solution as other solutions repolace the assembly line in its entirity, this solution instead adds to it.
@@ -302,9 +302,9 @@ The Pot-Pulator will have 4 branches working together to accomplish the task. Fi
 
 \subsection{Characteristics of Intended Reader} \label{sec_IntendedReader}
 
-This SRS document is written for the directly individuals involved with the development of the Pot-Pulator. This includes every member of the team; all being involved with the development of the project. It is useful as reference to the functionality of in-depth details regarding the project, and will be read, reviewed, and maintained as the project progresses by all team members. 
+This SRS document is written for the individuals directly involved with the development of the Pot-Pulator. This includes every member of the team; all being involved with the development of the project. It is useful as reference to the functionality of in-depth details regarding the project, and will be read, reviewed, and maintained as the project progresses by all team members. \\
 
-\noindent In general, any users of this document should have an undergraduate level understanding of software and hardware system functionality, physics, and mathematics. 
+\noindent In general, any users of this document should have an undergraduate level understanding of software and hardware system functionality, physics, and mathematics. \\
 
 \subsection{Organization of Document}
 
