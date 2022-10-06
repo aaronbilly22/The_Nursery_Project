@@ -158,14 +158,6 @@
 	
 \maketitle
 
-~\newpage
-
-\pagenumbering{roman}
-
-\tableofcontents
-
-~\newpage
-
 \section*{Revision History}
 
 \begin{tabularx}{\textwidth}{p{3cm}p{4cm}X}
@@ -178,30 +170,35 @@
 
 ~\newpage
 
+\pagenumbering{roman}
+
+\tableofcontents
+
+~\newpage
+
 \section{Reference Material}
 
 This section records information for easy reference.
 
 \subsection{Table of Units}
 
-Throughout this document SI (Syst\`{e}me International d'Unit\'{e}s) is employed
-as the unit system.  In addition to the basic units, several derived units are
-used as described below.  For each unit, the symbol is given followed by a
-description of the unit and the SI name.
+Throughout this document SI (Syst\`{e}me International d'Unit\'{e}s) and the Imperial System of Units are employed
+as the unit systems. For each unit, the symbol is given followed by a
+description of the unit and the SI or Imperial System name.
 ~\newline
 
 \renewcommand{\arraystretch}{1.2}
 %\begin{table}[ht]
   \noindent \begin{tabular}{l l l} 
     \toprule		
-    \textbf{symbol} & \textbf{unit} & \textbf{SI}\\
+    \textbf{symbol} & \textbf{unit} & \textbf{SI/Imperial}\\
     \midrule 
     \si{\metre} & length & metre\\
     \si{\kilogram} & mass	& kilogram\\
     \si{\second} & time & second\\
-    \si{\celsius} & temperature & centigrade\\
-    \si{\joule} & energy & joule\\
-    \si{\watt} & power & watt (W = \si{\joule\per\second})\\
+    \si{\radian} & angle & radian\\
+    {"} & length & inch\\
+    {'} & length & foot (1' = 12")\\
     \bottomrule
   \end{tabular}
   %	\caption{Provide a caption}
@@ -210,19 +207,24 @@ description of the unit and the SI name.
 \subsection{Table of Symbols}
 
 The table that follows summarizes the symbols used in this document along with
-their units.  The choice of symbols was made to be consistent with the heat
-transfer literature and with existing documentation for solar water heating
-systems.  The symbols are listed in alphabetical order.
+their units. The symbols are listed in alphabetical order.
 
 \renewcommand{\arraystretch}{1.2}
 %\noindent \begin{tabularx}{1.0\textwidth}{l l X}
 \noindent \begin{longtable*}{l l p{12cm}} \toprule
 \textbf{symbol} & \textbf{unit} & \textbf{description}\\
 \midrule 
-$A_C$ & \si[per-mode=symbol] {\square\metre} & coil surface area
+$n_{pots}$ & N/A & number of pots in machine
 \\
-$A_\text{in}$ & \si[per-mode=symbol] {\square\metre} & surface area over 
-which heat is transferred in
+$n_{potsout}$ & N/A & number of pots coming out of machine
+as detected by verification system
+\\
+$n_{trays}$ & N/A & number of trays in machine
+\\
+$n_{traysout}$ & N/A & number of trays coming out of machine
+as detected by verification system
+\\
+$t_{cycle}$ & \si{\second} & time per machine cycle
 \\ 
 \bottomrule
 \end{longtable*}
@@ -234,22 +236,19 @@ which heat is transferred in
   \toprule		
   \textbf{symbol} & \textbf{description}\\
   \midrule 
-  A & Assumption\\
-  DD & Data Definition\\
-  GD & General Definition\\
-  GS & Goal Statement\\
-  IM & Instance Model\\
-  LC & Likely Change\\
-  PS & Physical System Description\\
-  R & Requirement\\
+  CR & Conveyor Functional Requirement\\
+  NFR & Non-Functional Requirement\\
+  PDR & Pot Dispensing Functional Requirement\\
+  PHC & Physical Constraint\\
   SRS & Software Requirements Specification\\
-  \progname{} & \\
-  T & Theoretical Model\\
+  SWC & Software Constraint\\
+  TDR & Tray Dispensing Functional Requirement\\
+  VR & Verification Functional Requirement\\
   \bottomrule
 \end{tabular}\\
 
 \subsection{Mathematical Notation}
-
+$x\ \varepsilon\ A$ - variable x is an element of the number set A
 \newpage
 
 \pagenumbering{arabic}
@@ -287,7 +286,11 @@ The Pot-Pulator will have 4 branches working together to accomplish the task. Fi
 \noindent The tray filled with pots will then move into a verification system, to verify the pots have been placed in the correct positions. The conveyer belt will then move it to an existing conveyer system, which will lead to the collection of completed trays. The only maintenance this machine needs is the refill of pots and trays every 15 minutes, and the collection of completed trays at the end of the final conveyer belt. \\
 
 \subsection{Clients and Stakeholders}
-\noindent This system provides a solutuion for all nursery applications that are not working on the cutting edge. For those nurseries that have an existing assembly line to fulfil their propagation this is a great solution as other solutions repolace the assembly line in its entirity, this solution instead adds to it.
+\noindent This system provides a solution for all nursery applications that are not 
+working on the cutting edge. For those nurseries that have an existing assembly line 
+to fulfil their distribution needs, this is a great solution as other solutions replace the 
+assembly line in its entirety and cost significantly more.\\
+
 \noindent Clients include:
 \begin{itemize}
     \item Sheridan Nurseries manager
@@ -296,7 +299,7 @@ The Pot-Pulator will have 4 branches working together to accomplish the task. Fi
 \noindent Stakeholders include:
 \begin{itemize}
     \item Dr. Smith (Project Supervisor).
-    \item Juan Moncada, Gillian Ford, Aaron Billiones, and Steven Ramundi, (Project Proposers).
+    \item Juan Moncada, Gillian Ford, Aaron Billones, and Steven Ramundi, (Project Proposers).
     \item Nicholas Annable (Supervising TA)
     
 \end{itemize}
@@ -311,10 +314,10 @@ This SRS document is written for the individuals directly involved with the deve
 \subsection{Organization of Document}
 
 This SRS template is based on \citet{SmithAndLai2005, SmithEtAl2007}. These templates have been modified to reflect rubric requirements, and sections have been reorganized to follow 
-the LazyBots student sample SRS. Sections 3 and 4 describe the project constraints, and show the context and functional decomposition diagrams. 
-Section 5 is dedicated to functional requirements. This section will define functional requirements seperated in terms of the systems which make up the Pot-Pulator. 
-Section 6 describes the non-functional requirements in terms of look and feel, usability, performance, operational, maintainability and portability, security, cultural and political, 
-and legal requirements. Section 7 evaluates each functional requirement on its likelihood to change, and specifies how the requirement may change if it is not very unlikely to.
+the LazyBots student sample SRS. Sections 3, 4, and 5 describe the project constraints, and show the context and functional decomposition diagrams. 
+Section 6 is dedicated to functional requirements. This section will define functional requirements seperated in terms of the systems which make up the Pot-Pulator. 
+Section 7 describes the non-functional requirements in terms of look and feel, usability, performance, operational, maintainability and portability, security requirements. Section 8
+ evaluates each functional requirement on its likelihood to change, and specifies how the requirement may change if it is not very unlikely to.
 
 
 \section{Project Constraints}
@@ -479,7 +482,7 @@ technical limits provided to the team.
   \hline
  \end{tabular}\\\\
 
-\subsection{Context Diagrams}
+\section{Context Diagram}
 Below is a high level overview of the system. It shows all the inputs and outputs
 of the overall system.
 
@@ -490,7 +493,7 @@ of the overall system.
 \end{figure}
 
 
-\subsection{Functional Decomposition Diagrams}
+\section{Functional Decomposition Diagram}
 Below is a decomposition of the system. It shows the states and processes that
 occur within the system.
 
@@ -529,7 +532,7 @@ occur within the system.
        malfunction).}
   
   \item[TDR\refstepcounter{tdreqnum}\thetdreqnum \label{R_Tray8}:] {The tray dispenser must
-      be able to reset after it has been stopped due to error or needs to reload}
+      be able to reset after it has been stopped due to error or needs to reload.}
   
   
   \end{itemize}
@@ -601,7 +604,7 @@ occur within the system.
       filled with exactly 10 pots, such that $n_{traysout}=1\ \&\ n_{potsout}=10$}
   
   \item[VR\refstepcounter{vreqnum}\thevreqnum \label{R_Verification2}:] {The verification must
-      notify all other systems if verification failes, such that $n_{traysout}\neq1\ or\ n_{potsout}\neq10$}
+      notify all other systems if verification fails, such that $n_{traysout}\neq1\ or\ n_{potsout}\neq10$}
   
   \end{itemize}
   
@@ -609,7 +612,7 @@ occur within the system.
   
   
   \section{Nonfunctional Requirements}
-  This section provides the non-functional requirements of the Pot-Pulator
+  This section provides the non-functional requirements of the Pot-Pulator.
   \subsection{Appearance Requirements}
 
   \noindent 
@@ -622,7 +625,7 @@ occur within the system.
     All wiring must be tucked away and not accessible to avoid potential electrical failure.
   
   \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Appearance3}:]
-    All moviung parts must be covered and protected. Moving parts should be covered to protect both the mechanism and the safety of the operator.
+    All moving parts must be covered and protected. Moving parts should be covered to protect both the mechanism and the safety of the operator.
 
   \end{itemize}
   
@@ -672,7 +675,7 @@ occur within the system.
   \subsection{Safety Critical Requirements}
   \noindent \begin{itemize}
   \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Safety1}:]
-  System must have emergency cut off. In case of any emergency, this will trip off all power to the Pot=Pulator.
+  System must have emergency cut off. In case of any emergency, this will trip off all power to the Pot-Pulator.
   
   \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Safety2}:]
   System must be able to locate and identify failures within each independent subsystem.
@@ -884,7 +887,7 @@ graduate attribute of Lifelong Learning.  Please answer the following questions:
 
   \begin{enumerate}
     \item{Steven:}\\
-    Steven will acquire skills related to programming microcontrollers and interfacing
+    I will acquire skills related to programming microcontrollers and interfacing
     hardware and software. \\
     \item{Juan:}\\
     This project presents an unique challenge when it comes to group management and teamwork, this being one of few interdisiplinary capstone it is the only 
