@@ -151,8 +151,8 @@
 \begin{document}
 
 \title{Software Requirements Specification for The Nursery Project: The Pot-Pulator} 
-\author{\authname}
-\date{\today}
+\author{Aaron Billones, billonea\\Gillian Ford, fordg\\Juan Moncada, moncadaj\\Steven Ramundi, ramundis}
+\date{October 5, 2022}
 	
 \maketitle
 
@@ -166,11 +166,11 @@
 
 \section*{Revision History}
 
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+\begin{tabularx}{\textwidth}{p{3cm}p{4cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+2022-10-05 & Juan Moncada,& Initial release\\&Aaron Billones,\\&Steven Ramundi,\\&Gillian Ford \\
+
 \bottomrule
 \end{tabularx}
 
@@ -456,22 +456,20 @@ able to lift a sufficient weight and have a good understanding of basic function
   
   
   \section{Nonfunctional Requirements}
-  the systems nonfunctional requirements will be divided by categories for which the requirements fit into. The mention of subsystems
-  throughout this section is a reference to the four subsystems that the project can be devided into; conveyor, tray dispenser, pot dispenser and verification.
-  
+  This section provides the non-functional requirements of the Pot-Pulator
   \subsection{Appearance Requirements}
 
   \noindent 
   \begin{itemize}
   
-  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Accuracy}:]
-    All electrical equipment and electronics must be well covered and protected. The User must not have access to equipment.
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Appearance1}:]
+    All electrical equipment and electronics must be well covered and protected. The user must not have access to equipment.
   
-  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Usability}:]
-    All wiring must be tucked away and not accessible to avoid potential woring failure.
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Appearance2}:]
+    All wiring must be tucked away and not accessible to avoid potential electrical failure.
   
-  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Maintainability}:]
-    All moviung part must be covered and protected. moving parts should be covered to protect both the mechanism and the safety of the opperator.
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Appearance3}:]
+    All moviung parts must be covered and protected. Moving parts should be covered to protect both the mechanism and the safety of the operator.
 
   \end{itemize}
   
@@ -479,122 +477,133 @@ able to lift a sufficient weight and have a good understanding of basic function
 
   \noindent \begin{itemize}
   
-  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability1}:]
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Usability1}:]
   System must have tray and pot refill locations visible and accessible in order to provide visual verification of capacity status.
   
-  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability2}:]
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Usability2}:]
   System output (end of conveyor) must be clear and visible in order to provide visual verification and access to failed outputs.
   \end{itemize}
   \subsection{Learning Requirments}
 
   \noindent \begin{itemize}
-  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability3}:]
-  System must be simple to opperate, requiiring minimal training to opperate effectively ($<1h$).
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Learning}:]
+  System must be simple to operate, requiring minimal training to operate effectively ($<1\ hour$).
 
   \end{itemize}
 
 
   \subsection{Accessibility Requirements}
  \noindent \begin{itemize}
-  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability4}:]
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Accessibility1}:]
   System must have both audible and visible signal outputs for each system status.
  \end{itemize}
 
   \subsection{Speed Requirements}
   \noindent \begin{itemize}
-  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability5}:]
-  Conveyor system must not accelerate in a manner that would hsift the position of the tray. a shift in the position of the tray could result in a misalignement and potential error.
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Speed1}:]
+  Conveyor system must not accelerate in a manner that would shift the position of the tray on the conveyor belt. 
+  A shift in the position of the tray could result in a misalignement and potential error.
   
-  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability6}:] 
-  {The pot dispenser must 
-  dispense pots at a rate of 10 pots every 30 seconds, such that $t_{cycle}=30\ seconds
-      \ \&\ n_{pots}\left(t\right)=300-t/3;\ t\ \varepsilon\ \{30, 60, 90, ..., 900\}$}
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Speed2}:] 
+  {The pot dispenser must dispense pots at a rate of 10 pots every 30 seconds, such that $t_{cycle}=30\ seconds
+      \ \&\ n_{pots}\left(t\right)=300-t/3;\ t\ \varepsilon\ \{30, 60, 90, ..., 900\}$}.
+  This will allow the machine to meet the output goal required.
+
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Speed3}:] 
+  {The tray dispenser must dispense trays at a rate of 1 tray every 30 seconds, such that $t_{cycle}=30\ seconds
+      \ \&\ n_{trays}\left(t\right)=30-t/30;\ t\ \varepsilon\ \{30, 60, 90, ..., 900\}$}.
   This will allow the machine to meet the output goal required.
   \end{itemize}  
 
 
   \subsection{Safety Critical Requirements}
   \noindent \begin{itemize}
-  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability7}:]
-  System must hgave emergency cut off. in case of any emergency this will trip off all power to system.
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Safety1}:]
+  System must have emergency cut off. In case of any emergency, this will trip off all power to the Pot=Pulator.
   
-  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability8}:]
-  System must be able to locate and identify failures  within each independent subsystem.
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Safety2}:]
+  System must be able to locate and identify failures within each independent subsystem.
   
   \end{itemize}
   \subsection{Precision Requirements}
   \noindent \begin{itemize}
-  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability9}:]
-  Conveyor must center trays before potting dispensor withing 1 cm of centered position, this allows the tray to enter the pot dispensing system within tolerance for a pot to be dropped in.
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Precision1}:]
+  Conveyor must centre trays before potting dispensor withing 1 cm of centered position. This allows the tray to enter the pot dispensing system within tolerance for a pot to be dropped in.
+  
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Precision2}:]
+  Pot dispenser should dispense pots within a 0.5 cm radius of centered position.
+
   \end{itemize}
 
 
   \subsection{Capacity Requirements}
   \noindent \begin{itemize}
-  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability10}:] {The pot dispenser must
-  be able to take a maximum of 30 pots from the user, such that 
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Capacity1}:] {The pot dispenser must
+  be able to hold a maximum of 300 pots at all times, such that 
   $n_{pots}(t)\le300$} 
   This will allow the machine to meet the output goal required.
 
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Capacity2}:] {The tray dispenser must
+  be able to hold a maximum of 30 trays at all times, such that 
+  $n_{trays}(t)\le30$} 
+  This will allow the machine to meet the output goal required.
 
-  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability11}:]
-  Pot dispensor should dispence pots within a 0.5 cm radius of centered position.
   \end{itemize}
 
 
   \subsection{Reliability Requirements}
   \noindent \begin{itemize}
-  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability12}:]
-  System must be able to opperate under constant low and high frequency vibration (small amplitude).
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Realiability1}:]
+  System must be able to operate under constant low and high frequency vibration (small amplitude).
   
   \end{itemize}
 
 
   \subsection{Robustness and Fault Tolerance Requirements}
   \noindent \begin{itemize}
-  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability19}:]
-  Components must withstand 250,000 cycles system should call for replacement parts after a full season of opperation.
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Robustness1}:]
+  Components must withstand 250,000 cycles. System should call for replacement parts after a full season of operation.
   
   \end{itemize}
 
   \subsection{Scalability or Extensibility Requirements}
   \noindent \begin{itemize}
-  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability20}:]
-  System must fit into the existing assembly line and should take minimal effort to implement ($<1d$).
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Scalability1}:]
+  System must fit into the existing assembly line and should take minimal effort to implement ($<1\ day$).
   \end{itemize}
 
 
   \subsection{Expected Physical Environement Requirements}
   \noindent \begin{itemize}
-  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability13}:]
-  System must withstand operating in a room with high arial polution including dust, dirt and small amounts of water.
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Environment1}:]
+  System must withstand operating in a room with high arial polution including dust, dirt, and small amounts of water.
   \end{itemize}
-  \subsection{Maitenance Requirements}
+  \subsection{Maintenance Requirements}
   \noindent \begin{itemize}
-  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability14}:]
-  System must be built for ease of maitenance. high wear parts should be easily accessible.
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Maintenance1}:]
+  System must be built for ease of maintenance. High wear parts should be easily accessible.
   \end{itemize}
 
 
   \subsection{Requirements for Interacting with Adjacent Systems }\
   \noindent \begin{itemize}
-  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability15}:]
-  system must opperate at same speed as adjacent systems.
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Adjacent1}:]
+  System must operate at same speed as adjacent systems.
   
-  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability16}:]
-  System must opperate at the same conveyor height as the current system to maintain continuity between systems.
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Adjacent2}:]
+  System must operate at the same conveyor height as the current system to maintain continuity between systems.
   
   \end{itemize}
 
   \subsection{Supportability Requirements }\
   \noindent \begin{itemize}
-  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability17}:]
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Supportability1}:]
   System documentation must be available to troubleshoot, diagnose and fix common issues and replace high wear parts.
   \end{itemize}
 
   \subsection{Compliance Requirements }\
   \noindent \begin{itemize}
-  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability18}:]
+  \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Compliance1}:]
   System must follow electronics system safety requirements.
   \end{itemize}
   
@@ -734,8 +743,8 @@ graduate attribute of Lifelong Learning.  Please answer the following questions:
     \\
     Through out this project I also with to enhance my general coding skill. Which I have always had an interest in coding and have made attempts to use it whenever possible throughout my university career. I am excited to 
     take on a project with a defined goal and no clear solution to improve my coding ability.
-    \item{Aaron:}\\\\
-    \item {Gillian:}\\\\
+    \item{Aaron:}\\
+    \item {Gillian:}\\
   \end{enumerate}
   \item For each of the knowledge areas and skills identified in the previous
   question, what are at least two approaches to acquiring the knowledge or
@@ -751,14 +760,14 @@ graduate attribute of Lifelong Learning.  Please answer the following questions:
     rather than reading through documentation. Approaches to learning how to interface 
     hardware and software include reviewing previous coursework, and immitating examples
     I find as practice. I will chose the latter option for the same reason stated above.\\
-    \item{Juan:}\\\\
+    \item{Juan:}\\
         Project management skill can be developed throughout this project in many different ways. The first will be in taking a heavy rool in the logistical and administrative side of the team, and another is to run the project management through an issue tracking system.
         like the one provided by git hub. this will be an instrumental tool in organization and task management. this might be tedious as it adds an extra step to all tasks as they will have to be updated and statused regularly, but the pros outways the cons 
         as this will help with the overall management of the team. Of the two solutions both will be attempted however more emphasis will be put toward the task tracking saftware as it add the added benefit of simulating how large corporations are running their buissness.//
         In order to improve general coding there are two approaches that can be taken on. the first being that I can take on a soley software portion and be responsible for its fruition, or I can volunteer to take one of these software challenges on with another member in 
         my group who is better versed in coding so that we may work hand in hand. This way if there will be support and guidance throughout and could offer a solution faster. The second option in this case seems more reasonable as there are hard deadline for this project and the system itself is already ambitious.
-    \item{Aaron:}\\\\
-    \item {Gillian:}\\\\
+    \item{Aaron:}\\
+    \item {Gillian:}\\
   \end{enumerate}
 \end{enumerate}
 
