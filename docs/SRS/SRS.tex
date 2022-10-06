@@ -252,22 +252,6 @@ which heat is transferred in
 
 \pagenumbering{arabic}
 
-\plt{This SRS template is based on \citet{SmithAndLai2005, SmithEtAl2007}.  It
-  will get you started.  You should not modify the section headings, without
-  first discussing the change with the course instructor.  Modification means
-  you are not following the template, which loses some of the advantage of a
-  template, especially standardization.  Although the bits shown below do not
-  include type information, you may need to add this information for your
-  problem.  If you are unsure, please can ask the instructor.}
-
-\plt{This template document assumes that a single program is being documented.
-  If you are documenting a family of models, you should start with a commonality
-  analysis.  A separate template is provided for this.  For program
-  families you should look at \cite{Smith2006, SmithMcCutchanAndCarette2017}.
-  Single family member programs are often programs based on a single physical
-  model.  General purpose tools are usually documented as a family.  Families of
-  physical models also come up.}
-
 
 \section{Introduction}
 
@@ -300,6 +284,21 @@ The Pot-Pulator will have 4 branches working together to accomplish the task. Fi
 
 \noindent The tray filled with pots will then move into a verification system, to verify the pots have been placed in the correct positions. The conveyer belt will then move it to another conveyer system, which will lead to the collection of completed trays. The only maintenance this machine needs is the refill of pots and trays every 15 minutes, and the collection of completed trays at the end of the final conveyer belt. 
 
+\subsection{Clients and Stakeholders}
+\noindent This system provides a solutuion for all nursery applications that are not working on the cutting edge. For those nurseries that have an existing assembly line to fulfil their propagation this is a great solution as other solutions repolace the assembly line in its entirity, this solution instead adds to it.
+\noindent Clients include:
+\begin{itemize}
+    \item Sheridan Nurseries manager
+    \item Sheridan Nurseries owner
+\end{itemize}
+\noindent Stakeholders include:
+\begin{itemize}
+    \item Dr. Smith (Project Supervisor).
+    \item Juan Moncada, Gillian Ford, Aaron Billiones, and Steven Ramundi, (Project Proposers).
+    \item Nicholas Annable (Supervising TA)
+    
+\end{itemize}
+
 
 \subsection{Characteristics of Intended Reader} \label{sec_IntendedReader}
 
@@ -309,9 +308,11 @@ This SRS document is written for the directly individuals involved with the deve
 
 \subsection{Organization of Document}
 
-The format of this document follows the standard IEEE template divided into multiple sections. The first two sections describe the system descriptions. First a general system description defining the system context, user characteristics and system constraints. It follows with a more specific system description, where the project is looked at more closely, outlining terminology, goal statements, models and constraints. 
-
-\noindent The next section is dedicated to Requirements. This section will define functional requirements and non-functional requirements with respect to the system features. Finally, the following sections review the likely and unlikely changes of the project. It will reference any specifications that may be subject to change when further advancing with the software and hardware requirements. 
+This SRS template is based on \citet{SmithAndLai2005, SmithEtAl2007}. These templates have been modified to reflect rubric requirements, and sections have been reorganized to follow 
+the LazyBots student sample SRS. Sections 3 and 4 describe the project constraints, and show the context and functional decomposition diagrams. 
+Section 5 is dedicated to functional requirements. This section will define functional requirements seperated in terms of the systems which make up the Pot-Pulator. 
+Section 6 describes the non-functional requirements in terms of look and feel, usability, performance, operational, maintainability and portability, security, cultural and political, 
+and legal requirements. Section 7 evaluates each functional requirement on its likelihood to change, and specifies how the requirement may change if it is not very unlikely to.
 
 
 \section{Project Constraints}
