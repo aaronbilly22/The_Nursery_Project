@@ -143,6 +143,54 @@ this potential failure mode.}
         Sensor post pot dispensing will sense that the tray has not been populated, error message will be displayed and operator will be notified&		
         &
         H2-1\\
+        \hline
+        Conveyor&
+        Conveyor does not move&
+        Tray is unable to move to soil filling machine, trays may be damaged&
+        \begin{enumerate}[label=(\alph*)]
+            \item Software/hardware failure
+            \item Parts failure
+        \end{enumerate}&
+        \begin{enumerate}[label=(\alph*)]
+            \item Sensor will recognize if conveyor is not moving for extended period of time, error message will be displayed and operator will be notified
+            \item Operator will be trained to perform 60 second visual check of Pot-pulator before pots and trays refill to note any damage to conveyor or belt wear
+        \end{enumerate}&
+        &
+        H3-1\\
+        &
+        Conveyor does not stop when it is meant to&
+        Pots are unable to be placed properly in trays, pots and/or trays may be damaged&
+        Software/hardware failure&
+        If tray is in view of pot dispenser, refer to H2-2a. If tray is not in view of pot dispenser, refer to H2-3&
+        &
+        H3-2\\
+        &
+        Trays slide on conveyor when conveyor is accelerating/deccelerating&
+        Pots are unable to be placed properly in trays, trays may be damaged&
+        \begin{enumerate}[label=(\alph*)]
+            \item Software/hardware failure
+            \item Belt failure
+        \end{enumerate}&
+        \begin{enumerate}[label=(\alph*)]
+            \item Sensor will recognize if conveyor is accelerating/deccelerating at a magnitude greater than specified, error message will be displayed and operator will be notified
+            \item Refer to H3-1b
+        \end{enumerate}&
+        &
+        H3-3\\
+
+        &
+        Conveyor is unable to reach desired speed&
+        Machine is unable to meet production standards&
+        \begin{enumerate}[label=(\alph*)]
+            \item Software/hardware failure
+            \item Parts failure
+        \end{enumerate}&
+        \begin{enumerate}[label=(\alph*)]
+            \item  Sensor will recognize if conveyor is not reaching desired speed for extended period of time, error message will be displayed and operator will be notified
+            \item Refer to H3-1b
+        \end{enumerate}&
+        &
+        H3-4\\
 
 
 
