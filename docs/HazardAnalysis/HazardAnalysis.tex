@@ -55,22 +55,48 @@ Date2 & Name(s) & Description of changes\\
 
 \pagenumbering{arabic}
 
-\wss{You are free to modify this template.}
-
 \section{Introduction}
 
-\wss{You can include your definition of what a hazard is here.}
+\noindent This document is the hazard analysis of the Pot-Pulator. This machine will be built for Sheridan Nurseries, filling trays with pots, preparing them to be populated with soil and seeds, to reduce the manual labour of the workers at the farm. The hazard analysis will consider each part of the Pot-Pulator, including the respective tray and pot droppers, the sensor verification section, and the conveyer belt. 
+\\
+
+\noindent The definition of a hazard used in this document is any issue or property in the Pot-Pulator that will cause a risk to the ideal result of the system. In this system, most hazards will be concerning safety of the workers collecting the trays at the end of the conveyer, and the effectiveness of the verification system. 
+\\
+
+\noindent This document will include the Scope and Purpose of Hazard Analysis, System Boundaries and Components, Failure Mode and Effect Analysis, and Safety \& Security Requirements.  
 
 \section{Scope and Purpose of Hazard Analysis}
 
+\noindent The scope of this document is to identify the components of the Pot-Pulator that could have harmful consequences to the users or the results and reduce each risk to a level where the overall system will be safe and acceptable. 
+\\
+
+\noindent Hazards will be analyzed based on research of similar systems, and any specific hazards occurring throughout the development process of the machine. 
+
 \section{System Boundaries and Components}
+
+The hazard analysis will be conducted based on the Pot-Pulator, which is restricted to the components below. 
+\\
+
+\indent 1. Conveyer belt
+\\
+
+2.	Tray allocation
+\\
+
+3.	Pot dropping
+\\
+
+4.	Verification system
+\\
+
+\noindent The hazard analysis will be based on these critical elements of the system. The system boundary includes a conveyer belt moving the system along, tray allocation to place the trays on the conveyer, a pot dropper to place the pots into the trays, and a verification system to confirm the correct placement of the components. 
+\clearpage
+\noindent The conveyer belt will be controlled by a sensor based on the other components. At the end of the process, the conveyer belt will bring the completed trays to the end of the line, to be collected by a worker. This will all be accounted for in the hazard analysis. 
 
 \section{Critical Assumptions}
 
-\wss{These assumptions that are made about the software or system.  You should
-minimize the number of assumptions that remove potential hazards.  For instance,
-you could assume a part will never fail, but it is generally better to include
-this potential failure mode.}
+There are no critical assumptions for this system.
+
 
 
 
@@ -217,7 +243,11 @@ rationale design process how and why to fake it.)}
 
 \section{Roadmap}
 
-\wss{Which safety requirements will be implemented as part of the capstone timeline?
-Which requirements will be implemented in the future?}
+There were some new non-functional requirements (safety and security) discovered, 
+after performing hazard analysis on the system. The safety and security requirements 
+that will be implemented in the future beyond the timeline of the capstone are SR7, 
+SR10, and SR12. These requirements will be apart of a future implementation due to 
+time-related and financial reasons. The remaining non-functional requirements related 
+to safety and security will be implemented within the timeline the capstone project.
 
 \end{document}
