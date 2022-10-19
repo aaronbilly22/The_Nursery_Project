@@ -8,6 +8,7 @@
 \usepackage{pdflscape}
 \usepackage{array}
 \usepackage{longtable}
+\setlist[itemize]{noitemsep, topsep=0pt}
 \hypersetup{
     colorlinks=true,       % false: boxed links; true: colored links
     linkcolor=red,          % color of internal links (change box color with linkbordercolor)
@@ -118,7 +119,7 @@ this potential failure mode.}
         &
         Trays dispensed are stacked, 2+ trays dispensed at once&
         Tray storage becomes out of sync with pot storage, may damage pots/trays&
-            \begin{enumerate}
+            \begin{enumerate}[labnel=(\alph*)]
              \item Parts failure 
              \item Trays loaded incorrectly
             \end{enumerate} &
@@ -143,6 +144,59 @@ this potential failure mode.}
         Sensor post pot dispensing will sense that the tray has not been populated, error message will be displayed and operator will be notified&		
         &
         H2-1\\
+        
+        &
+        Pots dispensed are not flush with tray openings&
+        Pots will be damaged by Pot-pulator or soil filling machine&
+            \begin{enumerate}[label=(\alph*)]
+                \item Software/hardware failure
+                \item Quality issue in pots
+                \item Quality issue in trays
+            \end{enumerate}&
+            \begin{enumerate}[label=(\alph*)]
+                \item Sensor will recognize that pot is not flush with tray opening, error message will be displayed and operator will be notified
+                \item  Operator will be trained to perform 60 second visual check of Pot-pulator, trays, and pots before each refill to note and eliminate pots with any noticeable defects
+                \item Refer to H1-4
+            \end{enumerate}&
+
+        &
+        H2-2\\
+        &
+        Pots dispensed when tray is not present&
+        Pot storage becomes out of sync with tray storage&
+        Software/hardware failure&
+        Sensor will recognize if pots are dispensed without tray present, error message will be displayed and operator will be notified&
+        &
+        H2-3\\
+
+        &
+        Pots dispensed are stacked&
+        Pots will be damaged by Pot-pulator or soil filling machine&
+        \begin{enumerate}[label=(\alph*)]
+            \item Parts failure
+            \item Pots loaded incorrectly
+        \end{enumerate}&
+        \begin{enumerate}[label=(\alph*)]
+            \item Sensor will recognize if multiple pots have been dispensed, error message will be displayed and operator will be notified
+            \item Operator will be trained to properly load pots into machine
+        \end{enumerate}&\
+        &
+        H2-4\\
+
+        &
+        Pot dispenser damages pots&
+        Pots are unable to be filled with soil and sent for distribution&
+        Quality issue in pots&
+        Refer to H2-2b&
+        &
+        H2-5\\
+
+        \hline
+
+
+
+        
+
 
 
 
