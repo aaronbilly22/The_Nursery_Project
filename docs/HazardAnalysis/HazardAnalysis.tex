@@ -3,7 +3,7 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
-
+\usepackage[english]{babel}
 \hypersetup{
     colorlinks=true,       % false: boxed links; true: colored links
     linkcolor=red,          % color of internal links (change box color with linkbordercolor)
@@ -12,7 +12,7 @@
     urlcolor=cyan           % color of external links
 }
 
-\title{Hazard Analysis\\\progname}
+\title{Hazard Analysis The Nursery Poject}
 
 \author{\authname}
 
@@ -69,6 +69,22 @@ you could assume a part will never fail, but it is generally better to include
 this potential failure mode.}
 
 \section{Failure Mode and Effect Analysis}
+
+\begin{center}
+    \begin{tabular}{ | l |  l  l  l  l  l  l |}
+    \hline
+    Component & Failure Mode & Effect of Failure & Cause of failure & Recomended action & SR & Ref\\
+    \hline
+    Tray Dispensing & tray elevator motors fail & trays are not lifted into dispensinf position & tray elevator motor fails & have sensor that identifies that there is a tray currrently lifted into trya dispensing location & SR & Ref\\
+    \hline
+    Conveyor & Failure Mode & Effect of Failure & Cause of failure & Recomended action & SR & Ref\\
+    \hline
+    Pot Dispensing & Failure Mode & Effect of Failure & Cause of failure & Recomended action & SR & Ref\\
+    \hline
+    Verification & Failure Mode & Effect of Failure & Cause of failure & Recomended action & SR & Ref\\
+    \hline
+    \end{tabular}
+\end{center}
 
 \wss{Include your FMEA table here}
 
