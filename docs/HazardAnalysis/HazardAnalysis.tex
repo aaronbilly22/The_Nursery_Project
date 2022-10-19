@@ -16,6 +16,11 @@
     urlcolor=cyan           % color of external links
 }
 
+\newcounter{srreqnum} %Likely change number
+\newcommand{\lthesrreqnum}{LC\thesrreqnum}
+\newcommand{\srref}[1]{SR\ref{#1}}
+
+
 \title{Hazard Analysis The Nursery Poject}
 
 \author{\authname}
@@ -238,8 +243,47 @@ There are no critical assumptions for this system.
 
 \section{Safety and Security Requirements}
 
-\wss{Newly discovered requirements.  These should also be added to the SRS.  (A
-rationale design process how and why to fake it.)}
+\subsection{Existing Requirements}
+The following are listed as non-functional requirements that can be found in 
+the Software Requirements Specification (SRS) document (reference in square brackets).
+These requirements are related to the safety and security of the system which are necessary during operation.
+\\
+\begin{itemize}
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR1}:]
+    All electrical equipment and electronics must be well covered and protected. The user must not have access to equipment. [NFR1]
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR2}:]
+    All wiring must be tucked away and not accessible to avoid potential electrical failure. [NFR2]
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR3}:]
+    All moving parts must be covered and protected. Moving parts should be covered to protect both the mechanism and the safety of the operator. [NFR3]
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR4}:]
+    System must have both audible and visible signal outputs for each system status. [NFR7]
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR5}:]
+    Conveyor system must not accelerate in a manner that would shift the position of 
+    the tray on the conveyor belt. A shift in the position of the tray could result in a misalignment and potential error. [NFR8]
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR6}:]
+    System must have emergency cut off. In case of any emergency, this will trip off all power to the Pot-Pulator. [NFR11]
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR7}:]
+    System must be able to locate and identify failures within each independent subsystem. [NFR12]
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR8}:]
+    SR8: System must follow electronic component safety requirements. [NFR25]
+    
+  \end{itemize}
+
+\subsection{New Requirements}
+The following are listed as non-functional requirements related to 
+safety and security of the system that were formulated upon performing 
+hazard analysis. Reference to the new requirements in the SRS are shown in square brackets.\\
+
+\begin{itemize}
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR9}:]
+    System must be able to withstand a sufficient physical force to keep from falling over. [NFR26]
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR10}:]
+    System must obtain a user login system or physical start key. [NFR27]
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR11}:]
+    Clear physical emergency instructions and labels located on the device. [NFR28]
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR12}:]
+    System must have surge protection. [NFR29]
+\end{itemize}
 
 \section{Roadmap}
 
