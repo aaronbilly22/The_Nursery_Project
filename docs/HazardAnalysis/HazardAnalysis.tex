@@ -7,6 +7,7 @@
 \usepackage{enumitem}
 \usepackage{pdflscape}
 \usepackage{array}
+\usepackage{longtable}
 \hypersetup{
     colorlinks=true,       % false: boxed links; true: colored links
     linkcolor=red,          % color of internal links (change box color with linkbordercolor)
@@ -78,7 +79,7 @@ this potential failure mode.}
 \section{Failure Mode and Effect Analysis}
 
 \begin{center}
-    \begin{tabular}{|l|  p{3cm}  p{4cm}  p{4cm}  p{4cm}  p{1cm}  p{1cm}|}
+    \begin{longtable}{|l|  p{3cm}  p{4cm}  p{4cm}  p{4cm}  p{1cm}  p{1cm}|}
         \hline
         Component&
         Failure Mode&
@@ -106,27 +107,44 @@ this potential failure mode.}
           &
           H1-1\\
  
-    &
-    Trays placed incorrectly on conveyor&
-    Tray is unable to move forward on conveyor, pot dispenser is unable to place pots correctly. May damage pots/trays&
-    Trasy dispenser software/hardware failure&
-    Guiding rods will be placed on the conveyor to centre trays into correct position. If trays are unable to move forward, error message will be displayed and operator will be notified.&
-    &
-    H1-2\\
+         &
+        Trays placed incorrectly on conveyor&
+        Tray is unable to move forward on conveyor, pot dispenser is unable to place pots correctly. May damage pots/trays&
+        Tray dispenser software/hardware failure&
+        Guiding rods will be placed on the conveyor to centre trays into correct position. If trays are unable to move forward, error message will be displayed and operator will be notified.&
+        &
+        H1-2\\
 
-    &
-    Trays dispensed are stacked, 2+ trays dispensed at once&
-    Tray storage becomes out of sync with pot storage, may damage pots/trays&
-    \begin{enumerate}
-      \item Parts failure 
-      \item Trays loaded incorrectly
-    \end{enumerate} &
-    \begin{enumerate}
-      \item Sensor will recognize if multiple trays have been dispensed, error message will be displayed and operator will be notified
-      \item Operator will be trained to properly load trays into machine"	
-    \end{enumerate}&
-    &
-      H1-3\\
+        &
+        Trays dispensed are stacked, 2+ trays dispensed at once&
+        Tray storage becomes out of sync with pot storage, may damage pots/trays&
+            \begin{enumerate}
+             \item Parts failure 
+             \item Trays loaded incorrectly
+            \end{enumerate} &
+            \begin{enumerate}
+              \item Sensor will recognize if multiple trays have been dispensed, error message will be displayed and operator will be notified
+              \item Operator will be trained to properly load trays into machine"	
+            \end{enumerate}&
+        &
+        H1-3\\
+        &
+        Tray dispenser damages tray&	
+        Tray is unable to hold pots and be sent for distribution (will depend on severity of damage to tray)&
+        Quality issue in trays&
+        Operator will be trained to perform 60 second visual check of Pot-pulator, trays, and pots before each refill to note and eliminate trays with any noticeable defects&		
+        &
+        H1-4\\
+        \hline
+        Pot Dispenser&
+        Pots are not dispensed&
+        Tray will be dispensed empty&
+        Software/hardware failure&
+        Sensor post pot dispensing will sense that the tray has not been populated, error message will be displayed and operator will be notified&		
+        &
+        H2-1\\
+
+
 
     \cline{2-7}
     \hline
@@ -137,7 +155,7 @@ this potential failure mode.}
     % \hline
     % Verification & Failure Mode & Effect of Failure & Cause of failure & Recomended action  \\
     % \hline
-    \end{tabular}
+    \end{longtable}
 \end{center}
 \end{landscape}
 
