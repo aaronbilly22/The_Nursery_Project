@@ -4,6 +4,9 @@
 \usepackage{tabularx}
 \usepackage{hyperref}
 \usepackage[english]{babel}
+\usepackage{enumitem}
+\usepackage{pdflscape}
+\usepackage{array}
 \hypersetup{
     colorlinks=true,       % false: boxed links; true: colored links
     linkcolor=red,          % color of internal links (change box color with linkbordercolor)
@@ -68,25 +71,78 @@ minimize the number of assumptions that remove potential hazards.  For instance,
 you could assume a part will never fail, but it is generally better to include
 this potential failure mode.}
 
+
+
+\newpage
+\begin{landscape}
 \section{Failure Mode and Effect Analysis}
 
 \begin{center}
-    \begin{tabular}{ | l |  p{3cm}  p{3cm}  p{3cm}  p{3cm} |}
+    \begin{tabular}{|l|  p{3cm}  p{4cm}  p{4cm}  p{4cm}  p{1cm}  p{1cm}|}
+        \hline
+        Component&
+        Failure Mode&
+        Effect of Failure&
+        Cause of failure &
+        Recomended action &
+        SR&
+        Ref \\
+        \hline
+        \begin{centering}
+        Tray Dispensing
+        \end{centering} &
+        Tray is not dispensed & 
+        Machine is unable to continue operation, tray may be damaged & 
+              \begin{enumerate}[label=(\alph*)]
+                  \item Tray stack software/hardware failure
+                  \item Tray dispenser software/hardware failure 
+                  \item Parts failure 
+              \end{enumerate} &
+              \begin{enumerate}[label=(\alph*)]
+                  \item  Sensor will recognize if tray has not been dispensed, error message will be displayed and operator will be notified.
+                  \item  Refer to H1-1a
+                  \item Refer to H1-1a
+              \end{enumerate}&
+          &
+          H1-1\\
+ 
+    &
+    Trays placed incorrectly on conveyor&
+    Tray is unable to move forward on conveyor, pot dispenser is unable to place pots correctly. May damage pots/trays&
+    Trasy dispenser software/hardware failure&
+    Guiding rods will be placed on the conveyor to centre trays into correct position. If trays are unable to move forward, error message will be displayed and operator will be notified.&
+    &
+    H1-2\\
+
+    &
+    Trays dispensed are stacked, 2+ trays dispensed at once&
+    Tray storage becomes out of sync with pot storage, may damage pots/trays&
+    \begin{enumerate}
+      \item Parts failure 
+      \item Trays loaded incorrectly
+    \end{enumerate} &
+    \begin{enumerate}
+      \item Sensor will recognize if multiple trays have been dispensed, error message will be displayed and operator will be notified
+      \item Operator will be trained to properly load trays into machine"	
+    \end{enumerate}&
+    &
+      H1-3\\
+
+    \cline{2-7}
     \hline
-    Component & Failure Mode & Effect of Failure & Cause of failure & Recomended action \\
-    \hline
-    Tray Dispensing & Tray not pressent in despense location & tray dispenser does not have a tray to dispense & tray elevator motor failure & have sensor that identifies that there is a tray currrently lifted into tray dispensing location \\
-    \hline
-    Conveyor & Failure Mode & Effect of Failure & Cause of failure & Recomended action \\
-    \hline
-    Pot Dispensing & Failure Mode & Effect of Failure & Cause of failure & Recomended action  \\
-    \hline
-    Verification & Failure Mode & Effect of Failure & Cause of failure & Recomended action  \\
-    \hline
+
+    % Conveyor & Failure Mode & Effect of Failure & Cause of failure & Recomended action \\
+    % \hline
+    % Pot Dispensing & Failure Mode & Effect of Failure & Cause of failure & Recomended action  \\
+    % \hline
+    % Verification & Failure Mode & Effect of Failure & Cause of failure & Recomended action  \\
+    % \hline
     \end{tabular}
 \end{center}
+\end{landscape}
 
-\wss{Include your FMEA table here}
+
+\newpage
 
 \section{Safety and Security Requirements}
 
