@@ -97,16 +97,19 @@ It is assumed there will be no damage to the system by water, pressure, or simil
 
 \newpage
 \begin{landscape}
-\section{Failure Mode and Effect Analysis}
+\section{Failure Mode and Effect Analysis (FMEA)}
 
 \begin{center}
-    \begin{longtable}{|l|  p{3cm}  p{4cm}  p{4cm}  p{4cm}  p{1cm}  p{1cm}|}
+    
+    \begin{longtable}{|l|  p{3cm}  p{4cm}  p{3cm}  p{4cm}  p{2cm}  p{1cm}|}
+        \caption{FMEA}\\
+        \label{tab:Table1}\\
         \hline
         Component&
         Failure Mode&
         Effect of Failure&
-        Cause of failure &
-        Recomended action &
+        Cause of Failure &
+        Recommended Action &
         SR&
         Ref \\
         \hline
@@ -126,9 +129,9 @@ It is assumed there will be no damage to the system by water, pressure, or simil
             \item Refer to H1-1a
         \end{enumerate}&
         \begin{enumerate}[label=(\alph*)]
-            \item SR4, SR7
-            \item SR4, SR7
-            \item SR4, SR7
+            \item SR4, SR7, SR9
+            \item SR4, SR7, SR9
+            \item SR4, SR7, SR9
         \end{enumerate}&
         H1-1\\
  
@@ -137,7 +140,7 @@ It is assumed there will be no damage to the system by water, pressure, or simil
         Tray is unable to move forward on conveyor, pot dispenser is unable to place pots correctly. May damage pots/trays&
         Tray dispenser software/hardware failure&
         Guiding rods will be placed on the conveyor to centre trays into correct position. If trays are unable to move forward, error message will be displayed and operator will be notified.&
-        SR4, SR7&
+        SR4, SR7, SR9&
         H1-2\\
 
         &
@@ -152,8 +155,8 @@ It is assumed there will be no damage to the system by water, pressure, or simil
             \item Operator will be trained to properly load trays into machine"	
         \end{enumerate}&
         \begin{enumerate}[label=(\alph*)]
-            \item SR4, SR7
-            \item 
+            \item SR4, SR7, SR9
+            \item SR17
         \end{enumerate}&
         H1-3\\
         &
@@ -161,7 +164,7 @@ It is assumed there will be no damage to the system by water, pressure, or simil
         Tray is unable to hold pots and be sent for distribution (will depend on severity of damage to tray)&
         Quality issue in trays&
         Operator will be trained to perform 60 second visual check of Pot-pulator, trays, and pots before each refill to note and eliminate trays with any noticeable defects&		
-        &
+        SR17&
         H1-4\\
         \hline
         Pot Dispensing&
@@ -169,7 +172,7 @@ It is assumed there will be no damage to the system by water, pressure, or simil
         Tray will be dispensed empty&
         Software/hardware failure&
         Sensor post pot dispensing will sense that the tray has not been populated, error message will be displayed and operator will be notified&		
-        SR4, SR7&
+        SR4, SR7, SR10&
         H2-1\\
 
         &
@@ -186,11 +189,11 @@ It is assumed there will be no damage to the system by water, pressure, or simil
             \item Refer to H1-4
         \end{enumerate}&
         \begin{enumerate}[label=(\alph*)]
-            \item SR4, SR7
-            \item 
-            \item 
+            \item SR4, SR7, SR10
+            \item SR17
+            \item SR17
         \end{enumerate}&
-        &
+        
         H2-2\\
 
         &
@@ -198,7 +201,7 @@ It is assumed there will be no damage to the system by water, pressure, or simil
         Pot storage becomes out of sync with tray storage&
         Software/hardware failure&
         Sensor will recognize if pots are dispensed without tray present, error message will be displayed and operator will be notified&
-        SR4, SR7&
+        SR4, SR7, SR10&
         H2-3\\
 
         &
@@ -213,10 +216,10 @@ It is assumed there will be no damage to the system by water, pressure, or simil
             \item Operator will be trained to properly load pots into machine
         \end{enumerate}&
         \begin{enumerate}[label=(\alph*)]
-            \item SR4, SR7
-            \item 
+            \item SR4, SR7, SR10
+            \item SR17
         \end{enumerate}&
-        &
+        
         H2-4\\
 
         &
@@ -224,7 +227,7 @@ It is assumed there will be no damage to the system by water, pressure, or simil
         Pots are unable to be filled with soil and sent for distribution&
         Quality issue in pots&
         Refer to H2-2b&
-        &
+        SR17&
         H2-5\\
         \hline
         Conveyor&
@@ -239,8 +242,8 @@ It is assumed there will be no damage to the system by water, pressure, or simil
             \item Operator will be trained to perform 60 second visual check of Pot-pulator before pots and trays refill to note any damage to conveyor or belt wear
         \end{enumerate}&
         \begin{enumerate}[label=(\alph*)]
-            \item SR4, SR7
-            \item 
+            \item SR4, SR7, SR11
+            \item SR17
         \end{enumerate}&
         H3-1\\
         &
@@ -248,7 +251,7 @@ It is assumed there will be no damage to the system by water, pressure, or simil
         Pots are unable to be placed properly in trays, pots and/or trays may be damaged&
         Software/hardware failure&
         If tray is in view of pot dispenser, refer to H2-2a. If tray is not in view of pot dispenser, refer to H2-3&
-        &
+        SR10&
         H3-2\\
         &
         Trays slide on conveyor when conveyor is accelerating/deccelerating&
@@ -262,8 +265,8 @@ It is assumed there will be no damage to the system by water, pressure, or simil
             \item Refer to H3-1b
         \end{enumerate}&
         \begin{enumerate}[label=(\alph*)]
-            \item SR4, SR5, SR7
-            \item
+            \item SR4, SR5, SR7, SR11
+            \item SR17
         \end{enumerate}&
         H3-3\\
 
@@ -279,8 +282,8 @@ It is assumed there will be no damage to the system by water, pressure, or simil
             \item Refer to H3-1b
         \end{enumerate}&
         \begin{enumerate}[label=(\alph*)]
-            \item SR4. SR7
-            \item 
+            \item SR4. SR7, SR11
+            \item SR17
         \end{enumerate}&
         H3-4\\
 
@@ -297,7 +300,10 @@ It is assumed there will be no damage to the system by water, pressure, or simil
             \item Soil machine operator will be inspecting all trays leaving the soil machine. If a tray with less than 10 pots is identified, soil machine operator will be trained to manually stop Pot-pulator
             \item Operator will be trained to perform 60 second visual check of Pot-pulator before pots and trays refill to note any obstructions/damage to sensors
         \end{enumerate}&
-        &
+        \begin{enumerate}[label=(\alph*)]
+            \item SR12
+            \item SR17
+        \end{enumerate}&
         H4-1\\
 
         &
@@ -311,7 +317,10 @@ It is assumed there will be no damage to the system by water, pressure, or simil
             \item Refer to H4-1a
             \item Refer to H4-1b
         \end{enumerate}&
-        &
+        \begin{enumerate}[label=(\alph*)]
+            \item SR12
+            \item SR17
+        \end{enumerate}&
         H4-2\\
 
         \hline
@@ -328,8 +337,8 @@ It is assumed there will be no damage to the system by water, pressure, or simil
             \item Refer to H5-1a
         \end{enumerate}&
         \begin{enumerate}[label=(\alph*)]
-            \item SR3, SR6, SR15
-            \item SR3, SR6, SR15
+            \item SR3, SR6, SR15, SR17
+            \item SR3, SR6, SR15, SR17
         \end{enumerate}&
         H5-1\\
 
@@ -338,7 +347,7 @@ It is assumed there will be no damage to the system by water, pressure, or simil
         Potential risk of serious injury or death&
         Operator makes accidental contact with electrical wiring or electronics of machine&
         Electrical equipment and electronics will be covered and protected. Emergency cut off switch will be implemented to cut all power to Pot-pulator. Physical emergency instructions and labels will be placed on the device. Operators will complete electrical safety training before operating the Pot-pulator&
-        SR1, SR2, SR6, SR8, SR15&
+        SR1, SR2, SR6, SR8, SR15, SR17&
         H5-2\\
 
         &
@@ -391,6 +400,15 @@ These requirements are related to the safety and security of the system which ar
     System must be able to locate and identify failures within each independent subsystem. [NFR12]
     \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR8}:]
     System must follow electronic component safety requirements. [NFR25]
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR9}:]
+    The tray dispenser must stop when an error arises (verification failed, pot dispenser malfunction/empty, conveyor malfunction). [TDR6]
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR10}:]
+    The pot dispenser must stop when an error arises (verification failed, tray dispenser malfunction/empty, conveyor malfunction). [PDR7]
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR11}:]
+    The conveyor must stop when an error arises (verification failed, pot dispenser malfunction/empty, tray dispenser malfunction/empty). [CR5]
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR12}:]
+    {The verification must notify all other systems if verification fails, such that $n_{traysout}\neq1\ or\ n_{potsout}\neq10$ [VR2]}
+
     
   \end{itemize}
 
@@ -400,14 +418,16 @@ safety and security of the system that were formulated upon performing
 hazard analysis. Reference to the new requirements in the SRS are shown in square brackets.\\
 
 \begin{itemize}
-    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR9}:]
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR13}:]
     System must be able to withstand a sufficient physical force to keep from falling over. [NFR26]
-    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR10}:]
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR14}:]
     System must obtain a user login system or physical start key. [NFR27]
-    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR11}:]
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR15}:]
     Clear physical emergency instructions and labels located on the device. [NFR28]
-    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR12}:]
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR16}:]
     System must have surge protection. [NFR29]
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR17}:]
+    Operators must be properly trained in general safety, electronic safety, and system operation. [NFR30]
 \end{itemize}
 
 \section{Roadmap}
@@ -415,8 +435,11 @@ hazard analysis. Reference to the new requirements in the SRS are shown in squar
 There were some new non-functional requirements (safety and security) discovered, 
 after performing hazard analysis on the system. The safety and security requirements 
 that will be implemented in the future beyond the timeline of the capstone are SR7, 
-SR10, and SR12. These requirements will be apart of a future implementation due to 
+SR14, and SR16. These requirements will be apart of a future implementation due to 
 time-related and financial reasons. The remaining non-functional requirements related 
 to safety and security will be implemented within the timeline the capstone project.
+
+\section{List of Tables}
+\autoref{tab:Table1} : FMEA
 
 \end{document}
