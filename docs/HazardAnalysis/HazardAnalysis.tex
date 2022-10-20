@@ -8,7 +8,6 @@
 \usepackage{pdflscape}
 \usepackage{array}
 \usepackage{longtable}
-\setlist[itemize]{noitemsep, topsep=0pt}
 \hypersetup{
     colorlinks=true,       % false: boxed links; true: colored links
     linkcolor=red,          % color of internal links (change box color with linkbordercolor)
@@ -17,11 +16,16 @@
     urlcolor=cyan           % color of external links
 }
 
+\newcounter{srreqnum} %Likely change number
+\newcommand{\lthesrreqnum}{LC\thesrreqnum}
+\newcommand{\srref}[1]{SR\ref{#1}}
+
+
 \title{Hazard Analysis The Nursery Poject}
 
-\author{\authname}
+\author{Aaron Billones, billonea\\Gillian Ford, fordg\\Juan Moncada, moncadaj\\Steven Ramundi, ramundis}
 
-\date{}
+\date{October 19, 2022}
 
 \input{../Comments}
 \input{../Common}
@@ -31,22 +35,17 @@
 \maketitle
 \thispagestyle{empty}
 
-~\newpage
+
 
 \pagenumbering{roman}
 
-\begin{table}[hp]
-\caption{Revision History} \label{TblRevisionHistory}
-\begin{tabularx}{\textwidth}{llX}
-\toprule
-\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
-\midrule
-Date1 & Name(s) & Description of changes\\
-Date2 & Name(s) & Description of changes\\
-... & ... & ...\\
-\bottomrule
+\begin{tabularx}{\textwidth}{p{3cm}p{4cm}X}
+    \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+    \midrule
+    2022-10-19 & Juan Moncada,& Initial release\\&Aaron Billones,\\&Steven Ramundi,\\&Gillian Ford \\
+    
+    \bottomrule
 \end{tabularx}
-\end{table}
 
 ~\newpage
 
@@ -76,19 +75,14 @@ Date2 & Name(s) & Description of changes\\
 \section{System Boundaries and Components}
 
 The hazard analysis will be conducted based on the Pot-Pulator, which is restricted to the components below. 
-\\
 
-\indent 1. Conveyer belt
-\\
 
-2.	Tray allocation
-\\
-
-3.	Pot dropping
-\\
-
-4.	Verification system
-\\
+\begin{enumerate}
+    \item Conveyer belt
+    \item Tray allocation
+    \item Pot dropping
+    \item Verification system
+\end{enumerate}
 
 \noindent The hazard analysis will be based on these critical elements of the system. The system boundary includes a conveyer belt moving the system along, tray allocation to place the trays on the conveyer, a pot dropper to place the pots into the trays, and a verification system to confirm the correct placement of the components. 
 \clearpage
@@ -145,11 +139,11 @@ There are no critical assumptions for this system.
         &
         Trays dispensed are stacked, 2+ trays dispensed at once&
         Tray storage becomes out of sync with pot storage, may damage pots/trays&
-            \begin{enumerate}[label=(\alph*)]
+            \begin{enumerate}
              \item Parts failure 
              \item Trays loaded incorrectly
-            \end{enumerate}&
-            \begin{enumerate} [label=(\alph*)]
+            \end{enumerate} &
+            \begin{enumerate}
               \item Sensor will recognize if multiple trays have been dispensed, error message will be displayed and operator will be notified
               \item Operator will be trained to properly load trays into machine"	
             \end{enumerate}&
@@ -170,56 +164,8 @@ There are no critical assumptions for this system.
         Sensor post pot dispensing will sense that the tray has not been populated, error message will be displayed and operator will be notified&		
         &
         H2-1\\
-        
-        &
-        Pots dispensed are not flush with tray openings&
-        Pots will be damaged by Pot-pulator or soil filling machine&
-            \begin{enumerate}[label=(\alph*)]
-                \item Software/hardware failure
-                \item Quality issue in pots
-                \item Quality issue in trays
-            \end{enumerate}&
-            \begin{enumerate}[label=(\alph*)]
-                \item Sensor will recognize that pot is not flush with tray opening, error message will be displayed and operator will be notified
-                \item  Operator will be trained to perform 60 second visual check of Pot-pulator, trays, and pots before each refill to note and eliminate pots with any noticeable defects
-                \item Refer to H1-4
-            \end{enumerate}&
-
-        &
-        H2-2\\
-        &
-        Pots dispensed when tray is not present&
-        Pot storage becomes out of sync with tray storage&
-        Software/hardware failure&
-        Sensor will recognize if pots are dispensed without tray present, error message will be displayed and operator will be notified&
-        &
-        H2-3\\
-
-        &
-        Pots dispensed are stacked&
-        Pots will be damaged by Pot-pulator or soil filling machine&
-        \begin{enumerate}[label=(\alph*)]
-            \item Parts failure
-            \item Pots loaded incorrectly
-        \end{enumerate}&
-        \begin{enumerate}[label=(\alph*)]
-            \item Sensor will recognize if multiple pots have been dispensed, error message will be displayed and operator will be notified
-            \item Operator will be trained to properly load pots into machine
-        \end{enumerate}&\
-        &
-        H2-4\\
-
-        &
-        Pot dispenser damages pots&
-        Pots are unable to be filled with soil and sent for distribution&
-        Quality issue in pots&
-        Refer to H2-2b&
-        &
-        H2-5\\
-
         \hline
-
-        Conveyor &
+        Conveyor&
         Conveyor does not move&
         Tray is unable to move to soil filling machine, trays may be damaged&
         \begin{enumerate}[label=(\alph*)]
@@ -340,8 +286,47 @@ There are no critical assumptions for this system.
 
 \section{Safety and Security Requirements}
 
-\wss{Newly discovered requirements.  These should also be added to the SRS.  (A
-rationale design process how and why to fake it.)}
+\subsection{Existing Requirements}
+The following are listed as non-functional requirements that can be found in 
+the Software Requirements Specification (SRS) document (reference in square brackets).
+These requirements are related to the safety and security of the system which are necessary during operation.
+\\
+\begin{itemize}
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR1}:]
+    All electrical equipment and electronics must be well covered and protected. The user must not have access to equipment. [NFR1]
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR2}:]
+    All wiring must be tucked away and not accessible to avoid potential electrical failure. [NFR2]
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR3}:]
+    All moving parts must be covered and protected. Moving parts should be covered to protect both the mechanism and the safety of the operator. [NFR3]
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR4}:]
+    System must have both audible and visible signal outputs for each system status. [NFR7]
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR5}:]
+    Conveyor system must not accelerate in a manner that would shift the position of 
+    the tray on the conveyor belt. A shift in the position of the tray could result in a misalignment and potential error. [NFR8]
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR6}:]
+    System must have emergency cut off. In case of any emergency, this will trip off all power to the Pot-Pulator. [NFR11]
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR7}:]
+    System must be able to locate and identify failures within each independent subsystem. [NFR12]
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR8}:]
+    SR8: System must follow electronic component safety requirements. [NFR25]
+    
+  \end{itemize}
+
+\subsection{New Requirements}
+The following are listed as non-functional requirements related to 
+safety and security of the system that were formulated upon performing 
+hazard analysis. Reference to the new requirements in the SRS are shown in square brackets.\\
+
+\begin{itemize}
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR9}:]
+    System must be able to withstand a sufficient physical force to keep from falling over. [NFR26]
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR10}:]
+    System must obtain a user login system or physical start key. [NFR27]
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR11}:]
+    Clear physical emergency instructions and labels located on the device. [NFR28]
+    \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR12}:]
+    System must have surge protection. [NFR29]
+\end{itemize}
 
 \section{Roadmap}
 
