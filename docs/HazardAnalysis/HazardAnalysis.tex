@@ -115,39 +115,46 @@ It is assumed there will be no damage to the system by water, pressure, or simil
         \end{centering} &
         Tray is not dispensed & 
         Machine is unable to continue operation, tray may be damaged & 
-              \begin{enumerate}[label=(\alph*)]
-                  \item Tray stack software/hardware failure
-                  \item Tray dispenser software/hardware failure 
-                  \item Parts failure 
-              \end{enumerate} &
-              \begin{enumerate}[label=(\alph*)]
-                  \item  Sensor will recognize if tray has not been dispensed, error message will be displayed and operator will be notified.
-                  \item  Refer to H1-1a
-                  \item Refer to H1-1a
-              \end{enumerate}&
-          &
-          H1-1\\
+        \begin{enumerate}[label=(\alph*)]
+            \item Tray stack software/hardware failure
+            \item Tray dispenser software/hardware failure 
+            \item Parts failure 
+        \end{enumerate} &
+        \begin{enumerate}[label=(\alph*)]
+            \item  Sensor will recognize if tray has not been dispensed, error message will be displayed and operator will be notified.
+            \item  Refer to H1-1a
+            \item Refer to H1-1a
+        \end{enumerate}&
+        \begin{enumerate}[label=(\alph*)]
+            \item SR4, SR7
+            \item SR4, SR7
+            \item SR4, SR7
+        \end{enumerate}&
+        H1-1\\
  
          &
         Trays placed incorrectly on conveyor&
         Tray is unable to move forward on conveyor, pot dispenser is unable to place pots correctly. May damage pots/trays&
         Tray dispenser software/hardware failure&
         Guiding rods will be placed on the conveyor to centre trays into correct position. If trays are unable to move forward, error message will be displayed and operator will be notified.&
-        &
+        SR4, SR7&
         H1-2\\
 
         &
         Trays dispensed are stacked, 2+ trays dispensed at once&
         Tray storage becomes out of sync with pot storage, may damage pots/trays&
-            \begin{enumerate}[label=(\alph*)]
-             \item Parts failure 
-             \item Trays loaded incorrectly
-            \end{enumerate} &
-            \begin{enumerate}[label=(\alph*)]
-              \item Sensor will recognize if multiple trays have been dispensed, error message will be displayed and operator will be notified
-              \item Operator will be trained to properly load trays into machine"	
-            \end{enumerate}&
-        &
+        \begin{enumerate}[label=(\alph*)]
+            \item Parts failure 
+            \item Trays loaded incorrectly
+        \end{enumerate} &
+        \begin{enumerate}[label=(\alph*)]
+            \item Sensor will recognize if multiple trays have been dispensed, error message will be displayed and operator will be notified
+            \item Operator will be trained to properly load trays into machine"	
+        \end{enumerate}&
+        \begin{enumerate}[label=(\alph*)]
+            \item SR4, SR7
+            \item 
+        \end{enumerate}&
         H1-3\\
         &
         Tray dispenser damages tray&	
@@ -162,8 +169,63 @@ It is assumed there will be no damage to the system by water, pressure, or simil
         Tray will be dispensed empty&
         Software/hardware failure&
         Sensor post pot dispensing will sense that the tray has not been populated, error message will be displayed and operator will be notified&		
-        &
+        SR4, SR7&
         H2-1\\
+
+        &
+        Pots dispensed are not flush with tray openings&
+        Pots will be damaged by Pot-pulator or soil filling machine&
+        \begin{enumerate}[label=(\alph*)]
+            \item Software/hardware failure
+            \item Quality issue in pots
+            \item Quality issue in trays
+        \end{enumerate}&
+        \begin{enumerate}[label=(\alph*)]
+            \item Sensor will recognize that pot is not flush with tray opening, error message will be displayed and operator will be notified
+            \item Operator will be trained to perform 60 second visual check of Pot-pulator, trays, and pots before each refill to note and eliminate pots with any noticeable defects
+            \item Refer to H1-4
+        \end{enumerate}&
+        \begin{enumerate}[label=(\alph*)]
+            \item SR4, SR7
+            \item 
+            \item 
+        \end{enumerate}&
+        &
+        H2-2\\
+
+        &
+        Pots dispensed when tray is not present&
+        Pot storage becomes out of sync with tray storage&
+        Software/hardware failure&
+        Sensor will recognize if pots are dispensed without tray present, error message will be displayed and operator will be notified&
+        SR4, SR7&
+        H2-3\\
+
+        &
+        Pots dispensed are stacked&
+        Pots will be damaged by Pot-pulator or soil filling machine&
+        \begin{enumerate}[label=(\alph*)]
+            \item Parts failure
+            \item Pots loaded incorrectly
+        \end{enumerate}&
+        \begin{enumerate}[label=(\alph*)]
+            \item Sensor will recognize if multiple pots have been dispensed, error message will be displayed and operator will be notified
+            \item Operator will be trained to properly load pots into machine
+        \end{enumerate}&
+        \begin{enumerate}[label=(\alph*)]
+            \item SR4, SR7
+            \item 
+        \end{enumerate}&
+        &
+        H2-4\\
+
+        &
+        Pot dispenser damages pots&
+        Pots are unable to be filled with soil and sent for distribution&
+        Quality issue in pots&
+        Refer to H2-2b&
+        &
+        H2-5\\
         \hline
         Conveyor&
         Conveyor does not move&
@@ -176,7 +238,10 @@ It is assumed there will be no damage to the system by water, pressure, or simil
             \item Sensor will recognize if conveyor is not moving for extended period of time, error message will be displayed and operator will be notified
             \item Operator will be trained to perform 60 second visual check of Pot-pulator before pots and trays refill to note any damage to conveyor or belt wear
         \end{enumerate}&
-        &
+        \begin{enumerate}[label=(\alph*)]
+            \item SR4, SR7
+            \item 
+        \end{enumerate}&
         H3-1\\
         &
         Conveyor does not stop when it is meant to&
@@ -196,7 +261,10 @@ It is assumed there will be no damage to the system by water, pressure, or simil
             \item Sensor will recognize if conveyor is accelerating/deccelerating at a magnitude greater than specified, error message will be displayed and operator will be notified
             \item Refer to H3-1b
         \end{enumerate}&
-        &
+        \begin{enumerate}[label=(\alph*)]
+            \item SR4, SR5, SR7
+            \item
+        \end{enumerate}&
         H3-3\\
 
         &
@@ -210,7 +278,10 @@ It is assumed there will be no damage to the system by water, pressure, or simil
             \item  Sensor will recognize if conveyor is not reaching desired speed for extended period of time, error message will be displayed and operator will be notified
             \item Refer to H3-1b
         \end{enumerate}&
-        &
+        \begin{enumerate}[label=(\alph*)]
+            \item SR4. SR7
+            \item 
+        \end{enumerate}&
         H3-4\\
 
         \hline
@@ -237,8 +308,8 @@ It is assumed there will be no damage to the system by water, pressure, or simil
             \item Verification sensors are obstructed/damaged
         \end{enumerate}&
         \begin{enumerate}[label=(\alph*)]
-            \item Refer to H4-1
-            \item Refer to H4-2
+            \item Refer to H4-1a
+            \item Refer to H4-1b
         \end{enumerate}&
         &
         H4-2\\
@@ -253,19 +324,30 @@ It is assumed there will be no damage to the system by water, pressure, or simil
             \item Operator places hand in machine during operation
         \end{enumerate}&
         \begin{enumerate}[label=(\alph*)]
-            \item Moving parts will be covered and protected. Operators will complete safety training before operating the Pot-pulator
+            \item Moving parts will be covered and protected. Emergency cut off switch will be implemented to cut all power to Pot-pulator. Physical emergency instructions and labels will be placed on the device. Operators will complete safety training before operating the Pot-pulator
             \item Refer to H5-1a
         \end{enumerate}&
-        &
+        \begin{enumerate}[label=(\alph*)]
+            \item SR3, SR6, SR15
+            \item SR3, SR6, SR15
+        \end{enumerate}&
         H5-1\\
 
         &
         Person comes into contact with electronics of machine&
         Potential risk of serious injury or death&
         Operator makes accidental contact with electrical wiring or electronics of machine&
-        Electrical equipment and electronics will be covered and protected. Operators will complete electrical safety training before operating the Pot-pulator&
-        &
+        Electrical equipment and electronics will be covered and protected. Emergency cut off switch will be implemented to cut all power to Pot-pulator. Physical emergency instructions and labels will be placed on the device. Operators will complete electrical safety training before operating the Pot-pulator&
+        SR1, SR2, SR6, SR8, SR15&
         H5-2\\
+
+        &
+        Machine is subject to unexpected external force&
+        Potential risk of injury to operator, may damage machine components, pots, or trays, may interrupt machine operation&
+        Accidental bump from person/equipment passing by machine&
+        Pot-pulator base will be reinforced to ensure it is able to withstand a reasonable unexpected external force&
+        SR13&
+        H5-3\\
 
 
     \cline{2-7}
@@ -308,7 +390,7 @@ These requirements are related to the safety and security of the system which ar
     \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR7}:]
     System must be able to locate and identify failures within each independent subsystem. [NFR12]
     \item[SR\refstepcounter{srreqnum}\thesrreqnum \label{SR8}:]
-    SR8: System must follow electronic component safety requirements. [NFR25]
+    System must follow electronic component safety requirements. [NFR25]
     
   \end{itemize}
 
