@@ -225,7 +225,7 @@ How test will be performed:
         
   \item{TDST-01: \textbf{Tray Stack Detection}}
   
-  Control: Manual
+  Control: Static, Manual
             
   Initial State: No trays present in the stack. Trays present in the stack.
             
@@ -242,7 +242,7 @@ How test will be performed:
 \\
   \item{TDST-02: \textbf{Operation from Tray Stack Detection}}
   
-  Control: Manual
+  Control: Dynamic, Manual
             
   Initial State: Some amount of trays in the stack.
             
@@ -259,7 +259,7 @@ How test will be performed:
 
   \item{TDST-03: \textbf{Tray from Stack to Conveyor}}
   
-  Control: Manual
+  Control: Dynamic, Manual
             
   Initial State: There is a stack of trays beside the vacant conveyor with the subsystem in idle position.
             
@@ -276,7 +276,7 @@ How test will be performed:
 \\
   \item{TDST-04: \textbf{Verify Tray Status on Conveyor}}
   
-  Control: Manual
+  Control: Dynamic, Manual
             
   Initial State: Tray put on conveyor.
             
@@ -302,7 +302,7 @@ How test will be performed:
 \begin{enumerate}
   \item{VST-01: \textbf{Verify Correct Number of Pots in Tray}}
   
-  Control: Manual
+  Control: Dynamic, Manual
             
   Initial State: One tray filled with some pots placed on the conveyor.
             
@@ -319,7 +319,7 @@ How test will be performed:
 
   \item{VST-02: \textbf{Operation from Verification Status}}
   
-  Control: Manual
+  Control: Dynamic, Manual
 
   Initial State: Tray has completed counting the number of pots in the tray and deemed it success or fail.
 
@@ -387,8 +387,11 @@ How test will be performed:
 
 \subsection{Traceability Between Test Cases and Requirements}
 
-\wss{Provide a table that shows which test cases are supporting which
-  requirements.}
+\begin{tabular}{ |p{4cm}|p{8cm}|  }
+  \hline
+  \textbf{Test ID} & \textbf{Supporting Requirements}\\
+  \hline
+\end{tabular}
 
 \section{Unit Test Description}
 
