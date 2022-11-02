@@ -221,7 +221,75 @@ How test will be performed:
 
 \subsubsection{Tray Dispenser Subsystem Testing}
 
-...
+\begin{enumerate}
+        
+  \item{TDST-01: \textbf{Tray Stack Detection}}
+  
+  Control: Manual
+            
+  Initial State: No trays present in the designated storage for trays. Trays present in the stack.
+            
+  Input: Sensor reads the status of tray stack.
+            
+  Output: Sends a signal/bit to microprocessor that tells the system there are/aren't trays present.
+   
+  
+  Test Case Derivation: The observed signal/bit is the expected value. The subsystem does not operate when no trays are present.
+  
+  How test will be performed: All other sensors and subsystems will be switched off. 
+  All trays will be removed from the stack. The detection bit will be observed. 
+  Then trays will be placed in the stack, and the detection bit will be observed.
+\\
+  \item{TDST-02: \textbf{Operation from Tray Stack Detection}}
+  
+  Control: Manual
+            
+  Initial State: Some amount of trays in the stack.
+            
+  Input: Sensor reads the status of tray stack.
+            
+  Output: Subsystem operates or remains idle.
+  
+  Test Case Derivation: If no trays are present, the subsystem will not operate 
+  and remain ready in the idle state. Otherwise, operate normally.
+  
+  How test will be performed: All other sensors and subsystems will be switched off. 
+  Trays will be removed from the stack and operation will be observed. Trays will be 
+  put in the stack and operation will be observed.\\
+
+  \item{TDST-03: \textbf{Tray from Stack to Conveyor}}
+  
+  Control: Manual
+            
+  Initial State: There is a stack of trays beside the vacant conveyor with the subsystem in idle position.
+            
+  Input: Stack of trays
+            
+  Output: One tray from the stack is placed onto the end of the conveyor and returns to idle position.
+  
+  Test Case Derivation: There is a tray in the correct designated position.
+  The subsystem moves into the ready idle state to retrieve more trays.
+            
+  How test will be performed: All other sensors and subsystems will be switched off. 
+  The system will be manually activated to retrieve one tray from its stack.
+  The success or failure will be observed.
+\\
+  \item{TDST-04: \textbf{Verify Tray Status on Conveyor}}
+  
+  Control: Manual
+            
+  Initial State: Tray put of conveyor.
+            
+  Input: Sensor reads the status of tray on conveyor.
+            
+  Output: Subsystem continues operation or stops.
+  
+  Test Case Derivation: Subsystem continues operation (when successful) or stops (when tray is stuck/fails to move on conveyor).
+  
+  How test will be performed: Trays will be fed onto the conveyor correctly. Results will be observed.
+  then trays will be placed stuck on purpose. Results will be observed.
+  
+  \end{enumerate}
 
 \subsubsection{Pot Dispenser Subsystem Testing}
 
