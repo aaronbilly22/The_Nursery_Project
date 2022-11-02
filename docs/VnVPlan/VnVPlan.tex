@@ -315,7 +315,24 @@ How test will be performed:
             
   How test will be performed: All other sensors and subsystems will be switched off. 
   The subsystem will be manually activated to count the number of pots in the given tray as it moves on the conveyor.
-  The success or failure will be observed.
+  The success or failure will be observed.\\
+
+  \item{VST-02: \textbf{Operation from Verification Status}}
+  
+  Control: Manual
+
+  Initial State: Tray has completed counting the number of pots in the tray and deemed it success or fail.
+
+  Input: Status bit for success or fail of the pot verification step.
+
+  Output: Signal to tell the system to continue/stop operation based on status bit.
+
+  Test Case Derivation: The subsystem should signal the main processsor to turn off other subsystems
+  when there is a problem in verifying the number of pots (ie. $ actual \neq target $).
+
+  How test will be performed: All other sensors and subsystems will be switched off. 
+  The subsystem will be manually activated to count the number of pots in the given tray as it moves on the conveyor.
+  The success or failure will send a status bit to the main processor. The status bit will be observed.
 
 \end{enumerate}
 
