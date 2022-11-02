@@ -227,7 +227,7 @@ How test will be performed:
   
   Control: Manual
             
-  Initial State: No trays present in the designated storage for trays. Trays present in the stack.
+  Initial State: No trays present in the stack. Trays present in the stack.
             
   Input: Sensor reads the status of tray stack.
             
@@ -263,7 +263,7 @@ How test will be performed:
             
   Initial State: There is a stack of trays beside the vacant conveyor with the subsystem in idle position.
             
-  Input: Stack of trays
+  Input: Stack of trays.
             
   Output: One tray from the stack is placed onto the end of the conveyor and returns to idle position.
   
@@ -278,7 +278,7 @@ How test will be performed:
   
   Control: Manual
             
-  Initial State: Tray put of conveyor.
+  Initial State: Tray put on conveyor.
             
   Input: Sensor reads the status of tray on conveyor.
             
@@ -298,6 +298,26 @@ How test will be performed:
 
 
 \subsubsection{Verification Subsystem Testing}
+
+\begin{enumerate}
+  \item{VST-01: \textbf{Verify Correct Number of Pots in Tray}}
+  
+  Control: Manual
+            
+  Initial State: One tray filled with some pots placed on the conveyor.
+            
+  Input: Tray filled with a number of pots.
+            
+  Output: Returns a count of the number of pots in the tray.
+  
+  Test Case Derivation: The count read by the subsystem matches the actual number
+  of pots in the tray.
+            
+  How test will be performed: All other sensors and subsystems will be switched off. 
+  The subsystem will be manually activated to count the number of pots in the given tray as it moves on the conveyor.
+  The success or failure will be observed.
+
+\end{enumerate}
 
 \subsection{Tests for Nonfunctional Requirements}
 
