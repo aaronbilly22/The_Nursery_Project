@@ -294,6 +294,97 @@ How test will be performed:
 
 \subsubsection{Pot Dispenser Subsystem Testing}
 
+The tests outlined below will cover all functional requirements outlined in the SRS
+pertaining to the pot dropping subsystem. They will cover functional requirements involving
+the ability of the pot dispenser to place pots into trays, confirm the presence of a tray below the
+pot dispenser, and cease operation and notify an operator once pot storage is empty.\\
+
+\begin{enumerate}
+ 
+  \item{PDTest-01: \textbf{Placing a pot into an empty tray\\}}
+  
+  Control: Dynamic, Manual
+            
+  Initial State: Pot dispenser loaded with two pots
+            
+  Input: Simulated sensor input, two pot locations of tray directly below pot dispenser
+            
+  Output: Pot dispenser will dispense two pots into designated pot locations on tray
+  
+  Test Case Derivation: Pot dispenser will dispense pots into correctly positioned tray as it is prompted to
+            
+  How test will be performed: Tray will be manually placed directly below pot dispenser with pot locations 
+  directly below pot stack. Machine will be turned on. Once pots are dispensed, pot dispenser will 
+  queue next two pots and tray will be removed.
+
+  \item{PDTest-02: \textbf{Tray sensing (PDR2)}\\}
+  
+  Control: Dynamic, Manual
+            
+  Initial State: Mounted sensor with no object being sensed
+            
+  Input: Manual placement of trays in front of sensor
+            
+  Output: Sensor will output a signal when the presence of a tray is sensed
+  
+  Test Case Derivation: Sensor will recognize that a tray is beneath the pot dispenser
+            
+  How test will be performed: Tray will be manually placed directly in front of the mounted sensor. Signal 
+  output from sensor will be analyzed to determine sensor is aware of tray presence. Tray will then be 
+  moved forward and output from sensor will be analyzed to confirm sensor is aware that tray is moving. 
+  Tray will then be moved forward out of view of sensor and output from sensor will be analyzed to confirm 
+  snesor is aware that tray is no longer present.
+
+  \item{PDTest-03: \textbf{Ability to dispense 4" diameter pots (PDR 3)}\\}
+  
+  Control: Static, Manual
+
+  Initial State: Pot dispenser mechanism loaded with one pot
+
+  Input: Single pot
+
+  Output: Single pot
+
+  Test Case Derivation: Pot dispenser mechanism will dispense one 4" diameter pot
+
+  How test will be performed: All specifications of pot dispenser will ensure that a 4" diameter pot is able 
+  to be dispensed. Measurements and reviews will be conducted by another member of the group any time a change 
+  is made to the dispenser during design and build phases. During build phase, test will be conducted on both 
+  pot dispensers.
+
+  \item{PDTest-04: \textbf{Ability to store/dispense multiple pots (PDR4)}\\}
+  
+  Control: Dynamic, Manual
+
+  Initial State: Pot dispenser loaded with pots
+
+  Input: Ten pots, simulated sensor input
+
+  Output: Pot dispenser will dispense two pots, reload with two pots from stack, dispense two pots, etc. until
+  pot storage is empty
+
+  Test Case Derivation: Pot dispenser will complete 5 cycles of dispensing, storing and dispensing 10 pots in total
+
+  How test will be performed: Pot dispenser will be loaded with 10 pots, 5 per side. Sensor input will be simulated
+  to indicate presence of tray. Pot dispenser will complete 5 cycles of dispensing, at which point pot storage will
+  be spent.
+  
+  \item{PDTest-05: \textbf{Pot storage sensing (PDR5, PDR6)}\\}
+  
+  Control: Dynamic, Manual
+
+  Initial State: Pot dispenser with no pots in storage
+
+  Input: N/A
+
+  Output: Pot storage sensor will output a signal when no trays are detected in pot storage
+
+  Test Case Derivation: Sensor will recognize that no pots are sensed in pot storage
+
+  How test will be performed: All pots will be removed from pot storage. Signal output from sensor will be
+  analyzed to confirm sensor is aware that pot storage is empty.
+
+\end{enumerate}
 
 \subsubsection{Conveyor Subsystem Testing}
 
