@@ -3,6 +3,7 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{longtable}
 \hypersetup{
     colorlinks,
     citecolor=blue,
@@ -386,12 +387,31 @@ How test will be performed:
 ...
 
 \subsection{Traceability Between Test Cases and Requirements}
+The following table outlines all of the system tests and how they relate to the
+relevent requirements. The requirements can be referenced in the SRS document.\\
 
-\begin{tabular}{ |p{4cm}|p{8cm}|  }
+  
+\begin{longtable}{ |p{4cm}|p{8cm}|  }
+  \caption{Corresponding Test IDs and Requirements}
+  \label{tab:Table1}\\
+  
   \hline
   \textbf{Test ID} & \textbf{Supporting Requirements}\\
   \hline
-\end{tabular}
+  TDST-01 &  TDR3, TDR5\\
+  \hline
+  TDST-02 &  TDR4, TDR5 \\
+  \hline
+  TDST-03 &  TDR2 \\
+  \hline
+  TDST-04 &  TDR2 \\
+  \hline
+  VST-01 &  VR1 \\
+  \hline
+  VST-02&  VR2 \\
+  \hline
+\end{longtable}
+
 
 \section{Unit Test Description}
 
