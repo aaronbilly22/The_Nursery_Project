@@ -3,6 +3,7 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{longtable}
 \hypersetup{
     colorlinks,
     citecolor=blue,
@@ -17,22 +18,25 @@
 
 \begin{document}
 
-\title{Project Title: System Verification and Validation Plan for \progname{}} 
-\author{\authname}
-\date{\today}
-	
+\title{Project Title: System Verification and Validation Plan for The Nursery Project} 
+\author{Aaron Billones, billonea\\Gillian Ford, fordg\\Juan Moncada, moncadaj\\Steven Ramundi, ramundis}
+
+\date{November 2, 2022}
+
+
 \maketitle
+\thispagestyle{empty}
+
+
 
 \pagenumbering{roman}
 
-\section{Revision History}
-
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
-\midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
-\bottomrule
+\begin{tabularx}{\textwidth}{p{3cm}p{4cm}X}
+    \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+    \midrule
+    2022-11-02 & Juan Moncada,& Initial release\\&Aaron Billones,\\&Steven Ramundi,\\&Gillian Ford \\
+    
+    \bottomrule
 \end{tabularx}
 
 \newpage
@@ -171,12 +175,10 @@ inspection?}
 	
 \subsection{Tests for Functional Requirements}
 
-\wss{Subsets of the tests may be in related, so this section is divided into
-  different areas.  If there are no identifiable subsets for the tests, this
-  level of document structure can be removed.}
+The following section includes system test cases for functional requirements.
+The tests are designed in such a way to ensure that all the functional requirements are met.
+For reference of the functional requirements, please review the SRS document.
 
-\wss{Include a blurb here to explain why the subsections below
-  cover the requirements.  References to the SRS would be good here.}
 
 \subsubsection{Pot-pulator Complete System Testing}
 
@@ -533,12 +535,31 @@ How test will be performed:
 ...
 
 \subsection{Traceability Between Test Cases and Requirements}
+The following table outlines all of the system tests and how they relate to the
+relevent requirements. The requirements can be referenced in the SRS document.\\
 
-\begin{tabular}{ |p{4cm}|p{8cm}|  }
+  
+\begin{longtable}{ |p{4cm}|p{8cm}|  }
+  \caption{Corresponding Test IDs and Requirements}
+  \label{tab:Table1}\\
+  
   \hline
   \textbf{Test ID} & \textbf{Supporting Requirements}\\
   \hline
-\end{tabular}
+  TDST-01 &  TDR3, TDR5\\
+  \hline
+  TDST-02 &  TDR4, TDR5 \\
+  \hline
+  TDST-03 &  TDR2 \\
+  \hline
+  TDST-04 &  TDR2 \\
+  \hline
+  VST-01 &  VR1 \\
+  \hline
+  VST-02&  VR2 \\
+  \hline
+\end{longtable}
+
 
 \section{Unit Test Description}
 
