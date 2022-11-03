@@ -50,9 +50,8 @@
 
 \section{Symbols, Abbreviations and Acronyms}
 
-\renewcommand{\arraystretch}{1.2}
-\begin{table}[ht]
-\begin{tabular}{l l} 
+% \renewcommand{\arraystretch}{1.2}
+\begin{longtable}{ p{4cm}p{8cm}  }
   \toprule		
   \textbf{symbol} & \textbf{description}\\
   \midrule 
@@ -62,6 +61,7 @@
   TDR & Tray Dispensing Functional Requirement\\
   VR & Verification Functional Requirement\\
   SRS & Software Requirements Specification\\
+  PCST & Pot-pulator Complete System Testing\\
   TDST & Tray Dispenser Subsystem Test\\
   PDST & Pot Dispenser Subsystem Test\\
   CST & Conveyor Subsystem Test\\
@@ -75,12 +75,14 @@
   SRT & Speed Requirements Test\\
   ART & Accessibility Requirements Test\\
   LRT & Learning Requirements Test\\
+  MIS & Management Information Systems\\
+ MG & Module Guide\\
 
   \bottomrule
-\end{tabular}\\
+\\
 \caption{Acronyms}
 \label{tab:title}
-\end{table}
+\end{longtable}
 
 
 
@@ -88,18 +90,18 @@
 
 \pagenumbering{arabic}
 
-This document is the Verification \& Validation Plan of the Pot-Pulator. This machine will be built for Sheridan Nurseries, filling trays with pots, preparing them to be populated with soil and seeds, to reduce the manual labour of the workers at the farm. The Verification \& Validation Plan will consider the testing of each part of the Pot-Pulator, including the respective tray and pot droppers, the sensor verification section, and the conveyor belt. 
-
 \section{General Information}
+
+This document is the Verification \& Validation Plan of the Pot-pulator. This machine will be built for Sheridan Nurseries, filling trays with pots, preparing them to be populated with soil and seeds, to reduce the manual labour of the workers at the farm. The Verification \& Validation Plan will consider the testing of each part of the Pot-pulator, including the respective tray and pot droppers, the sensor verification section, and the conveyor belt. 
 
 \subsection{Summary}
 The testing of the software in this report will be with C++ and Python. These will be used to perform specific tasks based on groups of related written statements. Testing with these types of software will involve specific testing involving multiple functions. 
 
 \subsection{Objectives}
-The main objective of this report is to build confidence in the software used for the Pot-Pulator. This is preparation for any errors in testing, so there is an opportunity to come up with solutions. When every possible error is worked through in advance, it increases the likelihood of the project’s success. 
+The main objective of this report is to build confidence in the software used for the Pot-pulator. This is preparation for any errors in testing, so there is an opportunity to come up with solutions. When every possible error is worked through in advance, it increases the likelihood of the project’s success. 
 
 \subsection{Relevant Documentation}
-Reports referenced or corresponding to this plan include the Pot-Pulator’s Software Requirements Specification (SRS), Development Plan, Management Information Systems (MIS) and Module Guide (MG). 
+Reports referenced or corresponding to this plan include the Pot-pulator’s SRS, Development Plan, MIS and MG. 
 \section{Plan}
 The following section will outline the plan for system testing. The testing 
 will be divided into 5 categories; the 4 separate subsystems that make up the system and the system.
@@ -174,9 +176,8 @@ and non-functional requirement. The following is the SRS validation checklist.
 
 \subsection{Design Verification Plan}
 Each of the subsystem will be tested individually. The following section will outline the individual testing
- for each individual testing subsystem. The following are the design validation checklists for the 
-
- further development of the project will warrant the addition to the following checklist. Checklist will be updated as new items are brought up.
+for each individual testing subsystem. The following are the design validation checklists for the 
+further development of the project will warrant the addition to the following checklist. Checklist will be updated as new items are brought up.
 
  \subsubsection{Conveyor}
  \begin{center}
@@ -260,9 +261,6 @@ this was eluded to in the development plan for this project.
 The following section includes system test cases for functional requirements.
 The tests are designed in such a way to ensure that all the functional requirements are met.
 For reference of the functional requirements, please review the SRS document.
-
-
-\end{enumerate}
 
 \begin{enumerate}
 
@@ -859,13 +857,13 @@ relevent requirements. The requirements can be referenced in the SRS document.\\
   \hline
   PCST-01 &  TDR1 \\
   \hline
-  PCST-02 &  TDR5 & TDR6 \\
+  PCST-02 &  TDR5, TDR6 \\
   \hline
   PCST-03 &  TDR7 \\
   \hline
   PCST-04 &  PDR1 \\
   \hline
-  PCST-05 &  PDR6 & PDR7 \\
+  PCST-05 &  PDR6, PDR7 \\
   \hline
   PCST-06 &  PDR8 \\
   \hline
