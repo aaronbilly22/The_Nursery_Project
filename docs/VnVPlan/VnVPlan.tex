@@ -158,13 +158,14 @@ The verification of system will take place alongside the end user. Sheridan Nurs
  scheduled to have an early look at the unfinished system so that all functional and non-functional 
  requirements may be looked over and made sure to be fulfilled. This process will also allow for the 
  foundations of new requirements that could be added before the final build of the system. There will 
- also be multiple review sessions including by group members and peers.\\
+ also be multiple review sessions including by group members and peers. Peer review setions will be
+ to happen after every milestone has been reached\\
 
 The review will go over the following checklist to make sure that the system is meeting all functional 
 and non-functional requirement. The following is the SRS validation checklist.
 
 \begin{center}
-  \begin{tabular}{ |l|l| } 
+  \begin{tabular}{ |m{10cm}|m{3cm}| } 
     \hline
     \textbf{Requirement Validate} & \textbf{Pass or fail } \\ 
     \hline
@@ -179,19 +180,15 @@ and non-functional requirement. The following is the SRS validation checklist.
 \end{center}
 
 
-\wss{List any approaches you intend to use for SRS verification.  This may include
-  ad hoc feedback from reviewers, like your classmates, or you may plan for 
-  something more rigorous/systematic.}
-
-\wss{Maybe create an SRS checklist?}
-
 \subsection{Design Verification Plan}
 Each of the subsystem will be tested individually. The following section will outline the individual testing
  for each individual testing subsystem. The following are the design validation checklists for the 
 
+ further development of the project will warrant the addition to the following checklist. Checklist will be updated as new items are brought up.
+
  \subsubsection{Conveyor}
  \begin{center}
-  \begin{tabular}{ |m{13cm}|m{3.2cm}| } 
+  \begin{tabular}{ |m{10cm}|m{3cm}| } 
     \hline
     \textbf{Requirement Validate} & \textbf{Pass or fail } \\ 
     \hline
@@ -203,7 +200,7 @@ Each of the subsystem will be tested individually. The following section will ou
 
 \subsubsection{Tray Dispenser}
 \begin{center}
- \begin{tabular}{ |m{13cm}|m{3.2cm}| } 
+ \begin{tabular}{ |m{10cm}|m{3.2cm}| } 
    \hline
    \textbf{Requirement Validate} & \textbf{Pass or fail } \\ 
    \hline
@@ -215,34 +212,29 @@ Each of the subsystem will be tested individually. The following section will ou
 
 \subsubsection{Pot Dispenser}
 \begin{center}
- \begin{tabular}{ |m{13cm}|m{3.2cm}| } 
+ \begin{tabular}{ |m{10cm}|m{3cm}| } 
    \hline
    \textbf{Requirement Validate} & \textbf{Pass or fail } \\ 
    \hline
    pot dispenser runs smoothly and is not translating any unwanted motion into the system. & \\
-
+  
    \hline
  \end{tabular}
 \end{center}
 
 \subsubsection{Verification}
 \begin{center}
- \begin{tabular}{ |m{13cm}|m{3.2cm}| } 
+ \begin{tabular}{ |m{10cm}|m{3cm}| } 
    \hline
    \textbf{Requirement Validate} & \textbf{Pass or fail } \\ 
    \hline
-    & \\
+    Verification is able to display distinct subsystem failures& \\
+    verification operates consistently and is able to identify initiation and operation failures distinctly & \\
 
    \hline
  \end{tabular}
 \end{center}
 
-
-\wss{Plans for design verification}
-
-\wss{The review will include reviews by your classmates}
-
-\wss{Create a checklists?}
 
 \subsection{Verification and Validation Plan Verification Plan}
 As the project progresses there will be the requirement to add, remove or alter verification and 
@@ -251,37 +243,23 @@ when major verification and validation milestones are hit, they will be accompan
 review of the verification and validation plan. This review will trigger any updates that will
 need to be put through.
 
-\wss{The verification and validation plan is an artifact that should also be verified.}
-
-\wss{The review will include reviews by your classmates}
-
-\wss{Create a checklists?}
-
 \subsection{Implementation Verification Plan}
+Implementation verification will take place through code walkthroughs. these will take place between
+ members of the same subsystem focus. When there is a code to be uploaded and implemented into the system,
+  the member which created the code will go through a in depth walk through with the other member working
+   on the same subsystem. This is done for two main reasons. The first, all members of the same subsystem 
+   focus will have in depth knowledge of all of the code that that subsystem has implemented into the system.
+    Second, the code will be checked by a member who is of equal knowledge of the subsystem, its 
+    characteristics and requirements thus makeing inspection of the code more fruitful.
 
-\wss{You should at least point to the tests listed in this document and the unit
-  testing plan.}
-
-\wss{In this section you would also give any details of any plans for static verification of
-  the implementation.  Potential techniques include code walkthroughs, code
-  inspection, static analyzers, etc.}
 
 \subsection{Automated Testing and Verification Tools}
 
-\wss{What tools are you using for automated testing.  Likely a unit testing
-  framework and maybe a profiling tool, like ValGrind.  Other possible tools
-  include a static analyzer, make, continuous integration tools, test coverage
-  tools, etc.  Explain your plans for summarizing code coverage metrics.
-  Linters are another important class of tools.  For the programming language
-  you select, you should look at the available linters.  There may also be tools
-  that verify that coding standards have been respected, like flake9 for
-  Python.}
+Automated testing will take plae through the use of a linter, most specifically the Python
+PEP 8 linter per the development plan. The code will be ran through the pep 8 linter before
+any milestone to emphasize the use of the most condensed and verified code before milestones.
+this was eluded to in the development plan for this project.
 
-\wss{If you have already done this in the development plan, you can point to
-that document.}
-
-\wss{The details of this section will likely evolve as you get closer to the
-  implementation.}
 
 \section{System Test Description}
 	
@@ -294,10 +272,6 @@ For reference of the functional requirements, please review the SRS document.
 
 \subsubsection{Pot-pulator Complete System Testing}
 
-\wss{It would be nice to have a blurb here to explain why the subsections below
-  cover the requirements.  References to the SRS would be good here.  If a section
-  covers tests for input constraints, you should reference the data constraints
-  table in the SRS.}
 		
 \paragraph{Title for Test}
 
@@ -706,15 +680,18 @@ The information in this section will be used to evaluate the team members on the
 graduate attribute of Lifelong Learning.  Please answer the following questions:
 
 \begin{enumerate}
-  \item What knowledge and skills will the team collectively need to acquire to
-  successfully complete the verification and validation of your project?
-  Examples of possible knowledge and skills include dynamic testing knowledge,
-  static testing knowledge, specific tool usage etc.  You should look to
-  identify at least one item for each team member.
-  \item For each of the knowledge areas and skills identified in the previous
-  question, what are at least two approaches to acquiring the knowledge or
-  mastering the skill?  Of the identified approaches, which will each team
-  member pursue, and why did they make this choice?
+  \item Juan: I will acquire skills related to testing of hardware ware and software through the learning
+   how to use a linter. This is not something that I have been exposed to before and find it interesting 
+   that it is something that exist. I also believe that there will be some development in critical thinking 
+   as when testing it is impossible to think of all the possible scenarios the system can go through thus 
+   a good set of critical thinking will be used in order to find all of the possible test cases.
+
+  \item Juan: I believe critical thinking will be developed through trial and error as well in the review
+   with peers as they will have different idea that will bring new insight to test cases that i might not 
+   have though of before. the linter skill will be developed through trial and error and some over the shoulder
+    learning from those in my group that have dealt with this before.
+
+ 
 \end{enumerate}
 
 \end{document}
