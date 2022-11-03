@@ -300,7 +300,7 @@ pot dispenser, and cease operation and notify an operator once pot storage is em
 
 \begin{enumerate}
  
-  \item{PDTest-01: \textbf{Placing a pot into an empty tray\\}}
+  \item{PDST-01: \textbf{Pot from Stack to Tray\\}}
   
   Control: Dynamic, Manual
             
@@ -316,7 +316,7 @@ pot dispenser, and cease operation and notify an operator once pot storage is em
   directly below pot stack. Machine will be turned on. Once pots are dispensed, pot dispenser will 
   queue next two pots and tray will be removed.
 
-  \item{PDTest-02: \textbf{Tray sensing (PDR2)}\\}
+  \item{PDST-02: \textbf{Tray Sensing (PDR2)}\\}
   
   Control: Dynamic, Manual
             
@@ -334,7 +334,7 @@ pot dispenser, and cease operation and notify an operator once pot storage is em
   Tray will then be moved forward out of view of sensor and output from sensor will be analyzed to confirm 
   snesor is aware that tray is no longer present.
 
-  \item{PDTest-03: \textbf{Ability to dispense 4" diameter pots (PDR 3)}\\}
+  \item{PDST-03: \textbf{Ability to Dispense 4" Diameter Pots (PDR 3)}\\}
   
   Control: Static, Manual
 
@@ -351,7 +351,7 @@ pot dispenser, and cease operation and notify an operator once pot storage is em
   is made to the dispenser during design and build phases. During build phase, test will be conducted on both 
   pot dispensers.
 
-  \item{PDTest-04: \textbf{Ability to store/dispense multiple pots (PDR4)}\\}
+  \item{PDST-04: \textbf{Ability to Store/Sispense Multiple Pots (PDR4)}\\}
   
   Control: Dynamic, Manual
 
@@ -368,7 +368,7 @@ pot dispenser, and cease operation and notify an operator once pot storage is em
   to indicate presence of tray. Pot dispenser will complete 5 cycles of dispensing, at which point pot storage will
   be spent.
   
-  \item{PDTest-05: \textbf{Pot storage sensing (PDR5, PDR6)}\\}
+  \item{PDST-05: \textbf{Pot Storage Sensing (PDR5, PDR6)}\\}
   
   Control: Dynamic, Manual
 
@@ -387,6 +387,62 @@ pot dispenser, and cease operation and notify an operator once pot storage is em
 
 \subsubsection{Conveyor Subsystem Testing}
 
+\begin{enumerate}
+\item{CST-01: \textbf{Conveyor Ability to Move Trays (CR1)}\\}
+
+Control: Dynamic, Manual
+
+Initial State: Conveyor with tray placed at start
+
+Input: Simulated inputs indicating conveyor can start
+
+Output: Constant speed of conveyor motor and belt
+
+Test Case Derivation: Conveyor will recognize tray is present on belt and able to move forward
+
+How test will be performed: A single tray will be placed at the start point on the conveyor belt. The conveyor 
+will receive signals indicating that there are no issues with any other subsystems and the tray can be moved 
+forward. Behaviour of conveyor will be observed to confirm conveyor has moved tray from start to end with no 
+stopping. Test will be interrupted if tray is unable to move forward due to physical interferance or if conveyor stops.
+
+\item{CST-02: \textbf{Conveyor Ability to Stop (CR2)}\\}
+
+Control: Dynamic, Manual
+
+Initial State: Conveyor moving tray along belt
+
+Input: Simulated signals from pot dispenser indicating tray is beneath pot dispenser
+
+Output: Conveyor motor and belt come to a stop
+
+Test Case Derivation: Conveyor will receive signal from pot dispenser, indicating the tray is beneath the pot
+dispenser, and stop movement of tray
+
+How test will be performed: A single tray will be placed on the conveyor while conveyor is moving. A signal will be 
+sent to the conveyor, simulating a signal from the pot dispenser sensor which indicates that the tray is beneath 
+the pot dispenser. Behaviour of conveyor will be observed o confirm conveyor brings tray to a stop when signal is 
+recognized.
+
+\item{CST-03: \textbf{Conveyor Belt Friction (CR3)}\\}
+
+Control: Static, Manual
+
+Initial State: Conveyor belt
+
+Input: Mass of tray, tilt angle of conveyor belt
+
+Output: Maximum acceleration of conveyor belt
+
+Test Case Derivation: Maximum acceleration based on friction between conveyor belt and tray will be calculated 
+and set acceleration/decceleration values will be determined
+
+How test will be performed: 6 trays will be weighed and the mean mass will be calculated. Each tray will be placed on 
+the conveyor belt one by one. For each tray, the conveyor belt will be tilted until the tray begins to slip, at which
+point the angle at which the belt is tilted will be recorded. The mean of these 6 angles will be calculated. These values
+will then be used to approximately determine the maximum acceleration the trays can undergo without slipping, and the
+acceleration of the conveyor motor will be set to not exceed 70\% of this value.
+
+\end{enumerate}
 
 \subsubsection{Verification Subsystem Testing}
 
