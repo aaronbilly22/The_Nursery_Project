@@ -58,14 +58,23 @@
   \toprule		
   \textbf{symbol} & \textbf{description}\\
   \midrule 
-  T & Test\\
+  CR & Conveyor Functional Requirement\\
+  NFR & Non-Functional Requirement\\
+  PDR & Pot Dispensing Functional Requirement\\
+  PHC & Physical Constraint\\
+  SWC & Software Constraint\\
+  TDR & Tray Dispensing Functional Requirement\\
+  VR & Verification Functional Requirement\\
+  SRS & Software Requirements Specification\\
+  TDST & Tray Dispenser Subsystem Test\\
+  PDST & Pot Dispenser Subsystem Test\\
+  CST & Conveyor Subsystem Test\\
+  VST & Verification Subsystem Test\\
+
   \bottomrule
 \end{tabular}\\
 
-\wss{symbols, abbreviations or acronyms --- you can simply reference the SRS
-  \citep{SRS} tables, if appropriate}
 
-\wss{Remove this section if it isn't needed}
 
 \newpage
 
@@ -302,7 +311,7 @@ pot dispenser, and cease operation and notify an operator once pot storage is em
 
 \begin{enumerate}
  
-  \item{PDST-01: \textbf{Pot from Stack to Tray\\}}
+  \item{PDST-01: \textbf{Pot from Stack to Tray}}
   
   Control: Dynamic, Manual
             
@@ -316,9 +325,9 @@ pot dispenser, and cease operation and notify an operator once pot storage is em
             
   How test will be performed: Tray will be manually placed directly below pot dispenser with pot locations 
   directly below pot stack. Machine will be turned on. Once pots are dispensed, pot dispenser will 
-  queue next two pots and tray will be removed.
+  queue next two pots and tray will be removed.\\
 
-  \item{PDST-02: \textbf{Tray Sensing (PDR2)}\\}
+  \item{PDST-02: \textbf{Tray Sensing (PDR2)}}
   
   Control: Dynamic, Manual
             
@@ -334,9 +343,9 @@ pot dispenser, and cease operation and notify an operator once pot storage is em
   output from sensor will be analyzed to determine sensor is aware of tray presence. Tray will then be 
   moved forward and output from sensor will be analyzed to confirm sensor is aware that tray is moving. 
   Tray will then be moved forward out of view of sensor and output from sensor will be analyzed to confirm 
-  snesor is aware that tray is no longer present.
+  snesor is aware that tray is no longer present.\\
 
-  \item{PDST-03: \textbf{Ability to Dispense 4" Diameter Pots (PDR 3)}\\}
+  \item{PDST-03: \textbf{Ability to Dispense 4" Diameter Pots (PDR 3)}}
   
   Control: Static, Manual
 
@@ -351,9 +360,9 @@ pot dispenser, and cease operation and notify an operator once pot storage is em
   How test will be performed: All specifications of pot dispenser will ensure that a 4" diameter pot is able 
   to be dispensed. Measurements and reviews will be conducted by another member of the group any time a change 
   is made to the dispenser during design and build phases. During build phase, test will be conducted on both 
-  pot dispensers.
+  pot dispensers.\\
 
-  \item{PDST-04: \textbf{Ability to Store/Sispense Multiple Pots (PDR4)}\\}
+  \item{PDST-04: \textbf{Ability to Store/Sispense Multiple Pots (PDR4)}}
   
   Control: Dynamic, Manual
 
@@ -368,9 +377,9 @@ pot dispenser, and cease operation and notify an operator once pot storage is em
 
   How test will be performed: Pot dispenser will be loaded with 10 pots, 5 per side. Sensor input will be simulated
   to indicate presence of tray. Pot dispenser will complete 5 cycles of dispensing, at which point pot storage will
-  be spent.
+  be spent.\\
   
-  \item{PDST-05: \textbf{Pot Storage Sensing (PDR5, PDR6)}\\}
+  \item{PDST-05: \textbf{Pot Storage Sensing (PDR5, PDR6)}}
   
   Control: Dynamic, Manual
 
@@ -383,14 +392,14 @@ pot dispenser, and cease operation and notify an operator once pot storage is em
   Test Case Derivation: Sensor will recognize that no pots are sensed in pot storage
 
   How test will be performed: All pots will be removed from pot storage. Signal output from sensor will be
-  analyzed to confirm sensor is aware that pot storage is empty.
+  analyzed to confirm sensor is aware that pot storage is empty.\\
 
 \end{enumerate}
 
 \subsubsection{Conveyor Subsystem Testing}
 
 \begin{enumerate}
-\item{CST-01: \textbf{Conveyor Ability to Move Trays (CR1)}\\}
+\item{CST-01: \textbf{Conveyor Ability to Move Trays (CR1)}}
 
 Control: Dynamic, Manual
 
@@ -406,8 +415,8 @@ How test will be performed: A single tray will be placed at the start point on t
 will receive signals indicating that there are no issues with any other subsystems and the tray can be moved 
 forward. Behaviour of conveyor will be observed to confirm conveyor has moved tray from start to end with no 
 stopping. Test will be interrupted if tray is unable to move forward due to physical interferance or if conveyor stops.
-
-\item{CST-02: \textbf{Conveyor Ability to Stop (CR2)}\\}
+\\
+\item{CST-02: \textbf{Conveyor Ability to Stop (CR2)}}
 
 Control: Dynamic, Manual
 
@@ -424,8 +433,8 @@ How test will be performed: A single tray will be placed on the conveyor while c
 sent to the conveyor, simulating a signal from the pot dispenser sensor which indicates that the tray is beneath 
 the pot dispenser. Behaviour of conveyor will be observed o confirm conveyor brings tray to a stop when signal is 
 recognized.
-
-\item{CST-03: \textbf{Conveyor Belt Friction (CR3)}\\}
+\\
+\item{CST-03: \textbf{Conveyor Belt Friction (CR3)}}
 
 Control: Static, Manual
 
@@ -443,7 +452,7 @@ the conveyor belt one by one. For each tray, the conveyor belt will be tilted un
 point the angle at which the belt is tilted will be recorded. The mean of these 6 angles will be calculated. These values
 will then be used to approximately determine the maximum acceleration the trays can undergo without slipping, and the
 acceleration of the conveyor motor will be set to not exceed 70\% of this value.
-
+\\
 \end{enumerate}
 
 \subsubsection{Verification Subsystem Testing}
