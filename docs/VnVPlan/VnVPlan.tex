@@ -560,7 +560,7 @@ Type: Static, Manual
 
 Inputs: Trigger signal.
 
-Output: A corresponding light, sound, or screen display.
+Outputs: A corresponding light, sound, or screen display.
 
 How test will be performed: LEDs, speakers, and LCD screens will be placed in the
 system and sent a signal to activate in a specified way.
@@ -569,38 +569,49 @@ system and sent a signal to activate in a specified way.
 
 \subsubsection{Speed Requirements Testing}
 \begin{enumerate}
-  \item{SRT-01: \textbf{Audio and Visual Indicators}}
+  \item{SRT-01: \textbf{Acceleration Displacement of Trays}}
   
 Type: Dynamic, Manual
 
-Inputs: Trigger signal.
+Initial State: Multiple trays (2-3) on the conveyor.
 
-Output: A corresponding light, sound, or screen display.
-
-How test will be performed: LEDs, speakers, and LCD screens will be placed in the
-system and sent a signal to activate in a specified way.
+How test will be performed: The conveyor speed and acceleration will be modified while 
+trays are on it. The trays should not show perpendicular axis movement along the conveyor
+while in higher than normal speeds.
 \\
-\item{SRT-02: \textbf{Audio and Visual Indicators}}
+\item{SRT-02: \textbf{Pot Dispensing Rate}}
   
-Type: Static
+Type: Dynamic, Automatic
 
-Inputs: Trigger signal.
+Initial State: Subsystem in idle state ready to dispense pots.
 
-Output: A corresponding light, sound, or screen display.
+Input: Stack of pots.
 
-How test will be performed: LEDs, speakers, and LCD screens will be placed in the
-system and sent a signal to activate in a specified way.
+Output: Pots dispensing.
+
+Test Case Derivation: The preceding system for filling pots with soil operates at a certain rate which
+should be met by the Pot-purlator.
+
+How test will be performed: Pots will be placed in the stack. When turned on, the pots will dispense
+at the desired rate (10 pots / 30 sec) and timed using a stopwatch. If the dispenser can meet
+these requirements then it passes.
 \\
-\item{SRT-02: \textbf{Audio and Visual Indicators}}
+\item{SRT-02: \textbf{Tray Dispensing Rate}}
   
-Type: Static
+Type: Dynamic, Automatic
 
-Inputs: Trigger signal.
+Initial State: Subsystem in idle state ready to dispense trays.
 
-Output: A corresponding light, sound, or screen display.
+Input: Stack of Trays.
 
-How test will be performed: LEDs, speakers, and LCD screens will be placed in the
-system and sent a signal to activate in a specified way.
+Output: Trays dispensing.
+
+Test Case Derivation: The preceding system for filling pots with soil operates at a certain rate which
+should be met by the Pot-purlator.
+
+How test will be performed: Trays will be placed in the stack. When turned on, the trays will dispense
+at the desired rate (1 tray / 30 sec) and timed using a stopwatch. If the dispenser can meet
+these requirements then it passes.
 
 \end{enumerate}
 
