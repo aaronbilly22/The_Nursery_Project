@@ -72,6 +72,11 @@
   PT & Precision Test\\
   RT & Reliability Test\\
   EPET & Expected Physical Environment Test\\
+  LED & Light Emitting Diode\\
+  LCD & Liquid-Crystal Display\\
+  SRT & Speed Requirements Test\\
+  ART & Accessibility Requirements Test\\
+  LRT & Learning Requirements Test\\
 
   \bottomrule
 \end{tabular}\\
@@ -308,7 +313,7 @@ How test will be performed:
 
 \begin{enumerate}
  
-  \item{PDST-01: \textbf{Pot from Stack to Tray}\\}
+  \item{PDST-01: \textbf{Pot from Stack to Tray}}
   
   Control: Dynamic, Manual
             
@@ -324,7 +329,7 @@ How test will be performed:
   directly below pot stack. Machine will be turned on. Once pots are dispensed, pot dispenser will 
   queue next two pots and tray will be removed.\\
 
-  \item{PDST-02: \textbf{Tray Sensing}\\}
+  \item{PDST-02: \textbf{Tray Sensing}}
   
   Control: Dynamic, Manual
             
@@ -342,7 +347,7 @@ How test will be performed:
   Tray will then be moved forward out of view of sensor and output from sensor will be analyzed to confirm 
   snesor is aware that tray is no longer present.\\
 
-  \item{PDST-03: \textbf{Ability to Dispense 4" Diameter Pots}\\}
+  \item{PDST-03: \textbf{Ability to Dispense 4" Diameter Pots}}
   
   Control: Static, Manual
 
@@ -351,7 +356,7 @@ How test will be performed:
   is made to the dispenser during design and build phases. During build phase, test will be conducted on both 
   pot dispensers.\\
 
-  \item{PDST-04: \textbf{Ability to Store/Sispense Multiple Pots}\\}
+  \item{PDST-04: \textbf{Ability to Store/Sispense Multiple Pots}}
   
   Control: Dynamic, Manual
 
@@ -388,7 +393,7 @@ How test will be performed:
 \subsubsection{Conveyor Subsystem Testing}
 
 \begin{enumerate}
-\item{CST-01: \textbf{Conveyor Ability to Move Trays}\\}
+\item{CST-01: \textbf{Conveyor Ability to Move Trays}}
 
 Control: Dynamic, Manual
 
@@ -404,8 +409,8 @@ How test will be performed: A single tray will be placed at the start point on t
 will receive signals indicating that there are no issues with any other subsystems and the tray can be moved 
 forward. Behaviour of conveyor will be observed to confirm conveyor has moved tray from start to end with no 
 stopping. Test will be interrupted if tray is unable to move forward due to physical interferance or if conveyor stops.
-
-\item{CST-02: \textbf{Conveyor Ability to Stop}\\}
+\\
+\item{CST-02: \textbf{Conveyor Ability to Stop}}
 
 Control: Dynamic, Manual
 
@@ -421,9 +426,9 @@ dispenser, and stop movement of tray
 How test will be performed: A single tray will be placed on the conveyor while conveyor is moving. A signal will be 
 sent to the conveyor, simulating a signal from the pot dispenser sensor which indicates that the tray is beneath 
 the pot dispenser. Behaviour of conveyor will be observed o confirm conveyor brings tray to a stop when signal is 
-recognized.
+recognized.\\
 
-\item{CST-03: \textbf{Conveyor Belt Friction}\\}
+\item{CST-03: \textbf{Conveyor Belt Friction}}
 
 Control: Static, Manual
 
@@ -550,6 +555,7 @@ format for the tests given below.}
   How test will be performed: Verification will be manually disconnected from the system during operation. System response 
   will be analyzed to confirm that a failure in the verification is recognized.
 
+
 \end{enumerate}
 
 \subsubsection{Precision Testing}
@@ -578,6 +584,24 @@ format for the tests given below.}
 
 \begin{enumerate}
 
+\item{test-id1\\}
+
+Type: Functional, Dynamic, Manual, Static etc.
+					
+Initial State: 
+					
+Input/Condition: 
+					
+Output/Result: 
+					
+How test will be performed: 
+					
+\item{test-id2\\}
+
+\subsubsection{Reliability Testing}
+
+\begin{enumerate}
+
   \item{RT-01: \textbf{Function Under Vibration}\\}
   
   Type: Static, Manual
@@ -587,27 +611,139 @@ format for the tests given below.}
   motors, and pot dispenser motors. Behaviour will be observed to ensure machine is able to function under long-term exposure to small amplitude 
   vibration.
 
+How test will be performed: LEDs, speakers, and LCD screens will be placed in the
+system and sent a signal to activate in a specified way.
 \end{enumerate}
 
-\subsubsection{Expected Physical Environment Testing}
 
+\subsubsection{Speed Requirements Testing}
 \begin{enumerate}
-
-  \item{EPET-01: \textbf{Function Under Adverse Environmental Conditions}}
+  \item{SRT-01: \textbf{Acceleration Displacement of Trays}}
   
-  Type: Static, Manual
+Type: Dynamic, Manual
 
-  How test will be performed: Pot-pulator will run continuously for 8 hours in an environment with aerial pollution similar to that expected during 
-  operation at Sheridan Nursery. A tester will be present to ensure pots and trays are available to the machine at all times so operation is never 
-  interrupted. Behaviour will be observed to ensure machine is able to function under long-term exposure to an environment with aerial pollution.
+Initial State: Multiple trays (2-3) on the conveyor.
+
+How test will be performed: The conveyor speed and acceleration will be modified while 
+trays are on it. The trays should not show perpendicular axis movement along the conveyor
+while in higher than normal speeds.
+\\
+\item{SRT-02: \textbf{Pot Dispensing Rate}}
+  
+Type: Dynamic, Automatic
+
+Initial State: Subsystem in idle state ready to dispense pots.
+
+Input: Stack of pots.
+
+Output: Pots dispensing.
+
+Test Case Derivation: The preceding system for filling pots with soil operates at a certain rate which
+should be met by the Pot-purlator.
+
+How test will be performed: Pots will be placed in the stack. When turned on, the pots will dispense
+at the desired rate (10 pots / 30 sec) and timed using a stopwatch. If the dispenser can meet
+these requirements then it passes.
+\\
+\item{SRT-02: \textbf{Tray Dispensing Rate}}
+  
+Type: Dynamic, Automatic
+
+Initial State: Subsystem in idle state ready to dispense trays.
+
+Input: Stack of Trays.
+
+Output: Trays dispensing.
+
+Test Case Derivation: The preceding system for filling pots with soil operates at a certain rate which
+should be met by the Pot-purlator.
+
+How test will be performed: Trays will be placed in the stack. When turned on, the trays will dispense
+at the desired rate (1 tray / 30 sec) and timed using a stopwatch. If the dispenser can meet
+these requirements then it passes.
 
 \end{enumerate}
+
+
+\subsubsection{Learning Requirements Testing}
+\begin{enumerate}
+  \item{LRT-01: \textbf{Operational Simplicity}}
+  
+Type: Static				
+					
+How test will be performed: An individual will be trained on operating the entire system.
+After training is complete, the individual must demonstrate that they are able to 
+successfully and safely handle all possible scenarios that may occur during operation.
+\end{enumerate}
+
+\subsubsection{Accessibility Requirements Testing}
+\begin{enumerate}
+  \item{ART-01: \textbf{Audio and Visual Indicators}}
+  
+Type: Static, Manual
+
+Inputs: Trigger signal.
+
+Outputs: A corresponding light, sound, or screen display.
+
+How test will be performed: LEDs, speakers, and LCD screens will be placed in the
+system and sent a signal to activate in a specified way.
+\end{enumerate}
+
+
+\subsubsection{Speed Requirements Testing}
+\begin{enumerate}
+  \item{SRT-01: \textbf{Acceleration Displacement of Trays}}
+  
+Type: Dynamic, Manual
+
+Initial State: Multiple trays (2-3) on the conveyor.
+
+How test will be performed: The conveyor speed and acceleration will be modified while 
+trays are on it. The trays should not show perpendicular axis movement along the conveyor
+while in higher than normal speeds.
+\\
+\item{SRT-02: \textbf{Pot Dispensing Rate}}
+  
+Type: Dynamic, Automatic
+
+Initial State: Subsystem in idle state ready to dispense pots.
+
+Input: Stack of pots.
+
+Output: Pots dispensing.
+
+Test Case Derivation: The preceding system for filling pots with soil operates at a certain rate which
+should be met by the Pot-purlator.
+
+How test will be performed: Pots will be placed in the stack. When turned on, the pots will dispense
+at the desired rate (10 pots / 30 sec) and timed using a stopwatch. If the dispenser can meet
+these requirements then it passes.
+\\
+\item{SRT-02: \textbf{Tray Dispensing Rate}}
+  
+Type: Dynamic, Automatic
+
+Initial State: Subsystem in idle state ready to dispense trays.
+
+Input: Stack of Trays.
+
+Output: Trays dispensing.
+
+Test Case Derivation: The preceding system for filling pots with soil operates at a certain rate which
+should be met by the Pot-purlator.
+
+How test will be performed: Trays will be placed in the stack. When turned on, the trays will dispense
+at the desired rate (1 tray / 30 sec) and timed using a stopwatch. If the dispenser can meet
+these requirements then it passes.
+
+\end{enumerate}
+
 
 \subsection{Traceability Between Test Cases and Requirements}
 The following table outlines all of the system tests and how they relate to the
 relevent requirements. The requirements can be referenced in the SRS document.\\
 
-  
 \begin{longtable}{ |p{4cm}|p{8cm}|  }
   \caption{Corresponding Test IDs and Requirements}
   \label{tab:Table1}\\
@@ -642,6 +778,16 @@ relevent requirements. The requirements can be referenced in the SRS document.\\
   VST-01 &  VR1 \\
   \hline
   VST-02&  VR2 \\
+  \hline
+  LRT-01&  NFR6 \\
+  \hline
+  ART-01 & NFR7 \\
+  \hline
+  SRT-01 & NFR8 \\
+  \hline
+  SRT-02 & NFR9 \\
+  \hline
+  SRT-03 & NFR10 \\
   \hline
 \end{longtable}
 
