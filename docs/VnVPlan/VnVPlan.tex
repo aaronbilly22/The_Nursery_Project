@@ -61,8 +61,6 @@
   CR & Conveyor Functional Requirement\\
   NFR & Non-Functional Requirement\\
   PDR & Pot Dispensing Functional Requirement\\
-  PHC & Physical Constraint\\
-  SWC & Software Constraint\\
   TDR & Tray Dispensing Functional Requirement\\
   VR & Verification Functional Requirement\\
   SRS & Software Requirements Specification\\
@@ -70,6 +68,10 @@
   PDST & Pot Dispenser Subsystem Test\\
   CST & Conveyor Subsystem Test\\
   VST & Verification Subsystem Test\\
+  SCT & Safety Critical Test\\
+  PT & Precision Test\\
+  RT & Reliability Test\\
+  EPET & Expected Physical Environment Test\\
 
   \bottomrule
 \end{tabular}\\
@@ -344,14 +346,6 @@ How test will be performed:
   
   Control: Static, Manual
 
-  Initial State: Pot dispenser mechanism loaded with one pot
-
-  Input: Single pot
-
-  Output: Single pot
-
-  Test Case Derivation: Pot dispenser mechanism will dispense one 4" diameter pot
-
   How test will be performed: All specifications of pot dispenser will ensure that a 4" diameter pot is able 
   to be dispensed. Measurements and reviews will be conducted by another member of the group any time a change 
   is made to the dispenser during design and build phases. During build phase, test will be conducted on both 
@@ -374,7 +368,7 @@ How test will be performed:
   to indicate presence of tray. Pot dispenser will complete 5 cycles of dispensing, at which point pot storage will
   be spent.\\
   
-  \item{PDST-05: \textbf{Pot Storage Sensing}\\}
+  \item{PDST-05: \textbf{Pot Storage Detection}\\}
   
   Control: Dynamic, Manual
 
@@ -432,8 +426,6 @@ recognized.
 \item{CST-03: \textbf{Conveyor Belt Friction}\\}
 
 Control: Static, Manual
-
-Initial State: Conveyor belt
 
 Input: Mass of tray, tilt angle of conveyor belt
 
@@ -502,41 +494,114 @@ acceleration of the conveyor motor will be set to not exceed 70\% of this value.
 \wss{Static tests, review, inspections, and walkthroughs, will not follow the
 format for the tests given below.}
 
-\subsubsection{Area of Testing1}
-		
-\paragraph{Title for Test}
+\subsubsection{Safety Critical Testing}
 
 \begin{enumerate}
 
-\item{test-id1\\}
+  \item{SCT-01: \textbf{Tray Dispenser Failure}\\}
 
-Type: Functional, Dynamic, Manual, Static etc.
+  Type: Dynamic, Manual
 					
-Initial State: 
+  Initial State: Tray dispenser functioning normally
 					
-Input/Condition: 
+  Input: Tray dispenser disconnect
 					
-Output/Result: 
+  Output: System flags tray dispenser failure
 					
-How test will be performed: 
+  How test will be performed: Tray dispenser will be manually disconnected from the system during operation. System response 
+  will be analyzed to confirm that a failure in the tray dispenser is recognized.
 					
-\item{test-id2\\}
+  \item{SCT-02: \textbf{Pot Dispenser Failure}\\}
 
-Type: Functional, Dynamic, Manual, Static etc.
+  Type: Dynamic, Manual
 					
-Initial State: 
+  Initial State: Pot dispenser functioning normally
 					
-Input: 
+  Input: Pot dispenser disconnect
 					
-Output: 
+  Output: System flags pot dispenser failure
 					
-How test will be performed: 
+  How test will be performed: Pot dispenser will be manually disconnected from the system during operation. System response 
+  will be analyzed to confirm that a failure in the pot dispenser is recognized.
+
+  \item{SCT-03: \textbf{Conveyor Failure}\\}
+
+  Type: Dynamic, Manual
+					
+  Initial State: Conveyor functioning normally
+					
+  Input: Conveyor disconnect
+					
+  Output: System flags conveyor failure
+					
+  How test will be performed: Conveyor will be manually disconnected from the system during operation. System response 
+  will be analyzed to confirm that a failure in the conveyor is recognized.
+
+  \item{SCT-04: \textbf{Verification Failure}\\}
+
+  Type: Dynamic, Manual
+					
+  Initial State: Verification functioning normally
+					
+  Input: Verification disconnect
+					
+  Output: System flags verification failure
+					
+  How test will be performed: Verification will be manually disconnected from the system during operation. System response 
+  will be analyzed to confirm that a failure in the verification is recognized.
 
 \end{enumerate}
 
-\subsubsection{Area of Testing2}
+\subsubsection{Precision Testing}
 
-...
+\begin{enumerate}
+
+  \item{PT-01: \textbf{Tray Dispenser Precision}\\}
+  
+  Type: Static, Manual
+
+  How test will be performed: Tray storage will be filled to maximum capacity. Tray dispenser will place tray onto conveyor belt. 
+  Centre line of tray will be established and measured relative to centre line of conveyor. Test will be repeated for all trays 
+  until tray storage is empty. Average offset measurement will be calculated.
+
+  \item{PT-02: \textbf{Pot Dispenser Precision}\\}
+
+  Type: Static, Manual
+
+  How test will be performed: Pot storage will be filled to 50\% capacity. Pot dispenser will dispense pots into trays. Centred 
+  position of each opening in trays will be established and measured relative to centre line of pots. Test will be repeated for all
+  pots until pot storage is empty. Average offset measurement will be calculated.
+  
+\end{enumerate}
+
+\subsubsection{Reliability Testing}
+
+\begin{enumerate}
+
+  \item{RT-01: \textbf{Function Under Vibration}\\}
+  
+  Type: Static, Manual
+
+  How test will be performed: Pot-pulator will run continuously for 8 hours, with a tester ensuring pots and trays are available to the 
+  machine at all times so operation is never interrupted. Machine will be subject to vibrations resulting from conveyor motor, tray dispenser
+  motors, and pot dispenser motors. Behaviour will be observed to ensure machine is able to function under long-term exposure to small amplitude 
+  vibration.
+
+\end{enumerate}
+
+\subsubsection{Expected Physical Environment Testing}
+
+\begin{enumerate}
+
+  \item{EPET-01: \textbf{Function Under Adverse Environmental Conditions}}
+  
+  Type: Static, Manual
+
+  How test will be performed: Pot-pulator will run continuously for 8 hours in an environment with aerial pollution similar to that expected during 
+  operation at Sheridan Nursery. A tester will be present to ensure pots and trays are available to the machine at all times so operation is never 
+  interrupted. Behaviour will be observed to ensure machine is able to function under long-term exposure to an environment with aerial pollution.
+
+\end{enumerate}
 
 \subsection{Traceability Between Test Cases and Requirements}
 The following table outlines all of the system tests and how they relate to the
