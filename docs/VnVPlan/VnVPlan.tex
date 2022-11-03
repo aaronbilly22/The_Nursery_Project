@@ -45,16 +45,13 @@
 \tableofcontents
 
 \listoftables
-\wss{Remove this section if it isn't needed}
-
-\listoffigures
-\wss{Remove this section if it isn't needed}
 
 \newpage
 
 \section{Symbols, Abbreviations and Acronyms}
 
 \renewcommand{\arraystretch}{1.2}
+\begin{table}[ht]
 \begin{tabular}{l l} 
   \toprule		
   \textbf{symbol} & \textbf{description}\\
@@ -62,8 +59,6 @@
   CR & Conveyor Functional Requirement\\
   NFR & Non-Functional Requirement\\
   PDR & Pot Dispensing Functional Requirement\\
-  PHC & Physical Constraint\\
-  SWC & Software Constraint\\
   TDR & Tray Dispensing Functional Requirement\\
   VR & Verification Functional Requirement\\
   SRS & Software Requirements Specification\\
@@ -71,9 +66,21 @@
   PDST & Pot Dispenser Subsystem Test\\
   CST & Conveyor Subsystem Test\\
   VST & Verification Subsystem Test\\
+  SCT & Safety Critical Test\\
+  PT & Precision Test\\
+  RT & Reliability Test\\
+  EPET & Expected Physical Environment Test\\
+  LED & Light Emitting Diode\\
+  LCD & Liquid-Crystal Display\\
+  SRT & Speed Requirements Test\\
+  ART & Accessibility Requirements Test\\
+  LRT & Learning Requirements Test\\
 
   \bottomrule
 \end{tabular}\\
+\caption{Acronyms}
+\label{tab:title}
+\end{table}
 
 
 
@@ -383,7 +390,7 @@ How test will be performed:
 
 \begin{enumerate}
  
-  \item{PDST-01: \textbf{Pot from Stack to Tray}\\}
+  \item{PDST-01: \textbf{Pot from Stack to Tray}}
   
   Control: Dynamic, Manual
             
@@ -399,7 +406,7 @@ How test will be performed:
   directly below pot stack. Machine will be turned on. Once pots are dispensed, pot dispenser will 
   queue next two pots and tray will be removed.\\
 
-  \item{PDST-02: \textbf{Tray Sensing}\\}
+  \item{PDST-02: \textbf{Tray Sensing}}
   
   Control: Dynamic, Manual
             
@@ -417,24 +424,16 @@ How test will be performed:
   Tray will then be moved forward out of view of sensor and output from sensor will be analyzed to confirm 
   snesor is aware that tray is no longer present.\\
 
-  \item{PDST-03: \textbf{Ability to Dispense 4" Diameter Pots}\\}
+  \item{PDST-03: \textbf{Ability to Dispense 4" Diameter Pots}}
   
   Control: Static, Manual
-
-  Initial State: Pot dispenser mechanism loaded with one pot
-
-  Input: Single pot
-
-  Output: Single pot
-
-  Test Case Derivation: Pot dispenser mechanism will dispense one 4" diameter pot
 
   How test will be performed: All specifications of pot dispenser will ensure that a 4" diameter pot is able 
   to be dispensed. Measurements and reviews will be conducted by another member of the group any time a change 
   is made to the dispenser during design and build phases. During build phase, test will be conducted on both 
   pot dispensers.\\
 
-  \item{PDST-04: \textbf{Ability to Store/Sispense Multiple Pots}\\}
+  \item{PDST-04: \textbf{Ability to Store/Sispense Multiple Pots}}
   
   Control: Dynamic, Manual
 
@@ -451,7 +450,7 @@ How test will be performed:
   to indicate presence of tray. Pot dispenser will complete 5 cycles of dispensing, at which point pot storage will
   be spent.\\
   
-  \item{PDST-05: \textbf{Pot Storage Sensing}\\}
+  \item{PDST-05: \textbf{Pot Storage Detection}}
   
   Control: Dynamic, Manual
 
@@ -471,7 +470,7 @@ How test will be performed:
 \subsubsection{Conveyor Subsystem Testing}
 
 \begin{enumerate}
-\item{CST-01: \textbf{Conveyor Ability to Move Trays}\\}
+\item{CST-01: \textbf{Conveyor Ability to Move Trays}}
 
 Control: Dynamic, Manual
 
@@ -487,8 +486,8 @@ How test will be performed: A single tray will be placed at the start point on t
 will receive signals indicating that there are no issues with any other subsystems and the tray can be moved 
 forward. Behaviour of conveyor will be observed to confirm conveyor has moved tray from start to end with no 
 stopping. Test will be interrupted if tray is unable to move forward due to physical interferance or if conveyor stops.
-
-\item{CST-02: \textbf{Conveyor Ability to Stop}\\}
+\\
+\item{CST-02: \textbf{Conveyor Ability to Stop}}
 
 Control: Dynamic, Manual
 
@@ -504,13 +503,11 @@ dispenser, and stop movement of tray
 How test will be performed: A single tray will be placed on the conveyor while conveyor is moving. A signal will be 
 sent to the conveyor, simulating a signal from the pot dispenser sensor which indicates that the tray is beneath 
 the pot dispenser. Behaviour of conveyor will be observed o confirm conveyor brings tray to a stop when signal is 
-recognized.
+recognized.\\
 
-\item{CST-03: \textbf{Conveyor Belt Friction}\\}
+\item{CST-03: \textbf{Conveyor Belt Friction}}
 
 Control: Static, Manual
-
-Initial State: Conveyor belt
 
 Input: Mass of tray, tilt angle of conveyor belt
 
@@ -568,58 +565,195 @@ acceleration of the conveyor motor will be set to not exceed 70\% of this value.
 
 \subsection{Tests for Nonfunctional Requirements}
 
-\wss{The nonfunctional requirements for accuracy will likely just reference the
-  appropriate functional tests from above.  The test cases should mention
-  reporting the relative error for these tests.  Not all projects will
-  necessarily have nonfunctional requirements related to accuracy}
-
-\wss{Tests related to usability could include conducting a usability test and
-  survey.  The survey will be in the Appendix.}
-
-\wss{Static tests, review, inspections, and walkthroughs, will not follow the
-format for the tests given below.}
-
-\subsubsection{Area of Testing1}
-		
-\paragraph{Title for Test}
+\subsubsection{Safety Critical Testing}
 
 \begin{enumerate}
 
-\item{test-id1\\}
+  \item{SCT-01: \textbf{Tray Dispenser Failure}}
 
-Type: Functional, Dynamic, Manual, Static etc.
+  Type: Dynamic, Manual
 					
-Initial State: 
+  Initial State: Tray dispenser functioning normally
 					
-Input/Condition: 
+  Input: Tray dispenser disconnect
 					
-Output/Result: 
+  Output: System flags tray dispenser failure
 					
-How test will be performed: 
-					
-\item{test-id2\\}
+  How test will be performed: Tray dispenser will be manually disconnected from the system during operation. System response 
+  will be analyzed to confirm that a failure in the tray dispenser is recognized.
+\\		
+  \item{SCT-02: \textbf{Pot Dispenser Failure}}
 
-Type: Functional, Dynamic, Manual, Static etc.
+  Type: Dynamic, Manual
 					
-Initial State: 
+  Initial State: Pot dispenser functioning normally
 					
-Input: 
+  Input: Pot dispenser disconnect
 					
-Output: 
+  Output: System flags pot dispenser failure
 					
-How test will be performed: 
+  How test will be performed: Pot dispenser will be manually disconnected from the system during operation. System response 
+  will be analyzed to confirm that a failure in the pot dispenser is recognized.
+\\
+  \item{SCT-03: \textbf{Conveyor Failure}}
+
+  Type: Dynamic, Manual
+					
+  Initial State: Conveyor functioning normally
+					
+  Input: Conveyor disconnect
+					
+  Output: System flags conveyor failure
+					
+  How test will be performed: Conveyor will be manually disconnected from the system during operation. System response 
+  will be analyzed to confirm that a failure in the conveyor is recognized.
+\\
+  \item{SCT-04: \textbf{Verification Failure}}
+
+  Type: Dynamic, Manual
+					
+  Initial State: Verification functioning normally
+					
+  Input: Verification disconnect
+					
+  Output: System flags verification failure
+					
+  How test will be performed: Verification will be manually disconnected from the system during operation. System response 
+  will be analyzed to confirm that a failure in the verification is recognized.
+
 
 \end{enumerate}
 
-\subsubsection{Area of Testing2}
+\subsubsection{Precision Testing}
 
-...
+\begin{enumerate}
+
+  \item{PT-01: \textbf{Tray Dispenser Precision}}
+  
+  Type: Static, Manual
+
+  How test will be performed: Tray storage will be filled to maximum capacity. Tray dispenser will place tray onto conveyor belt. 
+  Centre line of tray will be established and measured relative to centre line of conveyor. Test will be repeated for all trays 
+  until tray storage is empty. Average offset measurement will be calculated.
+\\
+  \item{PT-02: \textbf{Pot Dispenser Precision}}
+
+  Type: Static, Manual
+
+  How test will be performed: Pot storage will be filled to 50\% capacity. Pot dispenser will dispense pots into trays. Centred 
+  position of each opening in trays will be established and measured relative to centre line of pots. Test will be repeated for all
+  pots until pot storage is empty. Average offset measurement will be calculated.
+  
+\end{enumerate}
+
+\subsubsection{Reliability Testing}
+
+\begin{enumerate}
+
+  \item{RT-01: \textbf{Function Under Vibration}}
+  
+  Type: Static, Manual
+
+  How test will be performed: Pot-pulator will run continuously for 8 hours, with a tester ensuring pots and trays are available to the 
+  machine at all times so operation is never interrupted. Machine will be subject to vibrations resulting from conveyor motor, tray dispenser
+  motors, and pot dispenser motors. Behaviour will be observed to ensure machine is able to function under long-term exposure to small amplitude 
+  vibration.
+\end{enumerate}
+
+\subsubsection{Expected Physical Environment Testing}
+
+\begin{enumerate}
+
+  \item{EPET-01: \textbf{Function Under Aerial Pollution}}
+  
+  Type: Static, Manual
+
+  How test will be performed: Pot-pulator will run continuously for 8 hours in an environment with an amount of aerial pollution similar to 
+  what is expected of the environment at Sheridan Nursery. A tester will be present to ensure that pots and trays are available to the machine
+  at all times so operation is never interrupted. Behaviour will be observed to ensure machine is able to function for a long period of time in 
+  an environment with aerial pollution.
+
+\end{enumerate}
+
+\subsubsection{Speed Requirements Testing}
+\begin{enumerate}
+  \item{SRT-01: \textbf{Acceleration Displacement of Trays}}
+  
+Type: Dynamic, Manual
+
+Initial State: Multiple trays (2-3) on the conveyor.
+
+How test will be performed: The conveyor speed and acceleration will be modified while 
+trays are on it. The trays should not show perpendicular axis movement along the conveyor
+while in higher than normal speeds.
+\\
+\item{SRT-02: \textbf{Pot Dispensing Rate}}
+  
+Type: Dynamic, Automatic
+
+Initial State: Subsystem in idle state ready to dispense pots.
+
+Input: Stack of pots.
+
+Output: Pots dispensing.
+
+Test Case Derivation: The preceding system for filling pots with soil operates at a certain rate which
+should be met by the Pot-purlator.
+
+How test will be performed: Pots will be placed in the stack. When turned on, the pots will dispense
+at the desired rate (10 pots / 30 sec) and timed using a stopwatch. If the dispenser can meet
+these requirements then it passes.
+\\
+\item{SRT-02: \textbf{Tray Dispensing Rate}}
+  
+Type: Dynamic, Automatic
+
+Initial State: Subsystem in idle state ready to dispense trays.
+
+Input: Stack of Trays.
+
+Output: Trays dispensing.
+
+Test Case Derivation: The preceding system for filling pots with soil operates at a certain rate which
+should be met by the Pot-purlator.
+
+How test will be performed: Trays will be placed in the stack. When turned on, the trays will dispense
+at the desired rate (1 tray / 30 sec) and timed using a stopwatch. If the dispenser can meet
+these requirements then it passes.
+
+\end{enumerate}
+
+
+\subsubsection{Learning Requirements Testing}
+\begin{enumerate}
+  \item{LRT-01: \textbf{Operational Simplicity}}
+  
+Type: Static				
+					
+How test will be performed: An individual will be trained on operating the entire system.
+After training is complete, the individual must demonstrate that they are able to 
+successfully and safely handle all possible scenarios that may occur during operation.
+\end{enumerate}
+
+\subsubsection{Accessibility Requirements Testing}
+\begin{enumerate}
+  \item{ART-01: \textbf{Audio and Visual Indicators}}
+  
+Type: Static, Manual
+
+Inputs: Trigger signal.
+
+Outputs: A corresponding light, sound, or screen display.
+
+How test will be performed: LEDs, speakers, and LCD screens will be placed in the
+system and sent a signal to activate in a specified way.
+\end{enumerate}
+
 
 \subsection{Traceability Between Test Cases and Requirements}
 The following table outlines all of the system tests and how they relate to the
 relevent requirements. The requirements can be referenced in the SRS document.\\
 
-  
 \begin{longtable}{ |p{4cm}|p{8cm}|  }
   \caption{Corresponding Test IDs and Requirements}
   \label{tab:Table1}\\
@@ -655,6 +789,32 @@ relevent requirements. The requirements can be referenced in the SRS document.\\
   \hline
   VST-02&  VR2 \\
   \hline
+  SCT-01 &  NFR12 \\
+  \hline
+  SCT-02 &  NFR12 \\
+  \hline
+  SCT-03 &  NFR12 \\
+  \hline
+  SCT-04 &  NFR12 \\
+  \hline
+  PT-01 & NFR13 \\
+  \hline
+  PT-02 & NFR14 \\
+  \hline
+  RT-01 & NFR17 \\
+  \hline
+  EPET-01 & NFR20 \\
+  \hline
+  LRT-01&  NFR6 \\
+  \hline
+  ART-01 & NFR7 \\
+  \hline
+  SRT-01 & NFR8 \\
+  \hline
+  SRT-02 & NFR9 \\
+  \hline
+  SRT-03 & NFR10 \\
+  \hline
 \end{longtable}
 
 \newpage
@@ -680,18 +840,68 @@ The information in this section will be used to evaluate the team members on the
 graduate attribute of Lifelong Learning.  Please answer the following questions:
 
 \begin{enumerate}
-  \item Juan: I will acquire skills related to testing of hardware ware and software through the learning
+  \item What knowledge and skills will the team collectively need to acquire to
+  successfully complete the verification and validation of your project?
+  Examples of possible knowledge and skills include dynamic testing knowledge,
+  static testing knowledge, specific tool usage etc.  You should look to
+  identify at least one item for each team member.
+
+  \begin{enumerate}
+    \item{Steven:}\\
+    I will acquire skills related to dynamic testing of software and hardware. \\
+    \item{Juan:}\\
+    I will acquire skills related to testing of hardware ware and software through the learning
    how to use a linter. This is not something that I have been exposed to before and find it interesting 
    that it is something that exist. I also believe that there will be some development in critical thinking 
    as when testing it is impossible to think of all the possible scenarios the system can go through thus 
-   a good set of critical thinking will be used in order to find all of the possible test cases.
+   a good set of critical thinking will be used in order to find all of the possible test cases.\\
+    
+    Throughout this project I also wish to enhance my general coding skill. Which I have always had an interest in coding and have made attempts to use it whenever possible throughout my university career. I am excited to 
+    take on a project with a defined goal and no clear solution to improve my coding ability.
+    \item{Aaron:}\\
+    Project management, team management, and time management are 
+    crucial to the success of the project. Working towards improving these skills will
+    greatly benefit me and my team members in the future.\\
+    \item {Gillian:}\\
+    Throughout this project, I am looking forward to learning skills from the other members of the team. As an Engineering physics student, the areas I would like to improve the most about are software and writing. I would like to be prepared for the industry and potentially working in a job that requires coding because it’s something I enjoy, but I don’t think it’s something I am experienced enough in yet. 
+    \noindent In terms of writing and communication, it isn’t often where I am required to write long reports anymore, and I like the challenge provided by creating this extent of documentation. I look forward to my writing skills to improve over the course of this capstone project. 
 
-  \item Juan: I believe critical thinking will be developed through trial and error as well in the review
-   with peers as they will have different idea that will bring new insight to test cases that i might not 
-   have though of before. the linter skill will be developed through trial and error and some over the shoulder
-    learning from those in my group that have dealt with this before.
+  \end{enumerate}
 
- 
+  \item For each of the knowledge areas and skills identified in the previous
+  question, what are at least two approaches to acquiring the knowledge or
+  mastering the skill?  Of the identified approaches, which will each team
+  member pursue, and why did they make this choice?
+
+  \begin{enumerate}
+    \item{Steven:}\\
+    An approach to acquiring dynamic testing skills is practicing simulating testing conditions
+    with our microcontrollers. An alternative approach is familiarizing myself with microcontroller 
+    documentation and creating testing conditions from the knowledge I obtain. I will pursue the former 
+    approach, as I feel the trial-and-error this will enable will be a better approach to learning how
+    to effectively test specific portions of the project, while having the added bonus of allowing me to
+    learn more about the software and hardware I will be working with.\\
+    
+    \item{Juan:}\\
+    I believe critical thinking will be developed through trial and error as well in the review
+    with peers as they will have different idea that will bring new insight to test cases that i might not 
+    have though of before. the linter skill will be developed through trial and error and some over the shoulder
+     learning from those in my group that have dealt with this before.
+ \\
+    \item{Aaron:}\\
+    Working towards improving my team communication is something that I strive to do while participating
+    in this capstone. This can be achived in several ways. One approach that I will take is 
+    to strengthen my bond with the team members. In doing so, I will feel more comfortable in sharing ideas and 
+    being constructive when necessary. Another approach is to document what each team member is working on and some of the problems they have run into.
+    This will increase my team awareness and ultimately lead to the success of the project. I chose to pursue this skill
+    because I know sometimes I want to do a lot of work on my own without developing trust towards my team members. This skill
+    will help me when I become an engineer and work with large teams where communication and collaboration is crucial.\\
+    \item {Gillian:}\\
+    I know I can improve my coding skills effectively by working on something closely to another member of the team who is more skilled in that area. I think this will be very helpful because I can work on a portion of software on my own, and if I have questions or get stuck, I will have someone working on something similar who will understand the problem and can help me troubleshoot. 
+    \noindent I can improve writing and communication skills by reviewing and editing not only my own work, but the writing of my peers as well. After each deliverable is finished, I think it is very useful when we go over all the writing as a team and come up with ideas on how each section of the documentation can possibly be improved.
+
+  \end{enumerate}
+
 \end{enumerate}
 
 \end{document}
