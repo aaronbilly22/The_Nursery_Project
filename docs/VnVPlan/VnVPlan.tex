@@ -4,6 +4,7 @@
 \usepackage{tabularx}
 \usepackage{hyperref}
 \usepackage{longtable}
+\usepackage{array}
 \hypersetup{
     colorlinks,
     citecolor=blue,
@@ -108,17 +109,75 @@ This document ... \wss{provide an introductory blurb and roadmap of the
 \citet{SRS}
 
 \section{Plan}
-
-\wss{Introduce this section.   You can provide a roadmap of the sections to
-  come.}
+The following section will outline the plan for system testing. The testing 
+will be divided into 5 categories; the 4 separate subsystems that make up the system and the system.
 
 \subsection{Verification and Validation Team}
 
-\wss{Your teammates.  Maybe your supervisor.
-  You shoud do more than list names.  You should say what each person's role is
-  for the project's verification.  A table is a good way to summarize this information.}
+The testing will be distributed evenly amongst the members of the team. The interdisciplinary aspect of this 
+project means that certain members focused more on certain parts of the capstone, thus verification will be 
+done evenly but there will be an emphasis on testing sections in which each member was not a major contributing partner.
+The following table shows the main point of focus of each group member and their area of focus on the project.
+\begin{center}
+  \begin{tabular}{ |l|l|l| } 
+    \hline
+    \textbf{Team member} & \textbf{Area of Focus } & \textbf{Verification Area of Focus} \\ 
+    \hline
+    Gillian Ford   & Pot dropping and Verification & Conveyor and tray dispensing \\
+    Aaron Billones & Conveyor and tray dispensing & Pot dropping and Verification \\
+    Steven Ramundi & Conveyor and tray dispensing & Pot dropping and Verification \\
+    Juan Moncada   & Pot dropping and Verification & Conveyor and tray dispensing\\
+    \hline
+  \end{tabular}
+\end{center}
+
+\subsection{Milestones}
+The following are milestones for the corresponding testing including the date of expected completion. 
+\begin{center}
+  \begin{tabular}{ |l|l| } 
+    \hline
+    \textbf{Testing} & \textbf{expected date of completion } \\ 
+    \hline
+    Pot dropping Subsystem    & December 5th 2022 \\
+    Tray dispensing Subsystem & December 5th 2022 \\
+    Conveyor Subsystem        & December 5th 2022 \\
+    Verification Subsystem    & January 10th 2023 \\
+    Whole System              & January 21th 2023 \\
+
+    \hline
+  \end{tabular}
+\end{center}
 
 \subsection{SRS Verification Plan}
+
+The design verification plan will be comprised of the verification of 4 of the core subsystems.
+ Each of these subsystems will be tested individually to include all possible scenarios, once 
+ individual testing has been completed the system will be put together and tested as a whole.\\
+
+The verification of system will take place alongside the end user. Sheridan Nurseries has been
+ scheduled to have an early look at the unfinished system so that all functional and non-functional 
+ requirements may be looked over and made sure to be fulfilled. This process will also allow for the 
+ foundations of new requirements that could be added before the final build of the system. There will 
+ also be multiple review sessions including by group members and peers.\\
+
+The review will go over the following checklist to make sure that the system is meeting all functional 
+and non-functional requirement. The following is the SRS validation checklist.
+
+\begin{center}
+  \begin{tabular}{ |l|l| } 
+    \hline
+    \textbf{Requirement Validate} & \textbf{Pass or fail } \\ 
+    \hline
+    System interface should be clear, legible, and obvious. & \\
+    Subsystems are communicating with integration board.  & \\
+    System is running smoothly, without the presence or audible or visual errors.& \\
+    There are no lose or exposed wires or electronics.& \\
+    There are no expose gears, chains or moving parts.& \\
+    
+    \hline
+  \end{tabular}
+\end{center}
+
 
 \wss{List any approaches you intend to use for SRS verification.  This may include
   ad hoc feedback from reviewers, like your classmates, or you may plan for 
@@ -127,6 +186,57 @@ This document ... \wss{provide an introductory blurb and roadmap of the
 \wss{Maybe create an SRS checklist?}
 
 \subsection{Design Verification Plan}
+Each of the subsystem will be tested individually. The following section will outline the individual testing
+ for each individual testing subsystem. The following are the design validation checklists for the 
+
+ \subsubsection{Conveyor}
+ \begin{center}
+  \begin{tabular}{ |m{13cm}|m{3.2cm}| } 
+    \hline
+    \textbf{Requirement Validate} & \textbf{Pass or fail } \\ 
+    \hline
+    Conveyor is stable so that movements from subsystems do not cause any vibration, tipping or other unwanted movement. & \\
+
+    \hline
+  \end{tabular}
+\end{center}
+
+\subsubsection{Tray Dispenser}
+\begin{center}
+ \begin{tabular}{ |m{13cm}|m{3.2cm}| } 
+   \hline
+   \textbf{Requirement Validate} & \textbf{Pass or fail } \\ 
+   \hline
+   Tray dispenser runs smoothly and is not translating any unwanted motion into the system. & \\
+
+   \hline
+ \end{tabular}
+\end{center}
+
+\subsubsection{Pot Dispenser}
+\begin{center}
+ \begin{tabular}{ |m{13cm}|m{3.2cm}| } 
+   \hline
+   \textbf{Requirement Validate} & \textbf{Pass or fail } \\ 
+   \hline
+   pot dispenser runs smoothly and is not translating any unwanted motion into the system. & \\
+
+   \hline
+ \end{tabular}
+\end{center}
+
+\subsubsection{Verification}
+\begin{center}
+ \begin{tabular}{ |m{13cm}|m{3.2cm}| } 
+   \hline
+   \textbf{Requirement Validate} & \textbf{Pass or fail } \\ 
+   \hline
+    & \\
+
+   \hline
+ \end{tabular}
+\end{center}
+
 
 \wss{Plans for design verification}
 
@@ -135,6 +245,11 @@ This document ... \wss{provide an introductory blurb and roadmap of the
 \wss{Create a checklists?}
 
 \subsection{Verification and Validation Plan Verification Plan}
+As the project progresses there will be the requirement to add, remove or alter verification and 
+Validation steps/procedures. In order to capture this as the system progresses in its completion 
+when major verification and validation milestones are hit, they will be accompanied with the
+review of the verification and validation plan. This review will trigger any updates that will
+need to be put through.
 
 \wss{The verification and validation plan is an artifact that should also be verified.}
 
@@ -167,18 +282,6 @@ that document.}
 
 \wss{The details of this section will likely evolve as you get closer to the
   implementation.}
-
-\subsection{Software Validation Plan}
-
-\wss{If there is any external data that can be used for validation, you should
-  point to it here.  If there are no plans for validation, you should state that
-  here.}
-
-\wss{You might want to use review sessions with the stakeholder to check that
-the requirements document captures the right requirements.  Maybe task based
-inspection?}
-
-\wss{This section might reference back to the SRS verification section.}
 
 \section{System Test Description}
 	
