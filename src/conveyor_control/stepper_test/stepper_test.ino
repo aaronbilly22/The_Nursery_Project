@@ -2,7 +2,7 @@
 #define B 3
 #define C 2
 #define D 1
-#define NUMBER_OF_STEPS_PER_REV 20
+#define NUMBER_OF_STEPS_PER_REV 512
 
 void setup() {
   pinMode(A,OUTPUT);
@@ -21,27 +21,26 @@ void write(int a,int b,int c,int d){
 
 void onestep(){
   write(1,0,0,0);
-  delay(5);
+  delay(1);
   write(1,1,0,0);
-  delay(5);
+  delay(1);
   write(0,1,0,0);
-  delay(5);
+  delay(1);
   write(0,1,1,0);
-  delay(5);
+  delay(1);
   write(0,0,1,0);
-  delay(5);
+  delay(1);
   write(0,0,1,1);
-  delay(5);
+  delay(1);
   write(0,0,0,1);
-  delay(5);
+  delay(1);
   write(1,0,0,1);
-  delay(5);
+  delay(1);
 }
 void loop() {
-  int i;
-  i=0;
+  int i=0;
   while(i<NUMBER_OF_STEPS_PER_REV){
-  onestep();
-  i++;
+    onestep();
+    i++;
   }
 }
