@@ -1,8 +1,8 @@
-#define A 2
+#define A 4
 #define B 3
-#define C 4
-#define D 5
-#define NUMBER_OF_STEPS_PER_REV 512
+#define C 2
+#define D 1
+#define NUMBER_OF_STEPS_PER_REV 20
 
 void setup() {
   pinMode(A,OUTPUT);
@@ -43,5 +43,5 @@ void loop() {
   while(i<NUMBER_OF_STEPS_PER_REV){
   onestep();
   i++;
-}
+  }
 }
