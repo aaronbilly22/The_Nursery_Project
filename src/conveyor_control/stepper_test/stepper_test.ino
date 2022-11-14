@@ -1,14 +1,18 @@
-#define A 4
+#define A 2
 #define B 3
-#define C 2
-#define D 1
+#define C 4
+#define D 5
 #define NUMBER_OF_STEPS_PER_REV 512
+#define signalPin 10
+int signalPin_state = 0;
 
 void setup() {
   pinMode(A,OUTPUT);
   pinMode(B,OUTPUT);
   pinMode(C,OUTPUT);
   pinMode(D,OUTPUT);
+  pinMode(signalPin_state,INPUT);
+  Serial.begin(9600);
 }
 
 
@@ -38,9 +42,13 @@ void onestep(){
   delay(1);
 }
 void loop() {
-  int i=0;
-  while(i<NUMBER_OF_STEPS_PER_REV){
+  signalPin_state = digitalRead(signalPin);
+
+  Serial.println(signalPin_state);
+  
+  if(signalPin_state==HIGH){
     onestep();
-    i++;
   }
+
+  
 }
