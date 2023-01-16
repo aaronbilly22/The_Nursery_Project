@@ -1,0 +1,6 @@
+{
+    "board": "arduino:avr:uno",
+    "port": "COM11",
+    "programmer": "arduino:avrisp",
+    "sketch": "mux_test.ino"
+}
