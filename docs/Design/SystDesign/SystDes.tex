@@ -144,9 +144,66 @@ within the given environment.
 
 \subsection{Monitored Variables}
 
+\begin{tabular}{ |p{3cm}|p{9cm}|p{2cm}|p{1cm}| }
+  \hline
+  Variable & Description & Type & Units\\
+  \hline
+  Sensor Distances & Measured distances that the sensor identifies
+   & Distance & mm\\
+  \hline
+  System State & Determines the state of the system (ie. Ready, Running, Error, Success)
+   & State &  N/A\\
+  \hline
+  Tray/Pot Weight & Weight of the trays/pots to verify number in the stack
+   & Weight & kg\\
+  \hline
+  Tray/Pot Height & Height of the trays/pots to verify number in the stack
+   & Height & m\\
+  
+  \hline
+ \end{tabular}\\\\
+
 \subsection{Controlled Variables}
 
+\begin{tabular}{ |p{3cm}|p{9cm}|p{2cm}|p{1cm}| }
+  \hline
+  Variable & Description & Type & Units\\
+  \hline
+  Motor Speeds & The speeds at which the motors in the system will turn
+   & Speed & rad/s\\
+  \hline
+  Voltage In & Voltage going into the system
+   & Voltage & V\\
+  \hline
+  Current In & Current going into the system
+   & Current &  A\\
+  \hline
+  LEDs & LED status lights
+   & Boolean & N/A\\
+  
+  \hline
+ \end{tabular}\\\\
+
 \subsection{Constants Variables}
+
+\begin{tabular}{ |p{3cm}|p{8.9cm}|p{2.1cm}|p{1cm}| }
+  \hline
+  Variable & Description & Type & Units\\
+  \hline
+  Motor Acceleration & The acceleration at which the motors in the system will turn
+   & Acceleration & rad/s\textsuperscript{2}\\
+  \hline
+  Pots Dispensed & Pots dispensed by the system per cycle
+   & Quantity & pots per cycle\\
+  \hline
+  Trays Dispensed & Trays dispensed by the system per cycle
+   & Quantity &  trays per cycle\\
+  \hline
+  Total Distance & Total distance travelled by trays
+   & Distance & m\\
+  
+  \hline
+ \end{tabular}\\\\
 
 \section{User Interfaces}
 
@@ -242,13 +299,41 @@ one of the subsystems, the STM32F429I-DISC1 will be notified and tell all other 
 
 
 
-\section{Design of Communication Protocols}
+% \section{Design of Communication Protocols}
 
-\wss{If appropriate}
+% \wss{If appropriate}
 
 \section{Timeline}
 
 \wss{Schedule of tasks and who is responsible}
+
+\begin{tabular}{ |p{3cm}|p{5cm}|p{4cm}|p{2cm}| }
+  \hline
+  Task & Description & Team Member(s) & Deadline\\
+  \hline
+  Pot Dropper Design & Design of pot dropper hardware and software
+  & Juan Moncada and Gillian Ford & Juanuary 23, 2023\\
+  \hline
+  Tray Dropper Design & Design of tray dropper hardware and software
+  & Steven Ramundi and Aaron Billones & January 23, 2023\\
+  \hline
+  Pot Dropper Fabrication & Fabrication of pot dropper frame and apparatus
+  & Juan Moncada & January 31, 2023\\
+  \hline
+  Tray Dropper Fabrication & Fabrication of tray dropper and elevator frame and apparatus
+  & Steven Ramundi and Aaron Billones & January 31, 2023\\
+  \hline
+  Verification Fabrication & Fabrication of verification System
+  & Gillian Ford & January 31, 2023\\
+  \hline
+  Electrical Fabrication & Fabrication and assembly of all electrical components
+  & All members & February 2, 2023\\
+  \hline
+  Testing & Testing of all subsystems and components
+  & All members & February 6, 2023\\
+  \hline
+
+\end{tabular}
 
 % \bibliographystyle {plainnat}
 % \bibliography{../../../refs/References}
