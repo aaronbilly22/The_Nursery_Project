@@ -116,7 +116,7 @@ within the given environment.
 \begin{figure}[H]
   \includegraphics[width=\linewidth]{scope.PNG}
   \caption{System Context Diagram}
-  \label{fig:context1}
+  \label{fig:scope}
 \end{figure}
 
 \section{Project Overview}
@@ -160,10 +160,6 @@ See Appendix A for interface layout concept.
 
 \section{Design of Hardware}
 
-\wss{Most relevant for mechatronics projects}
-\wss{Show what will be acquired}
-\wss{Show what will be built, with detail on fabrication and materials}
-\wss{Include appendices as appropriate, possibly with sketches, drawings, CAD, etc}
 \subsection{Conveyor}
 
 The conveyor subsystem will be comprised of:
@@ -193,6 +189,7 @@ See Appendix B.1 for a CAD diagram of the pot dropper screw.
 The tray dropper subsystem will be comprised of:
 \begin{itemize}
   \item 2 stepper motors
+  \item 1 Sanguinololu driver board
   \item 2 belts
   \item 4 belt bearings
   \item 1 steel x-beam frame
@@ -233,11 +230,17 @@ The verification subsystem will be comprised of:
 
 \section{Design of Electrical Components}
 
-\wss{Most relevant for mechatronics projects}
-\wss{Show what will be acquired}
-\wss{Show what will be built, with detail on fabrication and materials}
-\wss{Include appendices as appropriate, possibly with sketches, drawings,
-circuit diagrams, etc}
+The Pot-pulator has a number of electrical components in the system. A complete overview of the circuit diagram
+can be found in section C of the appendix. To improve modularity and for easier troubleshooting,
+the electrical components were divided in to 4 subsystems based on the control of the system: conveyor control, pot
+control, tray control, and verification. These subsystems are each controlled using an 
+Arduino Uno while being monitored by the main microcontroller (STM32F429I-DISC1). For each subsystem,
+its respective Arduino controls the motors and reads sensor/switch/button values in order to ensure smooth operation. 
+The Arduino relays the operation status to the STM32F429I-DISC1 via status bits, that are sent from each of the 
+subsystems to the STM32F429I-DISC1 at all times. If an error were to occur in
+one of the subsystems, the STM32F429I-DISC1 will be notified and tell all other subsystems to pause operation.
+
+
 
 \section{Design of Communication Protocols}
 
@@ -276,12 +279,28 @@ Handheld as to mitigate any safety concerns with a machine-mounted apparatus.
 \subsection{Tray Dropper}
 
 \subsection{Tray Elevator}
+\begin{figure}[H]
+  \centering
+  \includegraphics{Tray_Elevator.jpg}
+  \caption{Tray Elevator (side)}
+  \label{fig:elevator1}
+\end{figure}
 
-\includegraphics{Tray_Elevator.jpg}
-\newpage
-\includegraphics{Tray_Elevator2.jpg}
+\begin{figure}[H]
+  \centering
+  \includegraphics{Tray_Elevator2.jpg}
+  \caption{Tray Elevator (orthographic projection)}
+  \label{fig:elevator2}
+\end{figure}
 
 \section{Electrical Components}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.89\textwidth]{circuit_diagram.pdf}
+  \caption{Circuit Diagram}
+  \label{fig:circuit}
+\end{figure}
 
 \section{Communication Protocols}
 
