@@ -6,6 +6,7 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{graphicx}
+\graphicspath{ {./images/} }
 \usepackage{float}
 \usepackage{hyperref}
 \hypersetup{
@@ -132,12 +133,83 @@ your system and the environment around it.)}
 \wss{Design of user interface for software and hardware.  Attach an appendix if
 needed. Drawings, Sketches, Figma}
 
+The User Interface will consist of a set of buttons to allow the operator to safely 
+interact with the machine. It will also consist of audible and visual signals to alert
+the operator of any action required (e.g. tray/pot restock, verification error, etc.).
+See Appendix A for interface layout concept.
+
 \section{Design of Hardware}
 
 \wss{Most relevant for mechatronics projects}
 \wss{Show what will be acquired}
 \wss{Show what will be built, with detail on fabrication and materials}
 \wss{Include appendices as appropriate, possibly with sketches, drawings, CAD, etc}
+\subsection{Conveyor}
+
+The conveyor subsystem will be comprised of:
+\begin{itemize}
+  \item 1 conveyor (including belt, motor, gear box and framing)
+  \item 1 Arduino Uno microcontroller
+  
+\end{itemize}
+The conveyor has been acquired from Sheridan Nurseries and will not require fabrication.
+
+
+\subsection{Pot Dropper}
+
+The pot dropper subsystem will be comprised of:
+\begin{itemize}
+  \item 4 stepper motors
+  \item 4 stepper motor drivers
+  \item 1 Arduino Uno microcontroller
+  \item 4 pot dropper screws
+  \item 1 ultrasonic range finder
+\end{itemize}
+The pot dropper will be fabricated with steel x-beam framing to support the mechanism.
+See Appendix B.1 for a CAD diagram of the pot dropper screw.
+
+\subsection{Tray Dropper}
+
+The tray dropper subsystem will be comprised of:
+\begin{itemize}
+  \item 2 stepper motors
+  \item 2 belts
+  \item 4 belt bearings
+  \item 1 steel x-beam frame
+  \item 1 tray dropper end-effector
+\end{itemize}
+The tray dropper will be fabricated with x-beam framing to support the mechanism. The 
+stepper motors and belt bearings will be attached to the framing, and the belts will 
+be secured to the bearings. See Appendix B.2 for a CAD diagram of the tray dropper 
+end-effector.
+
+\subsection{Tray Elevator}
+
+The tray elevator will be comprised of:
+\begin{itemize}
+  \item 4 L-shaped wood frame supports
+  \item 4 long wood frame supports
+  \item 4 short wood frame supports
+  \item 1 wood raising platform
+  \item 1 ultrasonic range finder
+  \item 2 spur gears
+  \item 2 racks
+  \item 2 stepper motors
+\end{itemize}
+The wooden frame will be fabricated with screws and wood glue. The stepper motors 
+will be attached to either side of the wood platform responsible for hodling the 
+stack of trays. The spur gears will be attached to the stepper motors. The racks 
+will be attached in the centre of the long wood supports on either side of the frame, 
+and will mesh with the spur gears. This will enable the stepper motors to control the 
+lifting and lowering of the tray elevator based on its current capacity (see Appendix B.3
+for CAD diagram).
+
+\subsection{Verification}
+
+The verification subsystem will be comprised of:
+\begin{itemize}
+  \item 1 ultrasonic range finder
+\end{itemize}
 
 \section{Design of Electrical Components}
 
@@ -164,10 +236,30 @@ circuit diagrams, etc}
 
 \section{Interface}
 
-\wss{Include additional information related to the appearance of, and
-interaction with, the user interface}
+% \wss{Include additional information related to the appearance of, and
+% interaction with, the user interface}
+
+\includegraphics{interface1.png}
+\newline
+An example of a status message alerting the machine operator that the pot 
+dispenser requires refill. This would be accompanied by an audible alert.
+
+\includegraphics{interface2.png}
+\newline
+Concept of the button interface used by the operator to control the machine. 
+Handheld as to mitigate any safety concerns with a machine-mounted apparatus.
 
 \section{Mechanical Hardware}
+
+\subsection{Pot Dropper}
+
+\subsection{Tray Dropper}
+
+\subsection{Tray Elevator}
+
+\includegraphics{Tray_Elevator.jpg}
+\newpage
+\includegraphics{Tray_Elevator2.jpg}
 
 \section{Electrical Components}
 
