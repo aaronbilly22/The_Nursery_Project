@@ -34,9 +34,9 @@
 
 \begin{document}
 
-\title{System Design for \progname{}} 
-\author{\authname}
-\date{\today}
+\title{System Design for Pot-pulator} 
+\author{Team \#24, The Nursery Project\\Aaron Billones, billonea\\Gillian Ford, fordg\\Juan Moncada, moncadaj\\Steven Ramundi, ramundis}
+\date{January 18, 2023}
 
 \maketitle
 
@@ -44,13 +44,13 @@
 
 \section{Revision History}
 
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
-\midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
-\bottomrule
-\end{tabularx}
+\begin{tabularx}{\textwidth}{p{3cm}p{4cm}X}
+  \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+  \midrule
+  2023-01-18 & Juan Moncada,& Initial release\\&Aaron Billones,\\&Steven Ramundi,\\&Gillian Ford \\
+  
+  \bottomrule
+  \end{tabularx}
 
 \newpage
 
@@ -86,18 +86,38 @@ This section records information for easy reference.
 
 \section{Introduction}
 
-\wss{Include references to your other documentation}
+The Pot-pulator is a machine with purpose of aiding Sheridan Nurseries in 
+populating their trays with pots, in order to prepare them for filling with 
+soil and seeds.\\\\Their current method of populating the trays with pots is a 
+process with little to no automation, requiring many manual hours of labour. 
+Each year, 250,000 annual plants need to be produced by the nursery. Recently, 
+the supervisors have found it increasingly more difficult to fill positions with 
+enough workers to run the operation smoothly and meet production demand. 
+The Pot-pulator will alleviate the large reliance on manual labour and 
+improve the overall efficiency of the nursery. \\\\This document consists of a 
+detailed design overview of the Pot-pulator. The system overview, system 
+variables, user interfaces, hardware design and electrical design will be 
+presented in this document.
+
 
 \section{Purpose}
 
-\wss{Purpose of your design documentation}
-
-\wss{Point to your other design documents}
+This document describes the overall system functionality and the design overview 
+of the Pot-pulator. It will describe how the mechanical, electrical, and software 
+components will interact with each other, and the various design decisions made 
+within the system. The Module Guide (MG) and Module Interface Specification (MIS) 
+are additional design documents that provide a further in depth design of the 
+components in each module of the system.
 
 \section{Scope}
+The following figure shows the boundary between the Pot-pulator device and its functionality
+within the given environment.
 
-\wss{Include a figure that show the System Context (showing the boundary between
-your system and the environment around it.)}
+\begin{figure}[H]
+  \includegraphics[width=\linewidth]{scope.PNG}
+  \caption{System Context Diagram}
+  \label{fig:context1}
+\end{figure}
 
 \section{Project Overview}
 
