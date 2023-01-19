@@ -46,7 +46,7 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-2023-01-07 & 1.0 & initial release\\
+2023-01-07 & 1.0 & Initial Release\\
 \\
 \bottomrule
 \end{tabularx}
@@ -62,7 +62,7 @@ This section records information for easy reference.
 \renewcommand{\arraystretch}{1.2}
 \begin{tabular}{l l} 
   \toprule		
-  \textbf{symbol} & \textbf{description}\\
+  \textbf{Symbol} & \textbf{Description}\\
   \midrule 
   AC & Anticipated Change\\
   DAG & Directed Acyclic Graph \\
@@ -72,7 +72,7 @@ This section records information for easy reference.
   R & Requirement\\
   SC & Scientific Computing \\
   SRS & Software Requirements Specification\\
-  \progname & Explanation of program name\\
+  \progname & Explanation of Program Name\\
   UC & Unlikely Change \\
   \bottomrule
 \end{tabular}\\
@@ -159,10 +159,10 @@ change.
 \item[\refstepcounter{acnum} \actheacnum \label{acphy}:] The physical input
 devices that the user will have available to them.
 \item[\refstepcounter{acnum} \actheacnum \label{accal}:] Calulations for timing conveyor
-stopage and movement.
+stoppage and movement.
 \item[\refstepcounter{acnum} \actheacnum \label{acsen}:] Sensors used for verification and 
-validation.(increased accurasy and lower latency)
-\item[\refstepcounter{acnum} \actheacnum \label{accom}:] Communication protocol used to 
+validation (increased accuracy and lower latency).
+\item[\refstepcounter{acnum} \actheacnum \label{accom}:] Communication protocol used 
 between the individual modules amd main board.
 
 \end{description}
@@ -284,7 +284,7 @@ Only the leaf modules in the hierarchy have to be implemented. If a dash
 to be implemented.
 
 \subsection{Hardware Hiding Modules (\mref{mHH})}
-Due to the hardware focus of this project, there are no hardware hiding module.
+Due to the hardware focus of this project, there are no hardware hiding modules.
 \begin{description}
 \item[Secrets:]The data structure and algorithm used to implement the virtual
   hardware.
@@ -329,7 +329,7 @@ Due to the hardware focus of this project, there are no hardware hiding module.
 \subsubsection{Pot Dropping Output Module (\mref{mPDO})}
 \begin{description}
 \item[Secrets:] State of pot dropping subsystem
-\item[Services:] Serves to maintian the status, errror and readyness of the pot dispensing subsystem as well as
+\item[Services:] Serves to maintian the status, errror and readiness of the pot dispensing subsystem as well as
 communicate this status with main control board.
 \item[Implemented By:] [Pot-pulator]
 \item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
@@ -340,7 +340,7 @@ communicate this status with main control board.
 \subsubsection{Conveyor Input Module (\mref{mCI})}
 \begin{description}
 \item[Secrets:] Subsystem state and main board command
-\item[Services:] Takes in subsystem state and commnad and allows for system functionaility.
+\item[Services:] Takes in subsystem state and command and allows for system functionaility.
 \item[Implemented By:] [Pot-pulator]
 \item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
   [Information to include for leaf modules in the decomposition by secrets tree.]
@@ -350,7 +350,7 @@ communicate this status with main control board.
 \subsubsection{Conveyor Movement Module (\mref{mCM})}
 \begin{description}
 \item[Secrets:] Subsystem state and main board command.
-\item[Services:] Serves to drive conveyor motor and creat movement.
+\item[Services:] Serves to drive conveyor motor and create movement.
 \item[Implemented By:] [Pot-pulator]
 \item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
   [Information to include for leaf modules in the decomposition by secrets tree.]
@@ -359,7 +359,7 @@ communicate this status with main control board.
 \subsubsection{Tray Dispensor Input Module (\mref{mTDI})}
 \begin{description}
 \item[Secrets:] Subsystem state and main board command.
-\item[Services:] Takes in subsystem state and commnad and allows for system functionaility.
+\item[Services:] Takes in subsystem state and command and allows for system functionaility.
 \item[Implemented By:] [Pot-pulator]
 \item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
   [Information to include for leaf modules in the decomposition by secrets tree.]
@@ -367,7 +367,7 @@ communicate this status with main control board.
 
 \subsubsection{Tray Dispensor Gantry Module (\mref{mTDG})}
 \begin{description}
-\item[Secrets:] Subsystem state and main board command, Calw postion, tray idle position.
+\item[Secrets:] Subsystem state and main board command, claw postion, tray idle position.
 \item[Services:] Serves to drive gantry to dispense tray into Conveyor.
 \item[Implemented By:] [Pot-pulator]
 \item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
@@ -376,7 +376,7 @@ communicate this status with main control board.
 
 \subsubsection{Tray Dispensor Raising Module (\mref{mTDR})}
 \begin{description}
-\item[Secrets:] Subsystem state and main board command, tray raiser position.
+\item[Secrets:] Subsystem state and main board command, tray raising platform position.
 \item[Services:] Serves to drive stepper motors to raise a tray into its idle position.
 \item[Implemented By:] [Pot-pulator]
 \item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
@@ -402,12 +402,6 @@ communicate this status with main control board.
   [Information to include for leaf modules in the decomposition by secrets tree.]
 \end{description}
 
-
-
-
-\subsubsection{Etc.}
-
-
 \subsection{Software Decision Module}
 
 \begin{description}
@@ -424,7 +418,7 @@ communicate this status with main control board.
 \subsubsection{Front End Module (\mref{mFE})}
 \begin{description}
 \item[Secrets:] User inputs and individual subsystem status.
-\item[Services:] take in user input and converts into functional command for individual modules.
+\item[Services:] Take in user input and converts into functional command for individual modules.
 \item[Implemented By:] [Pot-pulator]
 \item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
   [Information to include for leaf modules in the decomposition by secrets tree.]
@@ -434,8 +428,8 @@ communicate this status with main control board.
 
 \subsubsection{Pot Dropping Position Module (\mref{mPDP})}
 \begin{description}
-\item[Secrets:] position of tray within dispensing area.
-\item[Services:] confirms tray position within dispensing area, triggers pot dispensing.
+\item[Secrets:] Position of tray within dispensing area.
+\item[Services:] Confirms tray position within dispensing area, triggers pot dispensing.
 \item[Implemented By:] [Pot-pulator]
 \item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
   [Information to include for leaf modules in the decomposition by secrets tree.]
@@ -443,7 +437,7 @@ communicate this status with main control board.
 
 \subsubsection{Verification Analysis Module (\mref{mVA})}
 \begin{description}
-\item[Secrets:] system functional tolerances,  serveral distance readings.
+\item[Secrets:] System functional tolerances,  serveral distance readings.
 \item[Services:] Serves to check system output, and to alert if there is an output that does not conform to requirements.
 \item[Implemented By:] [Pot-pulator]
 \item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
@@ -452,13 +446,12 @@ communicate this status with main control board.
 
 \subsubsection{Communication Module (\mref{mCO})}
 \begin{description}
-\item[Secrets:] all subsystem states, user inputs.
+\item[Secrets:] All subsystem states, user inputs.
 \item[Services:] Serves be the communications between user and subsystems. Serves to coordinate action between subsystems.
 \item[Implemented By:] [Pot-pulator]
 \item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
   [Information to include for leaf modules in the decomposition by secrets tree.]
 \end{description}
-\subsubsection{Etc.}
 
 \section{Traceability Matrix} \label{SecTM}
 
