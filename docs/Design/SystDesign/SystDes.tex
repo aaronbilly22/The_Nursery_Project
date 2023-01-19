@@ -6,6 +6,7 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{graphicx}
+\graphicspath{ {./images/} }
 \usepackage{float}
 \usepackage{hyperref}
 \hypersetup{
@@ -33,9 +34,9 @@
 
 \begin{document}
 
-\title{System Design for \progname{}} 
-\author{\authname}
-\date{\today}
+\title{System Design for Pot-pulator} 
+\author{Team \#24, The Nursery Project\\Aaron Billones, billonea\\Gillian Ford, fordg\\Juan Moncada, moncadaj\\Steven Ramundi, ramundis}
+\date{January 18, 2023}
 
 \maketitle
 
@@ -43,13 +44,13 @@
 
 \section{Revision History}
 
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
-\midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
-\bottomrule
-\end{tabularx}
+\begin{tabularx}{\textwidth}{p{3cm}p{4cm}X}
+  \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+  \midrule
+  2023-01-18 & Juan Moncada,& Initial release\\&Aaron Billones,\\&Steven Ramundi,\\&Gillian Ford \\
+  
+  \bottomrule
+  \end{tabularx}
 
 \newpage
 
@@ -85,37 +86,99 @@ This section records information for easy reference.
 
 \section{Introduction}
 
-\wss{Include references to your other documentation}
+The Pot-pulator is a machine with purpose of aiding Sheridan Nurseries in 
+populating their trays with pots, in order to prepare them for filling with 
+soil and seeds.\\\\Their current method of populating the trays with pots is a 
+process with little to no automation, requiring many manual hours of labour. 
+Each year, 250,000 annual plants need to be produced by the nursery. Recently, 
+the supervisors have found it increasingly more difficult to fill positions with 
+enough workers to run the operation smoothly and meet production demand. 
+The Pot-pulator will alleviate the large reliance on manual labour and 
+improve the overall efficiency of the nursery. \\\\This document consists of a 
+detailed design overview of the Pot-pulator. The system overview, system 
+variables, user interfaces, hardware design and electrical design will be 
+presented in this document.
+
 
 \section{Purpose}
 
-\wss{Purpose of your design documentation}
-
-\wss{Point to your other design documents}
+This document describes the overall system functionality and the design overview 
+of the Pot-pulator. It will describe how the mechanical, electrical, and software 
+components will interact with each other, and the various design decisions made 
+within the system. The Module Guide (MG) and Module Interface Specification (MIS) 
+are additional design documents that provide a further in depth design of the 
+components in each module of the system.
 
 \section{Scope}
+The following figure shows the boundary between the Pot-pulator device and its functionality
+within the given environment.
 
-\wss{Include a figure that show the System Context (showing the boundary between
-your system and the environment around it.)}
+\begin{figure}[H]
+  \includegraphics[width=\linewidth]{scope.PNG}
+  \caption{System Context Diagram}
+  \label{fig:scope}
+\end{figure}
 
 \section{Project Overview}
 
 \subsection{Normal Behaviour}
 
-\subsection{Undesired Event Handling}
+The Pot-pulator needs to be filled with empty pots and trays by the user. Upon pressing the "start" button,
+the Pot-pulator begins its operation with no further interaction required by the user.
+Under normal operation, the ideal behaviour of the Pot-pulator will be as follows:
+\begin{enumerate}
+  \item User fills the machine with empty pots and trays
+  \item User presses the start button
+  \item Raise the platform containing the trays until the stack reaches the top
+  \item Take the top tray off of the stack and place it on the conveyor belt
+  \item Proceed to move the conveyor and position the tray correctly to prepare for pot insertion
+  \item Stop the conveyor when pots and drop the pots 2 at a time in the tray
+  \item Continue moving the conveyor to the next available slots in the tray
+  \item Repeat steps 6 and 7 until the entire tray is filled with pots (10 pots)
+  \item Once the tray is filled with pots, the verification subsystem determines if all the pots have been placed correctly in the tray
+\end{enumerate}
 
-\wss{How you will approach undesired events}
+\noindent Throughout the opreation of the device, the user interface displays the current status of the machine.
+
+\subsection{Undesired Event Handling}
+The Pot-pulator is vulnerable to many undesired events during operation. The user will be notified should anything
+go wrong with the system via the user interface, LEDs, and sound.
+\subsubsection{Pot/Tray Misalignement}
+A very common issue that could arise with the Pot-pulator is that there is the possibility
+of a pot not being placed correctly in the tray due to misalignement. To mitigate this risk,
+the verification subsystem was implemented to ensure that there are pots in all of the tray slots.
+If there are missing pots, the user will be notified and the tray may be removed from the conveyor by hand.
+
+\subsubsection{Motor Jam/Malfunction}
+If a motor is unable to turn or fails, the system comes to a stop and the user is notfied about the issue.
+The user is then expected to remove the object that is blocking the motor from moving. If the motor refuses to turn even without obstruction,
+the motor will most likely need to be replaced by a qualified individual.
+
 
 \subsection{Component Diagram}
-
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{component_diagram.PNG}
+  \caption{Component Diagram}
+  \label{fig:componentdiagram}
+\end{figure}
 \subsection{Connection Between Requirements and Design} \label{SecConnection}
 
-\wss{The intention of this section is to document decisions that are made
-  ``between'' the requirements and the design.  To satisfy some requirements,
-  design decisions need to be made.  Rather than make these decisions implicit,
-  they are explicitly recorded here.  For instance, if a program has security
-  requirements, a specific design decision may be made to satisfy those
-  requirements with a password.}
+  The table below shows the traceability between design components and requirements specified in the SRS.
+  
+\begin{table}[H]
+\caption{Requirements and System Design}
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Component} & \textbf{Corresponding Requirement} \\ \hline
+Overall System Control  & NFR11, NFR12 \\ \hline
+Conveyor Control   & CR1, CR2, CR3, CR4, CR5, CR6, NFR8 \\ \hline
+Tray Dispenser   & TDR1, TDR2, TDR3, TDR4, TDR5, TDR6, TDR7, NFR4, NFR10, NFR13, NFR16 \\ \hline
+Pot Dispenser   &  PDR1, PDR2, PDR3, PDR4, PDR5, PDR6, PDR7, PDR8, NFR4, NFR9, NFR14, NFR15  \\ \hline
+Verification   &  VR1, VR2, NFR5 \\ \hline
+User Interface  &  NFR7 \\ \hline
+\end{tabularx}
+\end{table}
 
 \section{System Variables}
 
@@ -123,37 +186,196 @@ your system and the environment around it.)}
 
 \subsection{Monitored Variables}
 
+\begin{tabular}{ |p{3cm}|p{9cm}|p{2cm}|p{1cm}| }
+  \hline
+  Variable & Description & Type & Units\\
+  \hline
+  Sensor Distances & Measured distances that the sensor identifies
+   & Distance & mm\\
+  \hline
+  System State & Determines the state of the system (ie. Ready, Running, Error, Success)
+   & State &  N/A\\
+  \hline
+  Tray/Pot Weight & Weight of the trays/pots to verify number in the stack
+   & Weight & kg\\
+  \hline
+  Tray/Pot Height & Height of the trays/pots to verify number in the stack
+   & Height & m\\
+  
+  \hline
+ \end{tabular}\\\\
+
 \subsection{Controlled Variables}
 
+\begin{tabular}{ |p{3cm}|p{9cm}|p{2cm}|p{1cm}| }
+  \hline
+  Variable & Description & Type & Units\\
+  \hline
+  Motor Speeds & The speeds at which the motors in the system will turn
+   & Speed & rad/s\\
+  \hline
+  Voltage In & Voltage going into the system
+   & Voltage & V\\
+  \hline
+  Current In & Current going into the system
+   & Current &  A\\
+  \hline
+  LEDs & LED status lights
+   & Boolean & N/A\\
+  
+  \hline
+ \end{tabular}\\\\
+
 \subsection{Constants Variables}
+
+\begin{tabular}{ |p{3cm}|p{8.9cm}|p{2.1cm}|p{1cm}| }
+  \hline
+  Variable & Description & Type & Units\\
+  \hline
+  Motor Acceleration & The acceleration at which the motors in the system will turn
+   & Acceleration & rad/s\textsuperscript{2}\\
+  \hline
+  Pots Dispensed & Pots dispensed by the system per cycle
+   & Quantity & pots per cycle\\
+  \hline
+  Trays Dispensed & Trays dispensed by the system per cycle
+   & Quantity &  trays per cycle\\
+  \hline
+  Total Distance & Total distance travelled by trays
+   & Distance & m\\
+  
+  \hline
+ \end{tabular}\\\\
 
 \section{User Interfaces}
 
 \wss{Design of user interface for software and hardware.  Attach an appendix if
 needed. Drawings, Sketches, Figma}
 
+The User Interface will consist of a set of buttons to allow the operator to safely 
+interact with the machine. It will also consist of audible and visual signals to alert
+the operator of any action required (e.g. tray/pot restock, verification error, etc.).
+See Appendix A for interface layout concept.
+
 \section{Design of Hardware}
 
-\wss{Most relevant for mechatronics projects}
-\wss{Show what will be acquired}
-\wss{Show what will be built, with detail on fabrication and materials}
-\wss{Include appendices as appropriate, possibly with sketches, drawings, CAD, etc}
+\subsection{Conveyor}
+
+The conveyor subsystem will be comprised of:
+\begin{itemize}
+  \item 1 conveyor (including belt, motor, gear box and framing)
+  \item 1 Arduino Uno microcontroller
+  
+\end{itemize}
+The conveyor has been acquired from Sheridan Nurseries and will not require fabrication.
+
+
+\subsection{Pot Dropper}
+
+The pot dropper subsystem will be comprised of:
+\begin{itemize}
+  \item 4 stepper motors
+  \item 4 stepper motor drivers
+  \item 1 Arduino Uno microcontroller
+  \item 4 pot dropper screws
+  \item 1 ultrasonic range finder
+\end{itemize}
+The pot dropper will be fabricated with steel x-beam framing to support the mechanism.
+See Appendix B.1 for a CAD diagram of the pot dropper screw.
+
+\subsection{Tray Dropper}
+
+The tray dropper subsystem will be comprised of:
+\begin{itemize}
+  \item 2 stepper motors
+  \item 1 Sanguinololu driver board
+  \item 2 belts
+  \item 4 belt bearings
+  \item 1 steel x-beam frame
+  \item 1 tray dropper end-effector
+\end{itemize}
+The tray dropper will be fabricated with x-beam framing to support the mechanism. The 
+stepper motors and belt bearings will be attached to the framing, and the belts will 
+be secured to the bearings. See Appendix B.2 for a CAD diagram of the tray dropper 
+end-effector.
+
+\subsection{Tray Elevator}
+
+The tray elevator will be comprised of:
+\begin{itemize}
+  \item 4 L-shaped wood frame supports
+  \item 4 long wood frame supports
+  \item 4 short wood frame supports
+  \item 1 wood raising platform
+  \item 1 ultrasonic range finder
+  \item 2 spur gears
+  \item 2 racks
+  \item 2 stepper motors
+\end{itemize}
+The wooden frame will be fabricated with screws and wood glue. The stepper motors 
+will be attached to either side of the wood platform responsible for hodling the 
+stack of trays. The spur gears will be attached to the stepper motors. The racks 
+will be attached in the centre of the long wood supports on either side of the frame, 
+and will mesh with the spur gears. This will enable the stepper motors to control the 
+lifting and lowering of the tray elevator based on its current capacity (see Appendix B.3
+for CAD diagram).
+
+\subsection{Verification}
+
+The verification subsystem will be comprised of:
+\begin{itemize}
+  \item 2 ultrasonic range finders
+\end{itemize}
 
 \section{Design of Electrical Components}
 
-\wss{Most relevant for mechatronics projects}
-\wss{Show what will be acquired}
-\wss{Show what will be built, with detail on fabrication and materials}
-\wss{Include appendices as appropriate, possibly with sketches, drawings,
-circuit diagrams, etc}
+The Pot-pulator has a number of electrical components in the system. A complete overview of the circuit diagram
+can be found in section C of the appendix. To improve modularity and for easier troubleshooting,
+the electrical components were divided in to 4 subsystems based on the control of the system: conveyor control, pot
+control, tray control, and verification. These subsystems are each controlled using an 
+Arduino Uno while being monitored by the main microcontroller (STM32F429I-DISC1). For each subsystem,
+its respective Arduino controls the motors and reads sensor/switch/button values in order to ensure smooth operation. 
+The Arduino relays the operation status to the STM32F429I-DISC1 via status bits, that are sent from each of the 
+subsystems to the STM32F429I-DISC1 at all times. If an error were to occur in
+one of the subsystems, the STM32F429I-DISC1 will be notified and tell all other subsystems to pause operation.
 
-\section{Design of Communication Protocols}
 
-\wss{If appropriate}
+
+% \section{Design of Communication Protocols}
+
+% \wss{If appropriate}
 
 \section{Timeline}
 
 \wss{Schedule of tasks and who is responsible}
+
+\begin{tabular}{ |p{3cm}|p{5cm}|p{4cm}|p{2cm}| }
+  \hline
+  Task & Description & Team Member(s) & Deadline\\
+  \hline
+  Pot Dropper Design & Design of pot dropper hardware and software
+  & Juan Moncada and Gillian Ford & Juanuary 23, 2023\\
+  \hline
+  Tray Dropper Design & Design of tray dropper hardware and software
+  & Steven Ramundi and Aaron Billones & January 23, 2023\\
+  \hline
+  Pot Dropper Fabrication & Fabrication of pot dropper frame and apparatus
+  & Juan Moncada & January 31, 2023\\
+  \hline
+  Tray Dropper Fabrication & Fabrication of tray dropper and elevator frame and apparatus
+  & Steven Ramundi and Aaron Billones & January 31, 2023\\
+  \hline
+  Verification Fabrication & Fabrication of verification System
+  & Gillian Ford & January 31, 2023\\
+  \hline
+  Electrical Fabrication & Fabrication and assembly of all electrical components
+  & All members & February 2, 2023\\
+  \hline
+  Testing & Testing of all subsystems and components
+  & All members & February 6, 2023\\
+  \hline
+
+\end{tabular}
 
 % \bibliographystyle {plainnat}
 % \bibliography{../../../refs/References}
@@ -164,12 +386,54 @@ circuit diagrams, etc}
 
 \section{Interface}
 
-\wss{Include additional information related to the appearance of, and
-interaction with, the user interface}
+% \wss{Include additional information related to the appearance of, and
+% interaction with, the user interface}
+
+\includegraphics{interface1.png}
+\newline
+An example of a status message alerting the machine operator that the pot 
+dispenser requires refill. This would be accompanied by an audible alert.
+
+\includegraphics{interface2.png}
+\newline
+Concept of the button interface used by the operator to control the machine. 
+Handheld as to mitigate any safety concerns with a machine-mounted apparatus.
 
 \section{Mechanical Hardware}
 
+\subsection{Pot Dropper}
+
+\subsection{Tray Dropper}
+\begin{figure}[H]
+  \centering
+  \includegraphics{Tray_Dropper.jpg}
+  \caption{Tray Dropper End-Effector}
+  \label{fig:dropper1}
+\end{figure}
+
+\subsection{Tray Elevator}
+\begin{figure}[H]
+  \centering
+  \includegraphics{Tray_Elevator.jpg}
+  \caption{Tray Elevator (side)}
+  \label{fig:elevator1}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics{Tray_Elevator2.jpg}
+  \caption{Tray Elevator (orthographic projection)}
+  \label{fig:elevator2}
+\end{figure}
+
 \section{Electrical Components}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.89\textwidth]{circuit_diagram.pdf}
+  \caption{Circuit Diagram}
+  \label{fig:circuit}
+\end{figure}
 
 \section{Communication Protocols}
 
