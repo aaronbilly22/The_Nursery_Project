@@ -65,8 +65,16 @@ This section records information for easy reference.
   \toprule		
   \textbf{symbol} & \textbf{description}\\
   \midrule 
-  \progname & Explanation of program name\\
-  \wss{...} & \wss{...}\\
+  CR & Conveyor Functional Requirement\\
+  NFR & Non-Functional Requirement\\
+  PDR & Pot Dispensing Functional Requirement\\
+  SRS & Software Requirements Specification\\
+  TDR & Tray Dispensing Functional Requirement\\
+  VR & Verification Functional Requirement\\
+  MIS & Module Interface Specification \\
+  MG & Module Guide \\
+  LED & Light-Emitting Diode\\
+  CAD & Computer-Aided Design\\
   \bottomrule
 \end{tabular}\\
 
@@ -182,10 +190,10 @@ User Interface  &  NFR7 \\ \hline
 
 \section{System Variables}
 
-\wss{Include this section for Mechatronics projects}
 
 \subsection{Monitored Variables}
-
+\begin{table}[H]
+\caption{Monitored Variables}
 \begin{tabular}{ |p{3cm}|p{9cm}|p{2cm}|p{1cm}| }
   \hline
   Variable & Description & Type & Units\\
@@ -204,9 +212,11 @@ User Interface  &  NFR7 \\ \hline
   
   \hline
  \end{tabular}\\\\
+ \end{table}
 
 \subsection{Controlled Variables}
-
+\begin{table}[H]
+\caption{Controlled Variables}
 \begin{tabular}{ |p{3cm}|p{9cm}|p{2cm}|p{1cm}| }
   \hline
   Variable & Description & Type & Units\\
@@ -225,9 +235,11 @@ User Interface  &  NFR7 \\ \hline
   
   \hline
  \end{tabular}\\\\
+\end{table}
 
 \subsection{Constants Variables}
-
+\begin{table}[H]
+  \caption{Constants Variables}
 \begin{tabular}{ |p{3cm}|p{8.9cm}|p{2.1cm}|p{1cm}| }
   \hline
   Variable & Description & Type & Units\\
@@ -246,11 +258,10 @@ User Interface  &  NFR7 \\ \hline
   
   \hline
  \end{tabular}\\\\
+\end{table}
 
 \section{User Interfaces}
 
-\wss{Design of user interface for software and hardware.  Attach an appendix if
-needed. Drawings, Sketches, Figma}
 
 The User Interface will consist of a set of buttons to allow the operator to safely 
 interact with the machine. It will also consist of audible and visual signals to alert
@@ -347,8 +358,9 @@ one of the subsystems, the STM32F429I-DISC1 will be notified and tell all other 
 
 \section{Timeline}
 
-\wss{Schedule of tasks and who is responsible}
 
+\begin{table}[H]
+  \caption{Timeline}
 \begin{tabular}{ |p{3cm}|p{5cm}|p{4cm}|p{2cm}| }
   \hline
   Task & Description & Team Member(s) & Deadline\\
@@ -376,6 +388,7 @@ one of the subsystems, the STM32F429I-DISC1 will be notified and tell all other 
   \hline
 
 \end{tabular}
+\end{table}
 
 % \bibliographystyle {plainnat}
 % \bibliography{../../../refs/References}
@@ -388,14 +401,21 @@ one of the subsystems, the STM32F429I-DISC1 will be notified and tell all other 
 
 % \wss{Include additional information related to the appearance of, and
 % interaction with, the user interface}
-
+\begin{figure}[H]
+  \centering
 \includegraphics{interface1.png}
-\newline
-An example of a status message alerting the machine operator that the pot 
+\caption{Example of Interface}
+  \label{fig:interface1}
+\end{figure}
+The above figure shows an example of a status message alerting the machine operator that the pot 
 dispenser requires refill. This would be accompanied by an audible alert.
 
-\includegraphics{interface2.png}
-\newline
+\begin{figure}[H]
+  \centering
+\includegraphics[width=0.25\textwidth]{interface2.png}
+\caption{Example of Button Controls}
+  \label{fig:interface2}
+\end{figure}
 Concept of the button interface used by the operator to control the machine. 
 Handheld as to mitigate any safety concerns with a machine-mounted apparatus.
 
