@@ -123,20 +123,62 @@ within the given environment.
 
 \subsection{Normal Behaviour}
 
-\subsection{Undesired Event Handling}
+The Pot-pulator needs to be filled with empty pots and trays by the user. Upon pressing the "start" button,
+the Pot-pulator begins its operation with no further interaction required by the user.
+Under normal operation, the ideal behaviour of the Pot-pulator will be as follows:
+\begin{enumerate}
+  \item User fills the machine with empty pots and trays
+  \item User presses the start button
+  \item Raise the platform containing the trays until the stack reaches the top
+  \item Take the top tray off of the stack and place it on the conveyor belt
+  \item Proceed to move the conveyor and position the tray correctly to prepare for pot insertion
+  \item Stop the conveyor when pots and drop the pots 2 at a time in the tray
+  \item Continue moving the conveyor to the next available slots in the tray
+  \item Repeat steps 6 and 7 until the entire tray is filled with pots (10 pots)
+  \item Once the tray is filled with pots, the verification subsystem determines if all the pots have been placed correctly in the tray
+\end{enumerate}
 
-\wss{How you will approach undesired events}
+\noindent Throughout the opreation of the device, the user interface displays the current status of the machine.
+
+\subsection{Undesired Event Handling}
+The Pot-pulator is vulnerable to many undesired events during operation. The user will be notified should anything
+go wrong with the system via the user interface, LEDs, and sound.
+\subsubsection{Pot/Tray Misalignement}
+A very common issue that could arise with the Pot-pulator is that there is the possibility
+of a pot not being placed correctly in the tray due to misalignement. To mitigate this risk,
+the verification subsystem was implemented to ensure that there are pots in all of the tray slots.
+If there are missing pots, the user will be notified and the tray may be removed from the conveyor by hand.
+
+\subsubsection{Motor Jam/Malfunction}
+If a motor is unable to turn or fails, the system comes to a stop and the user is notfied about the issue.
+The user is then expected to remove the object that is blocking the motor from moving. If the motor refuses to turn even without obstruction,
+the motor will most likely need to be replaced by a qualified individual.
+
 
 \subsection{Component Diagram}
-
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{component_diagram.PNG}
+  \caption{Component Diagram}
+  \label{fig:componentdiagram}
+\end{figure}
 \subsection{Connection Between Requirements and Design} \label{SecConnection}
 
-\wss{The intention of this section is to document decisions that are made
-  ``between'' the requirements and the design.  To satisfy some requirements,
-  design decisions need to be made.  Rather than make these decisions implicit,
-  they are explicitly recorded here.  For instance, if a program has security
-  requirements, a specific design decision may be made to satisfy those
-  requirements with a password.}
+  The table below shows the traceability between design components and requirements specified in the SRS.
+  
+\begin{table}[H]
+\caption{Requirements and System Design}
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Component} & \textbf{Corresponding Requirement} \\ \hline
+Overall System Control  & NFR11, NFR12 \\ \hline
+Conveyor Control   & CR1, CR2, CR3, CR4, CR5, CR6, NFR8 \\ \hline
+Tray Dispenser   & TDR1, TDR2, TDR3, TDR4, TDR5, TDR6, TDR7, NFR4, NFR10, NFR13, NFR16 \\ \hline
+Pot Dispenser   &  PDR1, PDR2, PDR3, PDR4, PDR5, PDR6, PDR7, PDR8, NFR4, NFR9, NFR14, NFR15  \\ \hline
+Verification   &  VR1, VR2, NFR5 \\ \hline
+User Interface  &  NFR7 \\ \hline
+\end{tabularx}
+\end{table}
 
 \section{System Variables}
 
