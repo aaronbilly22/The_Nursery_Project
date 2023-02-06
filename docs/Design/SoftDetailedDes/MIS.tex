@@ -38,11 +38,10 @@ urlcolor=cyan          % color of external links
 
 \begin{document}
 
-\title{Module Interface Specification for \progname{}}
+\title{Module Interface Specification for Pot-pulator}
 
-\author{\authname}
-
-\date{\today}
+\author{Team \#24, The Nursery Project\\Aaron Billones, billonea\\Gillian Ford, fordg\\Juan Moncada, moncadaj\\Steven Ramundi, ramundis}
+\date{January 18, 2023}
 
 \maketitle
 
@@ -50,21 +49,20 @@ urlcolor=cyan          % color of external links
 
 \section{Revision History}
 
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
-\midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
-\bottomrule
-\end{tabularx}
+\begin{tabularx}{\textwidth}{p{3cm}p{4cm}X}
+  \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+  \midrule
+  2023-01-18 & Juan Moncada,& Initial release\\&Aaron Billones,\\&Steven Ramundi,\\&Gillian Ford \\
+  
+  \bottomrule
+  \end{tabularx}
 
 ~\newpage
 
 \section{Symbols, Abbreviations and Acronyms}
 
-See SRS Documentation at \wss{give url}
+See SRS Documentation at \url{https://github.com/aaronbilly22/The_Nursery_Project/blob/main/docs/SRS/SRS.pdf}
 
-\wss{Also add any additional symbols, abbreviations or acronyms}
 
 \newpage
 
@@ -77,16 +75,14 @@ See SRS Documentation at \wss{give url}
 \section{Introduction}
 
 The following document details the Module Interface Specifications for
-\wss{Fill in your project name and description}
+The Nursery Project.
 
-Complementary documents include the System Requirement Specifications
+\noindent Complementary documents include the System Requirement Specifications
 and Module Guide.  The full documentation and implementation can be
-found at \url{...}.  \wss{provide the url for your repo}
+found at \url{https://github.com/aaronbilly22/The_Nursery_Project/blob/main/docs/SRS/SRS.pdf}. 
 
 \section{Notation}
 
-\wss{You should describe your notation.  You can use what is below as
-  a starting point.}
 
 The structure of the MIS for modules comes from \citet{HoffmanAndStrooper1995},
 with the addition that template modules have been adapted from
@@ -125,107 +121,620 @@ described by giving their type signature followed by their specification.
 The following table is taken directly from the Module Guide document for this project.
 
 \begin{table}[h!]
-\centering
-\begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
-\toprule
-\textbf{Level 1} & \textbf{Level 2}\\
-\midrule
-
-{Hardware-Hiding} & ~ \\
-\midrule
-
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding} & Input Parameters\\
-& Output Format\\
-& Output Verification\\
-& Temperature ODEs\\
-& Energy Equations\\ 
-& Control Module\\
-& Specification Parameters Module\\
-\midrule
-
-\multirow{3}{0.3\textwidth}{Software Decision} & {Sequence Data Structure}\\
-& ODE Solver\\
-& Plotting\\
-\bottomrule
-
-\end{tabular}
-\caption{Module Hierarchy}
-\label{TblMH}
-\end{table}
+  \centering
+  \begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
+  \toprule
+  \textbf{Level 1} & \textbf{Level 2}\\
+  \midrule
+  
+  {Hardware-Hiding Module} & ~ \\
+  \midrule
+  
+  \multirow{7}{0.3\textwidth}{Behaviour-Hiding Module}
+  & Pot Dropping Input Module \\
+  & Pot Dropping Stepper Module\\
+  & Pot Dropping Output Module\\
+  & Conveyor Input Module\\
+  & Conveyor Movement Module\\
+  & Tray Dispenser Input Module\\ 
+  & Tray Dispenser Gantry Module\\
+  & Tray Dispenser Raising Module \\
+  & Tray Dispenser Output Module \\
+  & Verification Output Module \\
+  
+  \midrule
+  
+  \multirow{3}{0.3\textwidth}{Software Decision Module}
+  & Pot dropping Position Module\\
+  & Verifications Analysis Module\\
+  & Communication Module\\
+  & Front End Module\\
+  \bottomrule
+  
+  \end{tabular}
+  \caption{Module Hierarchy}
+  \label{TblMH}
+  \end{table}
 
 \newpage
 ~\newpage
 
-\section{MIS of \wss{Module Name}} \label{Module} \wss{Use labels for
-  cross-referencing}
+\section{MIS of Pot Dropping Input Module} \label{potdroppingInput} 
 
-\wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
-
-\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}
 
 \subsection{Module}
 
-\wss{Short name for the module}
+pot\_droppingIn.ino
 
 \subsection{Uses}
-
+Pot Dropping Position Module (M4)
 
 \subsection{Syntax}
-
+N/A
 \subsubsection{Exported Constants}
-
+N/A
 \subsubsection{Exported Access Programs}
 
-\begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
-\hline
-\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
-\hline
-\wss{accessProg} & - & - & - \\
-\hline
-\end{tabular}
-\end{center}
+% \begin{center}
+% \begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+% \hline
+% \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+% \hline
+% \wss{accessProg} & - & - & - \\
+% \hline
+% \end{tabular}
+% \end{center}
+N/A
 
 \subsection{Semantics}
 
 \subsubsection{State Variables}
 
-\wss{Not all modules will have state variables.  State variables give the module
-  a memory.}
+N/A
 
 \subsubsection{Environment Variables}
 
-\wss{This section is not necessary for all modules.  Its purpose is to capture
-  when the module has external interaction with the environment, such as for a
-  device driver, screen interface, keyboard, file, etc.}
+trigPin, echoPin
 
 \subsubsection{Assumptions}
 
-\wss{Try to minimize assumptions and anticipate programmer errors via
-  exceptions, but for practical purposes assumptions are sometimes appropriate.}
+N/A
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
-\begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
-\end{itemize}
+% \noindent \wss{accessProg}():
+% \begin{itemize}
+% \item transition: \wss{if appropriate} 
+% \item output: \wss{if appropriate} 
+% \item exception: \wss{if appropriate} 
+% \end{itemize}
+N/A
 
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
 
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
+
 
 \subsubsection{Local Functions}
 
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
+loop, setup
+
+  \section{MIS of Pot Dropping Stepper Module} \label{potdroppingstepper} 
+
+\subsection{Module}
+
+steppertestpd.ino
+
+\subsection{Uses}
+Pot Dropping Output Module (M6) 
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+\subsubsection{Exported Access Programs}
+N/A
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+N/A
+
+\subsubsection{Environment Variables}
+
+stepper\_position, coil\_1a, coil\_1b, coil\_2a, coil\_2b
+
+\subsubsection{Assumptions}
+
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+N/A
+
+\subsubsection{Local Functions}
+
+stepper\_speed, stepper\_position, delay
+
+  \section{MIS of Pot Dropping Output Module} \label{potdroppingOutput} 
+
+
+
+\subsection{Module}
+pot\_droppingOut.ino
+
+\subsection{Uses}
+Communication (section \ref{communication})
+
+\subsection{Syntax}
+\subsubsection{Exported Constants}
+N/A
+\subsubsection{Exported Access Programs}
+
+N/A
+
+\subsection{Semantics}
+\subsubsection{State Variables}
+
+N/A
+
+\subsubsection{Environment Variables}
+
+N/A
+
+\subsubsection{Assumptions}
+
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+N/A
+
+\subsubsection{Local Functions}
+
+N/A
+
+  \section{MIS of Conveyor Input Module} \label{conveyorInput} 
+
+
+
+\subsection{Module}
+
+conveyor\_control.ino
+
+
+\subsection{Uses}
+Conveyor Movement \ref{conveyorMovement}
+
+\subsection{Syntax}
+\subsubsection{Exported Constants}
+N/A
+\subsubsection{Exported Access Programs}
+
+N/A
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+conveyor\_speed, conveyor\_direction
+
+\subsubsection{Environment Variables}
+
+N/A
+
+\subsubsection{Assumptions}
+
+N/A
+\subsubsection{Access Routine Semantics}
+
+N/A
+\subsubsection{Local Functions}
+
+conveyor\_go
+
+  \section{MIS of Conveyor Movement Module} \label{conveyorMovement}
+
+
+\subsection{Module}
+
+conveyor\_shmove.ino
+
+\subsection{Uses}
+Communication \ref{communication}
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+\subsubsection{Exported Access Programs}
+
+N/A
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+N/A
+
+\subsubsection{Environment Variables}
+
+conveyor\_speed, conveyor\_direction
+
+\subsubsection{Assumptions}
+
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+N/A
+
+
+\subsubsection{Local Functions}
+
+N/A
+
+\section{MIS of Tray Dispenser Input Module} \label{trayDispenserInput} 
+
+
+\subsection{Module}
+
+tray\_DispenserInput.ino
+
+\subsection{Uses}
+Tray Dispenser Gantry \ref{trayDispenserGantry}
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+\subsubsection{Exported Access Programs}
+
+N/A
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+N/A
+\subsubsection{Environment Variables}
+
+N/A
+
+\subsubsection{Assumptions}
+
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+N/A
+
+\subsubsection{Local Functions}
+
+setup, loop
+
+  \section{MIS of Tray Dispenser Gantry Module} \label{trayDispenserGantry} 
+
+\subsection{Module}
+
+tray\_gantry.ino
+
+\subsection{Uses}
+Tray Dispenser Raising \ref{trayDispenserRaising}
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+\subsubsection{Exported Access Programs}
+
+N/A
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+N/A
+
+
+\subsubsection{Environment Variables}
+
+stepper1, stepper2, xPos, yPos
+
+\subsubsection{Assumptions}
+
+N/A
+
+
+\subsubsection{Access Routine Semantics}
+
+N/A
+
+
+\subsubsection{Local Functions}
+
+N/A
+
+
+  \section{MIS of Tray Dispenser Raising Module} \label{trayDispenserRaising} 
+
+\subsection{Module}
+
+tray\_dispensingRaising.ino
+
+\subsection{Uses}
+
+Tray Dispenser Output \ref{trayDispenserOutput}
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+N/A
+
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+N/A
+
+\subsubsection{Environment Variables}
+
+direction, yPositionCounter
+
+\subsubsection{Assumptions}
+
+N/A
+
+
+\subsubsection{Access Routine Semantics}
+
+N/A
+
+
+
+
+\subsubsection{Local Functions}
+
+N/A
+
+
+  \section{MIS of Tray Dispenser Output Module} \label{trayDispenserOutput} 
+
+\subsection{Module}
+
+trayDispenserOutput.ino
+
+\subsection{Uses}
+Communication \ref{communication}
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+\subsubsection{Exported Access Programs}
+
+N/A
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+N/A
+
+\subsubsection{Environment Variables}
+
+N/A
+
+\subsubsection{Assumptions}
+
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+N/A
+
+\subsubsection{Local Functions}
+
+N/A
+  \section{MIS of Verification Output Module} \label{verificationOutput} 
+
+\subsection{Module}
+
+verifyOut.ino
+
+\subsection{Uses}
+Communication \ref{communication}
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+N/A
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+N/A
+
+\subsubsection{Environment Variables}
+
+N/A
+
+\subsubsection{Assumptions}
+
+N/A
+\subsubsection{Access Routine Semantics}
+
+N/A
+
+\subsubsection{Local Functions}
+
+N/A
+
+  \section{MIS of Pot Dropping Position Module} \label{potDroppingPosition} 
+
+\subsection{Module}
+
+pot\_position.ino
+
+\subsection{Uses}
+Pot Dropping Stepper \ref{potdroppingstepper}
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+N/A
+
+\subsubsection{Exported Access Programs}
+
+N/A
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+N/A
+\subsubsection{Environment Variables}
+
+N/A
+
+\subsubsection{Assumptions}
+
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+N/A
+
+
+
+\subsubsection{Local Functions}
+
+N/A
+
+  \section{MIS of Verification Analysis Module} \label{verificationAnalysis} 
+
+\subsection{Module}
+
+verifyAnalysis.ino
+
+\subsection{Uses}
+
+Verification Output \ref{verificationOutput}
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+\subsubsection{Exported Access Programs}
+
+N/A
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+N/A
+
+\subsubsection{Environment Variables}
+
+N/A
+
+\subsubsection{Assumptions}
+
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+N/A
+
+\subsubsection{Local Functions}
+
+N/A
+  \section{MIS of Communication Module} \label{communication}
+
+\subsection{Module}
+
+communication.ino
+
+\subsection{Uses}
+
+N/A
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+\subsubsection{Exported Access Programs}
+
+N/A
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+N/A
+
+\subsubsection{Environment Variables}
+
+N/A
+
+\subsubsection{Assumptions}
+
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+N/A
+
+\subsubsection{Local Functions}
+
+N/A
+
+  \section{MIS of Front End Module} \label{fronEnd} 
+
+\subsection{Module}
+
+fronEnd.ino
+
+\subsection{Uses}
+Communication \ref{communication}
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+\subsubsection{Exported Access Programs}
+
+N/A
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+N/A
+
+\subsubsection{Environment Variables}
+
+N/A
+
+\subsubsection{Assumptions}
+
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+N/A
+
+\subsubsection{Local Functions}
+
+N/A
 
 \newpage
 
@@ -234,8 +743,5 @@ The following table is taken directly from the Module Guide document for this pr
 
 \newpage
 
-\section{Appendix} \label{Appendix}
-
-\wss{Extra information if required}
 
 \end{document}
