@@ -17,9 +17,9 @@
 
 \begin{document}
 
-\title{Verification and Validation Report: \progname} 
-\author{\authname}
-\date{\today}
+\title{Verification and Validation Report: The Nursery Project} 
+\author{Aaron Billones, billonea\\Gillian Ford, fordg\\Juan Moncada, moncadaj\\Steven Ramundi, ramundis}
+\date{March 8, 2023}
 	
 \maketitle
 
@@ -30,8 +30,8 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+2023-03-08 & 1.0 & Initial Revision\\
+
 \bottomrule
 \end{tabularx}
 
@@ -44,11 +44,30 @@ Date 2 & 1.1 & Notes\\
   \toprule		
   \textbf{symbol} & \textbf{description}\\
   \midrule 
-  T & Test\\
+  ART & Accessibility Requirements Test\\
+CR & Conveyor Functional Requirement\\
+CST & Conveyor Subsystem Test\\
+EPET & Expected Physical Environment Test\\
+LCD & Liquid-Crystal Display\\
+LED & Light Emitting Diode\\
+LRT & Learning Requirements Test\\
+MG & Module Guide\\
+MIS & Management Information Systems\\
+NFR & Non-Functional Requirement\\
+PDST & Pot Dispenser Subsystem Test\\
+PDR & Pot Dispensing Functional Requirement\\
+PCST & Pot-pulator Complete System Testing\\
+PT & Precision Test\\
+RT & Reliability Test\\
+SCT & Safety Critical Test\\
+SRS & Software Requirements Specification\\
+SRT & Speed Requirements Test\\
+TDST & Tray Dispenser Subsystem Test\\
+TDR & Tray Dispensing Functional Requirement\\
+VST & Verification Subsystem Test\\
+VR & Verification Functional Requirement\\
   \bottomrule
 \end{tabular}\\
-
-\wss{symbols, abbreviations or acronyms -- you can reference the SRS tables if needed}
 
 \newpage
 
@@ -66,13 +85,45 @@ This document ...
 
 \section{Functional Requirements Evaluation}
 
+\subsection{Pot-pulator Complete System Testing}
+
+\begin{table}[h]
+  \centering
+  \begin{tabularx}{\textwidth}{|X|X|X|X|X|p{1cm}|}
+    \hline
+    Test Number & Description & Input & Expected Output & Actual Output & Result\\
+    \hline
+    PCST-01 & Tray Dispenser Operation & Sensor reading of status of tray stack & Normal system operation & Normal system operation & Pass \\
+    \hline
+    PCST-02 & On Switch for Tray Dispenser Error
+  \end{tabularx}
+  \caption{PCST Evaluation}
+  \label{tab:PCST}
+\end{table}
+
+\subsection{Tray Dispenser Subsystem Testing}
+
+\subsection{Pot Dispenser Subsystem Testing}
+
+\subsection{Conveyor Subsystem Testing}
+
+\subsection{Verification Subsystem Testing}
+
 \section{Nonfunctional Requirements Evaluation}
 
-\subsection{Usability}
+\subsection{Safety Critical Testing}
 		
-\subsection{Performance}
+\subsection{Precision Testing}
 
-\subsection{etc.}
+\subsection{Reliability Testing}
+
+\subsection{Expected Physical Environment Testing}
+
+\subsection{Speed Requirements Testing}
+
+\subsection{Learning Requirements Testing}
+
+\subsection{Accessibility Testing}
 	
 \section{Comparison to Existing Implementation}	
 
