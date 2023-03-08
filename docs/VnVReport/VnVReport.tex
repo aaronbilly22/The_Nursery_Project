@@ -2,6 +2,7 @@
 
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{longtable}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
@@ -81,8 +82,6 @@ VR & Verification Functional Requirement\\
 
 \pagenumbering{arabic}
 
-This document ...
-
 \section{Functional Requirements Evaluation}
 
 \subsection{Pot-pulator Complete System Testing}
@@ -95,7 +94,15 @@ This document ...
     \hline
     PCST-01 & Tray Dispenser Operation & Sensor reading of status of tray stack & Normal system operation & Normal system operation & Pass \\
     \hline
-    PCST-02 & On Switch for Tray Dispenser Error
+    PCST-02 & On Switch for Tray Dispenser Error & Pot-pulator switch set to on & Normal system operation & Normal system operation & Pass\\
+    \hline
+    PCST-03 & Pot Dispenser Operation & Sensor reading of status of pot stack & Normal system operation & Normal system operation & Pass\\
+    \hline
+    PCST-04 & On Switch for Pot Dispenser Error & Pot-pulator switch set to on & Normal system operation & Normal system operation & Pass\\
+    \hline
+    PCST-05 & Conveyor Operation & Tray placed on conveyor &  Normal system operation & Normal system operation & Pass\\
+    \hline
+    PCST-06 & 
   \end{tabularx}
   \caption{PCST Evaluation}
   \label{tab:PCST}
