@@ -337,8 +337,26 @@ This section will not be appropriate for every project.
 
 The changes due to testing are summarized below:
 \\
-1. The bases of the verification mounts were recently expanded away from the
-conveyer by approximately 5 cm on either side, to address issues with the pots being too close to the sensor when travelling down the conveyer, resulting in inaccurate readings.
+\begin{enumerate}
+  \item \textbf{Verification:}\\
+  The bases of the verification mounts were recently expanded away from the
+  conveyer by approximately 5 cm on either side, to address issues with the pots being too close to the 
+  sensor when travelling down the conveyer, resulting in inaccurate readings.
+
+  \item \textbf{Pot Dropper:}\\
+  The part design of the threaded discs that drop the pots needed to be modified.
+  After the inital testing of the pot dropper, the design resulted in pots being dropped
+  in groups larger than 1. During each rotation of the stepper motors that are intended to drop 1 pot
+  at a time, often times more than 1 pot would be dropped. Because of these results, the part design was 
+  changed and tested. The part design underwent multiple design changes in order to have the highest success rate 
+  when dropping pots.
+
+  \item \textbf{Tray Dispenser:}\\
+  The part design of the toothed cylinder which is responsible for dispensing the trays on to the conveyor
+  was changed during testing. The diameter and number of teeth dictate whether or not the trays will drop one at a time with 
+  each motor increment. Several models were designed and tested until a design with diameter of approximately 5cm with 12 teeth was found to be the 
+  most effective model.
+\end{enumerate}
 
 \section{Automated Testing}
 		
