@@ -131,6 +131,47 @@ This section will not be appropriate for every project.
 
 \section{Unit Testing}
 
+  \subsection{Hardware Testing}
+  The following section includes testing that was performed on critical hardware components
+  of the system. These tests were performed for the purpose of verifying and understanding the  
+  behaviour of each hardware component.
+  \begin{enumerate}
+  \item{HT-01: \textbf{AC Motor Control}}
+  
+  Test Description: The conveyor operates using an AC motor. In order to control it,
+  a potentiometer and mechanical relay were used. The potentiometer controls the motor speed,
+  and the relay controls on/off rotation of the motor.
+
+  Input: Signal from Arduino to periodically switch the relay. Potentiometer position varies.
+
+  Expected Output: Conveyor starts and stops based on the switching of relay. The speed of conveyor slows and speeds up
+  in accordance to the potentiometer.
+
+  Test Result: PASS
+  \\
+  \item{HT-02: \textbf{Stepper Motor Control}}\\
+  Test Description: Many subsystems of the Pot-pulator uses stepper motors (ie. tray dispenser,pot dropper).
+   Stepper drivers were wired and tested with step sizes that were offered by 
+   the drivers purchased. 
+
+  Input: Signals from Arduino to turn the motor 1 full revolution in full, half, quarter,
+  eighth, and sixteenth stepping modes.
+
+  Expected Output: 1 full revolution
+
+  Test Result: PASS
+  \\
+  \item{HT-03: \textbf{Ultrasonic Range Finder Control}}\\
+  Test Description: These sensors are used to meaure distances within the system for complete
+  operation. Measurements were observed and verfied with a physical measuring tool (ie. ruler, tape measure)
+
+  Input: Object placed in front of the sensor.
+
+  Expected Output: Distance measured and displayed in the serial monitor (console).
+
+  Test Result: PASS
+\end{enumerate}
+
 \section{Changes Due to Testing}
 \subsection{Tray Dispenser Subsystem}
 
