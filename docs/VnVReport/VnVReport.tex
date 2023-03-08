@@ -86,9 +86,9 @@ VR & Verification Functional Requirement\\
 
 \subsection{Pot-pulator Complete System Testing}
 
-\begin{table}[h]
-  \centering
-  \begin{tabularx}{\textwidth}{|X|X|X|X|X|p{1cm}|}
+\begin{longtable}{ |p{0.12\textwidth}|*{4}{>{\centering\arraybackslash}p{0.20\textwidth}|}p{0.08\textwidth}|   }
+  \caption{PCST Evaluation}
+  \label{tab:PCST}\\
     \hline
     Test Number & Description & Input & Expected Output & Actual Output & Result\\
     \hline
@@ -102,35 +102,189 @@ VR & Verification Functional Requirement\\
     \hline
     PCST-05 & Conveyor Operation & Tray placed on conveyor &  Normal system operation & Normal system operation & Pass\\
     \hline
-    PCST-06 & 
-  \end{tabularx}
-  \caption{PCST Evaluation}
-  \label{tab:PCST}
-\end{table}
+    PCST-06 & Conveyor On Button & Pot-pulator switch set to on & Normal system operation & Normal system operation & Pass\\
+    \hline
+\end{longtable}
 
 \subsection{Tray Dispenser Subsystem Testing}
 
+\begin{longtable}{ |p{0.12\textwidth}|*{4}{>{\centering\arraybackslash}p{0.20\textwidth}|}p{0.08\textwidth}|  }
+  \caption{TDST Evaluation}
+  \label{tab:TDST}\\
+    \hline
+    Test Number & Description & Input & Expected Output & Actual Output & Result\\
+    \hline
+    TDST-01 & Tray Stack Detection & Sensor reads status of tray stack & Signal sent to microprocessor indicating trays are/are not present & Signal detected indicating presence of trays, no signal detected when trays are not present & Pass\\
+    \hline
+    TDST-02 & Operation from Tray Stack Detection & Sensor reads status of tray stack & Normal system operation & Normal system operation & Pass\\
+    \hline
+    TDST-03 & Tray from Stack to Conveyor & Stack of trays on tray dropper & One tray from stack is placed onto conveyor, next tray ready to be placed onto conveyor & One tray from stack is placed onto conveyor. Occasionally, two trays will be placed if there are only two remaining in the tray stack & Fail\\
+    \hline
+    TDST-04 & Verify Tray Status on Conveyor & Sensor reads status of tray on conveyor & Normal system operation & Tray dropper drops additional tray once first tray is no longer underneath tray dropper & Pass\\
+    \hline
+    
+\end{longtable}
+
 \subsection{Pot Dispenser Subsystem Testing}
+
+\begin{longtable}{ |p{0.12\textwidth}|*{4}{>{\centering\arraybackslash}p{0.20\textwidth}|}p{0.08\textwidth}|  }
+  \caption{PDST Evaluation}
+  \label{tab:PDST}\\
+    \hline
+    Test Number & Description & Input & Expected Output & Actual Output & Result\\
+    \hline
+    PDST-01 & Pot from Stack to Tray & Simulated sensor input, two pot locations of tray directly below pot dispenser & Pot dispenser dispenses two pots into designated pot locations & Pot dispenser dispenses two pots, 70\% of cases tested saw pots dispensed into pot locations & Fail\\
+    \hline
+    PDST-02 & Tray Sensing & Trays placed in front of sensor & Signal sent to microprocessor indicating trays are/are not present & Signal detected indicating presence of trays, no signal detected when trays are not present & Pass\\
+    \hline
+    PDST-03 & Ability to Dispense 4" Diameter Pots & N/A & N/A & N/A & Pass\\
+    \hline
+    PDST-04 & Ability to Store/Dispense Multiple Pots & Ten pots, simulated sensor input & Pot dispenser dispenses two pots, reloads from stack, dispenses two pots, etc. until pot storage is empty & Pot dispenser dispenses two pots at a time for 5 cycles until all 10 pots are dispensed & Pass\\
+    \hline
+    PDST-05 & Pot Storage Detection & N/A & Signal output when no pots are detected in pot storage & Signal output when no pots are detected in pot storage & Pass\\
+    \hline
+    
+\end{longtable}
+
+\newpage
 
 \subsection{Conveyor Subsystem Testing}
 
+\begin{longtable}{ |p{0.12\textwidth}|*{4}{>{\centering\arraybackslash}p{0.20\textwidth}|}p{0.08\textwidth}|  }
+  \caption{CST Evaluation}
+  \label{tab:CST}\\
+    \hline
+    Test Number & Description & Input & Expected Output & Actual Output & Result\\
+    \hline
+    CST-01 & Conveyor Ability to Move Trays & Simulated inputs indicating conveyor can start & Constant speed of conveyor motor and belt & Constant speed of conveyor motor and belt & Pass\\
+    \hline
+    CST-02 & Conveyor Ability to Stop & Simulated signals from pot dispenser indicating tray is beneath pot dispenser & Conveyor motor and belt come to a stop & Conveyor motor and belt come to a stop & Pass\\
+    \hline
+    CST-03 & Conveyor Belt Friction & Mass of tray, tilt angle of conveyor belt & Maximum acceleration of conveyor belt & Maximum acceleration of conveyor belt & Pass\\
+    \hline
+    
+\end{longtable}
+
 \subsection{Verification Subsystem Testing}
+
+\begin{longtable}{ |p{0.12\textwidth}|*{4}{>{\centering\arraybackslash}p{0.20\textwidth}|}p{0.08\textwidth}|  }
+  \caption{VST Evaluation}
+  \label{tab:VST}\\
+    \hline
+    Test Number & Description & Input & Expected Output & Actual Output & Result\\
+    \hline
+    VST-01 & Verify Correct Number of Pots in Tray & Tray filled with pots and tray not filled with pots & Signal sent indicating tray has not been completely filled with pots, no signal sent indicating all pot locations are filled & Signal sent indicating tray has not been completely filled with pots, no signal sent indicating all pot locations are filled & Pass\\
+    \hline
+    
+    
+\end{longtable}
+
 
 \section{Nonfunctional Requirements Evaluation}
 
 \subsection{Safety Critical Testing}
+
+\begin{longtable}{ |p{0.12\textwidth}|*{4}{>{\centering\arraybackslash}p{0.20\textwidth}|}p{0.08\textwidth}|  }
+  \caption{SCT Evaluation}
+  \label{tab:SCT}\\
+    \hline
+    Test Number & Description & Input & Expected Output & Actual Output & Result\\
+    \hline
+    SCT-01 & Tray Dispenser Failure & Tray dispenser disconnect & System flags tray dispenser failure & System flags tray dispenser failure & Pass\\
+    \hline
+    SCT-02 & Pot Dispenser Failure & Pot dispenser disconnect & System flags pot dispenser failure & System flags pot dispenser failure & Pass\\
+    \hline
+    SCT-03 & Conveyor Failure & Conveyor disconnect & System flags conveyor failure & System flags conveyor failure & Pass\\
+    \hline
+    SCT-04 & Verification Failure & Verification disconnect & System flags verification failure & System flags verification failure & Pass\\
+    \hline
+    
+    
+\end{longtable}
 		
 \subsection{Precision Testing}
 
+\begin{longtable}{ |p{0.12\textwidth}|*{4}{>{\centering\arraybackslash}p{0.20\textwidth}|}p{0.08\textwidth}|  }
+  \caption{PT Evaluation}
+  \label{tab:PT}\\
+    \hline
+    Test Number & Description & Input & Expected Output & Actual Output & Result\\
+    \hline
+    PT-01 & Tray Dispenser Precision & N/A & N/A & N/A & Pass\\
+    \hline
+    PT-02 & Pot Dispenser Precision & N/A & N/A & N/A & Pass\\
+    \hline
+    
+\end{longtable}
+
 \subsection{Reliability Testing}
+
+\begin{longtable}{ |p{0.12\textwidth}|*{4}{>{\centering\arraybackslash}p{0.20\textwidth}|}p{0.08\textwidth}|  }
+  \caption{RT Evaluation}
+  \label{tab:RT}\\
+    \hline
+    Test Number & Description & Input & Expected Output & Actual Output & Result\\
+    \hline
+    RT-01 & Function Under Vibration & N/A & N/A & N/A & Pass\\
+    \hline
+    
+\end{longtable}
 
 \subsection{Expected Physical Environment Testing}
 
+\begin{longtable}{ |p{0.12\textwidth}|*{4}{>{\centering\arraybackslash}p{0.20\textwidth}|}p{0.08\textwidth}|  }
+  \caption{EPET Evaluation}
+  \label{tab:EPET}\\
+    \hline
+    Test Number & Description & Input & Expected Output & Actual Output & Result\\
+    \hline
+    EPET-01 & Function Under Aerial Pollution & N/A & N/A & N/A & Pass\\
+    \hline
+    
+\end{longtable}
+
 \subsection{Speed Requirements Testing}
+
+\begin{longtable}{ |p{0.12\textwidth}|*{4}{>{\centering\arraybackslash}p{0.20\textwidth}|}p{0.08\textwidth}|  }
+  \caption{SRT Evaluation}
+  \label{tab:SRT}\\
+    \hline
+    Test Number & Description & Input & Expected Output & Actual Output & Result\\
+    \hline
+    SRT-01 & Acceleration Displacement of Trays & N/A & N/A & N/A & Pass\\
+    \hline
+    SRT-02 & Pot Dispensing Rate & Stack of pots & Pots dispensed at desired rate & Pots dispensed at desired rate & Pass\\
+    \hline
+    SRT-03 & Tray Dispensing Rate & Stack of trays & Trays dispensed at desired rate & Trays dispensed at desired rate & Pass\\
+    \hline
+
+\end{longtable}
 
 \subsection{Learning Requirements Testing}
 
+\begin{longtable}{ |p{0.12\textwidth}|*{4}{>{\centering\arraybackslash}p{0.20\textwidth}|}p{0.08\textwidth}|  }
+  \caption{LRT Evaluation}
+  \label{tab:LRT}\\
+    \hline
+    Test Number & Description & Input & Expected Output & Actual Output & Result\\
+    \hline
+    LRT-01 & Operational Simplicity & N/A & N/A & N/A & Pass\\
+    \hline
+
+\end{longtable}
+
 \subsection{Accessibility Testing}
+
+\begin{longtable}{ |p{0.12\textwidth}|*{4}{>{\centering\arraybackslash}p{0.20\textwidth}|}p{0.08\textwidth}|  }
+  \caption{ART Evaluation}
+  \label{tab:ART}\\
+    \hline
+    Test Number & Description & Input & Expected Output & Actual Output & Result\\
+    \hline
+    ART-01 & Audio and Visual Indicators & Trigger signal & Corresponding light, sound, or screen display & Corresponding light, sound, or screen display & Pass\\
+    \hline
+
+\end{longtable}
 	
 \section{Comparison to Existing Implementation}	
 
