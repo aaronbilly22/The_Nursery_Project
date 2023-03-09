@@ -294,21 +294,21 @@ Test Case Derivation: If the tray dispenser is empty or malfunctions, the system
 
 How test will be performed: Trays will be removed from the stack, then trays will be put in the stack. Operation and results on the screen will be observed.  
 \\
-\item{PCST-03: \textbf{Tray Dispenser Reset}}
+% \item{PCST-03: \textbf{Tray Dispenser Reset}}
 
-Control: Manual
+% Control: Manual
 
-Initial State: Some number of trays in the stack, an error is displayed on the screen.
+% Initial State: Some number of trays in the stack, an error is displayed on the screen.
 
-Input: Pot-pulator reset button is pressed.
+% Input: Pot-pulator reset button is pressed.
 
-Output: System operates or remains idle and displays an error. 
+% Output: System operates or remains idle and displays an error. 
 
-Test Case Derivation: When there is a malfunction, the reset button will be pressed. If the malfunction is not solved, the system will output an error on the screen (tray dispenser malfunction/empty). Otherwise, system will start again normally. 
+% Test Case Derivation: When there is a malfunction, the reset button will be pressed. If the malfunction is not solved, the system will output an error on the screen (tray dispenser malfunction/empty). Otherwise, system will start again normally. 
 
-How test will be performed: Reset button will be pressed during an error. Operation and results on the screen will be observed.  
-\\
-\item{PCST-04: \textbf{Pot Despenser Operation }}
+% How test will be performed: Reset button will be pressed during an error. Operation and results on the screen will be observed.  
+% \\
+\item{PCST-03: \textbf{Pot Despenser Operation }}
 Control: Manual
 
 Initial State: Some amount of pots in the stack.
@@ -321,7 +321,7 @@ Test Case Derivation: If the pot dispenser is empty or malfunctions, the system 
 
 How test will be performed: Pots will be removed from the stack, then trays will be put in the stack. Operation and results on the screen will be observed.  
 \\
-\item {PCST-05: \textbf{On Switch for Pot Dispenser Error}}
+\item {PCST-04: \textbf{On Switch for Pot Dispenser Error}}
 
 Control: Manual
 
@@ -335,21 +335,21 @@ Test Case Derivation: If the pot dispenser is empty or malfunctions, the system 
 
 How test will be performed: pots will be removed from the stack, then pots will be put in the stack. Operation and results on the screen will be observed.  
 \\
-\item {PCST-06: \textbf{Pot Dispenser Reset}}
+% \item {PCST-06: \textbf{Pot Dispenser Reset}}
 
-Control: Manual
+% Control: Manual
 
-Initial State: Some number of pots in the stack, an error is displayed on the screen.
+% Initial State: Some number of pots in the stack, an error is displayed on the screen.
 
-Input: Pot-pulator reset button is pressed.
+% Input: Pot-pulator reset button is pressed.
 
-Output: System operates or remains idle and displays an error. 
+% Output: System operates or remains idle and displays an error. 
 
-Test Case Derivation: When there is a malfunction, the reset button will be pressed. If the malfunction is not solved, the system will output an error on the screen (pot dispenser malfunction/empty). Otherwise, system will start again normally. 
+% Test Case Derivation: When there is a malfunction, the reset button will be pressed. If the malfunction is not solved, the system will output an error on the screen (pot dispenser malfunction/empty). Otherwise, system will start again normally. 
 
-How test will be performed: Reset button will be pressed during an error. Operation and results on the screen will be observed.  
-\\
-\item {PCST-07: \textbf{Conveyer Operation }}
+% How test will be performed: Reset button will be pressed during an error. Operation and results on the screen will be observed.  
+% \\
+\item {PCST-05: \textbf{Conveyer Operation }}
 
 Control: Manual
 
@@ -363,7 +363,7 @@ Test Case Derivation: If a component of the conveyer malfunctions, the system wi
 
 How test will be performed: Trays will be fed onto the conveyor correctly, then trays will be placed stuck on purpose. Operation and results on the screen will be observed. 
 \\
-\item {PCST-08: \textbf{Conveyer On Button }}
+\item {PCST-06: \textbf{Conveyer On Button }}
 
 Control: Manual
 
@@ -377,19 +377,19 @@ Test Case Derivation: If the conveyer malfunctions, the system will output an er
 
 How test will be performed: Trays will be placed on the conveyer in incorrect positions, then in correct positions. Operation and results on the screen will be observed.  
 \\
-\item {PCST-09: \textbf{Conveyer Reset}}
+% \item {PCST-09: \textbf{Conveyer Reset}}
 
-Control: Manual
+% Control: Manual
 
-Initial State: Some trays are put on conveyer, switch is set to off.
+% Initial State: Some trays are put on conveyer, switch is set to off.
 
-Input: Pot-pulator switch is set to on.
+% Input: Pot-pulator switch is set to on.
 
-Output: System operates or remains idle and displays an error. 
+% Output: System operates or remains idle and displays an error. 
 
-Test Case Derivation: When there is a malfunction, the reset button will be pressed. If the malfunction is not solved, the system will output an error on the screen (conveyer malfunction Otherwise, system will start again normally. 
+% Test Case Derivation: When there is a malfunction, the reset button will be pressed. If the malfunction is not solved, the system will output an error on the screen (conveyer malfunction Otherwise, system will start again normally. 
 
-How test will be performed: Reset button will be pressed during an error. Operation and results on the screen will be observed.
+% How test will be performed: Reset button will be pressed during an error. Operation and results on the screen will be observed.
 
 \subsubsection{Tray Dispenser Subsystem Testing}
         
@@ -610,31 +610,15 @@ acceleration of the conveyor motor will be set to not exceed 70\% of this value.
             
   Input: Tray filled with a number of pots.
             
-  Output: Returns a count of the number of pots in the tray.
+  Output: Sends a signal to microcontroller if the tray is not filled with pots, 
+  does not send a signal if all pot locations on the tray are filled.
   
-  Test Case Derivation: The count read by the subsystem matches the actual number
-  of pots in the tray.
+  Test Case Derivation: The sensor signal will ensure all trays leaving the conveyor 
+  have been successfully filled with pots.
             
   How test will be performed: All other sensors and subsystems will be switched off. 
-  The subsystem will be manually activated to count the number of pots in the given tray as it moves on the conveyor.
+  The subsystem will be manually activated to identify pots in the given tray as it moves on the conveyor.
   The success or failure will be observed.\\
-
-  \item{VST-02: \textbf{Operation from Verification Status}}
-  
-  Control: Dynamic, Manual
-
-  Initial State: Tray has completed counting the number of pots in the tray and deemed it success or fail.
-
-  Input: Status bit for success or fail of the pot verification step.
-
-  Output: Signal to tell the system to continue/stop operation based on status bit.
-
-  Test Case Derivation: The subsystem should signal the main processsor to turn off other subsystems
-  when there is a problem in verifying the number of pots (ie. $ actual \neq target $).
-
-  How test will be performed: All other sensors and subsystems will be switched off. 
-  The subsystem will be manually activated to count the number of pots in the given tray as it moves on the conveyor.
-  The success or failure will send a status bit to the main processor. The status bit will be observed.
 
   
 \end{enumerate}

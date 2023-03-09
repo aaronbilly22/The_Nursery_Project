@@ -76,7 +76,7 @@ VR & Verification Functional Requirement\\
 
 \listoftables %if appropriate
 
-\listoffigures %if appropriate
+%\listoffigures %if appropriate
 
 \newpage
 
@@ -362,8 +362,6 @@ The changes due to testing are summarized below:
   each motor increment. Several models were designed and tested until a design with diameter of approximately 5cm with 12 teeth was found to be the 
   most effective model.
 \end{enumerate}
-
-\section{Automated Testing}
 		
 \section{Trace to Requirements}
 
@@ -510,8 +508,6 @@ relevent modules. The modules can be referenced in the MG document.\\
 
 \newpage
 
-\section{Code Coverage Metrics}
-
 \bibliographystyle{plainnat}
 \bibliography{../../refs/References}
 
@@ -532,6 +528,22 @@ needed to build the evidence that demonstrates the required quality?
 (It is expected that most teams will have had to deviate from their
 original VnV Plan.)
 
+The VnV Plan differed slightly from the activities conducted for VnV. This was
+mainly due to design changes in our product. Primarily, the changes made to the 
+mechanism responsible for placing trays onto the conveyor belt changed the way 
+testing was done for this mechanism. Originally, trays were meant to be placed 
+on the floor, adjacent to the conveyor belt, rather than directly above the conveyor
+belt as they are now. The implementation and design proposed for the original plan
+required more components, and thus, required more testing to be done. The design changes
+made to this component yielded less tests to establish its function, as well as changing 
+the behaviour of the system as a whole. Specifically, our previous design required a reset 
+button to be manually pressed by an operator to notify the system when stock was replenished, 
+meaning this feature would have to be tested to ensure all aspects of the system were reset 
+after a restock. Since the current design operates based on a rolling stock, and the sequence 
+of the assembly is based entirely on the readings of multiple sensors, a manual reset was no 
+longer required, and all tests involving this feature were not viable. In future projects, we 
+can ensure that the design of our respective projects is finalized before creating a VnV Plan, 
+thereby allowing us to follow the VnV Plan when conducting VnV activities.
 \end{enumerate}
 
 \end{document}
