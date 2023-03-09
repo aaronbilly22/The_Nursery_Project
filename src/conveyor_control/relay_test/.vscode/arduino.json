@@ -1,6 +1,6 @@
 {
     "board": "arduino:avr:uno",
-    "port": "COM11",
+    "port": "COM10",
     "programmer": "arduino:avrisp",
-    "sketch": "mux_test.ino"
+    "sketch": "relay_test.ino"
 }

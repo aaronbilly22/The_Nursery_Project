@@ -17,8 +17,7 @@
             "intelliSenseMode": "gcc-x64",
             "includePath": [
                 "C:\\Users\\Aaron\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.6\\cores\\arduino",
-                "C:\\Users\\Aaron\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.6\\variants\\standard",
-                "C:\\Users\\Aaron\\Documents\\Arduino\\libraries\\ezButton\\src",
+                "C:\\Users\\Aaron\\AppData\\Local\\Arduino15\\packages\\Sanguino\\hardware\\avr\\1.0.3\\variants\\sanguino",
                 "c:\\users\\aaron\\appdata\\local\\arduino15\\packages\\arduino\\tools\\avr-gcc\\7.3.0-atmel3.6.1-arduino7\\lib\\gcc\\avr\\7.3.0\\include",
                 "c:\\users\\aaron\\appdata\\local\\arduino15\\packages\\arduino\\tools\\avr-gcc\\7.3.0-atmel3.6.1-arduino7\\lib\\gcc\\avr\\7.3.0\\include-fixed",
                 "c:\\users\\aaron\\appdata\\local\\arduino15\\packages\\arduino\\tools\\avr-gcc\\7.3.0-atmel3.6.1-arduino7\\avr\\include"
@@ -31,7 +30,7 @@
             "defines": [
                 "F_CPU=16000000L",
                 "ARDUINO=10808",
-                "ARDUINO_AVR_UNO",
+                "ARDUINO_AVR_SANGUINO",
                 "ARDUINO_ARCH_AVR",
                 "__DBL_MIN_EXP__=(-125)",
                 "__HQ_FBIT__=15",

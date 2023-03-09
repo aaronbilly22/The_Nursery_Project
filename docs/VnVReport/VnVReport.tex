@@ -2,6 +2,7 @@
 
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{longtable}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
@@ -17,9 +18,9 @@
 
 \begin{document}
 
-\title{Verification and Validation Report: \progname} 
-\author{\authname}
-\date{\today}
+\title{Verification and Validation Report: The Nursery Project} 
+\author{Aaron Billones, billonea\\Gillian Ford, fordg\\Juan Moncada, moncadaj\\Steven Ramundi, ramundis}
+\date{March 8, 2023}
 	
 \maketitle
 
@@ -30,8 +31,8 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+2023-03-08 & 1.0 & Initial Revision\\
+
 \bottomrule
 \end{tabularx}
 
@@ -44,11 +45,30 @@ Date 2 & 1.1 & Notes\\
   \toprule		
   \textbf{symbol} & \textbf{description}\\
   \midrule 
-  T & Test\\
+  ART & Accessibility Requirements Test\\
+CR & Conveyor Functional Requirement\\
+CST & Conveyor Subsystem Test\\
+EPET & Expected Physical Environment Test\\
+LCD & Liquid-Crystal Display\\
+LED & Light Emitting Diode\\
+LRT & Learning Requirements Test\\
+MG & Module Guide\\
+MIS & Management Information Systems\\
+NFR & Non-Functional Requirement\\
+PDST & Pot Dispenser Subsystem Test\\
+PDR & Pot Dispensing Functional Requirement\\
+PCST & Pot-pulator Complete System Testing\\
+PT & Precision Test\\
+RT & Reliability Test\\
+SCT & Safety Critical Test\\
+SRS & Software Requirements Specification\\
+SRT & Speed Requirements Test\\
+TDST & Tray Dispenser Subsystem Test\\
+TDR & Tray Dispensing Functional Requirement\\
+VST & Verification Subsystem Test\\
+VR & Verification Functional Requirement\\
   \bottomrule
 \end{tabular}\\
-
-\wss{symbols, abbreviations or acronyms -- you can reference the SRS tables if needed}
 
 \newpage
 
@@ -56,39 +76,437 @@ Date 2 & 1.1 & Notes\\
 
 \listoftables %if appropriate
 
-\listoffigures %if appropriate
+%\listoffigures %if appropriate
 
 \newpage
 
 \pagenumbering{arabic}
 
-This document ...
-
 \section{Functional Requirements Evaluation}
+
+\subsection{Pot-pulator Complete System Testing}
+
+\begin{longtable}{ |p{0.12\textwidth}|*{4}{>{\centering\arraybackslash}p{0.20\textwidth}|}p{0.08\textwidth}|   }
+  \caption{PCST Evaluation}
+  \label{tab:PCST}\\
+    \hline
+    Test Number & Description & Input & Expected Output & Actual Output & Result\\
+    \hline
+    PCST-01 & Tray Dispenser Operation & Sensor reading of status of tray stack & Normal system operation & Normal system operation & Pass \\
+    \hline
+    PCST-02 & On Switch for Tray Dispenser Error & Pot-pulator switch set to on & Normal system operation & Normal system operation & Pass\\
+    \hline
+    PCST-03 & Pot Dispenser Operation & Sensor reading of status of pot stack & Normal system operation & Normal system operation & Pass\\
+    \hline
+    PCST-04 & On Switch for Pot Dispenser Error & Pot-pulator switch set to on & Normal system operation & Normal system operation & Pass\\
+    \hline
+    PCST-05 & Conveyor Operation & Tray placed on conveyor &  Normal system operation & Normal system operation & Pass\\
+    \hline
+    PCST-06 & Conveyor On Button & Pot-pulator switch set to on & Normal system operation & Normal system operation & Pass\\
+    \hline
+\end{longtable}
+
+\subsection{Tray Dispenser Subsystem Testing}
+
+\begin{longtable}{ |p{0.12\textwidth}|*{4}{>{\centering\arraybackslash}p{0.20\textwidth}|}p{0.08\textwidth}|  }
+  \caption{TDST Evaluation}
+  \label{tab:TDST}\\
+    \hline
+    Test Number & Description & Input & Expected Output & Actual Output & Result\\
+    \hline
+    TDST-01 & Tray Stack Detection & Sensor reads status of tray stack & Signal sent to microprocessor indicating trays are/are not present & Signal detected indicating presence of trays, no signal detected when trays are not present & Pass\\
+    \hline
+    TDST-02 & Operation from Tray Stack Detection & Sensor reads status of tray stack & Normal system operation & Normal system operation & Pass\\
+    \hline
+    TDST-03 & Tray from Stack to Conveyor & Stack of trays on tray dropper & One tray from stack is placed onto conveyor, next tray ready to be placed onto conveyor & One tray from stack is placed onto conveyor. Occasionally, two trays will be placed if there are only two remaining in the tray stack & Fail\\
+    \hline
+    TDST-04 & Verify Tray Status on Conveyor & Sensor reads status of tray on conveyor & Normal system operation & Tray dropper drops additional tray once first tray is no longer underneath tray dropper & Pass\\
+    \hline
+    
+\end{longtable}
+
+\subsection{Pot Dispenser Subsystem Testing}
+
+\begin{longtable}{ |p{0.12\textwidth}|*{4}{>{\centering\arraybackslash}p{0.20\textwidth}|}p{0.08\textwidth}|  }
+  \caption{PDST Evaluation}
+  \label{tab:PDST}\\
+    \hline
+    Test Number & Description & Input & Expected Output & Actual Output & Result\\
+    \hline
+    PDST-01 & Pot from Stack to Tray & Simulated sensor input, two pot locations of tray directly below pot dispenser & Pot dispenser dispenses two pots into designated pot locations & Pot dispenser dispenses two pots, 70\% of cases tested saw pots dispensed into pot locations & Fail\\
+    \hline
+    PDST-02 & Tray Sensing & Trays placed in front of sensor & Signal sent to microprocessor indicating trays are/are not present & Signal detected indicating presence of trays, no signal detected when trays are not present & Pass\\
+    \hline
+    PDST-03 & Ability to Dispense 4" Diameter Pots & N/A & N/A & N/A & Pass\\
+    \hline
+    PDST-04 & Ability to Store/Dispense Multiple Pots & Ten pots, simulated sensor input & Pot dispenser dispenses two pots, reloads from stack, dispenses two pots, etc. until pot storage is empty & Pot dispenser dispenses two pots at a time for 5 cycles until all 10 pots are dispensed & Pass\\
+    \hline
+    PDST-05 & Pot Storage Detection & N/A & Signal output when no pots are detected in pot storage & Signal output when no pots are detected in pot storage & Pass\\
+    \hline
+    
+\end{longtable}
+
+\newpage
+
+\subsection{Conveyor Subsystem Testing}
+
+\begin{longtable}{ |p{0.12\textwidth}|*{4}{>{\centering\arraybackslash}p{0.20\textwidth}|}p{0.08\textwidth}|  }
+  \caption{CST Evaluation}
+  \label{tab:CST}\\
+    \hline
+    Test Number & Description & Input & Expected Output & Actual Output & Result\\
+    \hline
+    CST-01 & Conveyor Ability to Move Trays & Simulated inputs indicating conveyor can start & Constant speed of conveyor motor and belt & Constant speed of conveyor motor and belt & Pass\\
+    \hline
+    CST-02 & Conveyor Ability to Stop & Simulated signals from pot dispenser indicating tray is beneath pot dispenser & Conveyor motor and belt come to a stop & Conveyor motor and belt come to a stop & Pass\\
+    \hline
+    CST-03 & Conveyor Belt Friction & Mass of tray, tilt angle of conveyor belt & Maximum acceleration of conveyor belt & Maximum acceleration of conveyor belt & Pass\\
+    \hline
+    
+\end{longtable}
+
+\subsection{Verification Subsystem Testing}
+
+\begin{longtable}{ |p{0.12\textwidth}|*{4}{>{\centering\arraybackslash}p{0.20\textwidth}|}p{0.08\textwidth}|  }
+  \caption{VST Evaluation}
+  \label{tab:VST}\\
+    \hline
+    Test Number & Description & Input & Expected Output & Actual Output & Result\\
+    \hline
+    VST-01 & Verify Correct Number of Pots in Tray & Tray filled with pots and tray not filled with pots & Signal sent indicating tray has not been completely filled with pots, no signal sent indicating all pot locations are filled & Signal sent indicating tray has not been completely filled with pots, no signal sent indicating all pot locations are filled & Pass\\
+    \hline
+    
+    
+\end{longtable}
+
 
 \section{Nonfunctional Requirements Evaluation}
 
-\subsection{Usability}
-		
-\subsection{Performance}
+\subsection{Safety Critical Testing}
 
-\subsection{etc.}
+\begin{longtable}{ |p{0.12\textwidth}|*{4}{>{\centering\arraybackslash}p{0.20\textwidth}|}p{0.08\textwidth}|  }
+  \caption{SCT Evaluation}
+  \label{tab:SCT}\\
+    \hline
+    Test Number & Description & Input & Expected Output & Actual Output & Result\\
+    \hline
+    SCT-01 & Tray Dispenser Failure & Tray dispenser disconnect & System flags tray dispenser failure & System flags tray dispenser failure & Pass\\
+    \hline
+    SCT-02 & Pot Dispenser Failure & Pot dispenser disconnect & System flags pot dispenser failure & System flags pot dispenser failure & Pass\\
+    \hline
+    SCT-03 & Conveyor Failure & Conveyor disconnect & System flags conveyor failure & System flags conveyor failure & Pass\\
+    \hline
+    SCT-04 & Verification Failure & Verification disconnect & System flags verification failure & System flags verification failure & Pass\\
+    \hline
+    
+    
+\end{longtable}
+		
+\subsection{Precision Testing}
+
+\begin{longtable}{ |p{0.12\textwidth}|*{4}{>{\centering\arraybackslash}p{0.20\textwidth}|}p{0.08\textwidth}|  }
+  \caption{PT Evaluation}
+  \label{tab:PT}\\
+    \hline
+    Test Number & Description & Input & Expected Output & Actual Output & Result\\
+    \hline
+    PT-01 & Tray Dispenser Precision & N/A & N/A & N/A & Pass\\
+    \hline
+    PT-02 & Pot Dispenser Precision & N/A & N/A & N/A & Pass\\
+    \hline
+    
+\end{longtable}
+
+\subsection{Reliability Testing}
+
+\begin{longtable}{ |p{0.12\textwidth}|*{4}{>{\centering\arraybackslash}p{0.20\textwidth}|}p{0.08\textwidth}|  }
+  \caption{RT Evaluation}
+  \label{tab:RT}\\
+    \hline
+    Test Number & Description & Input & Expected Output & Actual Output & Result\\
+    \hline
+    RT-01 & Function Under Vibration & N/A & N/A & N/A & Pass\\
+    \hline
+    
+\end{longtable}
+
+\subsection{Expected Physical Environment Testing}
+
+\begin{longtable}{ |p{0.12\textwidth}|*{4}{>{\centering\arraybackslash}p{0.20\textwidth}|}p{0.08\textwidth}|  }
+  \caption{EPET Evaluation}
+  \label{tab:EPET}\\
+    \hline
+    Test Number & Description & Input & Expected Output & Actual Output & Result\\
+    \hline
+    EPET-01 & Function Under Aerial Pollution & N/A & N/A & N/A & Pass\\
+    \hline
+    
+\end{longtable}
+
+\subsection{Speed Requirements Testing}
+
+\begin{longtable}{ |p{0.12\textwidth}|*{4}{>{\centering\arraybackslash}p{0.20\textwidth}|}p{0.08\textwidth}|  }
+  \caption{SRT Evaluation}
+  \label{tab:SRT}\\
+    \hline
+    Test Number & Description & Input & Expected Output & Actual Output & Result\\
+    \hline
+    SRT-01 & Acceleration Displacement of Trays & N/A & N/A & N/A & Pass\\
+    \hline
+    SRT-02 & Pot Dispensing Rate & Stack of pots & Pots dispensed at desired rate & Pots dispensed at desired rate & Pass\\
+    \hline
+    SRT-03 & Tray Dispensing Rate & Stack of trays & Trays dispensed at desired rate & Trays dispensed at desired rate & Pass\\
+    \hline
+
+\end{longtable}
+
+\subsection{Learning Requirements Testing}
+
+\begin{longtable}{ |p{0.12\textwidth}|*{4}{>{\centering\arraybackslash}p{0.20\textwidth}|}p{0.08\textwidth}|  }
+  \caption{LRT Evaluation}
+  \label{tab:LRT}\\
+    \hline
+    Test Number & Description & Input & Expected Output & Actual Output & Result\\
+    \hline
+    LRT-01 & Operational Simplicity & N/A & N/A & N/A & Pass\\
+    \hline
+
+\end{longtable}
+
+\subsection{Accessibility Testing}
+
+\begin{longtable}{ |p{0.12\textwidth}|*{4}{>{\centering\arraybackslash}p{0.20\textwidth}|}p{0.08\textwidth}|  }
+  \caption{ART Evaluation}
+  \label{tab:ART}\\
+    \hline
+    Test Number & Description & Input & Expected Output & Actual Output & Result\\
+    \hline
+    ART-01 & Audio and Visual Indicators & Trigger signal & Corresponding light, sound, or screen display & Corresponding light, sound, or screen display & Pass\\
+    \hline
+
+\end{longtable}
 	
 \section{Comparison to Existing Implementation}	
 
-This section will not be appropriate for every project.
+After doing some research, there were some existing products that perform a similar 
+function as the Pot-pulator. However, these products are large industrial machines that cost tens of thousands of dollars,
+which is out of the price range for Sheridan Nurseries. Our goal was to develop a product that could perform the
+the desired function of filling trays with pots at a inexpensive price point. The existing products are more robust and can operate
+with larger loads within a given time frame. The Pot-pulator is intended to help solve Sheridan Nurseries' problem in an inexpensive
+manner. We believe that we have achived this within a budget of only 750 dollars.
 
 \section{Unit Testing}
 
+  \subsection{Hardware Testing}
+  The following section includes testing that was performed on critical hardware components
+  of the system. These tests were performed for the purpose of verifying and understanding the  
+  behaviour of each hardware component.
+  \begin{enumerate}
+  \item{HT-01: \textbf{AC Motor Control}}
+  
+  Test Description: The conveyor operates using an AC motor. In order to control it,
+  a potentiometer and mechanical relay were used. The potentiometer controls the motor speed,
+  and the relay controls on/off rotation of the motor.
+
+  Input: Signal from Arduino to periodically switch the relay. Potentiometer position varies.
+
+  Expected Output: Conveyor starts and stops based on the switching of relay. The speed of conveyor slows and speeds up
+  in accordance to the potentiometer.
+
+  Test Result: PASS
+  \\
+  \item{HT-02: \textbf{Stepper Motor Control}}\\
+  Test Description: Many subsystems of the Pot-pulator uses stepper motors (ie. tray dispenser,pot dropper).
+   Stepper drivers were wired and tested with step sizes that were offered by 
+   the drivers purchased. 
+
+  Input: Signals from Arduino to turn the motor 1 full revolution in full, half, quarter,
+  eighth, and sixteenth stepping modes.
+
+  Expected Output: 1 full revolution
+
+  Test Result: PASS
+  \\
+  \item{HT-03: \textbf{Ultrasonic Range Finder Control}}\\
+  Test Description: These sensors are used to meaure distances within the system for complete
+  operation. Measurements were observed and verfied with a physical measuring tool (ie. ruler, tape measure)
+
+  Input: Object placed in front of the sensor.
+
+  Expected Output: Distance measured and displayed in the serial monitor (console).
+
+  Test Result: PASS
+\end{enumerate}
+
 \section{Changes Due to Testing}
 
-\section{Automated Testing}
+The changes due to testing are summarized below:
+\\
+\begin{enumerate}
+  \item \textbf{Verification:}\\
+  The bases of the verification mounts were recently expanded away from the
+  conveyer by approximately 5 cm on either side, to address issues with the pots being too close to the 
+  sensor when travelling down the conveyer, resulting in inaccurate readings.
+
+  \item \textbf{Pot Dropper:}\\
+  The part design of the threaded discs that drop the pots needed to be modified.
+  After the inital testing of the pot dropper, the design resulted in pots being dropped
+  in groups larger than 1. During each rotation of the stepper motors that are intended to drop 1 pot
+  at a time, often times more than 1 pot would be dropped. Because of these results, the part design was 
+  changed and tested. The part design underwent multiple design changes in order to have the highest success rate 
+  when dropping pots.
+
+  \item \textbf{Tray Dispenser:}\\
+  The part design of the toothed cylinder which is responsible for dispensing the trays on to the conveyor
+  was changed during testing. The diameter and number of teeth dictate whether or not the trays will drop one at a time with 
+  each motor increment. Several models were designed and tested until a design with diameter of approximately 5cm with 12 teeth was found to be the 
+  most effective model.
+\end{enumerate}
 		
 \section{Trace to Requirements}
-		
-\section{Trace to Modules}		
 
-\section{Code Coverage Metrics}
+The following table outlines all of the system tests and how they relate to the
+relevent requirements. The requirements can be referenced in the SRS document.\\
+
+\begin{longtable}{ |p{4cm}|p{8cm}|  }
+  \caption{Corresponding Test IDs and Requirements}
+  \label{tab:Table1}\\
+  
+  \hline
+  \textbf{Test ID} & \textbf{Supporting Requirements}\\
+  \hline
+  TDST-01 &  TDR3, TDR5\\
+  \hline
+  TDST-02 &  TDR4, TDR5 \\
+  \hline
+  TDST-03 &  TDR2 \\
+  \hline
+  TDST-04 &  TDR2 \\
+  \hline
+  PDST-01 &  PDR2 \\
+  \hline
+  PDST-02 &  PDR2 \\
+  \hline
+  PDST-03 &  PDR3 \\
+  \hline
+  PDST-04 &  PDR4 \\
+  \hline
+  PDST-05 &  PDR5, PDR6 \\
+  \hline
+  PCST-01 &  TDR1 \\
+  \hline
+  PCST-02 &  TDR5, TDR6 \\
+  \hline
+  PCST-03 &  TDR7 \\
+  \hline
+  PCST-04 &  PDR1 \\
+  \hline
+  PCST-05 &  PDR6, PDR7 \\
+  \hline
+  PCST-06 &  PDR8 \\
+  \hline
+  VST-01 &  VR1 \\
+  \hline
+  VST-02&  VR2 \\
+  \hline
+  SCT-01 &  NFR12 \\
+  \hline
+  SCT-02 &  NFR12 \\
+  \hline
+  SCT-03 &  NFR12 \\
+  \hline
+  SCT-04 &  NFR12 \\
+  \hline
+  PT-01 & NFR13 \\
+  \hline
+  PT-02 & NFR14 \\
+  \hline
+  RT-01 & NFR17 \\
+  \hline
+  EPET-01 & NFR20 \\
+  \hline
+  LRT-01&  NFR6 \\
+  \hline
+  ART-01 & NFR7 \\
+  \hline
+  SRT-01 & NFR8 \\
+  \hline
+  SRT-02 & NFR9 \\
+  \hline
+  SRT-03 & NFR10 \\
+  \hline
+\end{longtable}
+
+\newpage
+
+		
+\section{Trace to Modules}	
+
+The following table outlines all of the system tests and how they relate to the
+relevent modules. The modules can be referenced in the MG document.\\
+
+\begin{longtable}{ |p{4cm}|p{8cm}|  }
+  \caption{Corresponding Test IDs and Modules}
+  \label{tab:Table1}\\
+  
+  \hline
+  \textbf{Test ID} & \textbf{Supporting Modules}\\
+  \hline
+  TDST-01 &  M9\\
+  \hline
+  TDST-02 &  M9 \\
+  \hline
+  TDST-03 &  M10 \\
+  \hline
+  TDST-04 &   M10\\
+  \hline
+  PDST-01 &  M4 \\
+  \hline
+  PDST-02 &  M4 \\
+  \hline
+  PDST-03 &  M5 \\
+  \hline
+  PDST-04 &  M3 \\
+  \hline
+  PDST-05 & M6 \\
+  \hline
+  PCST-01 &  M9 \\
+  \hline
+  PCST-02 & M12 \\
+  \hline
+  PCST-03 &  M6 \\
+  \hline
+  PCST-04 &  M3 \\
+  \hline
+  PCST-05 & M3 \\
+  \hline
+  PCST-06 &  M7 \\
+  \hline
+  VST-01 &  M13 \\
+  \hline
+  VST-02&  M14 \\
+  \hline
+  SCT-01 &  M12 \\
+  \hline
+  SCT-02 &  M6 \\
+  \hline
+  SCT-03 &  M8 \\
+  \hline
+  SCT-04 &  M14 \\
+  \hline
+  PT-01 & M12 \\
+  \hline
+  PT-02 & M6 \\
+  \hline
+  SRT-01 & M12 \\
+  \hline
+  SRT-02 & M6 \\
+  \hline
+  SRT-03 & M12 \\
+  \hline
+\end{longtable}
+
+\newpage
 
 \bibliographystyle{plainnat}
 \bibliography{../../refs/References}
@@ -98,10 +516,34 @@ This section will not be appropriate for every project.
 
 The information in this section will be used to evaluate the team members on the
 graduate attribute of Lifelong Learning.  Please answer the following questions:
-
 \begin{enumerate}
-  \item 
-  \item 
+  \item
+In what ways was the Verification and Validation (VnV) Plan different
+from the activities that were actually conducted for VnV? If there were
+differences, what changes required the modification in the plan? Why
+did these changes occur? Would you be able to anticipate these changes
+in future projects? If there weren’t any differences, how was your team
+able to clearly predict a feasible amount of effort and the right tasks
+needed to build the evidence that demonstrates the required quality?
+(It is expected that most teams will have had to deviate from their
+original VnV Plan.)
+
+The VnV Plan differed slightly from the activities conducted for VnV. This was
+mainly due to design changes in our product. Primarily, the changes made to the 
+mechanism responsible for placing trays onto the conveyor belt changed the way 
+testing was done for this mechanism. Originally, trays were meant to be placed 
+on the floor, adjacent to the conveyor belt, rather than directly above the conveyor
+belt as they are now. The implementation and design proposed for the original plan
+required more components, and thus, required more testing to be done. The design changes
+made to this component yielded less tests to establish its function, as well as changing 
+the behaviour of the system as a whole. Specifically, our previous design required a reset 
+button to be manually pressed by an operator to notify the system when stock was replenished, 
+meaning this feature would have to be tested to ensure all aspects of the system were reset 
+after a restock. Since the current design operates based on a rolling stock, and the sequence 
+of the assembly is based entirely on the readings of multiple sensors, a manual reset was no 
+longer required, and all tests involving this feature were not viable. In future projects, we 
+can ensure that the design of our respective projects is finalized before creating a VnV Plan, 
+thereby allowing us to follow the VnV Plan when conducting VnV activities.
 \end{enumerate}
 
 \end{document}
