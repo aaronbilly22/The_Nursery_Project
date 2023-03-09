@@ -288,16 +288,80 @@ VR & Verification Functional Requirement\\
 	
 \section{Comparison to Existing Implementation}	
 
-This section will not be appropriate for every project.
+After doing some research, there were some existing products that perform a similar 
+function as the Pot-pulator. However, these products are large industrial machines that cost tens of thousands of dollars,
+which is out of the price range for Sheridan Nurseries. Our goal was to develop a product that could perform the
+the desired function of filling trays with pots at a inexpensive price point. The existing products are more robust and can operate
+with larger loads within a given time frame. The Pot-pulator is intended to help solve Sheridan Nurseries' problem in an inexpensive
+manner. We believe that we have achived this within a budget of only 750 dollars.
 
 \section{Unit Testing}
+
+  \subsection{Hardware Testing}
+  The following section includes testing that was performed on critical hardware components
+  of the system. These tests were performed for the purpose of verifying and understanding the  
+  behaviour of each hardware component.
+  \begin{enumerate}
+  \item{HT-01: \textbf{AC Motor Control}}
+  
+  Test Description: The conveyor operates using an AC motor. In order to control it,
+  a potentiometer and mechanical relay were used. The potentiometer controls the motor speed,
+  and the relay controls on/off rotation of the motor.
+
+  Input: Signal from Arduino to periodically switch the relay. Potentiometer position varies.
+
+  Expected Output: Conveyor starts and stops based on the switching of relay. The speed of conveyor slows and speeds up
+  in accordance to the potentiometer.
+
+  Test Result: PASS
+  \\
+  \item{HT-02: \textbf{Stepper Motor Control}}\\
+  Test Description: Many subsystems of the Pot-pulator uses stepper motors (ie. tray dispenser,pot dropper).
+   Stepper drivers were wired and tested with step sizes that were offered by 
+   the drivers purchased. 
+
+  Input: Signals from Arduino to turn the motor 1 full revolution in full, half, quarter,
+  eighth, and sixteenth stepping modes.
+
+  Expected Output: 1 full revolution
+
+  Test Result: PASS
+  \\
+  \item{HT-03: \textbf{Ultrasonic Range Finder Control}}\\
+  Test Description: These sensors are used to meaure distances within the system for complete
+  operation. Measurements were observed and verfied with a physical measuring tool (ie. ruler, tape measure)
+
+  Input: Object placed in front of the sensor.
+
+  Expected Output: Distance measured and displayed in the serial monitor (console).
+
+  Test Result: PASS
+\end{enumerate}
 
 \section{Changes Due to Testing}
 
 The changes due to testing are summarized below:
 \\
-1. The bases of the verification mounts were recently expanded away from the
-conveyer by approximately 5 cm on either side, to address issues with the pots being too close to the sensor when travelling down the conveyer, resulting in inaccurate readings.
+\begin{enumerate}
+  \item \textbf{Verification:}\\
+  The bases of the verification mounts were recently expanded away from the
+  conveyer by approximately 5 cm on either side, to address issues with the pots being too close to the 
+  sensor when travelling down the conveyer, resulting in inaccurate readings.
+
+  \item \textbf{Pot Dropper:}\\
+  The part design of the threaded discs that drop the pots needed to be modified.
+  After the inital testing of the pot dropper, the design resulted in pots being dropped
+  in groups larger than 1. During each rotation of the stepper motors that are intended to drop 1 pot
+  at a time, often times more than 1 pot would be dropped. Because of these results, the part design was 
+  changed and tested. The part design underwent multiple design changes in order to have the highest success rate 
+  when dropping pots.
+
+  \item \textbf{Tray Dispenser:}\\
+  The part design of the toothed cylinder which is responsible for dispensing the trays on to the conveyor
+  was changed during testing. The diameter and number of teeth dictate whether or not the trays will drop one at a time with 
+  each motor increment. Several models were designed and tested until a design with diameter of approximately 5cm with 12 teeth was found to be the 
+  most effective model.
+\end{enumerate}
 
 \section{Automated Testing}
 		
@@ -343,12 +407,6 @@ relevent requirements. The requirements can be referenced in the SRS document.\\
   \hline
   PCST-06 &  PDR8 \\
   \hline
-  PCST-07 &  CR1 \\
-  \hline
-  PCST-08 &  CR5 \\
-  \hline
-  PCST-09 &  CR6 \\
-  \hline
   VST-01 &  VR1 \\
   \hline
   VST-02&  VR2 \\
@@ -390,77 +448,63 @@ The following table outlines all of the system tests and how they relate to the
 relevent modules. The modules can be referenced in the MG document.\\
 
 \begin{longtable}{ |p{4cm}|p{8cm}|  }
-  \caption{Corresponding Test IDs and Requirements}
+  \caption{Corresponding Test IDs and Modules}
   \label{tab:Table1}\\
   
   \hline
-  \textbf{Test ID} & \textbf{Supporting Requirements}\\
+  \textbf{Test ID} & \textbf{Supporting Modules}\\
   \hline
-  TDST-01 &  \\
+  TDST-01 &  M9\\
   \hline
-  TDST-02 &   \\
+  TDST-02 &  M9 \\
   \hline
-  TDST-03 &   \\
+  TDST-03 &  M10 \\
   \hline
-  TDST-04 &   \\
+  TDST-04 &   M10\\
   \hline
-  PDST-01 &   \\
+  PDST-01 &  M4 \\
   \hline
-  PDST-02 &   \\
+  PDST-02 &  M4 \\
   \hline
-  PDST-03 &   \\
+  PDST-03 &  M5 \\
   \hline
-  PDST-04 &   \\
+  PDST-04 &  M3 \\
   \hline
-  PDST-05 &  \\
+  PDST-05 & M6 \\
   \hline
-  PCST-01 &   \\
+  PCST-01 &  M9 \\
   \hline
-  PCST-02 &  \\
+  PCST-02 & M12 \\
   \hline
-  PCST-03 &   \\
+  PCST-03 &  M6 \\
   \hline
-  PCST-04 &   \\
+  PCST-04 &  M3 \\
   \hline
-  PCST-05 &  \\
+  PCST-05 & M3 \\
   \hline
-  PCST-06 &   \\
+  PCST-06 &  M7 \\
   \hline
-  PCST-07 &   \\
+  VST-01 &  M13 \\
   \hline
-  PCST-08 &   \\
+  VST-02&  M14 \\
   \hline
-  PCST-09 &   \\
+  SCT-01 &  M12 \\
   \hline
-  VST-01 &   \\
+  SCT-02 &  M6 \\
   \hline
-  VST-02&   \\
+  SCT-03 &  M8 \\
   \hline
-  SCT-01 &   \\
+  SCT-04 &  M14 \\
   \hline
-  SCT-02 &   \\
+  PT-01 & M12 \\
   \hline
-  SCT-03 &   \\
+  PT-02 & M6 \\
   \hline
-  SCT-04 &   \\
+  SRT-01 & M12 \\
   \hline
-  PT-01 &  \\
+  SRT-02 & M6 \\
   \hline
-  PT-02 &  \\
-  \hline
-  RT-01 &  \\
-  \hline
-  EPET-01 &  \\
-  \hline
-  LRT-01&   \\
-  \hline
-  ART-01 &  \\
-  \hline
-  SRT-01 &  \\
-  \hline
-  SRT-02 &  \\
-  \hline
-  SRT-03 &  \\
+  SRT-03 & M12 \\
   \hline
 \end{longtable}
 
