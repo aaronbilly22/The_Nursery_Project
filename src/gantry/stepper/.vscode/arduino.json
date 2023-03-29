@@ -1,6 +1,6 @@
 {
     "board": "arduino:avr:uno",
-    "port": "COM11",
+    "port": "COM10",
     "programmer": "arduino:avrispmkii",
     "sketch": "stepper.ino"
 }
