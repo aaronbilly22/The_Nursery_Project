@@ -54,12 +54,23 @@ Adafruit_TFTLCD tft(LCD_CS, LCD_CD, LCD_WR, LCD_RD, LCD_RESET);
 // a simpler declaration can optionally be used:
 // Adafruit_TFTLCD tft;
 
-int testinput = 13;
-int state = 0;
+//four status bits for:
+// [0] = master switch on/off ie)running
+// [1] = missing pot detected
+// [2] = refill trays
+// [3] = refill pots
+byte status[4];
+byte state[4] = {0,0,0,0};
+byte oldstate[4] = {0,0,0,0};
 
 
 void setup(void) {
-  
+  status[0] = 10;
+  status[1] = 11;
+  status[2] = 12;
+  status[3] = 13;
+  pinMode(status[0],INPUT);
+  pinMode(status[1],INPUT);
   Serial.begin(9600);
   Serial.println(F("TFT LCD test"));
 
@@ -98,38 +109,83 @@ void setup(void) {
   }
 
 
-
+  
   tft.begin(identifier);
-  pinMode(11,INPUT);
+  
   tft.fillScreen(WHITE);
   tft.setRotation(1);
-  tft.setCursor(90, 10);
-  tft.setTextColor(BLACK); 
-  tft.setTextSize(3);
-  tft.println("Modes of Operation");
+  tft.fillRect(100,0,280,20,BLACK);
+  tft.setCursor(160, 2);
+  tft.setTextColor(WHITE); 
+  tft.setTextSize(2);
+  tft.println("Status Monitor");
   
     
-  tft.fillRoundRect(290,60,100,80,3,GREEN);
+  
 
-  tft.fillRoundRect(290,160,100,80,3,RED);
+  tft.fillRoundRect(245,175,215,135,3,RED);
+  tft.drawRoundRect(245,175,215,135,3,BLACK);
 
-  button[0].initButton(&tft, 120,117,200,115,BLACK,YELLOW,WHITE,"yep",3);
-  button[0].drawButton();
+  // button[0].initButton(&tft, 120,117,200,115,BLACK,YELLOW,WHITE,"yep",3);
+  // button[0].drawButton();
 
-  // tft.fillRoundRect(20,60,200,115,3,YELLOW);
+  verification();
 
-  // tft.fillRoundRect(20,195,200,115,3,BLUE);
-  button[0].initButton(&tft, 120,252,200,115,BLACK,BLUE,WHITE,"blue",3);
-  button[0].drawButton();
+  masterSwitchOFF();
+
+  trayStock();
+
+  
+  // button[0].initButton(&tft, 120,252,200,115,BLACK,BLUE,WHITE,"blue",3);
+  // button[0].drawButton();
     
   }
   
 
 
 
-
 void loop(void) {
-    state = digitalRead(testinput);
+  // [0] = master switch on/off ie)running
+  // [1] = missing pot detected
+  // [2] = refill trays
+  // [3] = refill pots
+    state[0] = digitalRead(status[0]);
+    state[1] = digitalRead(status[1]);
+    state[2] = digitalRead(status[2]);
+    state[3] = digitalRead(status[3]);
+
+    
+    if(state[0]!=oldstate[0]){
+      oldstate[0] ^= 1;
+      if(state[0]==1){
+        masterSwitchON();
+      }
+      else{
+        masterSwitchOFF();
+      }
+    }
+
+    if(state[1]!=oldstate[1]){
+      oldstate[1] ^= 1;
+      if(state[1]==1){
+        verificationDetected();
+      }
+      else{
+        verification();
+      }
+    }
+
+    if(state[2]!=oldstate[2]){
+      oldstate[2] ^= 1;
+      if(state[2]==1){
+        trayStockRefill();
+      }
+      else{
+        trayStock();
+      }
+    }
+
+
     
     
   
@@ -137,25 +193,88 @@ void loop(void) {
 }
 
 
-void testText() {
-  // tft.fillScreen(BLACK);
-  tft.setRotation(1);
-  tft.setCursor(50, 100);
-  tft.setTextColor(YELLOW);  tft.setTextSize(3);
-  tft.println("Hello World!");
-  tft.setCursor(0, 0);
-  tft.setTextColor(BLACK);  tft.setTextSize(3);
-  tft.println("Hello World!");
+void masterSwitchON(){
+  tft.fillRoundRect(20,30,215,135,3,GREEN);
+  tft.drawRoundRect(20,30,215,135,3,BLACK);
+  tft.setCursor(50,35);
+  tft.setTextColor(BLACK);
+  tft.setTextSize(2);
+  tft.print("Master Switch");
+  tft.setCursor(90,90);
+  tft.setTextColor(BLACK);
+  tft.setTextSize(6);
+  tft.print("ON");
+}
+void masterSwitchOFF(){
+  tft.fillRoundRect(20,30,215,135,3,RED);
+  tft.drawRoundRect(20,30,215,135,3,BLACK);
+  tft.setCursor(50,35);
+  tft.setTextColor(WHITE);
+  tft.setTextSize(2);
+  tft.print("Master Switch");
+  tft.setCursor(80,90);
+  tft.setTextColor(WHITE);
+  tft.setTextSize(6);
+  tft.print("OFF");
 }
 
-void offTest() {
-  // tft.fillScreen(BLACK);
-  tft.setRotation(1);
-  tft.setCursor(0, 0);
-  tft.setTextColor(RED);  tft.setTextSize(3);
-  tft.println("Hello World!");
-  tft.setCursor(50, 100);
-  tft.setTextColor(BLACK);  tft.setTextSize(3);
-  tft.println("Hello World!");
+void verification(){
+  tft.fillRoundRect(245,30,215,135,3,GREEN);
+  tft.drawRoundRect(245,30,215,135,3,BLACK);
+  tft.setCursor(280,35);
+  tft.setTextColor(BLACK);
+  tft.setTextSize(2);
+  tft.print("Verification");
+  tft.setCursor(280,95);
+  tft.setTextColor(BLACK);
+  tft.setTextSize(5);
+  tft.print("CLEAR");
+}
+
+void verificationDetected(){
+  tft.fillRoundRect(245,30,215,135,3,RED);
+  tft.drawRoundRect(245,30,215,135,3,BLACK);
+  tft.setCursor(280,35);
+  tft.setTextColor(WHITE);
+  tft.setTextSize(2);
+  tft.print("Verification");
+  tft.setCursor(300,90);
+  tft.setTextColor(WHITE);
+  tft.setTextSize(3);
+  tft.print("ERROR!");
+  tft.setCursor(255,120);
+  tft.setTextColor(WHITE);
+  tft.setTextSize(3);
+  tft.print("Pot Missing");
+}
+
+void trayStockRefill(){
+  tft.fillRoundRect(20,175,215,135,3,YELLOW);
+  tft.drawRoundRect(20,175,215,135,3,BLACK);
+  tft.setCursor(75,180);
+  tft.setTextColor(BLACK);
+  tft.setTextSize(2);
+  tft.print("Tray Stock");
+  tft.setCursor(60,235);
+  tft.setTextColor(BLACK);
+  tft.setTextSize(3);
+  tft.print("WARNING!");
+  tft.setCursor(40,265);
+  tft.setTextColor(BLACK);
+  tft.setTextSize(3);
+  tft.print("Fill Trays");
+}
+
+void trayStock(){
+  tft.fillRoundRect(20,175,215,135,3,GREEN);
+  tft.drawRoundRect(20,175,215,135,3,BLACK);
+  tft.setCursor(75,180);
+  tft.setTextColor(BLACK);
+  tft.setTextSize(2);
+  tft.print("Tray Stock");
+  tft.setCursor(80,240);
+  tft.setTextColor(BLACK);
+  tft.setTextSize(5);
+  tft.print("FULL");
 }
 
