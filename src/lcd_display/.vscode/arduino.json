@@ -1,5 +1,4 @@
 {
     "port": "COM9",
-    "board": "arduino:avr:uno",
-    "sketch": "ldc_graphics.ino"
+    "board": "arduino:avr:uno"
 }
