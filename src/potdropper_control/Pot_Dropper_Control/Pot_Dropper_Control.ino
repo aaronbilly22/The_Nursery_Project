@@ -36,7 +36,8 @@ void loop() {
   Serial.println(" cm");
   delay(10);
 
-  if (distance < 5){
+  if (distance < 15){
+  for(int i=0;i<5;i++){
   digitalWrite(11, HIGH);
   digitalWrite(dirPin1,HIGH);
   digitalWrite(dirPin2,HIGH);
@@ -48,9 +49,11 @@ void loop() {
       digitalWrite(stepPin2,LOW); 
       delayMicroseconds(600); 
     }
-  delay(500);
+  delay(825);
   digitalWrite(11, LOW);
-  delay(500);
-  } 
+  delay(825);
+  }
+  
+  }
 
 }
