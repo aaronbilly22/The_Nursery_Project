@@ -1,20 +1,25 @@
-const int relay = 3;
-const int stop = 4;
+const int relayPin = 3;
+const int stopPin = 4;
 
 
 
 void setup() {
-  pinMode(relay, OUTPUT);
-  pinMode(stop, INPUT);
+  pinMode(relayPin, OUTPUT);
+  pinMode(stopPin, INPUT);
 
   Serial.begin(9600);
+
 }
 
 void loop() {
 
-  digitalWrite(relay,HIGH);
-  if(digitalRead(stop)==HIGH){
-    digitalWrite(relay,LOW);
+
+  if(digitalRead(stopPin)==HIGH){
+    digitalWrite(relayPin, LOW);
   }
+  else{
+    digitalWrite(relayPin, HIGH);
+  }
+ 
   
 }
