@@ -1,0 +1,5 @@
+{
+    "board": "arduino:avr:uno",
+    "sketch": "NEW_pot_dropper_2.ino",
+    "port": "COM3"
+}

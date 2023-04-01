@@ -43,31 +43,29 @@ void loop() {
   
   duration = pulseIn(echoPin, HIGH);
   distance = (duration / 2) * 0.0344;
-
-   Servo1.write(0);
-   Servo2.write(0); 
-   Serial.println(digitalRead(LIMIT_SWITCH_PIN_L)&&digitalRead(LIMIT_SWITCH_PIN_R));
-   if (digitalRead(LIMIT_SWITCH_PIN_L) == HIGH && digitalRead(LIMIT_SWITCH_PIN_R) == HIGH)
-   {
-      Serial.println(digitalRead(LIMIT_SWITCH_PIN_L)&&digitalRead(LIMIT_SWITCH_PIN_R));
-      digitalWrite(11, HIGH);
-      Servo1.write(90);
-      Servo2.write(90);   
-      digitalWrite(dirPin1,HIGH);
-      digitalWrite(dirPin2,HIGH);
-      for(int x = 0; x < 200; x++) {
-        digitalWrite(stepPin1,HIGH); 
-        digitalWrite(stepPin2,HIGH);
-        delayMicroseconds(600); 
-        digitalWrite(stepPin1,LOW); 
-        digitalWrite(stepPin2,LOW); 
+  Servo1.write(0);
+  Servo2.write(0); 
+  Serial.println(digitalRead(LIMIT_SWITCH_PIN_L)&&digitalRead(LIMIT_SWITCH_PIN_R));
+  if (digitalRead(LIMIT_SWITCH_PIN_L) == HIGH && digitalRead(LIMIT_SWITCH_PIN_R) == HIGH){
+    Serial.println(digitalRead(LIMIT_SWITCH_PIN_L)&&digitalRead(LIMIT_SWITCH_PIN_R));
+    digitalWrite(11, HIGH);
+    Servo1.write(90);
+    Servo2.write(90);   
+    digitalWrite(dirPin1,HIGH);
+    digitalWrite(dirPin2,HIGH);
+    for(int x = 0; x < 200; x++) {
+      digitalWrite(stepPin1,HIGH); 
+      digitalWrite(stepPin2,HIGH);
+      delayMicroseconds(600); 
+      digitalWrite(stepPin1,LOW); 
+      digitalWrite(stepPin2,LOW); 
       delayMicroseconds(600);
+    }
       if (distance < 5){
       // Make servo go to 90 degrees 
       Servo1.write(0); 
       Servo2.write(0);
       }
-   }
    }
 
 }
