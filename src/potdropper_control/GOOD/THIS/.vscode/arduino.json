@@ -1,0 +1,6 @@
+{
+    "port": "COM9",
+    "board": "arduino:avr:uno",
+    "sketch": "THIS.ino",
+    "programmer": "avrisp"
+}
