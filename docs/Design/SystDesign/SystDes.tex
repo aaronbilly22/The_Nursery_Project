@@ -30,7 +30,7 @@
 
 \newcounter{mnum}
 \newcommand{\mthemnum}{M\themnum}
-\newcommand{\mref}[1]{M\ref{#1}}
+\newcommand{\mref}[1]{M\refbottomrule{#1}}
 
 \begin{document}
 
@@ -48,7 +48,7 @@
   \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
   \midrule
   2023-01-18 & Juan Moncada,& Initial release\\&Aaron Billones,\\&Steven Ramundi,\\&Gillian Ford \\
-  
+  2023-04-05 & Juan Moncada,& Final documentation system design updates\\&Aaron Billones,\\&Steven Ramundi,\\&Gillian Ford \\
   \bottomrule
   \end{tabularx}
 
@@ -272,7 +272,7 @@ See Appendix A for interface layout concept.
 
 \subsection{Conveyor}
 
-The conveyor subsystem will be comprised of:
+The conveyor subsystem is comprised of:
 \begin{itemize}
   \item 1 conveyor (including belt, motor, gear box and framing)
   \item 1 Arduino Uno microcontroller
@@ -283,7 +283,7 @@ The conveyor has been acquired from Sheridan Nurseries and will not require fabr
 
 \subsection{Pot Dropper}
 
-The pot dropper subsystem will be comprised of:
+The pot dropper subsystem is comprised of:
 \begin{itemize}
   \item 4 stepper motors
   \item 4 stepper motor drivers
@@ -291,45 +291,25 @@ The pot dropper subsystem will be comprised of:
   \item 4 pot dropper screws
   \item 1 ultrasonic range finder
 \end{itemize}
-The pot dropper will be fabricated with steel x-beam framing to support the mechanism.
-See Appendix B.1 for a CAD diagram of the pot dropper screw.
+The pot dropper is fabricated with steel framing to support the mechanism. The stepper
+ motors are attached to the frame, and the pot dropper screws are attached to the shaft 
+of the stepper motors. See Appendix B.1 for a CAD diagram of the pot dropper screw.
 
 \subsection{Tray Dropper}
 
-The tray dropper subsystem will be comprised of:
+The tray dropper subsystem is comprised of:
 \begin{itemize}
   \item 2 stepper motors
-  \item 1 Sanguinololu driver board
-  \item 2 belts
-  \item 4 belt bearings
-  \item 1 steel x-beam frame
-  \item 1 tray dropper end-effector
+  \item 2 stepper driver boards
+  \item 2 D-shafts
+  \item 
+  \item 1 steel extrusion frame
+  \item 2 tray dropper end-effectors
 \end{itemize}
-The tray dropper will be fabricated with x-beam framing to support the mechanism. The 
-stepper motors and belt bearings will be attached to the framing, and the belts will 
-be secured to the bearings. See Appendix B.2 for a CAD diagram of the tray dropper 
-end-effector.
-
-\subsection{Tray Elevator}
-
-The tray elevator will be comprised of:
-\begin{itemize}
-  \item 4 L-shaped wood frame supports
-  \item 4 long wood frame supports
-  \item 4 short wood frame supports
-  \item 1 wood raising platform
-  \item 1 ultrasonic range finder
-  \item 2 spur gears
-  \item 2 racks
-  \item 2 stepper motors
-\end{itemize}
-The wooden frame will be fabricated with screws and wood glue. The stepper motors 
-will be attached to either side of the wood platform responsible for hodling the 
-stack of trays. The spur gears will be attached to the stepper motors. The racks 
-will be attached in the centre of the long wood supports on either side of the frame, 
-and will mesh with the spur gears. This will enable the stepper motors to control the 
-lifting and lowering of the tray elevator based on its current capacity (see Appendix B.3
-for CAD diagram).
+The tray dropper is fabricated with steel framing to support the mechanism. The 
+stepper motors and shaft connectors are attached to the framing, and the shafts 
+are secured to the shaft connectors. See Appendix B.2 for a CAD diagram of the tray dropper assembly 
+and a CAD diagram of the tray dropper gear.
 
 \subsection{Verification}
 
@@ -425,31 +405,23 @@ Handheld as to mitigate any safety concerns with a machine-mounted apparatus.
 \begin{figure}[H]
   \centering
   \includegraphics{Pot_Dropper.jpg}
-  \caption{Tray Dropper End-Effector}
+  \caption{Pot Dropper Screw}
   \label{fig:potdropper1}
 \end{figure}
 
 \subsection{Tray Dropper}
 \begin{figure}[H]
   \centering
-  \includegraphics{Tray_Dropper.jpg}
-  \caption{Tray Dropper End-Effector}
+  \includegraphics{Tray_Dropper_Asm.jpg}
+  \caption{Tray Dropper Assembly}
   \label{fig:traydropper1}
 \end{figure}
 
-\subsection{Tray Elevator}
 \begin{figure}[H]
   \centering
-  \includegraphics{Tray_Elevator.jpg}
-  \caption{Tray Elevator (side)}
-  \label{fig:elevator1}
-\end{figure}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics{Tray_Elevator2.jpg}
-  \caption{Tray Elevator (orthographic projection)}
-  \label{fig:elevator2}
+  \includegraphics{Tray_Dropper_Gear.jpg}
+  \caption{Tray Dropper Gear}
+  \label{fig:traydropper2}
 \end{figure}
 
 \section{Electrical Components}
