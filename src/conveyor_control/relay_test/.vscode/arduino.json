@@ -1,6 +1,0 @@
-{
-    "board": "arduino:avr:uno",
-    "port": "COM14",
-    "programmer": "arduino:avrisp",
-    "sketch": "relay_test.ino"
-}

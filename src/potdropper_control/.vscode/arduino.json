@@ -1,5 +1,0 @@
-{
-    "board": "arduino:avr:uno",
-    "port": "COM9",
-    "sketch": "Pot_Dropper_Control\\Pot_Dropper_Control.ino"
-}
