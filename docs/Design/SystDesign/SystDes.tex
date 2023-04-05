@@ -30,7 +30,7 @@
 
 \newcounter{mnum}
 \newcommand{\mthemnum}{M\themnum}
-\newcommand{\mref}[1]{M\ref{#1}}
+\newcommand{\mref}[1]{M\refbottomrule{#1}}
 
 \begin{document}
 
@@ -270,20 +270,9 @@ See Appendix A for interface layout concept.
 
 \section{Design of Hardware}
 
-\subsection{Conveyor}
-
-The conveyor subsystem will be comprised of:
-\begin{itemize}
-  \item 1 conveyor (including belt, motor, gear box and framing)
-  \item 1 Arduino Uno microcontroller
-  
-\end{itemize}
-The conveyor has been acquired from Sheridan Nurseries and will not require fabrication.
-
-
 \subsection{Pot Dropper}
 
-The pot dropper subsystem will be comprised of:
+The pot dropper subsystem is comprised of:
 \begin{itemize}
   \item 1 Arduino Uno microcontroller
   \item 4 stepper motors (Nema-17)
@@ -294,12 +283,13 @@ The pot dropper subsystem will be comprised of:
   \item screws and bracket mounts
   \item aluminum t-slotted extrusion
 \end{itemize}
-The pot dropper will be fabricated with steel x-beam framing to support the mechanism.
-See Appendix B.1 for a CAD diagram of the pot dropper screw.
+The pot dropper is fabricated with steel framing to support the mechanism. The stepper
+ motors are attached to the frame, and the pot dropper screws are attached to the shaft 
+of the stepper motors. See Appendix B.1 for a CAD diagram of the pot dropper screw.
 
 \subsection{Tray Dropper}
 
-The tray dropper subsystem will be comprised of:
+The tray dropper subsystem is comprised of:
 \begin{itemize}
   \item 1 Arduino Uno microcontroller
   \item 2 stepper motors (Nema-17)
@@ -310,10 +300,10 @@ The tray dropper subsystem will be comprised of:
   \item screws and bracket mounts
   \item aluminum T-slotted extrusion
 \end{itemize}
-The tray dropper will be fabricated with x-beam framing to support the mechanism. The 
-stepper motors and belt bearings will be attached to the framing, and the belts will 
-be secured to the bearings. See Appendix B.2 for a CAD diagram of the tray dropper 
-end-effector.
+The tray dropper is fabricated with steel framing to support the mechanism. The 
+stepper motors and shaft connectors are attached to the framing, and the shafts 
+are secured to the shaft connectors. See Appendix B.2 for a CAD diagram of the tray dropper assembly 
+and a CAD diagram of the tray dropper gear.
 
 \subsection{Conveyor Belt}
 
@@ -427,31 +417,23 @@ Handheld as to mitigate any safety concerns with a machine-mounted apparatus.
 \begin{figure}[H]
   \centering
   \includegraphics{Pot_Dropper.jpg}
-  \caption{Tray Dropper End-Effector}
+  \caption{Pot Dropper Screw}
   \label{fig:potdropper1}
 \end{figure}
 
 \subsection{Tray Dropper}
 \begin{figure}[H]
   \centering
-  \includegraphics{Tray_Dropper.jpg}
-  \caption{Tray Dropper End-Effector}
+  \includegraphics{Tray_Dropper_Asm.jpg}
+  \caption{Tray Dropper Assembly}
   \label{fig:traydropper1}
 \end{figure}
 
-\subsection{Tray Elevator}
 \begin{figure}[H]
   \centering
-  \includegraphics{Tray_Elevator.jpg}
-  \caption{Tray Elevator (side)}
-  \label{fig:elevator1}
-\end{figure}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics{Tray_Elevator2.jpg}
-  \caption{Tray Elevator (orthographic projection)}
-  \label{fig:elevator2}
+  \includegraphics{Tray_Dropper_Gear.jpg}
+  \caption{Tray Dropper Gear}
+  \label{fig:traydropper2}
 \end{figure}
 
 \section{Electrical Components}
