@@ -336,11 +336,13 @@ The user interface is comprised of:
 
 The Pot-pulator has a number of electrical components in the system. A complete overview of the circuit diagram
 can be found in section C of the appendix. To improve modularity and for easier troubleshooting,
-the electrical components are divided into 4 subsystems based on the control of the system: conveyor control and verification, pot
-control, tray control, and user interface. These subsystems are each controlled using an 
-Arduino Uno. For each subsystem, its respective Arduino controls the motors and reads sensor/switch/button values in order to ensure smooth operation. 
-The Arduino relays the operation status to the user interface at all times. If an error were to occur in
-one of the subsystems, the user interface is notified and a status message is displayed. 
+the electrical components were divided in to 4 subsystems based on the control of the system: conveyor control/verification, pot
+dispensing, tray dispensing, and user interface. These subsystems are each controlled using an 
+Arduino Uno while communicating with each other when necessary. For each subsystem,
+its respective Arduino reads inputs from electronic components such as sensors, switches, and buttons and 
+outputs control accordingly to the various motors. The Arduinos from each of the 
+subsystems send a status bit to the LCD subsystem. If an error were to occur in
+one of the subsystems, the LCD will show the appropriate status message and the entire system will act accordingly.
 
 
 
