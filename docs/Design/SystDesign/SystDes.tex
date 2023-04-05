@@ -344,13 +344,13 @@ The user interface will be comprised of:
 
 The Pot-pulator has a number of electrical components in the system. A complete overview of the circuit diagram
 can be found in section C of the appendix. To improve modularity and for easier troubleshooting,
-the electrical components were divided in to 4 subsystems based on the control of the system: conveyor control, pot
-control, tray control, and verification. These subsystems are each controlled using an 
-Arduino Uno while being monitored by the main microcontroller (STM32F429I-DISC1). For each subsystem,
-its respective Arduino controls the motors and reads sensor/switch/button values in order to ensure smooth operation. 
-The Arduino relays the operation status to the STM32F429I-DISC1 via status bits, that are sent from each of the 
-subsystems to the STM32F429I-DISC1 at all times. If an error were to occur in
-one of the subsystems, the STM32F429I-DISC1 will be notified and tell all other subsystems to pause operation.
+the electrical components were divided in to 4 subsystems based on the control of the system: conveyor control/verification, pot
+dispensing, tray dispensing, and user interface. These subsystems are each controlled using an 
+Arduino Uno while communicating with each other when necessary. For each subsystem,
+its respective Arduino reads inputs from electronic components such as sensors, switches, and buttons and 
+outputs control accordingly to the various motors. The Arduinos from each of the 
+subsystems send a status bit to the LCD subsystem. If an error were to occur in
+one of the subsystems, the LCD will show the appropriate status message and the entire system will act accordingly.
 
 
 
@@ -463,7 +463,6 @@ Handheld as to mitigate any safety concerns with a machine-mounted apparatus.
   \label{fig:circuit}
 \end{figure}
 
-\section{Communication Protocols}
 
 \section{Reflection}
 
