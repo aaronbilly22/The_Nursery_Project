@@ -30,7 +30,7 @@
 
 \newcounter{mnum}
 \newcommand{\mthemnum}{M\themnum}
-\newcommand{\mref}[1]{M\ref{#1}}
+\newcommand{\mref}[1]{M\refbottomrule{#1}}
 
 \begin{document}
 
@@ -48,7 +48,7 @@
   \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
   \midrule
   2023-01-18 & Juan Moncada,& Initial release\\&Aaron Billones,\\&Steven Ramundi,\\&Gillian Ford \\
-  
+  2023-04-05 & Aaron Billones, &Update for final documentation\\ &Steven Ramundi\\
   \bottomrule
   \end{tabularx}
 
@@ -136,12 +136,12 @@ the Pot-pulator begins its operation with no further interaction required by the
 Under normal operation, the ideal behaviour of the Pot-pulator will be as follows:
 \begin{enumerate}
   \item User fills the machine with empty pots and trays
-  \item User presses the start button
-  \item Raise the platform containing the trays until the stack reaches the top
-  \item Take the top tray off of the stack and place it on the conveyor belt
-  \item Proceed to move the conveyor and position the tray correctly to prepare for pot insertion
-  \item Stop the conveyor when pots and drop the pots 2 at a time in the tray
-  \item Continue moving the conveyor to the next available slots in the tray
+  \item User flips the power switch on
+  \item User flips the conveyor switch on and the conveyor begins to move forward
+  \item A tray will automatically drop down and begin moving along the conveyor
+  \item The tray will hit 2 lever switches which lines up the tray to prepare for pot dispensing
+  \item Stop the conveyor when pots are lined up with the next row on the tray and dispense 2 pots at a time in the tray
+  \item Continue moving the conveyor to the next available pair of slots in the tray
   \item Repeat steps 6 and 7 until the entire tray is filled with pots (10 pots)
   \item Once the tray is filled with pots, the verification subsystem determines if all the pots have been placed correctly in the tray
 \end{enumerate}
@@ -150,7 +150,7 @@ Under normal operation, the ideal behaviour of the Pot-pulator will be as follow
 
 \subsection{Undesired Event Handling}
 The Pot-pulator is vulnerable to many undesired events during operation. The user will be notified should anything
-go wrong with the system via the user interface, LEDs, and sound.
+go wrong with the system via the user interface and LEDs.
 \subsubsection{Pot/Tray Misalignement}
 A very common issue that could arise with the Pot-pulator is that there is the possibility
 of a pot not being placed correctly in the tray due to misalignement. To mitigate this risk,
@@ -204,13 +204,6 @@ User Interface  &  NFR7 \\ \hline
   System State & Determines the state of the system (ie. Ready, Running, Error, Success)
    & State &  N/A\\
   \hline
-  Tray/Pot Weight & Weight of the trays/pots to verify number in the stack
-   & Weight & kg\\
-  \hline
-  Tray/Pot Height & Height of the trays/pots to verify number in the stack
-   & Height & m\\
-  
-  \hline
  \end{tabular}\\\\
  \end{table}
 
@@ -263,92 +256,93 @@ User Interface  &  NFR7 \\ \hline
 \section{User Interfaces}
 
 
-The User Interface will consist of a set of buttons to allow the operator to safely 
-interact with the machine. It will also consist of audible and visual signals to alert
+The User Interface will consist of a set of status messages to allow the operator to safely 
+interact with the machine. It will also consist of visual signals to alert
 the operator of any action required (e.g. tray/pot restock, verification error, etc.).
 See Appendix A for interface layout concept.
 
 \section{Design of Hardware}
 
-\subsection{Conveyor}
-
-The conveyor subsystem will be comprised of:
-\begin{itemize}
-  \item 1 conveyor (including belt, motor, gear box and framing)
-  \item 1 Arduino Uno microcontroller
-  
-\end{itemize}
-The conveyor has been acquired from Sheridan Nurseries and will not require fabrication.
-
-
 \subsection{Pot Dropper}
 
-The pot dropper subsystem will be comprised of:
+The pot dropper subsystem is comprised of:
 \begin{itemize}
-  \item 4 stepper motors
-  \item 4 stepper motor drivers
   \item 1 Arduino Uno microcontroller
-  \item 4 pot dropper screws
-  \item 1 ultrasonic range finder
+  \item 4 stepper motors (Nema-17)
+  \item 4 stepper motor drivers (A4988)
+  \item 2 servo motors (SG92R)
+  \item 2 custom servo motor attachments
+  \item 1 custom servo mount
+  \item 1 custom servo/sensor mount
+  \item 4 custom pot dropper discs
+  \item 1 ultrasonic range finder (HC-SR04)
+  \item 2 lever switches
+  \item screws and bracket mounts
+  \item aluminum t-slotted extrusion
 \end{itemize}
-The pot dropper will be fabricated with steel x-beam framing to support the mechanism.
-See Appendix B.1 for a CAD diagram of the pot dropper screw.
+The pot dropper is fabricated with aluminum framing to support the mechanism. The stepper
+ motors are attached to the frame, and the pot dropper discs are attached to the shaft 
+of the stepper motors. The lever switches are attached to the servo motors via the servo motor attachments, and are 
+mounted to the aluminum extrusion via the servo motor mounts. See Appendix B.1 for a CAD diagram of the pot dropper screw.
 
 \subsection{Tray Dropper}
 
-The tray dropper subsystem will be comprised of:
+The tray dropper subsystem is comprised of:
 \begin{itemize}
-  \item 2 stepper motors
-  \item 1 Sanguinololu driver board
-  \item 2 belts
-  \item 4 belt bearings
-  \item 1 steel x-beam frame
-  \item 1 tray dropper end-effector
+  \item 1 Arduino Uno microcontroller
+  \item 2 stepper motors (Nema-17)
+  \item 2 stepper motor drivers (A4988)
+  \item 2 custom tray dispenser gears
+  \item 1 ultrasonic range finder (HC-SR04)
+  \item 1 custom sensor mount
+  \item 2 D-slotted steel shaft and connectors
+  \item screws and bracket mounts
+  \item aluminum t-slotted extrusion
 \end{itemize}
-The tray dropper will be fabricated with x-beam framing to support the mechanism. The 
-stepper motors and belt bearings will be attached to the framing, and the belts will 
-be secured to the bearings. See Appendix B.2 for a CAD diagram of the tray dropper 
-end-effector.
+The tray dropper is fabricated with aluminum framing to support the mechanism. The 
+stepper motors and shaft connectors are attached to the framing, and the shafts 
+are secured to the shaft connectors. The ultrasonic range finder is mounted to the 
+extrusion via the sensor mount. See Appendix B.2 for a CAD diagram of the tray dropper assembly 
+and a CAD diagram of the tray dropper gear.
 
-\subsection{Tray Elevator}
+\subsection{Conveyor Belt}
 
-The tray elevator will be comprised of:
+The conveyor belt used for the Pot-pulator is a 58 x 29.5 x 11.5 inch conveyor with a 50W AC motor driven by a custom printed
+circuit board. Additional hardware components included:
 \begin{itemize}
-  \item 4 L-shaped wood frame supports
-  \item 4 long wood frame supports
-  \item 4 short wood frame supports
-  \item 1 wood raising platform
-  \item 1 ultrasonic range finder
-  \item 2 spur gears
-  \item 2 racks
-  \item 2 stepper motors
+  \item 1 Arduino Uno microcontroller
+  \item 2 ultrasonic range finders (HC-SR04)
+  \item 1 mechanical relay (SDR-05VDC-SL-C)
 \end{itemize}
-The wooden frame will be fabricated with screws and wood glue. The stepper motors 
-will be attached to either side of the wood platform responsible for hodling the 
-stack of trays. The spur gears will be attached to the stepper motors. The racks 
-will be attached in the centre of the long wood supports on either side of the frame, 
-and will mesh with the spur gears. This will enable the stepper motors to control the 
-lifting and lowering of the tray elevator based on its current capacity (see Appendix B.3
-for CAD diagram).
 
 \subsection{Verification}
 
-The verification subsystem will be comprised of:
+The verification subsystem is comprised of:
 \begin{itemize}
-  \item 2 ultrasonic range finders
+  \item 2 ultrasonic range finders (HC-SR04)
+  \item 2 custom sensor mounts
+\end{itemize}
+The ultrasonic range finders are mounted to the conveyor via the sensor mounts.
+
+\subsection{User Interface}
+
+The user interface is comprised of:
+\begin{itemize}
+  \item 1 Arduino Uno microcontroller
+  \item 3.5 inch TFT 320x480 LCD (HXD8357D)
 \end{itemize}
 
 \section{Design of Electrical Components}
 
 The Pot-pulator has a number of electrical components in the system. A complete overview of the circuit diagram
 can be found in section C of the appendix. To improve modularity and for easier troubleshooting,
-the electrical components were divided in to 4 subsystems based on the control of the system: conveyor control, pot
-control, tray control, and verification. These subsystems are each controlled using an 
-Arduino Uno while being monitored by the main microcontroller (STM32F429I-DISC1). For each subsystem,
-its respective Arduino controls the motors and reads sensor/switch/button values in order to ensure smooth operation. 
-The Arduino relays the operation status to the STM32F429I-DISC1 via status bits, that are sent from each of the 
-subsystems to the STM32F429I-DISC1 at all times. If an error were to occur in
-one of the subsystems, the STM32F429I-DISC1 will be notified and tell all other subsystems to pause operation.
+the electrical components were divided in to 4 subsystems based on the control of the system: conveyor control/verification, pot
+dispensing, tray dispensing, and user interface. These subsystems are each controlled using an 
+Arduino Uno while communicating with each other when necessary. For each subsystem,
+its respective Arduino reads inputs from electronic components such as sensors, switches, and buttons and 
+outputs control accordingly to the various motors. The Arduinos from each of the 
+subsystems send a status bit to the LCD subsystem. If an error were to occur in
+one of the subsystems, the LCD will show the appropriate status message and the entire system will act accordingly.
 
 
 
@@ -403,21 +397,19 @@ one of the subsystems, the STM32F429I-DISC1 will be notified and tell all other 
 % interaction with, the user interface}
 \begin{figure}[H]
   \centering
-\includegraphics{interface1.png}
+\includegraphics{interface_new1.png}
 \caption{Example of Interface}
   \label{fig:interface1}
 \end{figure}
-The above figure shows an example of a status message alerting the machine operator that the pot 
-dispenser requires refill. This would be accompanied by an audible alert.
+The above figure shows the user interface during normal operation. No errors are being displayed.
 
 \begin{figure}[H]
   \centering
-\includegraphics[width=0.25\textwidth]{interface2.png}
-\caption{Example of Button Controls}
+\includegraphics{interface_new2.png}
+\caption{Example of Interface}
   \label{fig:interface2}
 \end{figure}
-Concept of the button interface used by the operator to control the machine. 
-Handheld as to mitigate any safety concerns with a machine-mounted apparatus.
+\noindent The above figure shows the user interface while all errors are present and the Pot-pulator is off. 
 
 \section{Mechanical Hardware}
 
@@ -425,31 +417,23 @@ Handheld as to mitigate any safety concerns with a machine-mounted apparatus.
 \begin{figure}[H]
   \centering
   \includegraphics{Pot_Dropper.jpg}
-  \caption{Tray Dropper End-Effector}
+  \caption{Pot Dropper Screw}
   \label{fig:potdropper1}
 \end{figure}
 
 \subsection{Tray Dropper}
 \begin{figure}[H]
   \centering
-  \includegraphics{Tray_Dropper.jpg}
-  \caption{Tray Dropper End-Effector}
+  \includegraphics{Tray_Dropper_Asm.jpg}
+  \caption{Tray Dropper Assembly}
   \label{fig:traydropper1}
 \end{figure}
 
-\subsection{Tray Elevator}
 \begin{figure}[H]
   \centering
-  \includegraphics{Tray_Elevator.jpg}
-  \caption{Tray Elevator (side)}
-  \label{fig:elevator1}
-\end{figure}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics{Tray_Elevator2.jpg}
-  \caption{Tray Elevator (orthographic projection)}
-  \label{fig:elevator2}
+  \includegraphics{Tray_Dropper_Gear.jpg}
+  \caption{Tray Dropper Gear}
+  \label{fig:traydropper2}
 \end{figure}
 
 \section{Electrical Components}
@@ -460,8 +444,6 @@ Handheld as to mitigate any safety concerns with a machine-mounted apparatus.
   \caption{Circuit Diagram}
   \label{fig:circuit}
 \end{figure}
-
-\section{Communication Protocols}
 
 \section{Reflection}
 
