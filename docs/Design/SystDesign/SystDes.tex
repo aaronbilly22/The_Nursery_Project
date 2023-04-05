@@ -48,7 +48,7 @@
   \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
   \midrule
   2023-01-18 & Juan Moncada,& Initial release\\&Aaron Billones,\\&Steven Ramundi,\\&Gillian Ford \\
-  2023-04-05 & Juan Moncada,& Final documentation system design updates\\&Aaron Billones,\\&Steven Ramundi,\\&Gillian Ford \\
+  2023-04-05 & Aaron Billones, &Update for final documentation\\ &Steven Ramundi\\
   \bottomrule
   \end{tabularx}
 
@@ -136,12 +136,12 @@ the Pot-pulator begins its operation with no further interaction required by the
 Under normal operation, the ideal behaviour of the Pot-pulator will be as follows:
 \begin{enumerate}
   \item User fills the machine with empty pots and trays
-  \item User presses the start button
-  \item Raise the platform containing the trays until the stack reaches the top
-  \item Take the top tray off of the stack and place it on the conveyor belt
-  \item Proceed to move the conveyor and position the tray correctly to prepare for pot insertion
-  \item Stop the conveyor when pots and drop the pots 2 at a time in the tray
-  \item Continue moving the conveyor to the next available slots in the tray
+  \item User flips the power switch on
+  \item User flips the conveyor switch on and the conveyor begins to move forward
+  \item A tray will automatically drop down and begin moving along the conveyor
+  \item The tray will hit 2 lever switches which lines up the tray to prepare for pot dispensing
+  \item Stop the conveyor when pots are lined up with the next row on the tray and dispense 2 pots at a time in the tray
+  \item Continue moving the conveyor to the next available pair of slots in the tray
   \item Repeat steps 6 and 7 until the entire tray is filled with pots (10 pots)
   \item Once the tray is filled with pots, the verification subsystem determines if all the pots have been placed correctly in the tray
 \end{enumerate}
@@ -270,26 +270,18 @@ See Appendix A for interface layout concept.
 
 \section{Design of Hardware}
 
-\subsection{Conveyor}
-
-The conveyor subsystem is comprised of:
-\begin{itemize}
-  \item 1 conveyor (including belt, motor, gear box and framing)
-  \item 1 Arduino Uno microcontroller
-  
-\end{itemize}
-The conveyor has been acquired from Sheridan Nurseries and will not require fabrication.
-
-
 \subsection{Pot Dropper}
 
 The pot dropper subsystem is comprised of:
 \begin{itemize}
-  \item 4 stepper motors
-  \item 4 stepper motor drivers
   \item 1 Arduino Uno microcontroller
-  \item 4 pot dropper screws
-  \item 1 ultrasonic range finder
+  \item 4 stepper motors (Nema-17)
+  \item 4 stepper motor drivers (A4988)
+  \item 4 custom pot dropper discs
+  \item 1 ultrasonic range finder (HC-SR04)
+  \item 2 lever switches
+  \item screws and bracket mounts
+  \item aluminum t-slotted extrusion
 \end{itemize}
 The pot dropper is fabricated with steel framing to support the mechanism. The stepper
  motors are attached to the frame, and the pot dropper screws are attached to the shaft 
@@ -299,23 +291,43 @@ of the stepper motors. See Appendix B.1 for a CAD diagram of the pot dropper scr
 
 The tray dropper subsystem is comprised of:
 \begin{itemize}
-  \item 2 stepper motors
-  \item 2 stepper driver boards
-  \item 2 D-shafts
-  \item 
-  \item 1 steel extrusion frame
-  \item 2 tray dropper end-effectors
+  \item 1 Arduino Uno microcontroller
+  \item 2 stepper motors (Nema-17)
+  \item 2 stepper motor drivers (A4988)
+  \item 2 custom tray dispenser gears
+  \item 1 ultrasonic range finder (HC-SR04)
+  \item 2 D-slotted steel shaft and connectors
+  \item screws and bracket mounts
+  \item aluminum T-slotted extrusion
 \end{itemize}
 The tray dropper is fabricated with steel framing to support the mechanism. The 
 stepper motors and shaft connectors are attached to the framing, and the shafts 
 are secured to the shaft connectors. See Appendix B.2 for a CAD diagram of the tray dropper assembly 
 and a CAD diagram of the tray dropper gear.
 
+\subsection{Conveyor Belt}
+
+The conveyor belt used for the Pot-pulator is a 58 x 29.5 x 11.5 inch conveyor with a 50W AC motor driven by a custom printed
+circuit board. Additional hardware components included:
+\begin{itemize}
+  \item 1 Arduino Uno microcontroller
+  \item 2 ultrasonic range finders (HC-SR04)
+  \item 1 mechanical relay (SDR-05VDC-SL-C)
+\end{itemize}
+
 \subsection{Verification}
 
 The verification subsystem will be comprised of:
 \begin{itemize}
-  \item 2 ultrasonic range finders
+  \item 2 ultrasonic range finders (HC-SR04)
+\end{itemize}
+
+\subsection{User Interface}
+
+The user interface will be comprised of:
+\begin{itemize}
+  \item 1 Arduino Uno microcontroller
+  \item 3.5 inch TFT 320x480 LCD (HXD8357D)
 \end{itemize}
 
 \section{Design of Electrical Components}
