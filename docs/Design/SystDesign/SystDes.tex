@@ -150,7 +150,7 @@ Under normal operation, the ideal behaviour of the Pot-pulator will be as follow
 
 \subsection{Undesired Event Handling}
 The Pot-pulator is vulnerable to many undesired events during operation. The user will be notified should anything
-go wrong with the system via the user interface, LEDs, and sound.
+go wrong with the system via the user interface and LEDs.
 \subsubsection{Pot/Tray Misalignement}
 A very common issue that could arise with the Pot-pulator is that there is the possibility
 of a pot not being placed correctly in the tray due to misalignement. To mitigate this risk,
@@ -204,13 +204,6 @@ User Interface  &  NFR7 \\ \hline
   System State & Determines the state of the system (ie. Ready, Running, Error, Success)
    & State &  N/A\\
   \hline
-  Tray/Pot Weight & Weight of the trays/pots to verify number in the stack
-   & Weight & kg\\
-  \hline
-  Tray/Pot Height & Height of the trays/pots to verify number in the stack
-   & Height & m\\
-  
-  \hline
  \end{tabular}\\\\
  \end{table}
 
@@ -263,8 +256,8 @@ User Interface  &  NFR7 \\ \hline
 \section{User Interfaces}
 
 
-The User Interface will consist of a set of buttons to allow the operator to safely 
-interact with the machine. It will also consist of audible and visual signals to alert
+The User Interface will consist of a set of status messages to allow the operator to safely 
+interact with the machine. It will also consist of visual signals to alert
 the operator of any action required (e.g. tray/pot restock, verification error, etc.).
 See Appendix A for interface layout concept.
 
@@ -277,15 +270,20 @@ The pot dropper subsystem is comprised of:
   \item 1 Arduino Uno microcontroller
   \item 4 stepper motors (Nema-17)
   \item 4 stepper motor drivers (A4988)
+  \item 2 servo motors (SG92R)
+  \item 2 custom servo motor attachments
+  \item 1 custom servo mount
+  \item 1 custom servo/sensor mount
   \item 4 custom pot dropper discs
   \item 1 ultrasonic range finder (HC-SR04)
   \item 2 lever switches
   \item screws and bracket mounts
   \item aluminum t-slotted extrusion
 \end{itemize}
-The pot dropper is fabricated with steel framing to support the mechanism. The stepper
- motors are attached to the frame, and the pot dropper screws are attached to the shaft 
-of the stepper motors. See Appendix B.1 for a CAD diagram of the pot dropper screw.
+The pot dropper is fabricated with aluminum framing to support the mechanism. The stepper
+ motors are attached to the frame, and the pot dropper discs are attached to the shaft 
+of the stepper motors. The lever switches are attached to the servo motors via the servo motor attachments, and are 
+mounted to the aluminum extrusion via the servo motor mounts. See Appendix B.1 for a CAD diagram of the pot dropper screw.
 
 \subsection{Tray Dropper}
 
@@ -296,13 +294,15 @@ The tray dropper subsystem is comprised of:
   \item 2 stepper motor drivers (A4988)
   \item 2 custom tray dispenser gears
   \item 1 ultrasonic range finder (HC-SR04)
+  \item 1 custom sensor mount
   \item 2 D-slotted steel shaft and connectors
   \item screws and bracket mounts
-  \item aluminum T-slotted extrusion
+  \item aluminum t-slotted extrusion
 \end{itemize}
-The tray dropper is fabricated with steel framing to support the mechanism. The 
+The tray dropper is fabricated with aluminum framing to support the mechanism. The 
 stepper motors and shaft connectors are attached to the framing, and the shafts 
-are secured to the shaft connectors. See Appendix B.2 for a CAD diagram of the tray dropper assembly 
+are secured to the shaft connectors. The ultrasonic range finder is mounted to the 
+extrusion via the sensor mount. See Appendix B.2 for a CAD diagram of the tray dropper assembly 
 and a CAD diagram of the tray dropper gear.
 
 \subsection{Conveyor Belt}
@@ -317,14 +317,16 @@ circuit board. Additional hardware components included:
 
 \subsection{Verification}
 
-The verification subsystem will be comprised of:
+The verification subsystem is comprised of:
 \begin{itemize}
   \item 2 ultrasonic range finders (HC-SR04)
+  \item 2 custom sensor mounts
 \end{itemize}
+The ultrasonic range finders are mounted to the conveyor via the sensor mounts.
 
 \subsection{User Interface}
 
-The user interface will be comprised of:
+The user interface is comprised of:
 \begin{itemize}
   \item 1 Arduino Uno microcontroller
   \item 3.5 inch TFT 320x480 LCD (HXD8357D)
@@ -334,13 +336,11 @@ The user interface will be comprised of:
 
 The Pot-pulator has a number of electrical components in the system. A complete overview of the circuit diagram
 can be found in section C of the appendix. To improve modularity and for easier troubleshooting,
-the electrical components were divided in to 4 subsystems based on the control of the system: conveyor control, pot
-control, tray control, and verification. These subsystems are each controlled using an 
-Arduino Uno while being monitored by the main microcontroller (STM32F429I-DISC1). For each subsystem,
-its respective Arduino controls the motors and reads sensor/switch/button values in order to ensure smooth operation. 
-The Arduino relays the operation status to the STM32F429I-DISC1 via status bits, that are sent from each of the 
-subsystems to the STM32F429I-DISC1 at all times. If an error were to occur in
-one of the subsystems, the STM32F429I-DISC1 will be notified and tell all other subsystems to pause operation.
+the electrical components are divided into 4 subsystems based on the control of the system: conveyor control and verification, pot
+control, tray control, and user interface. These subsystems are each controlled using an 
+Arduino Uno. For each subsystem, its respective Arduino controls the motors and reads sensor/switch/button values in order to ensure smooth operation. 
+The Arduino relays the operation status to the user interface at all times. If an error were to occur in
+one of the subsystems, the user interface is notified and a status message is displayed. 
 
 
 
@@ -395,21 +395,19 @@ one of the subsystems, the STM32F429I-DISC1 will be notified and tell all other 
 % interaction with, the user interface}
 \begin{figure}[H]
   \centering
-\includegraphics{interface1.png}
+\includegraphics{interface_new1.png}
 \caption{Example of Interface}
   \label{fig:interface1}
 \end{figure}
-The above figure shows an example of a status message alerting the machine operator that the pot 
-dispenser requires refill. This would be accompanied by an audible alert.
+The above figure shows the user interface during normal operation. No errors are being displayed.
 
 \begin{figure}[H]
   \centering
-\includegraphics[width=0.25\textwidth]{interface2.png}
-\caption{Example of Button Controls}
+\includegraphics{interface_new2.png}
+\caption{Example of Interface}
   \label{fig:interface2}
 \end{figure}
-Concept of the button interface used by the operator to control the machine. 
-Handheld as to mitigate any safety concerns with a machine-mounted apparatus.
+\noindent The above figure shows the user interface while all errors are present and the Pot-pulator is off. 
 
 \section{Mechanical Hardware}
 
@@ -444,8 +442,6 @@ Handheld as to mitigate any safety concerns with a machine-mounted apparatus.
   \caption{Circuit Diagram}
   \label{fig:circuit}
 \end{figure}
-
-\section{Communication Protocols}
 
 \section{Reflection}
 
