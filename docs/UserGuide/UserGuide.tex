@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[12pt, titlepage]{article}
 
 \usepackage{booktabs}
 \usepackage{graphicx}
@@ -11,6 +11,15 @@
 \usepackage{longtable}
 \graphicspath{ {./images/} }
 \usepackage{float}
+\usepackage{fullpage}
+\usepackage[round]{natbib}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage{float}
+\usepackage{hyperref}
 \hypersetup{
     colorlinks=true,       % false: boxed links; true: colored links
     linkcolor=red,          % color of internal links (change box color with linkbordercolor)
@@ -43,7 +52,7 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{4cm}X}
     \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
     \midrule
-    2022-04-5 & Juan Moncada,& Initial release\\&Aaron Billones,\\&Steven Ramundi,\\&Gillian Ford \\
+    2022-04-5 & Aaron Billones,& Initial release\\&Gillian Ford,\\&Juan Moncada,\\&Steven Ramundi \\
     
     \bottomrule
 \end{tabularx}
@@ -66,7 +75,7 @@ Welcome to the user manual for the Pot-pulator - a machine designed to assist Sh
 When using the Pot-pulator, start by fulling the machine with trays in the tray dropper section, and empty pots in the pot dropper section. The tray dropper can hold 30 trays, while the pot dropper can hold up to 300 pots, requiring refills every 15 minutes. Within this time, the machine requires no further action from the user once the on button has been pressed. Under normal operation, the Pot-pulator will follow the steps below:
 \\
 \\ \noindent 1.	Fill the machine with empty pots and trays\\ 
-\noindent 2.	Press the "on" button
+\noindent 2.	Set both switches on the conveyer down, starting with the black one, then the red.
 
  \noindent 3.	Tray dropper will dispense trays one at a time
 
@@ -85,12 +94,14 @@ When using the Pot-pulator, start by fulling the machine with trays in the tray 
 When refilling pots and trays, ensure that the machine is turned off. Once they have been loaded into the system, the user can then turn on the machine for operation.
 \section{User Interface}
 \begin{figure}[H]
+    \centering
     \includegraphics{statusgood.png}
     \caption{User Interface when system is functioning normally}
     \label{fig:scope}
   \end{figure}
 
   \begin{figure}[H]
+    \centering
     \includegraphics{statusbad.png}
     \caption{User Interface when errors arise}
     \label{fig:scope}
@@ -108,8 +119,10 @@ This section informs the user that there is a jam in the stack of trays in the t
 \section{Features and Functionality}
 \subsection{Conveyer}
 To start the Pot-pulator, the user needs to press two switches located on the conveyer belt. Properly using these switches is crucial for the smooth operation of the machine. First, the black power switch should be pressed down to the line, then the red switch should be pressed down to the two lines. This ensures that the machine is ready to start and will function as needed.
-Once the switches have been set correctly, the conveyer belt will begin to move the trays through each system in the Pot-pulator. The conveyer will start and stop at specific positions to ensure that each tray is correctly positioned for pot dropping. This ensures that the system operates smoothly and that the pots are accurately placed in each tray.
-It's important to note that the conveyer belt must be properly maintained to ensure its longevity and proper functioning. Users should regularly clean it to remove any dirt, debris, or other materials that may accumulate on the belt. Additionally, users should inspect the conveyer belt regularly to ensure that it is functioning correctly.
+\\
+\noindent Once the switches have been set correctly, the conveyer belt will begin to move the trays through each system in the Pot-pulator. The conveyer will start and stop at specific positions to ensure that each tray is correctly positioned for pot dropping. This ensures that the system operates smoothly and that the pots are accurately placed in each tray.
+\\
+\noindent It's important to note that the conveyer belt must be properly maintained to ensure its longevity and proper functioning. Users should regularly clean it to remove any dirt, debris, or other materials that may accumulate on the belt. Additionally, users should inspect the conveyer belt regularly to ensure that it is functioning correctly.
 
 \begin{figure}[H]
     \centering
@@ -120,45 +133,50 @@ It's important to note that the conveyer belt must be properly maintained to ens
 \newpage
 \subsection{Tray Dispenser}
 When using the tray dispenser system, it's important to note that up to 30 trays can be manually inserted into the top of the machine at the beginning of each refill. This allows for a continuous flow of trays, ensuring that there will be enough available for continuous use.
-However, it's also important to keep in mind that the tray dispenser will need to be refilled every 15 minutes. This ensures that the machine doesn't run out of trays, which can cause delays and decrease the overall time efficiency of the device.
-To ensure proper functionality, it's recommended that the trays be stacked and placed evenly into the machine. This not only helps with the flow of trays through the dispenser, but also prevents jams and other issues that can arise from uneven stacking.
-By following these guidelines, users can ensure smooth and efficient tray dispensing, minimizing any downtime caused by errors.
+\\
+\noindent The tray dispenser will need to be refilled every 15 minutes. This ensures that the machine doesn't run out of trays, which can cause delays and decrease the overall time efficiency of the device.
+\\
+\noindent To ensure proper functionality, it's recommended that the trays be stacked and placed evenly into the machine. This not only helps with the flow of trays through the dispenser, but also prevents jams and other issues that can arise from uneven stacking.
+\\
+\noindent By following these guidelines, users can ensure smooth and efficient tray dispensing, minimizing any downtime caused by errors.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{tray.jpg}
+    \includegraphics[width=0.8\textwidth]{tray.jpg}
     \caption{Tray Dispenser}
     \label{fig:scope}
   \end{figure}
 \newpage
 \subsection{Pot Dropper}
-When using pot dropper system, the user can insert up to 300 pots manually into the uppermost section of the machine. However, every 15 minutes, it is required for the user to refill the pot dropper to guarantee smooth operation of the device.
-It is important to note that the pot dropper contains two sections, each of which can accommodate a certain number of pots. To optimize the efficiency of the machine and guarantee an even distribution of pots, it is recommended that users stack and place pots in both sections uniformly. Proper stacking and placement of pots into the machine helps to prevent any issues such as jamming, or other operational malfunctions.
-By adhering to these guidelines, users can expect a reliable, efficient, and uninterrupted experience while using the pot dropper.
+When using pot dropper system, the user can insert up to 300 pots manually into the uppermost section of the machine. Every 15 minutes, it is required for the user to refill the pot dropper to guarantee smooth operation of the device.
+\\
+\noindent It is important to note that the pot dropper contains two sections, each of which can accommodate a certain number of pots. To optimize the efficiency of the machine and guarantee an even distribution of pots, it is recommended that users stack and place pots in both sections uniformly. Proper stacking and placement of pots into the machine helps to prevent any issues such as jamming, or other operational malfunctions.
+\\
+\noindent By adhering to these guidelines, users can expect a reliable, efficient, and uninterrupted experience while using the pot dropper.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{pot.jpg}
+    \includegraphics[width=0.8\textwidth]{pot.jpg}
     \caption{Pot Dropper}
     \label{fig:scope}
   \end{figure}
-
+\newpage
 \subsection{Verification System}
 The verification system will notify the user when there is a problem with the system. If there is a pot missing or out of place, an LED will light up, alerting the user that the system is not functioning as intended. 
 \section{Troubleshooting and FAQs}
 \subsection{What happens if trays get stuck?}
-If the trays get stuck, turn off the machine and remove them from the stack, and refill them normally. Once they are in place, turn the machine on to run as normal.
+If the trays get stuck, turn off the machine and remove them from the stack, and refill them evenly. Once they are in place, turn the machine on to run as normal.
 \subsection{What happens if pots get stuck?}
-If the pots get stuck, turn off the machine and remove them from the stack, and refill them normally. Once they are in place, turn the machine on to run as normal.
+If the pots get stuck, turn off the machine and remove them from the stack, and refill them evenly into both sections of the pot dropper. Once they are in place, turn the machine on to run as normal.
 \subsection{How many trays can the tray dropper hold?}
 The tray dropper can hold up to 30 trays, but it will need to be refilled every 15 minutes.
 \subsection{How many pots can the pot dropper hold?}
 The pot dropper can hold up to 300 pots, but it will need to be refilled every 15 minutes.
 \subsection{How will I know that all the pots have been placed correctly in the tray?}
-The verification subsystem will determine if all the pots have been placed correctly in the tray, outputting an LED when a pot is missing or out of place.
+The verification subsystem will determine if all the pots have been placed correctly in the tray, outputting an LED and an error on the user interface when a pot is missing or out of place.
 \subsection{How do I refill the Pot-pulator with trays and pots?}
-When refilling pots and trays, ensure that the machine is turned off. Trays and pots can then be loaded into their respective sections, the user can then turn on the machine for operation.
-\subsection{How can I use the user interface of the Pot-pulator?}
+When refilling pots and trays, ensure that the machine is turned off. 30 Trays and 300 pots can then be loaded evenly into their respective sections, the user can then turn on the machine for operation. The pot dropper has two sections, and the user can distribute them evenly between them.
+\subsection{How do I use the user interface of the Pot-pulator?}
 The user interface will display the current status of the machine. To learn more about the user interface and how to navigate it, please refer to the "User Interface" section of the manual.
 
 \end{document}
