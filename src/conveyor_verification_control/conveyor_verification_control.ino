@@ -60,10 +60,10 @@ void loop() {
 
   if(DISTANCE_MAX > distance_cm && distance_cm > DISTANCE_MIN || DISTANCE_MAX > distance2_cm && distance2_cm > DISTANCE_MIN )
     
-    digitalWrite(LED_PIN, HIGH);// turn on LED
+    digitalWrite(LED_PIN, HIGH);// turn on LED and send error signal to lcd
     
   else
-    digitalWrite(LED_PIN, LOW);// turn off LED 
+    digitalWrite(LED_PIN, LOW);// turn off LED and send no error signal to lcd
  
   if(digitalRead(stopPin)==HIGH){
     digitalWrite(relayPin, LOW);

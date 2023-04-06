@@ -53,7 +53,7 @@ urlcolor=cyan          % color of external links
   \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
   \midrule
   2023-01-18 & Juan Moncada,& Initial release\\&Aaron Billones,\\&Steven Ramundi,\\&Gillian Ford \\
-  
+  2023-04-05 & Steven Ramundi, & Updated for final documentation\\&Aaron Billones\\
   \bottomrule
   \end{tabularx}
 
@@ -61,7 +61,7 @@ urlcolor=cyan          % color of external links
 
 \section{Symbols, Abbreviations and Acronyms}
 
-See SRS Documentation at \url{https://github.com/aaronbilly22/The_Nursery_Project/blob/main/docs/SRS/SRS.pdf}
+See SRS Documentation at \url{https://github.com/aaronbilly22/The\_Nursery\_Project/blob/main/docs/SRS/SRS.pdf}
 
 
 \newpage
@@ -79,7 +79,7 @@ The Nursery Project.
 
 \noindent Complementary documents include the System Requirement Specifications
 and Module Guide.  The full documentation and implementation can be
-found at \url{https://github.com/aaronbilly22/The_Nursery_Project/blob/main/docs/SRS/SRS.pdf}. 
+found at \url{https://github.com/aaronbilly22/The\_Nursery\_Project/blob/main/docs/SRS/SRS.pdf}. 
 
 \section{Notation}
 
@@ -88,10 +88,10 @@ The structure of the MIS for modules comes from \citet{HoffmanAndStrooper1995},
 with the addition that template modules have been adapted from
 \cite{GhezziEtAl2003}.  The mathematical notation comes from Chapter 3 of
 \citet{HoffmanAndStrooper1995}.  For instance, the symbol := is used for a
-multiple assignment statement and conditional rules follow the form $(c_1
-\Rightarrow r_1 | c_2 \Rightarrow r_2 | ... | c_n \Rightarrow r_n )$.
+multiple assignment statement and conditional rules follow the form $(c\_1
+\Rightarrow r\_1 | c\_2 \Rightarrow r\_2 | ... | c\_n \Rightarrow r\_n )$.
 
-The following table summarizes the primitive data types used by \progname. 
+The following table summarizes the primitive data types used by Pot-pulator. 
 
 \begin{center}
 \renewcommand{\arraystretch}{1.2}
@@ -137,8 +137,6 @@ The following table is taken directly from the Module Guide document for this pr
   & Conveyor Input Module\\
   & Conveyor Movement Module\\
   & Tray Dispenser Input Module\\ 
-  & Tray Dispenser Gantry Module\\
-  & Tray Dispenser Raising Module \\
   & Tray Dispenser Output Module \\
   & Verification Output Module \\
   
@@ -162,17 +160,17 @@ The following table is taken directly from the Module Guide document for this pr
 \section{MIS of Pot Dropping Input Module} \label{potdroppingInput} 
 
 
-\subsection{Module}
-
-pot\_droppingIn.ino
+\subsection{Pot Dropping Input}
 
 \subsection{Uses}
-Pot Dropping Position Module (M4)
+Pot Dropping Position Module (M4)\\
 
 \subsection{Syntax}
-N/A
 \subsubsection{Exported Constants}
-N/A
+trigPin: ultrasonic range finder trigger pin\\
+echoPin: ultrasonic range finder echo pin\\
+LIMIT\_SWITCH\_PIN\_L: left servo limit switch pin\\
+LIMIT\_SWITCH\_PIN\_R: right servo limit switch pin\\
 \subsubsection{Exported Access Programs}
 
 % \begin{center}
@@ -190,12 +188,17 @@ N/A
 
 \subsubsection{State Variables}
 
-N/A
+duration := float\\
+distance := float\\
 
 \subsubsection{Environment Variables}
 
-trigPin, echoPin
-
+trigPin: output pin sending signal to ultrasonc range finder\\
+echoPin: input pin receiving signal from ultrasonc range finder\\
+LIMIT\_SWITCH\_PIN\_L: input pin receiving signal from arm switch attached to servo\\
+LIMIT\_SWITCH\_PIN\_R: input pin receiving signal from arm switch attached to servo\\
+Servo Servo1: servo object of servo motor 1\\
+Servo Servo2: servo object of servo motor 2\\
 \subsubsection{Assumptions}
 
 N/A
@@ -217,11 +220,9 @@ N/A
 
 loop, setup
 
-  \section{MIS of Pot Dropping Stepper Module} \label{potdroppingstepper} 
+\section{MIS of Pot Dropping Stepper Module} \label{potdroppingstepper} 
 
-\subsection{Module}
-
-steppertestpd.ino
+\subsection{Pot Dropping Stepper}
 
 \subsection{Uses}
 Pot Dropping Output Module (M6) 
@@ -229,7 +230,10 @@ Pot Dropping Output Module (M6)
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
-N/A
+const int stepPin1: step pin of stepper 1\\
+const int dirPin1: direction pin of stepper 1\\
+const int stepPin2: step pin of stepper 2\\
+const int dirPin2: direction pin of stepper 2\\
 \subsubsection{Exported Access Programs}
 N/A
 
@@ -241,8 +245,10 @@ N/A
 
 \subsubsection{Environment Variables}
 
-stepper\_position, coil\_1a, coil\_1b, coil\_2a, coil\_2b
-
+const int stepPin1: output pin sending signal to stepper 1\\
+const int dirPin1: output pin sending signal to stepper 1\\
+const int stepPin2: output pin sending signal to stepper 2\\
+const int dirPin2: output pin sending signal to stepper 2\\
 \subsubsection{Assumptions}
 
 N/A
@@ -253,21 +259,23 @@ N/A
 
 \subsubsection{Local Functions}
 
-stepper\_speed, stepper\_position, delay
+N/A
 
-  \section{MIS of Pot Dropping Output Module} \label{potdroppingOutput} 
+\section{MIS of Pot Dropping Output Module} \label{potdroppingOutput} 
 
 
 
-\subsection{Module}
-pot\_droppingOut.ino
+\subsection{Pot Dropping Output}
 
 \subsection{Uses}
 Communication (section \ref{communication})
 
 \subsection{Syntax}
 \subsubsection{Exported Constants}
-N/A
+servoPin 1: servo 1 command pin\\
+servoPin 2: servo2 command pin\\
+errorPin: user interface error pin\\
+conveyorPin: conveyor control pin\\
 \subsubsection{Exported Access Programs}
 
 N/A
@@ -279,7 +287,10 @@ N/A
 
 \subsubsection{Environment Variables}
 
-N/A
+servoPin 1: output pin sending signal to servo 1\\
+servoPin 2: output pin sending signal to servo 2\\
+errorPin: output pin sending error signal to front-end\\
+conveyorPin: output pin sneding stop/start signal to conveyor\\
 
 \subsubsection{Assumptions}
 
@@ -293,13 +304,11 @@ N/A
 
 N/A
 
-  \section{MIS of Conveyor Input Module} \label{conveyorInput} 
+\section{MIS of Conveyor Input Module} \label{conveyorInput} 
 
 
 
-\subsection{Module}
-
-conveyor\_control.ino
+\subsection{Conveyor Input}
 
 
 \subsection{Uses}
@@ -307,7 +316,7 @@ Conveyor Movement \ref{conveyorMovement}
 
 \subsection{Syntax}
 \subsubsection{Exported Constants}
-N/A
+const int stopPin: stop pin to conveyor\\
 \subsubsection{Exported Access Programs}
 
 N/A
@@ -316,11 +325,11 @@ N/A
 
 \subsubsection{State Variables}
 
-conveyor\_speed, conveyor\_direction
+N/A
 
 \subsubsection{Environment Variables}
 
-N/A
+const int stopPin: input pin receiving signal from pot dropper to stop/start conveyor movement\\
 
 \subsubsection{Assumptions}
 
@@ -330,14 +339,13 @@ N/A
 N/A
 \subsubsection{Local Functions}
 
-conveyor\_go
+N/A
 
-  \section{MIS of Conveyor Movement Module} \label{conveyorMovement}
+\section{MIS of Conveyor Movement Module} \label{conveyorMovement}
 
 
-\subsection{Module}
+\subsection{Conveyor Movement}
 
-conveyor\_shmove.ino
 
 \subsection{Uses}
 Communication \ref{communication}
@@ -345,7 +353,7 @@ Communication \ref{communication}
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
-N/A
+const int relayPin: relay pin from conveyor\\
 \subsubsection{Exported Access Programs}
 
 N/A
@@ -358,7 +366,7 @@ N/A
 
 \subsubsection{Environment Variables}
 
-conveyor\_speed, conveyor\_direction
+const int relayPin: output pin sending stop/start signal to conveyor relay\\
 
 \subsubsection{Assumptions}
 
@@ -376,136 +384,45 @@ N/A
 \section{MIS of Tray Dispenser Input Module} \label{trayDispenserInput} 
 
 
-\subsection{Module}
-
-tray\_DispenserInput.ino
+\subsection{Tray Dispenser Input}
 
 \subsection{Uses}
-Tray Dispenser Gantry \ref{trayDispenserGantry}
-
-\subsection{Syntax}
-
-\subsubsection{Exported Constants}
-N/A
-\subsubsection{Exported Access Programs}
-
-N/A
-
-\subsection{Semantics}
-
-\subsubsection{State Variables}
-
-N/A
-\subsubsection{Environment Variables}
-
-N/A
-
-\subsubsection{Assumptions}
-
-N/A
-
-\subsubsection{Access Routine Semantics}
-
-N/A
-
-\subsubsection{Local Functions}
-
-setup, loop
-
-  \section{MIS of Tray Dispenser Gantry Module} \label{trayDispenserGantry} 
-
-\subsection{Module}
-
-tray\_gantry.ino
-
-\subsection{Uses}
-Tray Dispenser Raising \ref{trayDispenserRaising}
-
-\subsection{Syntax}
-
-\subsubsection{Exported Constants}
-N/A
-\subsubsection{Exported Access Programs}
-
-N/A
-
-\subsection{Semantics}
-
-\subsubsection{State Variables}
-
-N/A
-
-
-\subsubsection{Environment Variables}
-
-stepper1, stepper2, xPos, yPos
-
-\subsubsection{Assumptions}
-
-N/A
-
-
-\subsubsection{Access Routine Semantics}
-
-N/A
-
-
-\subsubsection{Local Functions}
-
-N/A
-
-
-  \section{MIS of Tray Dispenser Raising Module} \label{trayDispenserRaising} 
-
-\subsection{Module}
-
-tray\_dispensingRaising.ino
-
-\subsection{Uses}
-
 Tray Dispenser Output \ref{trayDispenserOutput}
+
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
-N/A
-
+const int trigPin: ultrasonic range finder trigger pin\\
+const int echoPin: ultrasonic range finder echo pin\\
 \subsubsection{Exported Access Programs}
 
 N/A
-
 
 \subsection{Semantics}
 
 \subsubsection{State Variables}
 
-N/A
-
+distance := int\\
+duration := long\\
 \subsubsection{Environment Variables}
 
-direction, yPositionCounter
+const int trigPin: output pin sending signal to ultrasonc range finder\\
+const int echoPin: input pin receiving signal from ultrasonc range finder\\
 
 \subsubsection{Assumptions}
 
 N/A
 
-
 \subsubsection{Access Routine Semantics}
 
 N/A
 
-
-
-
 \subsubsection{Local Functions}
 
-N/A
+GetDistance(): returns distance as read from ultrasonic range finder
+\section{MIS of Tray Dispenser Output Module} \label{trayDispenserOutput} 
 
-
-  \section{MIS of Tray Dispenser Output Module} \label{trayDispenserOutput} 
-
-\subsection{Module}
-
-trayDispenserOutput.ino
+\subsection{Tray Dispenser Output}
 
 \subsection{Uses}
 Communication \ref{communication}
@@ -513,7 +430,11 @@ Communication \ref{communication}
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
-N/A
+const int ms1: stepping mode\\
+const int ms2: stepping mode\\
+const int ms3: stepping mode\\
+cosnt int stepPin: step pin of stepper motors\\
+const int dirPin: direction pin of stepper motors\\
 \subsubsection{Exported Access Programs}
 
 N/A
@@ -526,7 +447,11 @@ N/A
 
 \subsubsection{Environment Variables}
 
-N/A
+const int ms1: output pin to set stepping mode\\
+const int ms2: output pin to set stepping mode\\
+const int ms3: output pin to set stepping mode\\
+cosnt int stepPin: output pin sending signal to stepper motors\\
+const int dirPin: output pin sending signal to stepper motors\\
 
 \subsubsection{Assumptions}
 
@@ -539,11 +464,9 @@ N/A
 \subsubsection{Local Functions}
 
 N/A
-  \section{MIS of Verification Output Module} \label{verificationOutput} 
+\section{MIS of Verification Output Module} \label{verificationOutput} 
 
-\subsection{Module}
-
-verifyOut.ino
+\subsection{Verification Output}
 
 \subsection{Uses}
 Communication \ref{communication}
@@ -551,7 +474,7 @@ Communication \ref{communication}
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
-N/A
+const int LED\_PIN: pin to LED and front-end\\
 
 \subsubsection{Exported Access Programs}
 
@@ -565,7 +488,7 @@ N/A
 
 \subsubsection{Environment Variables}
 
-N/A
+const int LED\_PIN: output pin to LED and front-end to signify failure in verification\\
 
 \subsubsection{Assumptions}
 
@@ -578,11 +501,9 @@ N/A
 
 N/A
 
-  \section{MIS of Pot Dropping Position Module} \label{potDroppingPosition} 
+\section{MIS of Pot Dropping Position Module} \label{potDroppingPosition} 
 
-\subsection{Module}
-
-pot\_position.ino
+\subsection{Pot Dropping Position}
 
 \subsection{Uses}
 Pot Dropping Stepper \ref{potdroppingstepper}
@@ -591,7 +512,9 @@ Pot Dropping Stepper \ref{potdroppingstepper}
 
 \subsubsection{Exported Constants}
 
-N/A
+LIMIT\_SWITCH\_PIN\_L: left servo limit switch pin\\
+LIMIT\_SWTCH\_PIN\_R: right servo limit switch pin\\
+
 
 \subsubsection{Exported Access Programs}
 
@@ -601,10 +524,11 @@ N/A
 
 \subsubsection{State Variables}
 
-N/A
+distance := float
 \subsubsection{Environment Variables}
 
-N/A
+LIMIT\_SWITCH\_PIN\_L: input pin to determine if tray has made contact with left limit switch\\
+LIMIT\_SWTCH\_PIN\_R: input pin to determine if tray has made contact with right limit switch\\
 
 \subsubsection{Assumptions}
 
@@ -620,11 +544,9 @@ N/A
 
 N/A
 
-  \section{MIS of Verification Analysis Module} \label{verificationAnalysis} 
+\section{MIS of Verification Analysis Module} \label{verificationAnalysis} 
 
 \subsection{Module}
-
-verifyAnalysis.ino
 
 \subsection{Uses}
 
@@ -632,7 +554,10 @@ Verification Output \ref{verificationOutput}
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
-N/A
+const int TRIG\_PIN: ultrasonic range finder trigger pin\\
+cosnt int ECHO\_PIN: ultrasonic range finder echo pin\\
+const int TRIG\_PIN2: ultrasonic range finder trigger pin\\
+cosnt int ECHO\_PIN2: ultrasonic range finder echo pin\\
 \subsubsection{Exported Access Programs}
 
 N/A
@@ -641,11 +566,18 @@ N/A
 
 \subsubsection{State Variables}
 
-N/A
+duration\_us := float\\
+distance\_cm := float\\
+duration2\_us := float\\
+distance2\_cm := float\\
+
 
 \subsubsection{Environment Variables}
 
-N/A
+const int TRIG\_PIN: output pin to ultrasonic range finder\\
+cosnt int ECHO\_PIN: input pin from ultrasonic range finder\\
+const int TRIG\_PIN2: output pin to ultrasonic range finder\\
+cosnt int ECHO\_PIN2: input pin from ultrasonic range finder\\
 
 \subsubsection{Assumptions}
 
@@ -658,11 +590,9 @@ N/A
 \subsubsection{Local Functions}
 
 N/A
-  \section{MIS of Communication Module} \label{communication}
+\section{MIS of Communication Module} \label{communication}
 
-\subsection{Module}
-
-communication.ino
+\subsection{Communication}
 
 \subsection{Uses}
 
@@ -697,11 +627,9 @@ N/A
 
 N/A
 
-  \section{MIS of Front End Module} \label{fronEnd} 
+\section{MIS of Front End Module} \label{fronEnd} 
 
-\subsection{Module}
-
-fronEnd.ino
+\subsection{Front End}
 
 \subsection{Uses}
 Communication \ref{communication}
@@ -709,7 +637,11 @@ Communication \ref{communication}
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
-N/A
+LCD\_CS: chip select pin\\
+LCD\_CD: command/data pin\\
+LCD\_WR: write pin\\
+LCD\_RD: read pin\\
+LCD\_RESET: reset pin\\
 \subsubsection{Exported Access Programs}
 
 N/A
@@ -718,11 +650,17 @@ N/A
 
 \subsubsection{State Variables}
 
-N/A
+status\[\] := byte\\
+state\[\] := byte\\
+oldstate\[\] := byte\\
 
 \subsubsection{Environment Variables}
 
-N/A
+LCD\_CS: chip select pin\\
+LCD\_CD: command/data pin\\
+LCD\_WR: write pin\\
+LCD\_RD: read pin\\
+LCD\_RESET: reset pin\\
 
 \subsubsection{Assumptions}
 
@@ -730,7 +668,14 @@ N/A
 
 \subsubsection{Access Routine Semantics}
 
-N/A
+masterSwitchON(): writes master switch on status to display\\
+masterSwitchOFF(): write master switch off status to display\\
+verification() writes verification clear to display\\
+verifcationDetected(): writes verification error to display\\
+trayJam(): writes tray jam status warning to display\\
+trayStock(): writes tray stock status clear to display\\
+potJam(): writes pot jam status warning to display\\
+potStock(): write pot stock status warning to display\\
 
 \subsubsection{Local Functions}
 
