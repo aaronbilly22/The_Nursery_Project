@@ -25,6 +25,8 @@
 	\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 	\midrule
 	2022-09-25 & Juan Moncada,& Initial release\\&Aaron Billones,\\&Steven Ramundi,\\&Gillian Ford \\
+	2023-04-05 & Juan Moncada,& Update to better reflect final product. \\
+	
 	\bottomrule
 	\end{tabularx}
 	\end{table}
@@ -94,14 +96,14 @@
 	\begin{itemize}
 		\item \emph{main}: This branch is the default branch in the repository. It will contain all working code, all parts/assemblies, and complete documentation. 
 		It should always be behind or up-to-date with the \emph{develop} branch.
-		\item \emph{branch}: This branch is where all the development will take place.
+		\item \emph{Develop}: This branch is where all the development will take place.
 		 The team will review changes and perform testing in this branch. A pull request 
 		 will be submitted and approved by a minimum of two team members prior to being 
 		 merged into the \emph{main} branch where the working code should be.
-		\item \emph{prev-milestone}: This branch will contain all the code, parts, and documentation 
-		of the project’s most recently completed milestone. It will pose as a 
-		backup branch that can be referred to at any time for ease of communication and 
-		development throughout the team.
+		% \item \emph{prev-milestone}: This branch will contain all the code, parts, and documentation 
+		% of the project’s most recently completed milestone. It will pose as a 
+		% backup branch that can be referred to at any time for ease of communication and 
+		% development throughout the team.
 	\end{itemize}
 	Additional branches may be added when a new feature is being implemented if a 
 	team member believes that it will help the workflow of the project.
@@ -141,16 +143,17 @@
 	
 	\begin{itemize}
 	\item C++/Python programming language
-	\item PEP8 python linter
+	% \item PEP8 python linter
 	\item CI/CD will not be done as the project consists of four separate systems that will be developed independently by each group member. Tracking errors and bugs will be relatively 
 	easy as each group member will be responsible for their own system, and testing will be done before each pull request. Programming responsibilities will only overlap once each 
 	system is ready to be integrated into the project. We will still be implementing the measure of pushing code and creating pull requests often.
 	\item Solidworks (for parts design)
 	\item Motors (stepper, servo, DC, etc.)
 	\item Sensors (time of flight, ultrasonic, LiDAR, force, etc.)
-	\item Gantry robot
-	\item End-effector responsible for dropping
-	\item End-effector responsible for grabbing
+	%%\item Gantry robot- removed as the Gantry was seen to be too complex and require too much precision based on the environmental needs of the project.
+	\item End-effector responsible for tray dropping
+	\item End-effector responsible for pot dropping
+	%%\item End-effector responsible for grabbing -removed as there is no longer a Gantry and there for there will be no need for the end-effector for the grabbing.
 	\end{itemize}
 	
 	\section{Coding Standard}

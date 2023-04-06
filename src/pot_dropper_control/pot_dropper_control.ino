@@ -6,6 +6,7 @@
 #define servoPin1 A1
 #define servoPin2 A3
 #define errorPin A4
+#define conveyorPin 11
 
 const int stepPin1 = 2; 
 const int dirPin1 =3; 
@@ -25,7 +26,7 @@ void setup() {
 
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
-  pinMode(11, OUTPUT);//pin to control start/stop of conveyor
+  pinMode(conveyorPin, OUTPUT);//pin to control start/stop of conveyor
   pinMode(stepPin1,OUTPUT); 
   pinMode(dirPin1,OUTPUT);
   pinMode(stepPin2,OUTPUT); 
@@ -39,7 +40,7 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
 
-  digitalWrite(11, LOW); // start conveyor command
+  digitalWrite(conveyorPin, LOW); // start conveyor command
 
   //sensor control
   float duration, distance;
@@ -87,7 +88,7 @@ void loop() {
           delayMicroseconds(600); 
         }
       delay(890);
-      digitalWrite(11, LOW); //start conveyor command
+      digitalWrite(conveyorPin, LOW); //start conveyor command
       delay(890); //advance tray on conveyor for specified delay
     }
     //determines if tray is not below pot dropper and lowers arm switches
