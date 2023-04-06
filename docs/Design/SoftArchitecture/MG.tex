@@ -47,7 +47,7 @@
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
 2023-01-07 & 1.0 & Initial Release\\
-\\
+2023-04-05 & 2.0 & Update for final documentation\\
 \bottomrule
 \end{tabularx}
 
@@ -72,7 +72,6 @@ This section records information for easy reference.
   R & Requirement\\
   SC & Scientific Computing \\
   SRS & Software Requirements Specification\\
-  \progname & Explanation of Program Name\\
   UC & Unlikely Change \\
   \bottomrule
 \end{tabular}\\
@@ -177,8 +176,6 @@ will potentially need to be modified. Hence, it is not intended that these
 decisions will be changed.
 
 \begin{description}
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Use of STM32F421i-DISC1 
-as the main control board and brain of the system.
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Use of distance sensing for
 validation and verification.
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Use of Arduino microcontrollers to drive 
@@ -194,8 +191,7 @@ smaller modules.
 
 This section provides an overview of the module design. Modules are summarized
 in a hierarchy decomposed by secrets in Table \ref{TblMH}. The modules listed
-below, which are leaves in the hierarchy tree, are the modules that will
-actually be implemented.
+below, which are leaves in the hierarchy tree, are the modules that are implemented.
 
 \begin{description}
 \item [\refstepcounter{mnum} \mthemnum \label{mFE}:] Front End Module
@@ -207,8 +203,6 @@ actually be implemented.
 \item [\refstepcounter{mnum} \mthemnum \label{mCI}:] Conveyor Input Module
 \item [\refstepcounter{mnum} \mthemnum \label{mCM}:] Conveyor Movement Module
 \item [\refstepcounter{mnum} \mthemnum \label{mTDI}:] Tray Dispenser Input Module
-\item [\refstepcounter{mnum} \mthemnum \label{mTDG}:] Tray Dispenser Gantry Module
-\item [\refstepcounter{mnum} \mthemnum \label{mTDR}:] Tray Dispenser Raising Module
 \item [\refstepcounter{mnum} \mthemnum \label{mTDO}:] Tray Dispenser Output Module
 \item [\refstepcounter{mnum} \mthemnum \label{mVA}:] Verification Analysis Module
 \item [\refstepcounter{mnum} \mthemnum \label{mVO}:] Verification Output Module
@@ -269,50 +263,49 @@ between requirements and modules is listed in Table~\ref{TblRT}.
 
 \section{Module Decomposition} \label{SecMD}
 
-Modules are decomposed according to the principle of ``information hiding''
-proposed by \citet{ParnasEtAl1984}. The \emph{Secrets} field in a module
-decomposition is a brief statement of the design decision hidden by the
-module. The \emph{Services} field specifies \emph{what} the module will do
-without documenting \emph{how} to do it. For each module, a suggestion for the
-implementing software is given under the \emph{Implemented By} title. If the
-entry is \emph{OS}, this means that the module is provided by the operating
-system or by standard programming language libraries.  \emph{\progname{}} means the
-module will be implemented by the \progname{} software.
+% Modules are decomposed according to the principle of ``information hiding''
+% proposed by \citet{ParnasEtAl1984}. The \emph{Secrets} field in a module
+% decomposition is a brief statement of the design decision hidden by the
+% module. The \emph{Services} field specifies \emph{what} the module will do
+% without documenting \emph{how} to do it. For each module, a suggestion for the
+% implementing software is given under the \emph{Implemented By} title. If the
+% entry is \emph{OS}, this means that the module is provided by the operating
+% system or by standard programming language libraries.  \emph{\progname{}} means the
+% module will be implemented by the \progname{} software.
 
-Only the leaf modules in the hierarchy have to be implemented. If a dash
-(\emph{--}) is shown, this means that the module is not a leaf and will not have
-to be implemented.
+% Only the leaf modules in the hierarchy have to be implemented. If a dash
+% (\emph{--}) is shown, this means that the module is not a leaf and will not have
+% to be implemented.
 
-\subsection{Hardware Hiding Modules (\mref{mHH})}
-Due to the hardware focus of this project, there are no hardware hiding modules.
-\begin{description}
-\item[Secrets:]The data structure and algorithm used to implement the virtual
-  hardware.
-\item[Services:]Serves as a virtual hardware used by the rest of the
-  system. This module provides the interface between the hardware and the
-  software. So, the system can use it to display outputs or to accept inputs.
-\item[Implemented By:] OS
-\end{description}
+% \subsection{Hardware Hiding Modules (\mref{mHH})}
+% Due to the hardware focus of this project, there are no hardware hiding modules.
+% \begin{description}
+% \item[Secrets:]The data structure and algorithm used to implement the virtual
+%   hardware.
+% \item[Services:]Serves as a virtual hardware used by the rest of the
+%   system. This module provides the interface between the hardware and the
+%   software. So, the system can use it to display outputs or to accept inputs.
+% \item[Implemented By:] OS
+% \end{description}
 
 \subsection{Behaviour-Hiding Module}
 
-\begin{description}
-\item[Secrets:]The contents of the required behaviours.
-\item[Services:]Includes programs that provide externally visible behaviour of
-  the system as specified in the software requirements specification (SRS)
-  documents. This module serves as a communication layer between the
-  hardware-hiding module and the software decision module. The programs in this
-  module will need to change if there are changes in the SRS.
-\item[Implemented By:] --
-\end{description}
+% \begin{description}
+% \item[Secrets:]The contents of the required behaviours.
+% \item[Services:]Includes programs that provide externally visible behaviour of
+%   the system as specified in the software requirements specification (SRS)
+%   documents. This module serves as a communication layer between the
+%   hardware-hiding module and the software decision module. The programs in this
+%   module will need to change if there are changes in the SRS.
+% \item[Implemented By:] --
+% \end{description}
 
 \subsubsection{Pot Dropping Input Module (\mref{mPDI})}
 \begin{description}
 \item[Secrets:] Subsystem state and main board command.
 \item[Services:] Take in state and command and allow subsystem action.
 \item[Implemented By:] [Pot-pulator]
-\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
-  [Information to include for leaf modules in the decomposition by secrets tree.]
+
 \end{description}
 
 
@@ -322,8 +315,7 @@ Due to the hardware focus of this project, there are no hardware hiding modules.
 \item[Secrets:] Position of dispensing thread.
 \item[Services:] Drives stepper motors and dispenses pots.
 \item[Implemented By:] [Pot-pulator]
-\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
-  [Information to include for leaf modules in the decomposition by secrets tree.]
+
 \end{description}
 
 \subsubsection{Pot Dropping Output Module (\mref{mPDO})}
@@ -332,8 +324,7 @@ Due to the hardware focus of this project, there are no hardware hiding modules.
 \item[Services:] Serves to maintian the status, errror and readiness of the pot dispensing subsystem as well as
 communicate this status with main control board.
 \item[Implemented By:] [Pot-pulator]
-\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
-  [Information to include for leaf modules in the decomposition by secrets tree.]
+
 \end{description}
 
 
@@ -342,8 +333,7 @@ communicate this status with main control board.
 \item[Secrets:] Subsystem state and main board command
 \item[Services:] Takes in subsystem state and command and allows for system functionaility.
 \item[Implemented By:] [Pot-pulator]
-\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
-  [Information to include for leaf modules in the decomposition by secrets tree.]
+
 \end{description}
 
 
@@ -352,76 +342,53 @@ communicate this status with main control board.
 \item[Secrets:] Subsystem state and main board command.
 \item[Services:] Serves to drive conveyor motor and create movement.
 \item[Implemented By:] [Pot-pulator]
-\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
-  [Information to include for leaf modules in the decomposition by secrets tree.]
+
 \end{description}
 
-\subsubsection{Tray Dispensor Input Module (\mref{mTDI})}
+\subsubsection{Tray Dispenser Input Module (\mref{mTDI})}
 \begin{description}
 \item[Secrets:] Subsystem state and main board command.
 \item[Services:] Takes in subsystem state and command and allows for system functionaility.
 \item[Implemented By:] [Pot-pulator]
-\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
-  [Information to include for leaf modules in the decomposition by secrets tree.]
+
 \end{description}
 
-\subsubsection{Tray Dispensor Gantry Module (\mref{mTDG})}
-\begin{description}
-\item[Secrets:] Subsystem state and main board command, claw postion, tray idle position.
-\item[Services:] Serves to drive gantry to dispense tray into Conveyor.
-\item[Implemented By:] [Pot-pulator]
-\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
-  [Information to include for leaf modules in the decomposition by secrets tree.]
-\end{description}
-
-\subsubsection{Tray Dispensor Raising Module (\mref{mTDR})}
-\begin{description}
-\item[Secrets:] Subsystem state and main board command, tray raising platform position.
-\item[Services:] Serves to drive stepper motors to raise a tray into its idle position.
-\item[Implemented By:] [Pot-pulator]
-\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
-  [Information to include for leaf modules in the decomposition by secrets tree.]
-\end{description}
-
-\subsubsection{Tray Dispensor Output Module (\mref{mTDO})}
+\subsubsection{Tray Dispenser Output Module (\mref{mTDO})}
 \begin{description}
 \item[Secrets:] Subsystem state and main board command.
 \item[Services:] Serves to maintian the status, errror and readyness of the tray dispensing subsystem as well as
 communicate this status with main control board.
 \item[Implemented By:] [Pot-pulator]
-\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
-  [Information to include for leaf modules in the decomposition by secrets tree.]
+
 \end{description}
 
 \subsubsection{Verification Output Module (\mref{mVO})}
 \begin{description}
 \item[Secrets:] Verification analysis.
-\item[Services:] Serves to communicate output failure with main board.
+\item[Services:] Serves to communicate output failure with user interface.
 \item[Implemented By:] [Pot-pulator]
-\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
-  [Information to include for leaf modules in the decomposition by secrets tree.]
+
 \end{description}
 
 \subsection{Software Decision Module}
 
-\begin{description}
-\item[Secrets:] The design decision based on mathematical theorems, physical
-  facts, or programming considerations. The secrets of this module are
-  \emph{not} described in the SRS.
-\item[Services:] Includes data structure and algorithms used in the system that
-  do not provide direct interaction with the user. 
-  % Changes in these modules are more likely to be motivated by a desire to
-  % improve performance than by externally imposed changes.
-\item[Implemented By:] --
-\end{description}
+% \begin{description}
+% \item[Secrets:] The design decision based on mathematical theorems, physical
+%   facts, or programming considerations. The secrets of this module are
+%   \emph{not} described in the SRS.
+% \item[Services:] Includes data structure and algorithms used in the system that
+%   do not provide direct interaction with the user. 
+%   % Changes in these modules are more likely to be motivated by a desire to
+%   % improve performance than by externally imposed changes.
+% \item[Implemented By:] --
+% \end{description}
 
 \subsubsection{Front End Module (\mref{mFE})}
 \begin{description}
 \item[Secrets:] User inputs and individual subsystem status.
 \item[Services:] Take in user input and converts into functional command for individual modules.
 \item[Implemented By:] [Pot-pulator]
-\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
-  [Information to include for leaf modules in the decomposition by secrets tree.]
+
 \end{description}
 
 
@@ -431,8 +398,7 @@ communicate this status with main control board.
 \item[Secrets:] Position of tray within dispensing area.
 \item[Services:] Confirms tray position within dispensing area, triggers pot dispensing.
 \item[Implemented By:] [Pot-pulator]
-\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
-  [Information to include for leaf modules in the decomposition by secrets tree.]
+
 \end{description}
 
 \subsubsection{Verification Analysis Module (\mref{mVA})}
@@ -440,8 +406,7 @@ communicate this status with main control board.
 \item[Secrets:] System functional tolerances,  serveral distance readings.
 \item[Services:] Serves to check system output, and to alert if there is an output that does not conform to requirements.
 \item[Implemented By:] [Pot-pulator]
-\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
-  [Information to include for leaf modules in the decomposition by secrets tree.]
+
 \end{description}
 
 \subsubsection{Communication Module (\mref{mCO})}
@@ -449,8 +414,7 @@ communicate this status with main control board.
 \item[Secrets:] All subsystem states, user inputs.
 \item[Services:] Serves be the communications between user and subsystems. Serves to coordinate action between subsystems.
 \item[Implemented By:] [Pot-pulator]
-\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
-  [Information to include for leaf modules in the decomposition by secrets tree.]
+
 \end{description}
 
 \section{Traceability Matrix} \label{SecTM}
@@ -474,7 +438,7 @@ CR1 &  \mref{mCI}  \\
 CR2 &  \mref{mCM}  \\
 CR5 &  \mref{mCI}  \\
 TDR1 & \mref{mTDI} \\
-TDR2 & \mref{mTDG} \\
+TDR2 & \mref{mTDI} \\
 TDR6 & \mref{mTDI} \\
 VR1 &  \mref{mVA}  \\
 VR2 &  \mref{mVO}  \\
@@ -517,7 +481,7 @@ because they use modules from the lower levels.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.9\textwidth]{ModuleGuide.png}
+\includegraphics[width=0.9\textwidth]{module_guide.png}
 \caption{Use hierarchy among modules}
 \label{FigUH}
 \end{figure}
