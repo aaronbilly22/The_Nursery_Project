@@ -3,50 +3,131 @@
 \usepackage{tabularx}
 \usepackage{booktabs}
 
-\title{Reflection Report on \progname}
+\title{Reflection Report on Pot-pulator}
+\title{Reflection Report on Pot-pulator}
 
-\author{\authname}
-
-\date{}
+\author{Team \#24, The Nursery Project\\Aaron Billones, billonea\\Gillian Ford, fordg\\Juan Moncada, moncadaj\\Steven Ramundi, ramundis}
+\date{April 5, 2023}
 
 \input{../Comments}
 \input{../Common}
 
 \begin{document}
 
-\begin{table}[hp]
-\caption{Revision History} \label{TblRevisionHistory}
-\begin{tabularx}{\textwidth}{llX}
-\toprule
-\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
-\midrule
-Date1 & Name(s) & Description of changes\\
-Date2 & Name(s) & Description of changes\\
-... & ... & ...\\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-\newpage
-
 \maketitle
 
-Put your introductory blurb here.
+% \plt{Reflection is an important component of getting the full benefits from a
+% learning experience.  Besides the intrinsic benefits of reflection, this
+% document will be used to help the TAs grade how well your team responded to
+% feedback.  In addition, several CEAB (Canadian Engineering Accreditation Board)
+% Learning Outcomes (LOs) will be assessed based on your reflections.}
 
-\section{Project Overview}
+\section{Changes in Response to Feedback}
 
-\plt{Summarize the original project goals and requirements}
+% \plt{Summarize the changes made over the course of the project in response to
+% feedback from TAs, the instructor, teammates, other teams, the project
+% supervisor (if present), and from user testers.}
 
-\section{Key Accomplishments}
+% \plt{For those teams with an external supervisor, please highlight how the feedback 
+% from the supervisor shaped your project.  In particular, you should highlight the 
+% supervisor's response to your Rev 0 demonstration to them.}
 
-\plt{What went well?  This can be what went well with the documentation, the
-  coding, the project management, etc.}
+\subsection{SRS and Hazard Analysis}
 
-\section{Key Problem Areas}
+Changes were made to SRS based on feedback from teammates, the instructor, and TAs. 
+Requirements were adjusted as the design and scope of the project changed.
 
-\plt{What went wrong?  This can be what went wrong with the documentation, the
-  technology, the coding, time management, etc.}
+\subsection{Design and Design Documentation}
 
-\section{What Would you Do Differently Next Time}
+Design underwent many major changes throughout the process based on feedback. Between Proof of Concept 
+and Rev0 Demo, feedback from teammates influenced a major change in the final design of the tray dropper 
+subsystem. After Rev0, feeback from the instructor and TA influenced the revised design of the pot dropper 
+subsystem, increasing the accuracy of the machine overall.
+
+\subsection{VnV Plan and Report}
+
+The VnV Plan and Report changed based on feedback from peers. Testing plans were updated to better ensure all 
+components of the machine were being tested thoroughly, and all edge cases were considered when conducting testing.
+\section{Design Iteration (LO11)}
+
+The design process of the Pot-pulator went through various iterations.
+Our initial design for inserting the pots into the trays consisted of 
+actuators that would place the pots inside the slots. While this solution 
+is more precise and robust than our final solution, it requires very expensive
+materials in order to have it fully operational. After confirming our design for dispensing the pots,
+there were iterations with our 3-D printed parts that improved with each iteration.
+At first the thread in the disc was too wide where the device would drop multiple pots at one time.
+Therefore, we went through several design iterations in order to achieve the correct part design.\\\\
+
+\noindent Similar to the pot dispenser, the tray dispenser design had been through multiple iterations.
+Initially, we were going to use and gantry system to move the trays from a stack to the conveyor belt.
+We soon came to realize that this solution would also be very expensive and lacking the time/materials in 
+order to obtain a working final solution. After we iterated through our gear design which drops the trays
+from a stack above the conveyor one at a time. This also took some iterating as we needed to ensure that only one tray 
+would be dropped when we want it to.
+
+\section{Design Decisions (LO12)}
+
+With our project being more of a physical solution rather than a software one, 
+there were many assumptions made and a lot more constraints pressed upon us.
+For example, the 750 dollar budget limited us to changing some of our designs because some initial ones were too expensive.
+Some assumptions made were that the area would be clean and weather would not affect our device.
+Weather proofing our device would cost more money and materials that we did not have access to.
+We also should have made more timely design decisions as there were many instances where we were falling behind.
+More timely design goals should have been set which would help our overall design process and success in the project.
+
+\section{Economic Considerations (LO23)}
+
+% \plt{Is there a market for your product? What would be involved in marketing your 
+% product? What is your estimate of the cost to produce a version that you could 
+% sell?  What would you charge for your product?  How many units would you have to 
+% sell to make money? If your product isn't something that would be sold, like an 
+% open source project, how would you go about attracting users?  How many potential 
+% users currently exist?}
+
+We believe there is a market for our product. All Sheridan Nurseries farms are ran in the same way 
+as the farm which we used to influence our design. The cost of the manual labour does not justify the 
+purchase of the machines that are currently available on the market, but our low cost solution is perfect 
+for Sheridan Nurseries' current situation. It is also a great solution for any industrial potting farm which 
+owns a soil and seed filling machine, but does not own a pot and tray sorting machine. Marketing the product 
+would involve giving live demonstrations to decision makers at the farms or distributing videos showcasing the functionality 
+of the machine and highlighting the value it will provide. We estimate it would cost approximately \$700 to manufacture 
+if our current sourcing methods are used, but this price can be drastically reduced if it were to be manufactured in large 
+quantities. We would charge a price which would translate to a 60\% markup. At a cost of \$700, this would mean setting the price 
+at approximately \$1150. We would be making about \$450 per machine, and our break even point would be dependent on the amount of 
+capital we would be required to invest to establish a manufacturing process, and the amount of fixed costs that would incur on other 
+activities such as advertising.
+
+\section{Reflection on Project Management (LO24)}
+
+% \plt{This question focuses on processes and tools used for project management.}
+
+
+\subsection{How Does Your Project Management Compare to Your Development Plan}
+
+% \plt{Did you follow your Development plan, with respect to the team meeting plan, 
+% team communication plan, team member roles and workflow plan.  Did you use the 
+% technology you planned on using?}
+
+The project resembled the structure outlined in the development plan well. meetings were set, updates were given regularly, and each member was held accountable for their contributions to the project, this has a direct correlation with setting reasonable goals in the development plan and not shooting for the moon with meetings and objectives.
+
+\subsection{What Went Well?}
+
+% \plt{What went well for your project management in terms of processes and 
+% technology?}
+
+Overall, the design and integration of the capstone went well, dividing the project into subsections when surprisingly well and each member being responsible for their subsection with standardized communication made integration run smoothly.
+
+\subsection{What Went Wrong?}
+
+% \plt{What went wrong in terms of processes and technology?}
+
+A consideration that was overlooked at the beginning of the project was the amount of impact that precision would have on the project, while sections and parts were designed to be as accurate as possible, the designs relied on perfect alignment and sometimes ideal situations, these where not accounted for in the design.
+
+\subsection{What Would you Do Differently Next Time?}
+
+% \plt{What will you do differently for your next project?}
+
+If we had the opportunity to go back and change our project we would focus much more on developing a more redundant machine that relied less on accuracy and precision. We would also set smaller goals and set aside more time to integrate separate subsystems and tuning.
 
 \end{document}

@@ -891,6 +891,63 @@ relevent requirements. The requirements can be referenced in the SRS document.\\
 
 \newpage
 
+\section{Unit Test Description}
+
+The following section includes testing that was performed on critical hardware
+components of the system. These tests were performed for the purpose
+of verifying and understanding the behaviour of each hardware component.
+
+\subsection{Unit Testing Scope}
+
+Modules will be tested based on the functionality of hardware with which they are interacting. 
+For this reason, the Communication Module will be tested through each test. The Front End and Verification Analysis Modules have 
+undergone constant testing and verification through the design of the user interface, and will therefore not require 
+additional testing initiatives. Additionally, unit tests will be responsible for testing multiple modules at once due 
+to the repeated use of hardware components.
+
+\subsection{Tests for Functional Requirements}
+
+\indent \subsubsection{Pot Dropping Input, Pot Dropping Position, Tray Dispenser Input, Verification Output Modules}
+
+\begin{enumerate}
+
+  \item{HWT-01: \textbf{Ultrasonic Range Finder Control}}
+  
+Type: Dynamic\\
+Initial State: Sensor mounted with no object placed in front of sensor, serial monitor outputting
+ current distance reading.\\
+Input: Object placed directly in front of sensor.\\
+Output: Serial monitor displays current distance reading.\\
+Test Case Derivation: Change in distance read will ensure sensor is accurately reading the distance 
+between itself and the object, distance will be verified through measurement.
+How test will be performed: Object will be placed in front of sensor, a measuring tool will be used to 
+measure distance between the object and the sensor, will verify if serial monitor output is accurate and precise.\\
+
+
+\subsubsection{Pot Dropping Stepper, Pot Dropping Output, Tray Dispenser Output Modules}
+
+  \item{HWT-02: \textbf{Stepper Motor Control}}
+  
+Type: Dynamic\\
+Initial State: Motor connected to power.\\
+Input: Motor instructions for one full rotation.\\
+Output: One full rotation.\\
+Test Case Derivation: Arduino will send instructions to stepper motor to turn 1 full revolution in full,
+half, quarter, eighth, and sixteenth stepping modes.\\
+
+\subsubsection{Conveyor Input, Conveyor Output, Pot Dropper Output}
+
+  \item{HWT-03: \textbf{AC Motor Control}}
+  
+Type: Dynamic\\
+Initial State: Conveyor connected to power.\\
+Input: Conveyor stop/start signals to relay from Arduino.\\
+Output: Conveyor stops and starts based on signals to relay, conveyor speed changes based on potentiometer.\\
+Test Case Derivation: Arduino will send signals to the relay which controls the conveyor power. The conveyor 
+will connect to power based on the status of the relay, and will start and stop as a result based on the signals 
+sent from the Arduino. The potentiometer will be adjusted to test the affect on conveyor speed. \\
+  
+\end{enumerate}
 % \section{Appendix}
 
 % This is where you can place additional information.
