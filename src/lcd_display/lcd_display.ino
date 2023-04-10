@@ -127,12 +127,11 @@ void setup(void) {
 
   // button[0].initButton(&tft, 120,117,200,115,BLACK,YELLOW,WHITE,"yep",3);
   // button[0].drawButton();
-
-  verification();
-
   masterSwitchOFF();
-
-  trayStock();
+  verification();
+  jam();
+  stock();
+  
 
   
   // button[0].initButton(&tft, 120,252,200,115,BLACK,BLUE,WHITE,"blue",3);
@@ -177,20 +176,20 @@ void loop(void) {
     if(state[2]!=oldstate[2]){
       oldstate[2] ^= 1;
       if(state[2]==1){
-        trayJam();
+        jamDetected();
       }
       else{
-        trayStock();
+        jam();
       }
     }
 
     if(state[3]!=oldstate[3]){
       oldstate[3] ^= 1;
       if(state[3]==1){
-        potJam();
+        stockDetected();
       }
       else{
-        potStock();
+        stock();
       }
     }
 
@@ -228,90 +227,92 @@ void masterSwitchOFF(){
 }
 
 void verification(){
-  tft.fillRoundRect(245,30,215,135,3,GREEN);
-  tft.drawRoundRect(245,30,215,135,3,BLACK);
-  tft.setCursor(280,35);
+  
+  tft.fillRoundRect(245,175,215,135,3,GREEN);
+  tft.drawRoundRect(245,175,215,135,3,BLACK);
+  tft.setCursor(280,180);
   tft.setTextColor(BLACK);
   tft.setTextSize(2);
   tft.print("Verification");
-  tft.setCursor(280,95);
+  tft.setCursor(280,235);
   tft.setTextColor(BLACK);
   tft.setTextSize(5);
   tft.print("CLEAR");
 }
 
 void verificationDetected(){
-  tft.fillRoundRect(245,30,215,135,3,RED);
-  tft.drawRoundRect(245,30,215,135,3,BLACK);
-  tft.setCursor(280,35);
-  tft.setTextColor(WHITE);
+  
+  tft.fillRoundRect(245,175,215,135,3,YELLOW);
+  tft.drawRoundRect(245,175,215,135,3,BLACK);
+  tft.setCursor(280,180);
+  tft.setTextColor(BLACK);
   tft.setTextSize(2);
   tft.print("Verification");
-  tft.setCursor(300,90);
-  tft.setTextColor(WHITE);
+  tft.setCursor(285,235);
+  tft.setTextColor(BLACK);
   tft.setTextSize(3);
-  tft.print("ERROR!");
-  tft.setCursor(255,120);
-  tft.setTextColor(WHITE);
+  tft.print("WARNING!");
+  tft.setCursor(255,265);
+  tft.setTextColor(BLACK);
   tft.setTextSize(3);
   tft.print("Pot Missing");
 }
 
-void trayJam(){
+void stockDetected(){
   tft.fillRoundRect(20,175,215,135,3,YELLOW);
   tft.drawRoundRect(20,175,215,135,3,BLACK);
-  tft.setCursor(70,180);
+  tft.setCursor(60,180);
   tft.setTextColor(BLACK);
   tft.setTextSize(2);
-  tft.print("Tray Status");
-  tft.setCursor(60,235);
+  tft.print("Stock Status");
+  tft.setCursor(65,235);
   tft.setTextColor(BLACK);
   tft.setTextSize(3);
   tft.print("WARNING!");
-  tft.setCursor(50,265);
+  tft.setCursor(40,265);
   tft.setTextColor(BLACK);
   tft.setTextSize(3);
-  tft.print("Tray Jam");
+  tft.print("Fill Items");
 }
 
-void trayStock(){
+void stock(){
   tft.fillRoundRect(20,175,215,135,3,GREEN);
   tft.drawRoundRect(20,175,215,135,3,BLACK);
-  tft.setCursor(70,180);
+  tft.setCursor(60,180);
   tft.setTextColor(BLACK);
   tft.setTextSize(2);
-  tft.print("Tray Status");
-  tft.setCursor(55,240);
+  tft.print("Stock Status");
+  tft.setCursor(70,235);
   tft.setTextColor(BLACK);
   tft.setTextSize(5);
-  tft.print("CLEAR");
+  tft.print("FULL");
 }
 
-void potJam(){
-  tft.fillRoundRect(245,175,215,135,3,YELLOW);
-  tft.drawRoundRect(245,175,215,135,3,BLACK);
-  tft.setCursor(305,180);
-  tft.setTextColor(BLACK);
+void jamDetected(){
+  tft.fillRoundRect(245,30,215,135,3,RED);
+  tft.drawRoundRect(245,30,215,135,3,BLACK);
+  tft.setCursor(290,35);
+  tft.setTextColor(WHITE);
   tft.setTextSize(2);
-  tft.print("Pot Status");
-  tft.setCursor(295,235);
-  tft.setTextColor(BLACK);
+  tft.print("Jam Status");
+  tft.setCursor(305,90);
+  tft.setTextColor(WHITE);
   tft.setTextSize(3);
-  tft.print("WARNING!");
-  tft.setCursor(270,265);
-  tft.setTextColor(BLACK);
+  tft.print("ERROR!");
+  tft.setCursor(285,120);
+  tft.setTextColor(WHITE);
   tft.setTextSize(3);
-  tft.print("Pot Jam");
+  tft.print("Blockage");
 }
 
-void potStock(){
-  tft.fillRoundRect(245,175,215,135,3,GREEN);
-  tft.drawRoundRect(245,175,215,135,3,BLACK);
-  tft.setCursor(305,180);
+void jam(){
+  tft.fillRoundRect(245,30,215,135,3,GREEN);
+  tft.drawRoundRect(245,30,215,135,3,BLACK);
+  tft.setCursor(290,35);
   tft.setTextColor(BLACK);
   tft.setTextSize(2);
-  tft.print("Tray Status");
-  tft.setCursor(390,240);
+  tft.print("Jam Status");
+  tft.setCursor(280,90);
   tft.setTextColor(BLACK);
   tft.setTextSize(5);
   tft.print("CLEAR");
